@@ -1,0 +1,155 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <include file="example.xml"/>
+    <!-- Configuration for the default package. -->
+    
+    <!--Package inicio de Sesion -->
+    <package name="inicio_sesion" extends="struts-default">
+        <action name="Sesion" class="sesion.Login_Action"> 
+            <result name="profesor">Profesor/Profesor.jsp</result>
+            <result name="Admin">Admin.jsp</result>
+            <result name="fail">error.jsp</result>
+        </action>
+    </package>
+    
+    <!--Package Menu (Para dirigir a Menu Principal)-->
+    <package name="Menu" extends="struts-default">
+        <action name="Menu">           
+            <result>Profesor/Profesor.jsp</result>
+        </action>
+    </package>
+    
+    <!--Package Actividad 2.1-->
+    <package name="Actividad_2_1" extends="struts-default">
+        <action name="Actividad_2_1">
+            <result>Profesor/Actividades/Actividad_2_1/Actividad_2_1.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_1_1" >
+            <result>Profesor/Actividades/Actividad_2_1/Actividad_2_1_1.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_1_2" >
+            <result>Profesor/Actividades/Actividad_2_1/Actividad_2_1_2.jsp</result>
+        </action>
+    </package>
+    
+    <!--Package Actividad 2.2-->
+    <package name="Actividad_2_2" extends="struts-default">
+        <action name="Actividad_2_2">
+            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_2_1" >
+            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2_1.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_2_2" >
+            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2_2.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_2_3" >
+            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2_3.jsp</result>
+        </action>
+        
+    </package>
+    
+    <!--Package Actividad 2.3-->
+    <package name="Actividad_2_3" extends="struts-default">
+        <action name="Actividad_2_3">
+            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_3_1">
+            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3_1.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_3_2">
+            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3_2.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_3_3">
+            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3_3.jsp</result>
+        </action>
+    </package>
+    
+    <!--Package Actividad 2.4-->
+    <package name="Actividad_2_4" extends="struts-default">
+        <action name="Actividad_2_4">
+            <result>Profesor/Actividades/Actividad_2_4/Actividad_2_4_2.jsp</result>
+        </action>
+    </package>
+    
+    <!--Package Actividad 2.5-->
+    <package name="Actividad_2_5" extends="struts-default">
+        <action name="Actividad_2_5">
+            <result>Profesor/Actividades/Actividad_2_5/Actividad_2_5_2.jsp</result>
+        </action>
+    </package>
+       
+    <!--Package Actividad 2.11-->
+    <package name="Actividad_2_11" extends="struts-default">
+        <action name="Actividad_2_11">
+            <result>Profesor/Actividades/Actividad_2_11/Actividad_2_11.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_11_1">
+            <result>Profesor/Actividades/Actividad_2_11/Actividad_2_11_1.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_11_2">
+            <result>Profesor/Actividades/Actividad_2_11/Actividad_2_11_2.jsp</result>
+        </action>
+    </package>
+    
+    <!--Package Actividad 2.12-->
+    <package name="Actividad_2_12" extends="struts-default">
+        <action name="Actividad_2_12">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_1">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_1.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_2">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_2.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_3">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_3.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_4">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_4.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_5">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_5.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_6">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_6.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_7">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_7.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_8">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_8.jsp</result>
+        </action>
+        
+        <action name="Actividad_2_12_9">
+            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_9.jsp</result>
+        </action>
+        
+        
+        
+    </package>
+    
+    
+</struts>
