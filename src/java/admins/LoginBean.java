@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sesion;
+package admins;//aqui haremos el insert
 
 /**
  *
- * @author le_as
+ * @author PsysacElrick
  */
+import sesion.*;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
@@ -32,7 +33,6 @@ public class LoginBean
             connection = DataSource.getInstance().getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select password from usuarios where id_prof='"+userName+"';");//cambiar nom_prof por id_prof
-            /*aqui cambie el id_prof por nom_prof*/
             while(resultSet.next())
             {
                 System.out.println(resultSet.getString("password"));

@@ -26,7 +26,7 @@ public class SesionBean {
         try {
             connection = DataSource.getInstance().getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select idTypeUsuario from usuarios where nom_prof='"+userName+"';");//cambiar nom_prof y userName
+            resultSet = statement.executeQuery("select idTypeUsuario from usuarios where id_prof='"+userName+"';");//cambiar nom_prof y userName
             while(resultSet.next())
             {
                 System.out.println(resultSet.getString("idTypeUsuario"));

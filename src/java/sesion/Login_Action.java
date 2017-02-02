@@ -70,10 +70,17 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 return "usuario_repua";
             if(type.equals("usuario_cofaa"))
                 return "usuario_cofaa";
+            //administradores
             if(type.equals("admin_sip"))
                 return "admin_sip";
-            if(type.equals("admin_ss"))
-                return "admin_ss";
+            if(type.equals("admin_inda"))
+                return "admin_inda";
+            if(type.equals("admin_cofaa"))
+                return "admin_cofaa";
+            if(type.equals("admin_prof"))
+                return "admin_prof";
+            if(type.equals("admin_escom"))
+                return "admin_escom";
             else
                 return "fail";       
         }
