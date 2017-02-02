@@ -20,7 +20,7 @@
     </package>
     
     <!--Paquetes de los administradores (todos)-->
-    <package name="AltaUsuarios" namespace="/Usuario" extends="struts-default"><!--Paquete para dar de alta usuarios SIP-->
+    <package name="AltaUsuarios"  extends="struts-default"><!--Paquete para dar de alta usuarios SIP-->
         <action name="Registra_SIP" class="admins.regusuario_sip">
             <result name="success">Admins/admin_sip.jsp</result>
             <result name="error">Admins/regusuario_fallo.jsp</result>

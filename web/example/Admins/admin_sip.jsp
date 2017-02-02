@@ -63,7 +63,7 @@
             out.print("<a href='Borrar?nom_prof="+rs.getString("nom_prof")+"'>Borrar</a>");
             out.print("</td>");
             out.print("<td>");
-            out.print("<a href='/login/Admins/modifica_usip.jsp?id="+rs.getString("nom_prof")+"'>Modificar</a>");
+            out.print("<a href='Admins/modifica_usip.jsp?id="+rs.getString("nom_prof")+"'>Modificar</a>");
             out.print("</td>");
             }
         out.print("</table>");
