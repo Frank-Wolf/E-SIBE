@@ -9,7 +9,7 @@
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default">
         <action name="Sesion" class="sesion.Login_Action"> 
-            <result name="profesor">Profesor/Profesor.jsp</result>
+            <result name="profesor">/Profesor/Profesor.jsp</result>
             <result name="admin_sip">Admins/admin_sip.jsp</result>
             <result name="admin_inda">Admins/admin_inda.jsp</result>
             <result name="admin_cofaa">Admins/admin_cofaa.jsp</result>
@@ -31,7 +31,6 @@
         </action>
         <action name="Modifica_USIP">
             <result>Admins/modifica_usip.jsp</result>
-            
         </action>
         <action name="Modifica" class="admins.Modifica_SIP">
             <result name="modificar_exitoso">admin_sip.jsp</result>
