@@ -30,13 +30,24 @@
             <result name="borrar_fallo">borrar_fallo.jsp</result>
         </action>
         <action name="Modifica_USIP">
-            <result>Admins/modifica_usip.jsp</result>
+            <result>Admins/Modifica_SIP.jsp</result>
         </action>
-        <action name="Modifica" class="admins.Modifica_SIP">
-            <result name="modificar_exitoso">admin_sip.jsp</result>
+        <action name="Modifica" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso" type="dispatcher">
+                Modifica_SIP.jsp
+            </result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
+        
+        
     </package>
+    
+    <package name="direcciones" extends="struts-default">
+        <action name="principal_admin_sip">
+            <result>/Admins/admin_sip.jsp</result>
+        </action>
+    </package>
+    
     <!-->
     <package>
         <action>
