@@ -115,7 +115,7 @@
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Admins/Borrar?nom_prof="
+                                out.print("<a href='/Borrar?nom_prof="
                                         +rs.getString("nom_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");

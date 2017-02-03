@@ -14,20 +14,19 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, 
         initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title> E-SIBE</title>
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="../css/bootstrap.min.css"/>" 
+        <link href="<s:url value="css/bootstrap.min.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="../css/nav_bar.css"/>" 
-              rel="stylesheet" type="text/css"/>
+        
         
         
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
     
-    <body background="../css/textura.png" class="boding">
+    <body background="css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
@@ -57,11 +56,8 @@
                                        aria-haspopup="true" aria-expanded="false">
                                        Actividades <span class="caret"></span>
                                     </a>
-
-                                    <ul class="dropdown-menu">
+                                     <ul class="dropdown-menu">
                                         
-                                            
-
                                         <li><a href="Actividad_2_1">Actividades 2.1</a></li>
                                         <li><a href="Actividad_2_2">Actividades 2.2</a></li>
                                         <li><a href="Actividad_2_3">Actividades 2.3</a></li>
@@ -72,6 +68,7 @@
                                         <li><a href="Actividad_2_12">Actividades 2.12</a></li>
                                      
                                     </ul>
+                                    
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -106,8 +103,8 @@
         
         
                     <!-- Scripts para Bootstrap -->
-        <script src="../css/js/jquery.js" type="text/javascript"></script>
-        <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="css/js/jquery.js" type="text/javascript"></script>
+        <script src="css/js/bootstrap.min.js" type="text/javascript"></script>
         
     </body>
 </html>
