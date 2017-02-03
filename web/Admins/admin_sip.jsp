@@ -25,7 +25,7 @@
         
         <title>Inicio administrador SIP</title>
     </head>
-     <body background="../css/textura.png" class="boding">
+     <body background="css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
@@ -140,8 +140,8 @@
         
         
                     <!-- Scripts para Bootstrap -->
-        <script src="../css/js/jquery.js" type="text/javascript"></script>
-        <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="css/js/jquery.js" type="text/javascript"></script>
+        <script src="css/js/bootstrap.min.js" type="text/javascript"></script>
         
     </body>
 </html>
