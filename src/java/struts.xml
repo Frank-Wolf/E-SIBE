@@ -27,11 +27,15 @@
         </action>
         <action name="Borrar" class="admins.Borrarusuario_SIP">
             <result name="borrar_exitoso">admin_sip.jsp</result>
-            <result name="borrar_fallo">borrarfallo_SIP.jsp</result>
+            <result name="borrar_fallo">borrar_fallo.jsp</result>
+        </action>
+        <action name="Modifica_USIP">
+            <result>Admins/modifica_usip.jsp</result>
+            
         </action>
         <action name="Modifica" class="admins.Modifica_SIP">
             <result name="modificar_exitoso">admin_sip.jsp</result>
-            <result name="modificar_fallo">borrarfallo_SIP.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
     </package>
     <!-->

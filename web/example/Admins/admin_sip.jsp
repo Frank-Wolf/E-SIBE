@@ -13,9 +13,6 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <link href="<s:url value="/css/Tablas.css"/>" 
-              rel="stylesheet" type="text/css"/>
-        
         <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
@@ -48,6 +45,10 @@
                             <a class="navbar-brand" >E-SIBE: Administrador SIP</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="Modifica_USIP">Modificar Usuario</a></li>
+                                <li><a>Borrar Usuario</a></li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="http://localhost:8084/login/">
                                       Cerrar Sesion</a></li>
@@ -58,9 +59,29 @@
                 
 
                 
-                <div class="row container" >
+                <div class="row container-fluid" >
+                    
+                    <!-- Formulario para registrar un usuario-->
                     <div class="col-md-6">
-                        <h4 class="subtitulos">Lista de usuarios SIP activos</h4>
+
+                        <h2 class="subtitulos">Registrar nuevo usuario SIP</h2>
+                        <s:set name="u_a" value="%{'SIP'}" />
+                        <s:set name="periodo" value="%{0}" />
+                        <s:set name="idTypeUsuario" value="%{'usuario_sip'}" />
+                        <s:form id="datos3" action="Registra_SIP">
+                            <s:textfield name="user" label="Nombre de usuario"/>
+                            <s:textfield name="matricula" label="Matricula"/>
+                            <s:textfield name="password" label="Contraseña"/>
+                            <s:hidden name="u_a" label="Dependencia"/>
+                            <s:hidden name="periodo" label="Periodo"/>
+                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
+                            <s:submit cssClass="btn" name="Registrar Usuario"/>
+                        </s:form> 
+                    </div>
+                    
+                    <!-- Tabla donde se muestran los usuarios Activos-->    
+                    <div class="col-md-6">
+                        <h3 class="subtitulos">Lista de usuarios SIP activos</h3>
                     
                         <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lb" scope="session" 
@@ -71,16 +92,27 @@
                             rs=lb.executeQuery("SELECT nom_prof, "
                                     + "id_prof FROM usuarios WHERE "
                                     + "idTypeUsuario = 'usuario_sip'");
-                            out.print("<table border='.5px'>");
-
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  Id de Usuario  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Nombre de Usuario  ");
+                            out.print("</th>");
+                            out.print("</tr>");
                             while (rs.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs.getString("nom_prof"));
+                                out.print("  ");
+                                out.print(rs.getString("id_prof"));
+                                out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs.getString("id_prof"));
+                                out.print("  ");
+                                out.print(rs.getString("nom_prof"));
+                                out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='Admins/Borrar?nom_prof="
@@ -95,23 +127,7 @@
                             lb.closeConnection();
                         %>
                     </div>
-                    
-                    <div class="col-md-6">
-
-                        <p id="p3">Registrar nuevo usuario SIP</p>
-                        <s:set name="u_a" value="%{'SIP'}" />
-                        <s:set name="periodo" value="%{0}" />
-                        <s:set name="idTypeUsuario" value="%{'usuario_sip'}" />
-                        <s:form id="datos3" action="Registra_SIP">
-                            <s:textfield name="user" label="Nombre de usuario"/>
-                            <s:textfield name="matricula" label="Matricula"/>
-                            <s:textfield name="password" label="Contraseña"/>
-                            <s:hidden name="u_a" label="Dependencia"/>
-                            <s:hidden name="periodo" label="Periodo"/>
-                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit name="Registrar Usuario"/>
-                        </s:form> 
-                    </div>
+                        
                 </div>                 
             </s:div>  
         </s:div>        
@@ -129,3 +145,8 @@
         
     </body>
 </html>
+
+<!-- Esto da las opciones de borrar y modificar
+lo dejo por si se requiere
+
+-->
