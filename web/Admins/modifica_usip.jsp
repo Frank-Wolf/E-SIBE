@@ -13,9 +13,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar usuarios SIP</title>
     </head>
-    <body background="../css/guinda.jpg">
-        <img id="ipn" src="../css/ipn.png"/>
-        <img id="cofaa" src="../css/cofaa.png"/>
+    <body background="css/textura.png" class="boding">
+        
+        <!--header-->
+        <header class="headering">
+            <s:div cssClass="container-fluid">            
+                <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
+            </s:div>
+        </header>
+        
         <p id="p1" align="center">Ingrese los cambios deseados al usuario SIP</p>
         
         <%@ page import="java.sql.*" %>

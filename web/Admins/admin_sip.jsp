@@ -13,19 +13,17 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="/css/bootstrap.css"/>" 
+        <link href="<s:url value="css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="../css/nav_bar.css"/>" 
-              rel="stylesheet" type="text/css"/>
-        
+
         
         <title>Inicio administrador SIP</title>
     </head>
-     <body background="../css/textura.png" class="boding">
+     <body background="css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
