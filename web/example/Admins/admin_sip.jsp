@@ -75,7 +75,7 @@
         <s:set name="u_a" value="%{'SIP'}" />
         <s:set name="periodo" value="%{0}" />
         <s:set name="idTypeUsuario" value="%{'usuario_sip'}" />
-        <s:form id="datos3" action="/Usuario/Registra_SIP">
+        <s:form id="datos3" action="Registra_SIP">
             <s:textfield name="user" label="Nombre de usuario"/>
             <s:textfield name="matricula" label="Matricula"/>
             <s:textfield name="password" label="Contraseña"/>

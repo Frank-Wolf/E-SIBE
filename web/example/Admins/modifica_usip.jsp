@@ -178,7 +178,7 @@
         lb.closeConnection();
         %>
         <div id="parte2">    
-        <s:form action="/Usuario/Modifica">
+        <s:form action="Modifica">
             <s:set var="id_user"><%=id_user%></s:set>
             <s:textfield name="usuario" value="%{#id_user}"/>
             <br>

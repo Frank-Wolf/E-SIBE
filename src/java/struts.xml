@@ -22,15 +22,15 @@
     <!--Paquetes de los administradores (todos)-->
     <package name="AltaUsuarios"  extends="struts-default"><!--Paquete para dar de alta usuarios SIP-->
         <action name="Registra_SIP" class="admins.regusuario_sip">
-            <result name="success">Admins/admin_sip.jsp</result>
+            <result name="success">admin_sip.jsp</result>
             <result name="error">Admins/regusuario_fallo.jsp</result>
         </action>
         <action name="Borrar" class="admins.Borrarusuario_SIP">
-            <result name="borrar_exitoso">Admins/admin_sip.jsp</result>
+            <result name="borrar_exitoso">admin_sip.jsp</result>
             <result name="borrar_fallo">Admins/borrarfallo_SIP.jsp</result>
         </action>
         <action name="Modifica" class="admins.Modifica_SIP">
-            <result name="modificar_exitoso">Admins/admin_sip.jsp</result>
+            <result name="modificar_exitoso">admin_sip.jsp</result>
             <result name="modificar_fallo">Admins/borrarfallo_SIP.jsp</result>
         </action> 
     </package>
