@@ -38,7 +38,7 @@
                         <s:form id="datos" action="Sesion" method="post">
                             <s:textfield name="usuario" label="Usuario" />
                             <s:password  name="pass" label="Contraseña" />
-                            <s:submit cssClass="btn" value= "Ingresar"><span>. .</span></s:submit>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>
                         </div>  
