@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, 
         initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title> E-SIBE</title>
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="icono.ico"/>"/>
@@ -35,7 +35,7 @@
                     <h2 class="titulos">E-SIBE</h2>
                     <div>
                     <s:div cssClass="cover-inner" align ="center">
-                        <s:form id="datos" action="Sesion" method="post">
+                        <s:form id="datos" action="Usuario/Sesion" method="post">
                             <s:textfield name="usuario" label="Usuario" />
                             <s:password  name="pass" label="Contraseña" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>

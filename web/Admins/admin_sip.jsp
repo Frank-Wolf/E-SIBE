@@ -13,17 +13,17 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <link href="<s:url value="css/style.css"/>" 
+        <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="css/bootstrap.css"/>" 
+        <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
 
         
         <title>Inicio administrador SIP</title>
     </head>
-     <body background="css/textura.png" class="boding">
+     <body background="../css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
@@ -66,7 +66,7 @@
                         <s:set name="u_a" value="%{'SIP'}" />
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_sip'}" />
-                        <s:form id="datos3" action="Registra_SIP">
+                        <s:form id="datos3" action="/Usuario/Registra_SIP">
                             <s:textfield name="user" label="Nombre de usuario"/>
                             <s:textfield name="matricula" label="Matricula"/>
                             <s:textfield name="password" label="Contraseña"/>
@@ -113,16 +113,16 @@
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='/Borrar?nom_prof="
-                                        +rs.getString("nom_prof")+"'>Borrar</a>");
+                                
+                                out.print("<a href='Borrar?nom_prof="+rs.getString("nom_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Admins/modifica_usip.jsp?id="
-                                        +rs.getString("nom_prof")+"'>Modificar</a>");
+                                out.print("<a href='/login/Admins/modifica_usip.jsp?id="+rs.getString("nom_prof")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             lb.closeConnection();
+                            
                         %>
                     </div>
                         
@@ -138,8 +138,8 @@
         
         
                     <!-- Scripts para Bootstrap -->
-        <script src="css/js/jquery.js" type="text/javascript"></script>
-        <script src="css/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/css/js/jquery.js" type="text/javascript"></script>
+        <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
         
     </body>
 </html>

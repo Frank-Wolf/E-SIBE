@@ -11,9 +11,16 @@
     <head>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificar usuarios SIP</title>
+        
+        <link href="<s:url value="../css/style.css"/>" 
+              rel="stylesheet" type="text/css"/>
+        
+        <link href="<s:url value="../css/bootstrap.css"/>" 
+              rel="stylesheet" type="text/css"/>
+        
+        <title>Inicio administrador SIP</title>
     </head>
-    <body background="css/textura.png" class="boding">
+     <body background="../css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
@@ -22,7 +29,7 @@
             </s:div>
         </header>
         
-        <p id="p1" align="center">Ingrese los cambios deseados al usuario SIP</p>
+        <p class="titulos" align="center">Ingrese los cambios deseados al usuario SIP</p>
         
         <%@ page import="java.sql.*" %>
         <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
@@ -39,8 +46,8 @@
             String id_password=rs.getString("password");
         lb.closeConnection();
         %>
-        <div id="parte2">    
-        <s:form action="Modifica">
+        <div class="container-fluid">    
+        <s:form action="/Usuario/Modifica">
             <s:set var="id_user"><%=id_user%></s:set>
             <s:textfield name="usuario" value="%{#id_user}"/>
             <br>
@@ -55,6 +62,19 @@
             <br>
             <s:submit value="Guardar"/>
         </s:form>
+        
         </div>
+        
+        <!--footer-->
+        <footer class="footer">
+            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+        </footer>
+        
+        
+                    <!-- Scripts para Bootstrap -->
+        <script src="/css/js/jquery.js" type="text/javascript"></script>
+        <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
+
+
