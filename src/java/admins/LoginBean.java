@@ -103,5 +103,4 @@ public class LoginBean
         stmtupdate=stmtquery= null;
         rs=null;
     }
-
 }

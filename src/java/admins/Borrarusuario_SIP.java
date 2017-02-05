@@ -29,7 +29,7 @@ public class Borrarusuario_SIP extends ActionSupport{
     public String execute() throws Exception {
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("DELETE FROM usuarios WHERE id_prof='"+getNom_prof()+"'");
+        int val=lb.executeUpdate("DELETE FROM usuarios WHERE nom_prof='"+getNom_prof()+"'");
         lb.closeConnection();
         if (val>0) return "borrar_exitoso";
         else return "borrar_fallo"; 

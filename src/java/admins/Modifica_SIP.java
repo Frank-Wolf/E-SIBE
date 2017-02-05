@@ -51,7 +51,7 @@ public class Modifica_SIP extends ActionSupport {
     
     public Modifica_SIP() {
     }
-    @Override
+    @Override 
     public String execute() throws Exception {
         LoginBean lb = new LoginBean();
         lb.getConnection();
