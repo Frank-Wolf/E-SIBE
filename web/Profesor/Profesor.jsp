@@ -19,10 +19,7 @@
         
         <link href="<s:url value="/css/bootstrap.min.css"/>" 
               rel="stylesheet" type="text/css"/>
-        
-        
-        
-        
+       
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
     
@@ -63,7 +60,7 @@
                                         <li><a href="Actividad_2_3">Actividades 2.3</a></li>
                                         <li><a href="Actividad_2_4">Actividades 2.4</a></li>
                                         <li><a href="Actividad_2_5">Actividades 2.5</a></li>
-                                        <li><a href="Actividad_2_10">Actividades 2.10</a></li>
+                                        
                                         <li><a href="Actividad_2_11">Actividades 2.11</a></li>
                                         <li><a href="Actividad_2_12">Actividades 2.12</a></li>
                                      

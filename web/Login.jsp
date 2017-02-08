@@ -9,7 +9,7 @@
         <title> E-SIBE</title>
         <link href="<s:url value="css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
-        
+
         <link rel="icon" href="<s:url value="icono.ico"/>"/>
     </head>
     
@@ -36,7 +36,7 @@
                     <div>
                     <s:div cssClass="cover-inner" align ="center">
                         <s:form id="datos" action="Usuario/Sesion" method="post">
-                            <s:textfield name="usuario" label="Usuario" />
+                            <s:textfield name="usuario" label="Matricula" />
                             <s:password  name="pass" label="Contraseña" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>

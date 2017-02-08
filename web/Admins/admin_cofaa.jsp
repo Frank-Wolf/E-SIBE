@@ -21,10 +21,10 @@
         <link href="<s:url value="../css/nav_bar.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        
+        <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Inicio administrador SIP</title>
     </head>
-    <body background="css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
@@ -44,10 +44,7 @@
                             <a class="navbar-brand" >E-SIBE: Administrador COFAA</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Modifica_USIP">Modificar Usuario</a></li>
-                                <li><a>Borrar Usuario</a></li>
-                            </ul>
+                          
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="http://localhost:8084/login/">
                                       Cerrar Sesion</a></li>
@@ -63,11 +60,11 @@
                     <!-- Formulario para registrar un usuario-->
                     <div class="col-md-6">
 
-                        <h2 class="subtitulos">Registrar nuevo usuario SIP</h2>
+                        <h2 class="h3">Registrar nuevo Profesor Evaluador</h2>
                         <s:set name="u_a" value="%{'COFAA'}" />
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
-                        <s:form id="datos3" action="Registra_SIP">
+                        <s:form id="datos3" action="Registra_COFAA">
                             <s:textfield name="user" label="Nombre de usuario"/>
                             <s:textfield name="matricula" label="Matricula"/>
                             <s:textfield name="password" label="Contraseña"/>
@@ -80,7 +77,7 @@
                     
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-6">
-                        <h3 class="subtitulos">Lista de usuarios SIP activos</h3>
+                        <h2 class="h3">Lista de Profesores Evaluadores activos</h2>
                     
                         <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lb" scope="session" 
@@ -114,11 +111,11 @@
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='/Borrar?nom_prof="
+                                out.print("<a href='Borrar_COFAA?nom_prof="
                                         +rs.getString("nom_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Admins/modifica_usip.jsp?id="
+                                out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="
                                         +rs.getString("nom_prof")+"'>Modificar</a>");
                                 out.print("</td>");
                             }

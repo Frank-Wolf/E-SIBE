@@ -11,8 +11,8 @@
         <action name="Sesion" class="sesion.Login_Action"> 
             <result name="profesor">/Profesor/Profesor.jsp</result>
             <result name="admin_sip">/Admins/admin_sip.jsp</result>
-            <result name="admin_inda">Admins/admin_inda.jsp</result>
-            <result name="admin_cofaa">Admins/admin_cofaa.jsp</result>
+            <result name="admin_inda">/Admins/admin_inda.jsp</result>
+            <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
             <result name="admin_prof">Admins/admin_prof.jsp</result>
             <result name="admin_escom">Admins/admin_escom.jsp</result>
             <result name="fail">error.jsp</result>
@@ -22,47 +22,63 @@
     <!--Paquetes de los administradores (todos)-->
     <package name="AltaUsuarios"  extends="struts-default" namespace="/Usuario"><!--Paquete para dar de alta usuarios SIP-->
         
+        <!--Registra SIP-->
         <action name="Registra_SIP" class="admins.regusuario_sip">
             <result name="success">/Admins/admin_sip.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
+        <!--Borra SIP-->
         <action name="Borrar" class="admins.Borrarusuario_SIP">
             <result name="borrar_exitoso">/Admins/admin_sip.jsp</result>
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
         
-        <action name="Modifica_USIP">
-            <result>Admins/Modifica_SIP.jsp</result>
-        </action>
-        
+        <!--Modifica SIP-->
         <action name="Modifica" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/admin_sip.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
         
+         <!--Registra INDAUTOR-->
+        <action name="Registra_INDA" class="admins.regusuario_sip">
+            <result name="success">/Admins/admin_inda.jsp</result>
+            <result name="error">regusuario_fallo.jsp</result>
+        </action>
+        
+        <!--Borra INDAUTOR-->
+        <action name="Borrar_INDA" class="admins.Borrarusuario_SIP">
+            <result name="borrar_exitoso">/Admins/admin_inda.jsp</result>
+            <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+        </action>
+        
+        <!--Modifica INDAUTOR-->
+        <action name="Modifica_INDA" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso">/Admins/admin_inda.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
+        </action> 
+        
+        <!--Registra COFAA-->
+        <action name="Registra_COFAA" class="admins.regusuario_sip">
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">regusuario_fallo.jsp</result>
+        </action>
+        
+        <!--Borra COFAA-->
+        <action name="Borrar_COFAA" class="admins.Borrarusuario_SIP">
+            <result name="borrar_exitoso">/Admins/admin_cofaa.jsp</result>
+            <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+        </action>
+        
+        <!--Modifica COFAA-->
+        <action name="Modifica_COFAA" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso">/Admins/admin_cofaa.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
+        </action> 
+        
+        
     </package>
-    
-    <package name="direcciones" extends="struts-default">
-        <action name="principal_admin_sip">
-            <result>/Admins/admin_sip.jsp</result>
-        </action>
-    </package>
-    
-    <!-->
-    <package>
-        <action>
-            
-        </action>
-        <action>
-            
-        </action>
-        <action>
-            
-        </action>
-    </package>
-    <-->
-    
+        
     <!--Package Menu (Para dirigir a Menu Principal)-->
     <package name="Menu" extends="struts-default">
         <action name="Menu">           

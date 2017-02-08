@@ -18,7 +18,7 @@
         <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
-        <title>Inicio administrador SIP</title>
+        <title>Inicio administrador COFAA</title>
     </head>
      <body background="../css/textura.png" class="boding">
         
@@ -33,7 +33,7 @@
             <s:div cssClass="site-wrapper-inner">   
                 <s:div cssClass="cover-container">   
                     <h2 class="titulos" align="center">
-                        Ingrese los cambios deseados al usuario SIP</h2>
+                        Ingrese los cambios deseados al usuario Evaluador</h2>
         
                     <%@ page import="java.sql.*" %>
                     <!--jsp:useBean-->
@@ -55,7 +55,7 @@
                     %>
 
 
-                    <s:form action="/Usuario/Modifica">
+                    <s:form action="/Usuario/Modifica_COFAA">
                         <s:set var="id_user"><%=id_user%></s:set>
                         <s:textfield name="usuario" value="%{#id_user}"/>
                         <br>
