@@ -35,7 +35,7 @@
                     <h2 class="titulos">E-SIBE</h2>
                     <div>
                     <s:div cssClass="cover-inner" align ="center">
-                        <s:form id="datos" action="Usuario/Sesion" method="post">
+                        <s:form id="datos" action="Usuario/Sesion" method="post" >
                             <s:textfield name="usuario" label="Matricula" />
                             <s:password  name="pass" label="Contraseña" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>

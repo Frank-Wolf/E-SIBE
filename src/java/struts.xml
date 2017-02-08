@@ -16,16 +16,8 @@
             <result name="admin_inda">/Admins/admin_inda.jsp</result>
             <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
             <result name="admin_prof">Admins/admin_prof.jsp</result>
-            <result name="admin_escom">Admins/admin_escom.jsp</result>
-            <!-->Demás usuarios<-->
-            <result name="usuario_sip">/SIP/SIP.jsp</result>
-            <result name="usuario_inda">/INDAUTOR/INDAUTOR.jsp</result>
-            <result name="usuario_ss">/Servicio/Servicio.jsp</result>
-            <result name="usuario_catt">/CATT/CATT.jsp</result>
-            <result name="usuario_repua">/Rep_ua/Rep_ua.jsp</result>
-            <result name="usuario_cofaa">/COFAA/COFAA.jsp</result>
-            <!-->Fallo al inicio de sesión<-->
-            <result name="fail">/error.jsp</result>
+            <result name="admin_escom">/Admins/admin_escom.jsp</result>
+            <result name="fail">error.jsp</result>
         </action>
     </package>
     
@@ -83,13 +75,52 @@
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
         
+        <!--Registra CATT-->
+        <action name="Registra_CATT" class="admins.regusuario_sip">
+            <result name="success">/Admins/CATT.jsp</result>
+            <result name="error">regusuario_fallo.jsp</result>
+        </action>
+        
+        <!--Borra CATT-->
+        <action name="Borrar_CATT" class="admins.Borrarusuario_SIP">
+            <result name="borrar_exitoso">/Admins/CATT.jsp</result>
+            <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+        </action>
+        
+        <!--Modifica CATT-->
+        <action name="Modifica_CATT" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso">/Admins/CATT.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
+        </action> 
+        
+        
+        <!--Registra SS-->
+        <action name="Registra_SS" class="admins.regusuario_sip">
+            <result name="success">/Admins/Servicio.jsp</result>
+            <result name="error">regusuario_fallo.jsp</result>
+        </action>
+        
+        <!--Borra SS-->
+        <action name="Borrar_SS" class="admins.Borrarusuario_SIP">
+            <result name="borrar_exitoso">/Admins/Servicio.jsp</result>
+            <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+        </action>
+        
+        <!--Modifica SS-->
+        <action name="Modifica_SS" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso">/Admins/Servicio.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
+        </action> 
         
     </package>
         
     <!--Package Menu (Para dirigir a Menu Principal)-->
     <package name="Menu" extends="struts-default">
         <action name="Menu">           
-            <result>Profesor/Profesor.jsp</result>
+            <result>/Profesor/Profesor.jsp</result>
+        </action>
+        <action name="Menu_ESCOM">           
+            <result>/Admins/admin_escom.jsp</result>
         </action>
     </package>
     
@@ -100,30 +131,30 @@
         </action>
         
         <action name="Actividad_2_1_1" >
-            <result>Profesor/Actividades/Actividad_2_1/Actividad_2_1_1.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_1/Actividad_2_1_1.jsp</result>
         </action>
         
         <action name="Actividad_2_1_2" >
-            <result>Profesor/Actividades/Actividad_2_1/Actividad_2_1_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_1/Actividad_2_1_2.jsp</result>
         </action>
     </package>
     
     <!--Package Actividad 2.2-->
     <package name="Actividad_2_2" extends="struts-default">
         <action name="Actividad_2_2">
-            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2.jsp</result>
         </action>
         
         <action name="Actividad_2_2_1" >
-            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2_1.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2_1.jsp</result>
         </action>
         
         <action name="Actividad_2_2_2" >
-            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2_2.jsp</result>
         </action>
         
         <action name="Actividad_2_2_3" >
-            <result>Profesor/Actividades/Actividad_2_2/Actividad_2_2_3.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2_3.jsp</result>
         </action>
         
     </package>
@@ -131,92 +162,101 @@
     <!--Package Actividad 2.3-->
     <package name="Actividad_2_3" extends="struts-default">
         <action name="Actividad_2_3">
-            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3.jsp</result>
         </action>
         
         <action name="Actividad_2_3_1">
-            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3_1.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3_1.jsp</result>
         </action>
         
         <action name="Actividad_2_3_2">
-            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3_2.jsp</result>
         </action>
         
         <action name="Actividad_2_3_3">
-            <result>Profesor/Actividades/Actividad_2_3/Actividad_2_3_3.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3_3.jsp</result>
         </action>
     </package>
     
     <!--Package Actividad 2.4-->
     <package name="Actividad_2_4" extends="struts-default">
         <action name="Actividad_2_4">
-            <result>Profesor/Actividades/Actividad_2_4/Actividad_2_4_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_4/Actividad_2_4_2.jsp</result>
         </action>
     </package>
     
     <!--Package Actividad 2.5-->
     <package name="Actividad_2_5" extends="struts-default">
         <action name="Actividad_2_5">
-            <result>Profesor/Actividades/Actividad_2_5/Actividad_2_5_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_5/Actividad_2_5_2.jsp</result>
         </action>
     </package>
        
     <!--Package Actividad 2.11-->
     <package name="Actividad_2_11" extends="struts-default">
         <action name="Actividad_2_11">
-            <result>Profesor/Actividades/Actividad_2_11/Actividad_2_11.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_11/Actividad_2_11.jsp</result>
         </action>
         
         <action name="Actividad_2_11_1">
-            <result>Profesor/Actividades/Actividad_2_11/Actividad_2_11_1.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_11/Actividad_2_11_1.jsp</result>
         </action>
         
         <action name="Actividad_2_11_2">
-            <result>Profesor/Actividades/Actividad_2_11/Actividad_2_11_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_11/Actividad_2_11_2.jsp</result>
         </action>
     </package>
     
     <!--Package Actividad 2.12-->
     <package name="Actividad_2_12" extends="struts-default">
         <action name="Actividad_2_12">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12.jsp</result>
         </action>
         
         <action name="Actividad_2_12_1">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_1.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_1.jsp</result>
         </action>
         
         <action name="Actividad_2_12_2">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_2.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_2.jsp</result>
         </action>
         
         <action name="Actividad_2_12_3">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_3.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_3.jsp</result>
         </action>
         
         <action name="Actividad_2_12_4">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_4.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_4.jsp</result>
         </action>
         
         <action name="Actividad_2_12_5">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_5.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_5.jsp</result>
         </action>
         
         <action name="Actividad_2_12_6">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_6.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_6.jsp</result>
         </action>
         
         <action name="Actividad_2_12_7">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_7.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_7.jsp</result>
         </action>
         
         <action name="Actividad_2_12_8">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_8.jsp</result>
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_8.jsp</result>
         </action>
         
         <action name="Actividad_2_12_9">
-            <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_9.jsp</result>
-        </action>       
+            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_9.jsp</result>
+        </action>        
+    </package>
+    
+    <package name="ESCOM" extends="struts-default" namespace="/Usuario">
+        <action name="CATT">
+            <result>/Admins/CATT.jsp</result>
+        </action>
+        <action name="Servicio">
+            <result>/Admins/Servicio.jsp</result>
+        </action>
     </package>
     
     

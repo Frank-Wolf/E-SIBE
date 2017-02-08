@@ -11,20 +11,20 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, 
         initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title> E-SIBE</title>
-        <link href="<s:url value="css/style.css"/>" 
+        <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="css/bootstrap.min.css"/>" 
+        <link href="<s:url value="../css/bootstrap.min.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="css/nav_bar.css"/>" 
+        <link href="<s:url value="../css/nav_bar.css"/>" 
               rel="stylesheet" type="text/css"/>
         
         
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
 
-     <body background="css/textura.png" class="boding">
+     <body background="../css/textura.png" class="boding">
         
         <!--header-->
         <header class="headering">
@@ -44,12 +44,6 @@
                             <a class="navbar-brand" >Actividad 2.2</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                
-                                <li><a href="Actividad_2_2_1">Publicaciones en boletines en el IPN</a></li>
-                                <li><a href="Actividad_2_2_2">Publicaciones sin Arbitraje</a></li>
-                                <li><a href="Actividad_2_2_3">Publicaciones con Arbitraje</a></li>
-                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Menu">Menu Principal</a></li>
                             </ul>
