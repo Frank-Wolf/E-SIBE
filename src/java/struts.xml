@@ -23,6 +23,7 @@
             <result name="usuario_ss">/Servicio/Servicio.jsp</result>
             <result name="usuario_catt">/CATT/CATT.jsp</result>
             <result name="usuario_repua">/Rep_ua/Rep_ua.jsp</result>
+            <result name="usuario_cofaa">/COFAA/COFAA.jsp</result>
             <!-->Fallo al inicio de sesión<-->
             <result name="fail">/error.jsp</result>
         </action>
