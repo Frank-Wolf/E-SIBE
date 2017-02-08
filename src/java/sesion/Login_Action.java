@@ -11,6 +11,7 @@ package sesion;
  */
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map; //tenemos una entrada y nos va a dar una salida
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 
@@ -45,6 +46,28 @@ public class Login_Action extends ActionSupport implements SessionAware{
     public void setPass(String pass) {
         this.pass = pass;
     }
+    
+     public String submitForm()
+    {       
+        if (StringUtils.isBlank(usuario))
+        {
+            addFieldError("usuario", getText("error.name.required"));
+        }
+        else if (pass.length() < 3)
+        {
+            addFieldError("name", getText("error.name.min"));
+        }
+        else if (usuario.length() > 6)
+        {
+            addFieldError("name", getText("error.name.max"));
+        }
+//        else if (!StringUtils.isEmpty(usuario) && !EMAIL_PATTERN.matcher(usuario).matches())
+//        {
+//            addFieldError("email", getText("error.name.email"));
+//        }
+        return INPUT;
+    }
+    
     @Override
     public String execute() throws Exception {
         SesionBean sb=new SesionBean();
