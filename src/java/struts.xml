@@ -9,31 +9,37 @@
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
         <action name="Sesion" class="sesion.Login_Action"> 
+            <!-->Página principal de profesor<-->
             <result name="profesor">/Profesor/Profesor.jsp</result>
+            <!-->Páginas de los administradores<-->
             <result name="admin_sip">/Admins/admin_sip.jsp</result>
             <result name="admin_inda">/Admins/admin_inda.jsp</result>
             <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
             <result name="admin_prof">Admins/admin_prof.jsp</result>
             <result name="admin_escom">Admins/admin_escom.jsp</result>
-            <result name="fail">error.jsp</result>
+            <!-->Demás usuarios<-->
+            <result name="usuario_sip">/SIP/SIP.jsp</result>
+            <result name="usuario_inda">/INDAUTOR/INDAUTOR.jsp</result>
+            <result name="usuario_ss">/Servicio/Servicio.jsp</result>
+            <result name="usuario_catt">/CATT/CATT.jsp</result>
+            <result name="usuario_repua">/Rep_ua/Rep_ua.jsp</result>
+            <!-->Fallo al inicio de sesión<-->
+            <result name="fail">/error.jsp</result>
         </action>
     </package>
     
     <!--Paquetes de los administradores (todos)-->
     <package name="AltaUsuarios"  extends="struts-default" namespace="/Usuario"><!--Paquete para dar de alta usuarios SIP-->
-        
         <!--Registra SIP-->
         <action name="Registra_SIP" class="admins.regusuario_sip">
             <result name="success">/Admins/admin_sip.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
-        
         <!--Borra SIP-->
         <action name="Borrar" class="admins.Borrarusuario_SIP">
             <result name="borrar_exitoso">/Admins/admin_sip.jsp</result>
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
-        
         <!--Modifica SIP-->
         <action name="Modifica" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/admin_sip.jsp</result>
@@ -209,10 +215,7 @@
         
         <action name="Actividad_2_12_9">
             <result>Profesor/Actividades/Actividad_2_12/Actividad_2_12_9.jsp</result>
-        </action>
-        
-        
-        
+        </action>       
     </package>
     
     
