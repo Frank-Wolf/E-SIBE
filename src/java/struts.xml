@@ -122,10 +122,19 @@
         <action name="Menu_ESCOM">           
             <result>/Admins/admin_escom.jsp</result>
         </action>
+        
+        <action name="About_us">
+            <result>/Profesor/About_us.jsp</result>
+        </action>
+        
+        <action name="Actividades_Profesor">
+            <result>/Profesor/Actividades.jsp</result>
+        </action>
     </package>
     
     <!--Package Actividad 2.1-->
-    <package name="Actividad_2_1" extends="struts-default" namespace="/Usuario">
+    <package name="Actividad_2_1" extends="struts-default" namespace="/Usuario"> 
+        
         <action name="Actividad_2_1">
             <result>/Profesor/Actividades/Actividad_2_1/Actividad_2_1.jsp</result>
         </action>

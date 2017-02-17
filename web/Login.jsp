@@ -4,21 +4,26 @@
 <html>
     <!--head-->
     <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no, 
-        initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> E-SIBE</title>
+        
+        <link href="<s:url value="css/bootstrap.css"/>" 
+              rel="stylesheet" type="text/css"/>
+        
         <link href="<s:url value="css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
 
+        
+        
         <link rel="icon" href="<s:url value="icono.ico"/>"/>
     </head>
     
-    <body background="css/textura.png" class="boding">
+    <body background="css/textura.png" class="container-fluid boding">
         
         <!--header-->
-        <header class="headering">
+        <header class="headering abso">
             <s:div cssClass="container">            
-                <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
+                <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" class="img-responsive"/>
             </s:div>
         </header>
         
@@ -30,14 +35,13 @@
         
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
-            <s:div cssClass="site-wrapper-inner">
                 <s:div cssClass="cover-container">
                     <h2 class="titulos">E-SIBE</h2>
                     <div>
-                    <s:div cssClass="cover-inner" align ="center">
-                        <s:form id="datos" action="Usuario/Sesion" method="post" >
-                            <s:textfield name="usuario" label="Matricula" />
-                            <s:password  name="pass" label="Contraseña" />
+                    <s:div cssClass="" align ="center">
+                        <s:form id="datos" action="Usuario/Sesion" method="post"  >
+                            <s:textfield name="usuario" label="Matricula" cssClass="form-control" />
+                            <s:password  name="pass" label="Contraseña" cssClass="form-control" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>
@@ -46,11 +50,13 @@
                     
                 </s:div>
             </s:div>  
-        </s:div>
+
 
         <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+       
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
         
     </body>

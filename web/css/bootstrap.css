@@ -240,6 +240,7 @@ th {
   }
   .navbar {
     display: none;
+    position: absolute;
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -2264,6 +2265,7 @@ th {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -2551,7 +2553,7 @@ output {
   width: 100%;
   height: 34px;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -3539,7 +3541,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-.dropdown-menu.pull-right {
+.dropdown-menu .pull-right {
   right: 0;
   left: auto;
 }
@@ -3983,7 +3985,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  font-size: 17px;
+  padding: 10px 10px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4275,7 +4278,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   float: left;
   height: 50px;
   padding: 15px 15px;
-  font-size: 18px;
+  
   line-height: 20px;
 }
 .navbar-brand:hover,
