@@ -77,7 +77,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6 hidden-xs display-table-cell v-align box" id="navigation"/>
                             <h2 class="h3">Elige la actividad a validar</h2>
-                                <select id="Actividades" multiple class="form-control" size="18">
+                                <select id="Actividades" multiple class="form-control" size="14">
                                     <optgroup label="Actividad 2.1: Formación de 
                                                Recursos Humanos para la Investigación" >
                                         <option  name="Actividad_2_1_1"> 
