@@ -26,11 +26,10 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         
         <script>
-        captura_actividad()
-        {
+        function captura(){
             var Actividad=document.getElementById("Actividades").value;
-            document.getElementById("resultado").innerHTML=" \
-            <br>Por Nombre: "+Actividad;
+            document.getElementById('resultado').innerHTML=" \
+            "+Actividad;
         }
         </script>
     </head>
@@ -81,7 +80,7 @@
                                 <select id="Actividades" multiple class="form-control" size="18">
                                     <optgroup label="Actividad 2.1: Formación de 
                                                Recursos Humanos para la Investigación" >
-                                        <option value="Actividad_2_1_1"> 
+                                        <option  name="Actividad_2_1_1"> 
                                             Actividad 2.1.1: Alumnos BEIFI
                                         </option>
                                         <option name="Actividad_2_1_2"> 
@@ -186,17 +185,18 @@
                                         </option>
                                      </optgroup>
                                 </select>  
-                            <input type="button" class="btn" value="Confirmar Actividad" onclick="capturar_actividad()">
+                            <input type="button" class="btn" value="Confirmar Actividad" onclick="captura()"/>
                         </div>
                         
                         <div class="col-md-6 col-sm-6 hidden-xs display-table-cell v-align box" id="navigation"/>
                             <h2 class="h3">Elige la cantidad de documentos a 
-                                validar de la misma</h2>
+                                validar de:</h2>
+                            <div id="resultado"></div>
                             
                             <form id="cantidad">
                                    <input type="radio" name="1"  /> 1
                                    
-                                <div id="resultado"></div>
+                                
 
                             <button class="btn"> GO!</button>
                             </form>
