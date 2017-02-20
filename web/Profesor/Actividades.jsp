@@ -22,16 +22,12 @@
         <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
+        <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
+              type="text/javascript"></script>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
+         
         
-        <script>
-        function captura(){
-            var Actividad=document.getElementById("Actividades").value;
-            document.getElementById('resultado').innerHTML=" \
-            "+Actividad;
-        }
-        </script>
     </head>
     
     <body background="../css/textura.png" class="container-fluid boding overflow">

@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-captura_actividad()
+function captura()
 {
-    var Actividad=document.getElementByName("Actividad_2_1_1").value;
-    document.getElementById("resultado").innerHTML=" \
-    <br>Por Nombre: "+Actividad;
+    var Actividad=document.getElementById("Actividades").value;
+    document.getElementById('resultado').innerHTML=" \
+    "+Actividad;
 }
+        
