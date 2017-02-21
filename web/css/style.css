@@ -7,6 +7,10 @@ and open the template in the editor.
     Created on : 25/01/2017, 08:23:01 PM
     Author     : le_as
 */
+
+ul{
+       list-style:none;
+       }
 html, body {
         height: 100%;
         margin: 0px;
@@ -108,7 +112,7 @@ html, body {
     border-bottom-color:#6c1a42;
     bottom:0;
     text-align: center;
-    
+    position: fixed;
     width: 100%;    
 }
 
@@ -231,36 +235,80 @@ background-color: #fff;
 {
     visibility: visible;
 }
-                    
-                    
-.navi a {
-    border-bottom: 1px solid #0d172e;
-    border-top: 1px solid #0d172e;
+.nav-lateral
+{
+    font-size: 14px;
+    list-style: none;
+    position: relative ! important;
     color: #fff;
-    display: block;
-    font-size: 17px;
-    font-weight: 100;
-    background: #6c1a42;
-    text-decoration: none;
-}
-
-.navi i {
-    margin-right: 15px;
-    background: #6c1a42;
-    color: #fff;
-}
-
-.navi .active a {
-    background: #fff;
-    color: #6c1a42;
+    bottom: 0px;
     
-    padding-left: 1px;
+    
 }
 
-.navi a:hover {
-    background: #6c1a42 none repeat scroll 0 0;
-    border-left: 5px solid #fff;
-    display: block;
-    color: #fff;
-    padding-left: 1px;
+.backcolor
+{
+    background-color: #6c1a42;
+    margin: -20px;
 }
+
+.barra
+{
+    flex-direction: column;
+    top: 0px;
+    bottom: 0px;
+        
+
+}
+
+nav ul li a
+{
+        
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        display: block;
+        color: #fff;
+        
+        
+}
+
+nav ul li a.titulo:active
+{
+    color: #6c1a42! important;
+}
+
+nav ul li a.titulo:hover
+{
+    color: #6c1a42 ! important;
+    background-color: #fff;
+}
+
+nav ul li.parent:hover
+{
+    color: #6c1a42 ! important;
+    border: 2px #981354 solid;
+    margin: 1px;
+    background: #981354;
+}
+
+li ul li a
+{
+    color: #fff;
+    text-decoration: none;
+    color: #fff;
+    padding: 0px;
+    display: none;
+    margin-left: -3px;
+}
+
+
+
+
+ul li:hover ul a
+{
+    color: #fff;
+    display: block;
+    position: relative;
+}
+

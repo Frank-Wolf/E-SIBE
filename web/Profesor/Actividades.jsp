@@ -30,7 +30,7 @@
         
     </head>
     
-    <body background="../css/textura.png" class="container-fluid boding overflow">
+    <body background="../css/textura.png" class="container-fluid">
         
         <!--header-->
         <header class="headering rela">
@@ -40,13 +40,13 @@
         </header> 
    
         <!--Conteneor general-->    
-        <s:div cssClass="contenedor-general">
-            <s:div cssClass="site-wrapper-inner">
+        <s:div cssClass="container-fluid">
+            <s:div cssClass="">
                 
                 <!--Barra de Navegacion-->                    
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default row">
         
-                    <div class="container">
+                    <div class="container col-lg-12">
                     
                         <div class="navbar-header">
                             <a class="navbar-brand" >E-SIBE: Profesor</a>
@@ -67,146 +67,77 @@
                     </div>
                 </nav>
                 
-             
+                <div class="row">
+                    <div class="col-md-3 barra">
+                        <nav class="nav-lateral">
+                            <ul class="backcolor">
+                                <li class="parent"><a class="titulo"><span class=""> </span>Actividad 2.1</a>
+                                    <ul>
+                                        <li><a id="2.1.1">Actividad 2.1.1</a>
+                                        <li><a id="2.1.2">Actividad 2.1.2</a>    
+                                    </ul>
+                                </li>
+                                <li class="parent"><a class="titulo"><span class="glyphicon glyphicon-pencil"> </span> Actividad 2.2</a>
+                                    <ul>
+                                        <li><a id="2.2.1">Actividad 2.2.1</a>
+                                        <li><a id="2.2.2">Actividad 2.2.2</a>    
+                                        <li><a id="2.2.3">Actividad 2.2.3</a>    
+                                    </ul>
+                                </li>
+                                <li class="parent"><a class="titulo"><span class="glyphicon glyphicon-play-circle"></span> Actividad 2.3</a>
+                                    <ul>
+                                        <li><a id="2.3.1">Actividad 2.3.1</a>
+                                        <li><a id="2.3.2">Actividad 2.3.2</a>    
+                                        <li><a id="2.3.3">Actividad 2.3.3</a>        
+                                    </ul>
+                                </li>
+                                <li class="parent"><a class="titulo">Actividad 2.4</a>
+                                    <ul>
+                                        <li><a id="2.4.2">Actividad 2.4.2</a>
+                                    </ul>
+                                </li>
+                                <li class="parent"><a class="titulo">Actividad 2.5</a>
+                                    <ul>
+                                        <li><a id="2.5.2">Actividad 2.5.2</a>
+                                    </ul>
+                                </li>
+                                <li class="parent"><a class="titulo">Actividad 2.11</a>
+                                    <ul>
+                                        <li><a id="2.11.1">Actividad 2.11.1</a>
+                                        <li><a id="2.11.2">Actividad 2.12.2</a>    
+                                    </ul>
+                                </li>
+                                <li class="parent"><a class="titulo">Actividad 2.12</a>
+                                    <ul>
+                                        <li><a id="2.12.1">Actividad 2.12.1</a>
+                                        <li><a id="2.12.2">Actividad 2.12.2</a>    
+                                        <li><a id="2.12.3">Actividad 2.12.3</a>
+                                        <li><a id="2.12.4">Actividad 2.12.4</a>
+                                        <li><a id="2.12.5">Actividad 2.12.5</a>
+                                        <li><a id="2.12.6">Actividad 2.12.6</a>    
+                                        <li><a id="2.12.7">Actividad 2.12.7</a>
+                                        <li><a id="2.12.8">Actividad 2.12.8</a>     
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <br style="clear: both">
+                    </div>
+                    <div class="col-lg-9">
+                        
+                    </div>
+                </div>    
                 <!--Contenido-->
-                <s:div cssClass="cover-container2" align="center"> 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 hidden-xs display-table-cell v-align box" id="navigation"/>
-                            <h2 class="h3">Elige la actividad a validar</h2>
-                                <select id="Actividades" multiple class="form-control" size="18">
-                                    <optgroup label="Actividad 2.1: Formación de 
-                                               Recursos Humanos para la Investigación" >
-                                        <option  name="Actividad_2_1_1"> 
-                                            Actividad 2.1.1: Alumnos BEIFI
-                                        </option>
-                                        <option name="Actividad_2_1_2"> 
-                                            Actividad 2.1.2: Alumnos en Servicio
-                                            Social
-                                        </option>   
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.2: Publicaciones 
-                                               científicas y de divulgación impresas 
-                                               o en línea" >
-                                        <option name="Actividad_2_2_1"> 
-                                            Actividad 2.2.1: En boletínes 
-                                            Institucionales
-                                        </option>
-                                        <option name="Actividad_2_2_2"> 
-                                            Actividad 2.2.2: En revistas sin 
-                                            arbitraje
-                                        </option>    
-                                        <option name="Actividad_2_2_3"> Actividad 2.2.2: En revistas 
-                                            con arbitraje
-                                        </option>    
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.3: Trabajos de 
-                                               Investigacion" >
-                                        <option name="Actividad_2_3_1"> 
-                                            Actividad 2.3.1: Sin ponencia
-                                        </option>
-                                        <option name="Actividad_2_3_2"> 
-                                            Actividad 2.3.2: Institucional con 
-                                            resumen publicado
-                                        </option>   
-                                        <option name="Actividad_2_3_3"> 
-                                            Actividad 2.3.3: Con publicación en 
-                                            extenso
-                                        </option>   
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.4: Investigación y/o
-                                               desarrollo Tecnológico satisfactorio">
-                                        <option name="Actividad_2_4_2"> 
-                                            Actividad 2.4.2: Proyecto de 
-                                            Investigación SIP
-                                        </option>
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.5: Registro de 
-                                               Propiedad Intelectual" >
-                                        <option name="Actividad_2_5_2"> 
-                                            Actividad 2.5.2.1: Derechos de Autor
-                                        </option>
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.11: Direcciones y 
-                                               Coodirecciones de Tesis (Máximo 6 por 
-                                               periodo)" >
-                                        <option  name="Actividad_2_11_1"> 
-                                            Actividad 2.11.1: Tesis individual 
-                                            y colectiva
-                                        </option>
-                                        <option name="Actividad_2_11_2"> 
-                                            Actividad 2.11.2: Opción Curricular
-                                        </option>   
-                                    </optgroup>                                
-
-                                     <optgroup label="Actividad 2.12: Tipo de Participación
-                                               en Plan de Estudios" >
-                                        <option name="Actividad_2_12_1"> 
-                                            Actividad 2.12.1: Coordinación en 
-                                            la elaboración de un plan de estudios 
-                                            de carrera
-                                        </option>
-                                        <option name="Actividad_2_12_2"> 
-                                            Actividad 2.12.2: Coordinación en
-                                            la actualización de un plan de estudios 
-                                            de carrera
-                                        </option>
-                                        <option name="Actividad_2_12_3"> 
-                                            Actividad 2.12.3: Participación en
-                                            la elaboración de un plan de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_4"> 
-                                            Actividad 2.12.4: Participación en
-                                            la actualización de un plan de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_5"> 
-                                            Actividad 2.12.5: Coordinación en
-                                            la elaboración de un programa de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_6"> 
-                                            Actividad 2.12.6: Coordinación en
-                                            la actualización de un programa de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_7"> 
-                                            Actividad 2.12.7: Participación en
-                                            la elaboración de un programa de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_8"> 
-                                            Actividad 2.12.8: Participación en
-                                            la actualización de un programa de estudios
-                                        </option>
-                                     </optgroup>
-                                </select>  
-                            <input type="button" class="btn" value="Confirmar Actividad" onclick="captura()"/>
-                        </div>
-                        
-                        <div class="col-md-6 col-sm-6 hidden-xs display-table-cell v-align box" id="navigation"/>
-                            <h2 class="h3">Elige la cantidad de documentos a 
-                                validar de:</h2>
-                            <div id="resultado"></div>
-                            
-                            <form id="cantidad">
-                                   <input type="radio" name="1"  /> 1
-                                   
-                                
-
-                            <button class="btn"> GO!</button>
-                            </form>
-                        </div>
-                        
-                    </div>       
-                </s:div>
+               
             </s:div>  
-        </s:div>        
+        </s:div>
+                
+                
         
         
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
@@ -214,6 +145,7 @@
         
         <!-- Scripts para Bootstrap -->
         <script src="../css/js/jquery.js" type="text/javascript"></script>
+        <script src="../css/js/bootstrap-treeview.js" type="text/javascript"></script>
         <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
         
     </body>
