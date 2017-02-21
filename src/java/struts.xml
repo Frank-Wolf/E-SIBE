@@ -17,7 +17,7 @@
             <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
             <result name="admin_prof">Admins/admin_prof.jsp</result>
             <result name="admin_escom">/Admins/admin_escom.jsp</result>
-            <result name="fail">error.jsp</result>
+            <result name="fail">/error.jsp</result>
         </action>
     </package>
     
