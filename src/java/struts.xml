@@ -74,8 +74,16 @@
             <result name="modificar_exitoso">/Admins/admin_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
-        <!--Periodo de fechas cofaa-->
-        <action name="Registra_fechas" class="admins.RegistraFechas" >
+        <!--Periodo de fechas cofaa Actividades-->
+        <action name="Registra_actividades" class="admins.RegistraActividades" >
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Registra_apelaciones" class="admins.RegistraApelaciones" >
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Registra_evaluaciones" class="admins.RegistraEvaluaciones" >
             <result name="success">/Admins/admin_cofaa.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action> 
@@ -83,11 +91,19 @@
         <action name="Admin_usuarios" >
             <result>/Admins/usuarios_cofaa.jsp</result>
         </action>
-        <!--dirigir a jsp de registro de fechas-->
+        <!--dirigir a jsp de registro de fechas para los diversos periodos-->
         <action name="Periodos_cofaa" >
             <result>/Admins/periodo_cofaa.jsp</result>
         </action>
-        
+        <action name="Apelaciones">
+            <result>/Admins/Apelaciones.jsp</result>
+        </action>
+        <action name="Evaluaciones">
+            <result>/Admins/Evaluaciones.jsp</result>
+        </action>
+        <action name="Reg_Acti">
+            <result>/Admins/Reg_Acti.jsp</result>
+        </action>
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
             <result name="success">/Admins/CATT.jsp</result>

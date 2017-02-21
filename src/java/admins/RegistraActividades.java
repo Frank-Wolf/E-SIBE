@@ -15,7 +15,7 @@ import java.sql.*;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Random;
 
-public class RegistraFechas extends ActionSupport {
+public class RegistraActividades extends ActionSupport {
 
    private String date1, date2;
    Random rand = new Random();
@@ -68,3 +68,4 @@ public class RegistraFechas extends ActionSupport {
     
 
 }
+
