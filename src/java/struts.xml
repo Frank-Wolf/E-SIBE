@@ -74,6 +74,19 @@
             <result name="modificar_exitoso">/Admins/admin_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
+        <!--Periodo de fechas cofaa-->
+        <action name="Registra_fechas" class="admins.RegistraFechas" >
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action> 
+        <!--Administracion de usuarios COFAA-->
+        <action name="Admin_usuarios" >
+            <result>/Admins/usuarios_cofaa.jsp</result>
+        </action>
+        <!--dirigir a jsp de registro de fechas-->
+        <action name="Periodos_cofaa" >
+            <result>/Admins/periodo_cofaa.jsp</result>
+        </action>
         
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
@@ -126,7 +139,9 @@
         <action name="About_us">
             <result>/Profesor/About_us.jsp</result>
         </action>
-        
+         <action name="Menu_COFAA">
+             <result>/Admins/admin_cofaa.jsp</result>
+        </action>
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
         </action>

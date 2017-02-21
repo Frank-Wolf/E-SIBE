@@ -39,7 +39,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Ver registros</a></li>
+                                <li><a href="periodo_cofaa">Ver registros</a></li>
                                 <li><a href="#">Modificaciones recientes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">

@@ -17,7 +17,7 @@
         
         <link rel="icon" href="<s:url value="icono.ico"/>"/>
     </head>
-    <body background="css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding">
        <!--header-->
         <header class="headering">
             <s:div cssClass="container">            
@@ -44,13 +44,9 @@
                         Todo esto, con ayuda de sofisticadas tecnologías web.</p>
                     </s:div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Modifica_USIP">Modificar Usuario</a></li>
-                                <li><a>Borrar Usuario</a></li>
-                            </ul>
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="http://localhost:8084/login/">
-                                      Cerrar Sesion</a></li>
+                              <li><a href="Menu">
+                                      Regresar</a></li>
                             </ul>
                           </div>
                         </div>  
