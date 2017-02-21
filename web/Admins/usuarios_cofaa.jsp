@@ -9,11 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <link href="<s:url value="/css/style.css"/>" 
-              rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
@@ -21,10 +17,13 @@
         <link href="<s:url value="../css/nav_bar.css"/>" 
               rel="stylesheet" type="text/css"/>
         
+        <link href="<s:url value="/css/style.css"/>" 
+              rel="stylesheet" type="text/css"/>
+        
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Inicio administrador SIP</title>
     </head>
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding overflow">
         
         <!--header-->
         <header class="headering">
@@ -39,17 +38,25 @@
                 
                                     
                 <nav class="navbar navbar-default">
+        
                     <div class="container">
+                    
                         <div class="navbar-header">
                             <a class="navbar-brand" >E-SIBE: Administrador COFAA</a>
                         </div>
+                        
                         <div id="navbar" class="navbar-collapse collapse">
-                          
+                            <ul class="nav navbar-nav">
+                                <li><a href="Menu_COFAA">
+                                        Menú Principal</a>
+                                </li>
+                            </ul>
+                            
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="http://localhost:8084/login/">
+                                <li><a href="http://localhost:8084/login/">
                                       Cerrar Sesion</a></li>
                             </ul>
-                          </div>
+                        </div>
                     </div>
                 </nav>
                 
@@ -130,7 +137,7 @@
 
         
         <!--footer-->
-        <footer class="footer">
+        <footer class="footer abso">
             <h3 class="subtitulos"> Gracias por utilizarnos</h3>
         </footer>
         

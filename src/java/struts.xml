@@ -139,7 +139,9 @@
         <action name="About_us">
             <result>/Profesor/About_us.jsp</result>
         </action>
-        
+         <action name="Menu_COFAA">
+             <result>/Admins/admin_cofaa.jsp</result>
+        </action>
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
         </action>

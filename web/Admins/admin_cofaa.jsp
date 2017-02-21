@@ -28,7 +28,7 @@
         
         <title>Inicio administrador COFAA </title>
     </head>
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding overflow">
         
         <!--header-->
         <header class="headering">
@@ -50,7 +50,7 @@
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="Admin_usuarios">Administrar usuarios COFAA</a></li>
-                                <li><a href="Periodos_cofaa">Ver periodos</a></li>
+                                <li><a href="Periodos_cofaa">Administrar periodos</a></li>
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
@@ -66,7 +66,7 @@
                 <div class="row container-fluid" >
                     
                     <!-- Formulario para registrar un usuario-->
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-lg-offset-4">
 
                         <h2 class="h3">Seleccione la actividad que desea realizar</h2>
                     </div>
@@ -81,7 +81,7 @@
 
         
         <!--footer-->
-        <footer class="footer">
+        <footer class="footer abso">
             <h3 class="subtitulos"> Gracias por utilizarnos</h3>
         </footer>
         
