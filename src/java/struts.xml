@@ -87,6 +87,20 @@
             <result name="success">/Admins/admin_cofaa.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action> 
+        <!--acciones para eliminar las fechas-->
+        <action name="Borrar_fechaacti" class="admins.Borrar_feacti">
+            <result name="success"></result>
+            <result name="error"></result>
+        </action>
+        <action name="Borrar_fechaapela" class="admins.Borrar_feapela">
+            <result name="success"></result>
+            <result name="error"></result>
+        </action>
+        <action name="Borrar_fechaeval" class="admins.Borrar_feeval">
+            <result name="success"></result>
+            <result name="error"></result>
+        </action>
+        <!--acciones para eliminar las fechas Fin-->
         <!--Administracion de usuarios COFAA-->
         <action name="Admin_usuarios" >
             <result>/Admins/usuarios_cofaa.jsp</result>

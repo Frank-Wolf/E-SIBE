@@ -69,18 +69,134 @@
 
                 
                 
-                <s:div cssClass="cover-container2">    
-                    <h2 class="titulos">Seleccione una actividad</h2>   
-                </s:div>
-                <s:div cssClass="cover-inner" align ="center">
-                    <s:form action="Registra_fechas" method="post">
-                        <sj:datepicker name="date1" label="Fecha de inicio" displayFormat="dd-mm-yy"/>
-                        <sj:datepicker name="date2" label="Fecha de finalización" displayFormat="dd-mm-yy"/>
-                        <s:submit value="Registrar fechas" name="submit" />
-                    </s:form> 
-                </s:div>
+                <s:div cssClass="cover-container2"><h2 class="titulos">Fechas disponibles</h2></s:div>
+                        <div class="col-md-6">
+                        <h2 class="h3"><b>Fechas de registro de actividades</b></h2>
+                    
+                        <%@ page import="java.sql.*" %>
+                        <jsp:useBean id="lb" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <%
+                        ResultSet rs=null;
+                        lb.getConnection();
+                        rs=lb.executeQuery("SELECT * FROM fecha_actividades");
+                        out.print("<table class='table table-striped'>");
+                        out.print("<tr>");
+                        out.print("<th>");
+                        out.print("Fecha de inicio");
+                        out.print("</th>");
+                        out.print("<th>");
+                        out.print("Fecha límite");
+                        out.print("</th>");
+                        out.print("</tr>");
+                        while (rs.next())
+                        {
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print(rs.getString("fecha_inicio"));
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print(rs.getString("fecha_fin"));
+                            out.print("</td>");
+                            out.print("<td>");
+                            //out.print("<a href='Borrar_fechaacti?nom_prof="+rs.getString("nom_prof")+"'>Borrar</a>");
+                            //out.print("</td>");
+                            //out.print("<td>");
+                            //out.print("<a href='/login/Admins/modifica_inda.jsp?id="
+                              //      +rs.getString("nom_prof")+"'>Modificar</a>");
+                            //out.print("</td>");
+                        }
+                        out.print("</table>");
+                        lb.closeConnection();
+                        %>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="h3"><b>Fechas de apelaciones</b></h2>
+                    
+                        <%@ page import="java.sql.*" %>
+                        <jsp:useBean id="ls" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <%
+                        ResultSet rt=null;
+                        lb.getConnection();
+                        rs=lb.executeQuery("SELECT * FROM fecha_apelaciones");
+                        out.print("<table class='table table-striped'>");
+                        out.print("<tr>");
+                        out.print("<th>");
+                        out.print("Fecha de inicio");
+                        out.print("</th>");
+                        out.print("<th>");
+                        out.print("Fecha límite");
+                        out.print("</th>");
+                        out.print("</tr>");
+                        while (rs.next())
+                        {
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print(rs.getString("fecha_inicio"));
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print(rs.getString("fecha_fin"));
+                            out.print("</td>");
+                            //out.print("<td>");
+
+                            //out.print("<a href='Borrar_fechaapela?nom_prof="+rs.getString("nom_prof")
+                              //      +"'>Borrar</a>");
+                            //out.print("</td>");
+                            //out.print("<td>");
+                            //out.print("<a href='/login/Admins/modifica_inda.jsp?id="
+                              //      +rs.getString("nom_prof")+"'>Modificar</a>");
+                            //out.print("</td>");
+                        }
+                        out.print("</table>");
+                        lb.closeConnection();
+                        %>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="h3"><b>Fechas de evaluaciones</b></h2>
+                    
+                        <%@ page import="java.sql.*" %>
+                        <jsp:useBean id="lf" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <%
+                        ResultSet ra=null;
+                        lb.getConnection();
+                        rs=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
+                        out.print("<table class='table table-striped'>");
+                        out.print("<tr>");
+                        out.print("<th>");
+                        out.print("Fecha de inicio");
+                        out.print("</th>");
+                        out.print("<th>");
+                        out.print("Fecha límite");
+                        out.print("</th>");
+                        out.print("</tr>");
+                        while (rs.next())
+                        {
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print(rs.getString("fecha_inicio"));
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print(rs.getString("fecha_fin"));
+                            out.print("</td>");
+                            //out.print("<td>");
+
+                            //out.print("<a href='Borrar_fechaeval?nom_prof="+rs.getString("nom_prof")
+                              //      +"'>Borrar</a>");
+                            //out.print("</td>");
+                            //out.print("<td>");
+                            //out.print("<a href='/login/Admins/modifica_inda.jsp?id="
+                              //      +rs.getString("nom_prof")+"'>Modificar</a>");
+                            //out.print("</td>");
+                        }
+                        out.print("</table>");
+                        lb.closeConnection();
+                        %>
+                    </div>
             </s:div>       
-        </s:div>             
+        </s:div>  
+                    
         <!--footer-->
         <footer class="footer abso">
             <h3 class="subtitulos"> Gracias por utilizarnos</h3>

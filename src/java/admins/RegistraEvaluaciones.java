@@ -19,7 +19,7 @@ public class RegistraEvaluaciones extends ActionSupport {
 
    private String date1, date2;
    Random rand = new Random();
-   int  n = rand.nextInt(50) + 1;
+   int  n = rand.nextInt(500) + 1;
    public String execute() {
       String ret = SUCCESS;
       Connection conn = null;
@@ -27,7 +27,7 @@ public class RegistraEvaluaciones extends ActionSupport {
          String URL = "jdbc:mysql://localhost:3306/prototipo";
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "insert into fecha_registro (id_fecha, fecha_inicio, fecha_fin) values ";//probar con select*
+         String sql = "insert into fecha_evaluaciones (id_fecha, fecha_inicio, fecha_fin) values ";//probar con select*
          sql+=" (?, str_to_date(?, '%d-%m-%Y'), str_to_date(?, '%d-%m-%Y'))";
          System.out.println(date1);
          PreparedStatement ps = conn.prepareStatement(sql);
