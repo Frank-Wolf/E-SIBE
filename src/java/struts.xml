@@ -59,19 +59,19 @@
         
         <!--Registra COFAA-->
         <action name="Registra_COFAA" class="admins.regusuario_sip">
-            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="success">/Admins/usuarios_cofaa.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
         <!--Borra COFAA-->
         <action name="Borrar_COFAA" class="admins.Borrarusuario_SIP">
-            <result name="borrar_exitoso">/Admins/admin_cofaa.jsp</result>
+            <result name="borrar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
         
         <!--Modifica COFAA-->
         <action name="Modifica_COFAA" class="admins.Modifica_SIP" >
-            <result name="modificar_exitoso">/Admins/admin_cofaa.jsp</result>
+            <result name="modificar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
         <!--Periodo de fechas cofaa-->

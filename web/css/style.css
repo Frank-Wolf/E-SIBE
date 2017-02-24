@@ -214,7 +214,7 @@ background-color: #fff;
 .backcolor
 {
     background-color: #6c1a42;
-    height: 443px;
+    height: 550px;
     margin: -20px;
 }
 
@@ -224,13 +224,11 @@ background-color: #fff;
 
 nav ul li a
 {
-        
     text-decoration: none;
     display: block;
-    padding: 7px;
+    padding: 5px;
     display: block;
-    color: #fff;
-        
+    color: #fff;     
 }
 
 nav ul li a.titulo:active
@@ -260,20 +258,16 @@ nav ul li a.son:hover
     margin: 1px;
     background: #fff;
     text-decoration: none;
-    
 }
 
 li ul li a
 {
     color: #fff;
     text-decoration: none;
-  
-
-  color: #fff;
-    padding: 0px;
+    color: #fff;
+    padding: 5px;
     display: none;
     margin-left: 0px;
-    
 }
 
 ul li:hover ul a
@@ -282,5 +276,4 @@ ul li:hover ul a
     display: block;
     position: relative; 
     text-decoration: none;
-    
 }

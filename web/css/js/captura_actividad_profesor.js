@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 
+function resete()
+{
+    document.getElementById("datos3").reset();
+}
+
 function mostrar_formulario(clicked_id)
 {
     if(clicked_id === "BEIFI")

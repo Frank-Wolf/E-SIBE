@@ -30,7 +30,7 @@
         
     </head>
     
-    <body background="../css/textura.png" class="container-fluid overflow">
+    <body background="../css/textura.png" class="container-fluid" style="overflow: scroll">
         
         <!--header-->
         <header class="headering rela">
@@ -145,7 +145,7 @@
                                     </ul>
                                 </li>
                                 
-                                <!--Participación en la renovación de un plan de Estudios-->
+                                <!--Participación en la renovación de un plan de Estudios
                                 <li class="parent"><a class="titulo">Actividad 2.12 Programa de Estudios</a>
                                     <ul>
                                         <li><a id="12_1" class="son linkers
@@ -156,33 +156,41 @@
                                             
                                         <li><a id="12_2" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.2</a>    
+                                               Actividad 2.12.2: Coordinación en
+                                               la actualización de un plan de estudios 
+                                               de carrera</a>    
                                             
                                         <li><a id="12_3" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.3</a>
+                                                Actividad 2.12.3: Participación en
+                                            la elaboración de un plan de estudios</a>
                                             
                                         <li><a id="12_4" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.4</a>
+                                                Actividad 2.12.4: Participación en
+                                            la actualización de un plan de estudios</a>
                                             
                                         <li><a id="12_5" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.5</a>
+                                                Actividad 2.12.5: Coordinación en
+                                            la elaboración de un programa de estudios</a>
                                             
                                         <li><a id="12_6" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.6</a>    
+                                                Actividad 2.12.6: Coordinación en
+                                            la actualización de un programa de estudios</a>    
                                             
                                         <li><a id="12_7" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.7</a>
+                                                Actividad 2.12.7: Participación en
+                                            la elaboración de un programa de estudios</a>
                                             
                                         <li><a id="12_8" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.128</a>     
+                                               Actividad 2.12.8: Participación en
+                                            la actualización de un programa de estudios</a>     
                                     </ul>
-                                </li>
+                                </li>-->
                             </ul>
                         </nav>
                     </div>

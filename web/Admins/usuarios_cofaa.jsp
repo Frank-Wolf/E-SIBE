@@ -14,14 +14,13 @@
         <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="../css/nav_bar.css"/>" 
-              rel="stylesheet" type="text/css"/>
-        
+       <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
+              type="text/javascript"></script>
         <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
-        <title>Inicio administrador SIP</title>
+        <title>Administrador COFAA</title>
     </head>
     <body background="../css/textura.png" class="boding overflow">
         
@@ -68,17 +67,19 @@
                     <div class="col-md-6">
 
                         <h2 class="h3">Registrar nuevo Profesor Evaluador</h2>
-                        <s:set name="u_a" value="%{'COFAA'}" />
+                        
+
+                        
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
                         <s:form id="datos3" action="Registra_COFAA">
                             <s:textfield name="user" label="Nombre de usuario"/>
-                            <s:textfield name="matricula" label="Matricula"/>
+                            <s:textfield name="matricula" label="No. de Empleado"/>
                             <s:textfield name="password" label="Contraseña"/>
-                            <s:hidden name="u_a" label="Dependencia"/>
+                            <s:textfield name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" name="Registrar Usuario"/>
+                            <s:submit cssClass="btn" value="Registrar Usuario" />
                         </s:form> 
                     </div>
                     
@@ -93,29 +94,31 @@
                             ResultSet rs=null;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT nom_prof, "
-                                    + "id_prof FROM usuarios WHERE "
+                                    + "id_prof, u_a FROM usuarios WHERE "
                                     + "idTypeUsuario = 'usuario_cofaa'");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("  Id de Usuario  ");
+                            out.print("  No. de Empleado  ");
                             out.print("</th>");
                             out.print("<th>");
                             out.print(  "Nombre de Usuario  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Unidad Académica  ");
                             out.print("</th>");
                             out.print("</tr>");
                             while (rs.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print("  ");
                                 out.print(rs.getString("id_prof"));
-                                out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("  ");
                                 out.print(rs.getString("nom_prof"));
-                                out.print("  ");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("u_a"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='Borrar_COFAA?nom_prof="
@@ -138,9 +141,9 @@
         
         <!--footer-->
         <footer class="footer abso">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
-        
         
                     <!-- Scripts para Bootstrap -->
         <script src="css/js/jquery.js" type="text/javascript"></script>
