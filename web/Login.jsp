@@ -40,7 +40,7 @@
                     <div>
                     <s:div cssClass="" align ="center">
                         <s:form id="datos" action="Usuario/Sesion" method="post"  >
-                            <s:textfield name="usuario" label="Matricula" cssClass="form-control" />
+                            <s:textfield name="usuario" label="No. de Empleado" cssClass="form-control" />
                             <s:password  name="pass" label="Contraseña" cssClass="form-control" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
