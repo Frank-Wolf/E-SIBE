@@ -14,7 +14,7 @@
     var error = "";
     var illegalChars = /[\W_]/; // allow only letters and numbers
  
-    if (fld.value == "") {
+    if (fld.value === "") {
         fld.style.background = 'Yellow';
         error = "You didn't enter a password.\n";
         alert(error);
@@ -113,7 +113,7 @@
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" name="Registrar Usuario" onclick="validatePassword(document.form1.password)"/>
+                            <s:submit cssClass="btn" name="Registrar Usuario" />
                         </s:form> 
                     </div>
                     
