@@ -10,15 +10,16 @@ package admins;
  * @author PsysacElrick
  */
 public class Borrar_feeval {
-    private String nom_prof;
+    private int id_fecha;
 
-    public String getNom_prof() {
-        return nom_prof;
+    public int getId_fecha() {
+        return id_fecha;
     }
 
-    public void setNom_prof(String nom_prof) {
-        this.nom_prof = nom_prof;
+    public void setId_fecha(int id_fecha) {
+        this.id_fecha = id_fecha;
     }
+
     
     public Borrar_feeval() {
     }
@@ -26,9 +27,9 @@ public class Borrar_feeval {
     public String execute() throws Exception {
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("DELETE FROM fecha_evaluaciones WHERE fecha_inicio='"+getNom_prof()+"'");
+        int val=lb.executeUpdate("DELETE FROM fecha_evaluaciones WHERE id_fecha='"+getId_fecha()+"'");
         lb.closeConnection();
-        if (val>0) return "borrar_exitoso";
-        else return "borrar_fallo"; 
+        if (val>0) return "success";
+        else return "fail"; 
     }
 }

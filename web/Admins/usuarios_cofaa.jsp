@@ -9,6 +9,41 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            function validatePassword(fld) {
+    var error = "";
+    var illegalChars = /[\W_]/; // allow only letters and numbers
+ 
+    if (fld.value == "") {
+        fld.style.background = 'Yellow';
+        error = "You didn't enter a password.\n";
+        alert(error);
+        return false;
+ 
+    } else if ((fld.value.length < 7) || (fld.value.length > 15)) {
+        error = "The password is the wrong length. \n";
+        fld.style.background = 'Yellow';
+        alert(error);
+        return false;
+ 
+    } else if (illegalChars.test(fld.value)) {
+        error = "The password contains illegal characters.\n";
+        fld.style.background = 'Yellow';
+        alert(error);
+        return false;
+ 
+    } else if ( (fld.value.search(/[a-zA-Z]+/)==-1) || (fld.value.search(/[0-9]+/)==-1) ) {
+        error = "The password must contain at least one numeral.\n";
+        fld.style.background = 'Yellow';
+        alert(error);
+        return false;
+ 
+    } else {
+        fld.style.background = 'White';
+    }
+   return true;
+} 
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link href="<s:url value="/css/bootstrap.css"/>" 
@@ -23,7 +58,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Inicio administrador SIP</title>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding overflow" onload='document.form1.password.focus()'>
         
         <!--header-->
         <header class="headering">
@@ -71,14 +106,14 @@
                         <s:set name="u_a" value="%{'COFAA'}" />
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
-                        <s:form id="datos3" action="Registra_COFAA">
+                        <s:form name="form1" id="datos3" action="Registra_COFAA">
                             <s:textfield name="user" label="Nombre de usuario"/>
                             <s:textfield name="matricula" label="Matricula"/>
                             <s:textfield name="password" label="Contraseña"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" name="Registrar Usuario"/>
+                            <s:submit cssClass="btn" name="Registrar Usuario" onclick="validatePassword(document.form1.password)"/>
                         </s:form> 
                     </div>
                     

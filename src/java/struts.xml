@@ -87,18 +87,30 @@
             <result name="success">/Admins/admin_cofaa.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action> 
-        <!--acciones para eliminar las fechas-->
+        <!--acciones para eliminar o modificar las fechas-->
         <action name="Borrar_fechaacti" class="admins.Borrar_feacti">
-            <result name="success"></result>
-            <result name="error"></result>
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Modifica_fechaacti" class="admins.modifica_feacti">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Borrar_fechaapela" class="admins.Borrar_feapela">
-            <result name="success"></result>
-            <result name="error"></result>
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+         <action name="Modifica_fechaapela" class="admins.modifica_feapela">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Borrar_fechaeval" class="admins.Borrar_feeval">
-            <result name="success"></result>
-            <result name="error"></result>
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Modifica_fechaeval" class="admins.modifica_feeval">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <!--acciones para eliminar las fechas Fin-->
         <!--Administracion de usuarios COFAA-->
@@ -311,7 +323,5 @@
         <action name="Servicio">
             <result>/Admins/Servicio.jsp</result>
         </action>
-    </package>
-    
-    
+    </package>  
 </struts>
