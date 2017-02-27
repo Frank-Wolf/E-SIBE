@@ -115,21 +115,17 @@
                                 </li>
                                 
                                 <!--Punto 2.4 Proyectos de Investigación SIP-->
-                                <li class="parent"><a class="titulo">Actividad 2.4: Proyectos de Investigación</a>
-                                    <ul>
-                                        <li><a id="PRO_SIP" class="son linkers 
+                                <li class="parent"><a id="PRO_SIP" class="titulo linkers
                                                btn-link"  onClick="mostrar_formulario(this.id)">
                                                 Actividad 2.4.2 Proyecto de Investigación SIP</a>
-                                    </ul>
+                                    
                                 </li>
                                 
                                 <!--Punto 2.5 Registro de Propiedad Intelectual-->
-                                <li class="parent"><a class="titulo">Actividad 2.5: Propiedad Intelectual</a>
-                                    <ul>
-                                        <li><a id="INDAUTOR" class="son linkers 
+                                <li class="parent"><a id="INDAUTOR" class="son linkers 
                                                btn-link"  onClick="mostrar_formulario(this.id)">
                                                 Actividad 2.5.2 Validación de Propiedad Intelectual</a>
-                                    </ul>
+                                    
                                 </li>
                                 
                                 <!--Punto 2.11 Dirección o Codirección de Tesis-->
@@ -198,7 +194,7 @@
                     <h2 class="Titular" align="center"> Registro de Actividades </h2>
                     
                     <!--FORM BEIFI -->
-                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-container2" align="center" style="display:none;">
+                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Nombre de Alumno BEIFI" cssClass="form-control"/>
                             <s:textfield name="numero_bol" label="Numero de boleta del Alumno BEIFI" cssClass="form-control"/>
@@ -208,7 +204,7 @@
                     </s:div>    
                     
                     <!--SERVICIO FORM-->
-                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Nombre de Alumno en Servicio Social" cssClass="form-control" />
                             <s:textfield name="numero_ss" label="Numero de Registro de Servicio Social" cssClass="form-control" />
@@ -219,7 +215,7 @@
                     </s:div>  
 
                     <!--PUBLICACIONES EN BOLETINES FORM-->
-                    <s:div id="BOLETINES_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">
+                    <s:div id="BOLETINES_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
                         
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_publi" label="Nombre del Artículo" cssClass="form-control"/>
@@ -229,7 +225,7 @@
                     </s:div>    
                     
                     <!--PUBLICACIONES SIN ARBITRAJE FORM-->
-                    <s:div  id="SINAR_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                    <s:div  id="SINAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
                             <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
@@ -240,7 +236,7 @@
                     </s:div>         
                     
                     <!--PUBLICACIONES CON ARBITRAJE FORM-->
-                    <s:div  id="CONAR_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                    <s:div  id="CONAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
                             <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
@@ -251,7 +247,7 @@
                     </s:div>     
 
                     <!--EVENTOS SIN PONENCIA FORM-->        
-                    <s:div  id="SIN_PONENCIA_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                    <s:div  id="SIN_PONENCIA_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_ea" label="Nombre de Evento Académico" cssClass="form-control" />
                             <s:textfield name="fecha_ev" label="Fecha del Evento" cssClass="form-control" />
@@ -262,7 +258,7 @@
                     </s:div> 
 
                     <!--PUBLICACIONES CON RESUMEN FORM-->
-                    <s:div id="CON_RESUMEN_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">
+                    <s:div id="CON_RESUMEN_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
                         
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_ea" label="Nombre del Evento Académico" cssClass="form-control"/>
@@ -273,7 +269,7 @@
                     </s:div>    
                             
                     <!--PUBLICACIONES EN EXTENSO FORM-->
-                    <s:div  id="EN_EXTENSO_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                    <s:div  id="EN_EXTENSO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Nombre de la publicación" cssClass="form-control" />
                             <s:textfield name="numero_ss" label="Numero de Publicación" cssClass="form-control" />
@@ -284,7 +280,7 @@
                     </s:div>  
                 
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
-                    <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                    <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Número de Proyecto de Investigación" cssClass="form-control"/>
                             <s:textfield name="numero_p" label="Fecha de Proyecto" cssClass="form-control"/>
@@ -293,7 +289,7 @@
                     </s:div>    
 
                     <!--PROPIEDAD INTELECTUAL FORM-->
-                    <s:div id="INDA_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                    <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Número de Obra" cssClass="form-control"/>
                             <s:textfield name="numero_bol" label="Tipo de Obra" cssClass="form-control"/>
@@ -303,7 +299,7 @@
                     </s:div>    
 
                     <!--TESIS FORM-->
-                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Número de Tésis" cssClass="form-control"/>
                             <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
@@ -313,7 +309,7 @@
                     </s:div>    
 
                     <!--TT_CURRICULAR FORM-->
-                    <s:div id="TT_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                    <s:div id="TT_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Número de Trabajo Terminal" cssClass="form-control"/>
                             <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>

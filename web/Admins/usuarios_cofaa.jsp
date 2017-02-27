@@ -14,8 +14,7 @@
         <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-       <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
-              type="text/javascript"></script>
+      
         <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
@@ -41,10 +40,10 @@
                     <div class="container">
                     
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Administrador COFAA</a>
+                            <a class="navbar-brand letritas" >E-SIBE: Administrador COFAA</a>
                         </div>
                         
-                        <div id="navbar" class="navbar-collapse collapse">
+                        <div id="navbar" class="navbar-collapse collapse ">
                             <ul class="nav navbar-nav">
                                 <li><a href="Menu_COFAA">
                                         Menú Principal</a>
@@ -72,17 +71,20 @@
                         
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
-                        <s:form id="datos3" action="Registra_COFAA">
-                            <s:textfield name="user" label="Nombre de usuario"/>
-                            <s:textfield name="matricula" label="No. de Empleado"/>
-                            <s:textfield name="password" label="Contraseña"/>
-                            <s:textfield name="u_a" label="Dependencia"/>
-                            <s:hidden name="periodo" label="Periodo"/>
-                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" value="Registrar Usuario" />
+                        <s:form id="datos3" action="Registra_COFAA"  >
+                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control" style="width: 100%;"/>
+                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name="u_a" label="Dependencia" cssClass="form-control"/>
+                            <s:hidden name="periodo" label="Periodo" cssClass="form-control"/>
+                            <s:hidden name="idTypeUsuario" label="Tipo de usuario" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value="Registrar Usuario" onSubmit="limpia()"  />
+                            
                         </s:form> 
                     </div>
                     
+                        
+                        
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-6">
                         <h2 class="h3">Lista de Profesores Evaluadores activos</h2>
@@ -148,7 +150,8 @@
                     <!-- Scripts para Bootstrap -->
         <script src="css/js/jquery.js" type="text/javascript"></script>
         <script src="css/js/bootstrap.min.js" type="text/javascript"></script>
-        
+         <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
+              type="text/javascript"></script>
     </body>
     
 </html>
