@@ -47,7 +47,7 @@
                     ResultSet rs=null;
                     lb.getConnection();
                     rs=lb.executeQuery("SELECT * FROM usuarios WHERE "
-                            + "nom_prof='"+user+"'");
+                            + "id_prof='"+user+"'");
                     rs.next();
                         String id_user=rs.getString("nom_prof");
                         String id_prof=rs.getString("id_prof");

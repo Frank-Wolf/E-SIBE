@@ -161,7 +161,7 @@
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="
-                                        +rs.getString("nom_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_prof")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
