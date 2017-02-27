@@ -16,25 +16,21 @@
 
         <title> E-SIBE</title>
 
-        <link href="<s:url value="../css/bootstrap.min.css"/>" 
+        <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
        
         <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
+        <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
+              type="text/javascript"></script>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
+         
         
-        <script>
-        function captura(){
-            var Actividad=document.getElementById("Actividades").value;
-            document.getElementById('resultado').innerHTML=" \
-            "+Actividad;
-        }
-        </script>
     </head>
     
-    <body background="../css/textura.png" class="container-fluid boding overflow">
+    <body background="../css/textura.png" class="container-fluid" style="overflow: scroll">
         
         <!--header-->
         <header class="headering rela">
@@ -44,168 +40,297 @@
         </header> 
    
         <!--Conteneor general-->    
-        <s:div cssClass="contenedor-general">
-            <s:div cssClass="site-wrapper-inner">
+        <s:div cssClass="container-fluid">
+            <s:div cssClass="">
                 
                 <!--Barra de Navegacion-->                    
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default row">
         
-                    <div class="container">
+                    <div class=" col-lg-12">
                     
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Profesor</a>
+                            <a class="navbar-brand" > E-SIBE: Profesor</a>
                         </div>
                         
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Menu">
+                        <!-- Parte derecha de barra de navegacion-->
+                        <div class="container">
+                            <ul class="nav navbar-nav navbar-right">
+                                 <li><a href="Menu">
                                         Menú Principal</a>
                                 </li>
-                            </ul>
-                            
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="http://localhost:8084/login/">
-                                      Cerrar Sesion</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
                 
-             
-                <!--Contenido-->
-                <s:div cssClass="cover-container2" align="center"> 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 hidden-xs display-table-cell v-align box" id="navigation"/>
-                            <h2 class="h3">Elige la actividad a validar</h2>
-                                <select id="Actividades" multiple class="form-control" size="14">
-                                    <optgroup label="Actividad 2.1: Formación de 
-                                               Recursos Humanos para la Investigación" >
-                                        <option  name="Actividad_2_1_1"> 
-                                            Actividad 2.1.1: Alumnos BEIFI
-                                        </option>
-                                        <option name="Actividad_2_1_2"> 
-                                            Actividad 2.1.2: Alumnos en Servicio
-                                            Social
-                                        </option>   
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.2: Publicaciones 
-                                               científicas y de divulgación impresas 
-                                               o en línea" >
-                                        <option name="Actividad_2_2_1"> 
-                                            Actividad 2.2.1: En boletínes 
-                                            Institucionales
-                                        </option>
-                                        <option name="Actividad_2_2_2"> 
-                                            Actividad 2.2.2: En revistas sin 
-                                            arbitraje
-                                        </option>    
-                                        <option name="Actividad_2_2_3"> Actividad 2.2.2: En revistas 
-                                            con arbitraje
-                                        </option>    
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.3: Trabajos de 
-                                               Investigacion" >
-                                        <option name="Actividad_2_3_1"> 
-                                            Actividad 2.3.1: Sin ponencia
-                                        </option>
-                                        <option name="Actividad_2_3_2"> 
-                                            Actividad 2.3.2: Institucional con 
-                                            resumen publicado
-                                        </option>   
-                                        <option name="Actividad_2_3_3"> 
-                                            Actividad 2.3.3: Con publicación en 
-                                            extenso
-                                        </option>   
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.4: Investigación y/o
-                                               desarrollo Tecnológico satisfactorio">
-                                        <option name="Actividad_2_4_2"> 
-                                            Actividad 2.4.2: Proyecto de 
-                                            Investigación SIP
-                                        </option>
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.5: Registro de 
-                                               Propiedad Intelectual" >
-                                        <option name="Actividad_2_5_2"> 
-                                            Actividad 2.5.2.1: Derechos de Autor
-                                        </option>
-                                    </optgroup>
-
-                                    <optgroup label="Actividad 2.11: Direcciones y 
-                                               Coodirecciones de Tesis (Máximo 6 por 
-                                               periodo)" >
-                                        <option  name="Actividad_2_11_1"> 
-                                            Actividad 2.11.1: Tesis individual 
-                                            y colectiva
-                                        </option>
-                                        <option name="Actividad_2_11_2"> 
-                                            Actividad 2.11.2: Opción Curricular
-                                        </option>   
-                                    </optgroup>                                
-
-                                     <optgroup label="Actividad 2.12: Tipo de Participación
-                                               en Plan de Estudios" >
-                                        <option name="Actividad_2_12_1"> 
-                                            Actividad 2.12.1: Coordinación en 
-                                            la elaboración de un plan de estudios 
-                                            de carrera
-                                        </option>
-                                        <option name="Actividad_2_12_2"> 
-                                            Actividad 2.12.2: Coordinación en
-                                            la actualización de un plan de estudios 
-                                            de carrera
-                                        </option>
-                                        <option name="Actividad_2_12_3"> 
-                                            Actividad 2.12.3: Participación en
-                                            la elaboración de un plan de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_4"> 
-                                            Actividad 2.12.4: Participación en
-                                            la actualización de un plan de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_5"> 
-                                            Actividad 2.12.5: Coordinación en
-                                            la elaboración de un programa de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_6"> 
-                                            Actividad 2.12.6: Coordinación en
-                                            la actualización de un programa de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_7"> 
-                                            Actividad 2.12.7: Participación en
-                                            la elaboración de un programa de estudios
-                                        </option>
-                                        <option name="Actividad_2_12_8"> 
-                                            Actividad 2.12.8: Participación en
-                                            la actualización de un programa de estudios
-                                        </option>
-                                     </optgroup>
-                                </select>  
-                            <input type="button" class="btn" value="Confirmar Actividad" onclick="captura()"/>
-                        </div>
-                        
-                        <div class="col-md-6 col-sm-6 hidden-xs display-table-cell v-align box" id="navigation"/>
-                            <h2 class="h3">Elige la cantidad de documentos a 
-                                validar de:</h2>
-                            <div id="resultado"></div>
-                            
-                            <form id="cantidad">
-                                   <input type="radio" name="1"  /> 1
-                                   
+                <div class="row">
+                    <!--Menú de opciones lateral-->
+                    <div class="col-md-3 barra">
+                        <nav class="nav-lateral">
+                            <ul class="backcolor">       
+                                <!--Punto 2.1 Recursos Humanos Para La investigación-->
+                                <li class="parent"><a class="titulo">Actividad 2.1: Alumnos</a>
+                                    <ul>
+                                        <li><a id="BEIFI" class="son linkers 
+                                                btn-link" onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.1.1: Alumnos BEIFI</a>
+                                            
+                                        <li><a id="SERVICIO" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.1.2: Alumnos S.S.</a>    
+                                    </ul>
+                                </li>
                                 
+                                <!--Punto 2.2 Publicaciones en Revistas-->
+                                <li class="parent"><a class="titulo"> Actividad 2.2: Publicaciones</a>
+                                    <ul>
+                                        <li><a id="BOLETINES" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.2.1: En boletínes </a>
+                                        
+                                        <li><a id="NOARBITRAJE" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.2.2: Sin arbitraje</a>    
+                                            
+                                        <li><a id="ARBITRAJE" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">Actividad 2.2.3: Con arbitraje</a>    
+                                    </ul>
+                                </li>
+                                
+                                <!--Punto 2.3 Publicaciones en Eventos Académicos-->
+                                <li class="parent"><a class="titulo">Actividad 2.3: Part. en Eventos Académicos</a>
+                                    <ul>
+                                        <li><a id="INST_SINPONENCIA" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.3.1: Publicación Inst. sin Ponencia</a>
+                                            
+                                        <li><a id="CONRESUMEN" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.3.2: Publicación con Resúmen</a>    
+                                            
+                                        <li><a id="EXTENSO" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.3.3: Publicación en Extenso</a>        
+                                    </ul>
+                                </li>
+                                
+                                <!--Punto 2.4 Proyectos de Investigación SIP-->
+                                <li class="parent"><a class="titulo">Actividad 2.4: Proyectos de Investigación</a>
+                                    <ul>
+                                        <li><a id="PRO_SIP" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.4.2 Proyecto de Investigación SIP</a>
+                                    </ul>
+                                </li>
+                                
+                                <!--Punto 2.5 Registro de Propiedad Intelectual-->
+                                <li class="parent"><a class="titulo">Actividad 2.5: Propiedad Intelectual</a>
+                                    <ul>
+                                        <li><a id="INDAUTOR" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.5.2 Validación de Propiedad Intelectual</a>
+                                    </ul>
+                                </li>
+                                
+                                <!--Punto 2.11 Dirección o Codirección de Tesis-->
+                                <li class="parent"><a class="titulo">Actividad 2.11: Dirección de Tesis</a>
+                                    <ul>
+                                        <li><a id="TESIS" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.11.1 Dirección de Tesis individual</a>
+                                            
+                                        <li><a id="OPCION_CURRICULAR" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.11.2: Opción Curricular </a>    
+                                    </ul>
+                                </li>
+                                
+                                <!--Participación en la renovación de un plan de Estudios
+                                <li class="parent"><a class="titulo">Actividad 2.12 Programa de Estudios</a>
+                                    <ul>
+                                        <li><a id="12_1" class="son linkers
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.12.1: Coordinación en 
+                                            la elaboración de un plan de estudios 
+                                            de carrera</a>
+                                            
+                                        <li><a id="12_2" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                               Actividad 2.12.2: Coordinación en
+                                               la actualización de un plan de estudios 
+                                               de carrera</a>    
+                                            
+                                        <li><a id="12_3" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.12.3: Participación en
+                                            la elaboración de un plan de estudios</a>
+                                            
+                                        <li><a id="12_4" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.12.4: Participación en
+                                            la actualización de un plan de estudios</a>
+                                            
+                                        <li><a id="12_5" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.12.5: Coordinación en
+                                            la elaboración de un programa de estudios</a>
+                                            
+                                        <li><a id="12_6" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.12.6: Coordinación en
+                                            la actualización de un programa de estudios</a>    
+                                            
+                                        <li><a id="12_7" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                                Actividad 2.12.7: Participación en
+                                            la elaboración de un programa de estudios</a>
+                                            
+                                        <li><a id="12_8" class="son linkers 
+                                               btn-link"  onClick="mostrar_formulario(this.id)">
+                                               Actividad 2.12.8: Participación en
+                                            la actualización de un programa de estudios</a>     
+                                    </ul>
+                                </li>-->
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <h2 class="Titular" align="center"> Registro de Actividades </h2>
+                    
+                    <!--FORM BEIFI -->
+                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-container2" align="center" style="display:none;">
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Nombre de Alumno BEIFI" cssClass="form-control"/>
+                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno BEIFI" cssClass="form-control"/>
+                            <s:textfield name="numero_p" label="Numero de Proyecto SIP" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+                    
+                    <!--SERVICIO FORM-->
+                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Nombre de Alumno en Servicio Social" cssClass="form-control" />
+                            <s:textfield name="numero_ss" label="Numero de Registro de Servicio Social" cssClass="form-control" />
+                            <s:textfield name="fecha_ss_fin" label="Fecha de Finalización de Servicio Social" cssClass="form-control" />
+                            
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>  
 
-                            <button class="btn"> GO!</button>
-                            </form>
-                        </div>
+                    <!--PUBLICACIONES EN BOLETINES FORM-->
+                    <s:div id="BOLETINES_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">
                         
-                    </div>       
-                </s:div>
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_publi" label="Nombre del Artículo" cssClass="form-control"/>
+                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control"/>                           
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+                    
+                    <!--PUBLICACIONES SIN ARBITRAJE FORM-->
+                    <s:div  id="SINAR_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
+                            <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
+                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control" />
+                            
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>         
+                    
+                    <!--PUBLICACIONES CON ARBITRAJE FORM-->
+                    <s:div  id="CONAR_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
+                            <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
+                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control" />
+                            
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>     
+
+                    <!--EVENTOS SIN PONENCIA FORM-->        
+                    <s:div  id="SIN_PONENCIA_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_ea" label="Nombre de Evento Académico" cssClass="form-control" />
+                            <s:textfield name="fecha_ev" label="Fecha del Evento" cssClass="form-control" />
+                            <s:textfield name="num_pub" label="Número de Publicación" cssClass="form-control" />
+                            
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div> 
+
+                    <!--PUBLICACIONES CON RESUMEN FORM-->
+                    <s:div id="CON_RESUMEN_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">
+                        
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_ea" label="Nombre del Evento Académico" cssClass="form-control"/>
+                            <s:textfield name="fecha_ea" label="Fecha del Evento Académico" cssClass="form-control"/>
+                            <s:textfield name="ponencia" label="Titulo de Ponencia" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+                            
+                    <!--PUBLICACIONES EN EXTENSO FORM-->
+                    <s:div  id="EN_EXTENSO_FORM" cssClass="col-lg-9 formulario-oculto" align ="center" style="display:none;">
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Nombre de la publicación" cssClass="form-control" />
+                            <s:textfield name="numero_ss" label="Numero de Publicación" cssClass="form-control" />
+                            <s:textfield name="fecha_ss_fin" label="Fecha de Publicación" cssClass="form-control" />
+                            
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>  
+                
+                    <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
+                    <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Número de Proyecto de Investigación" cssClass="form-control"/>
+                            <s:textfield name="numero_p" label="Fecha de Proyecto" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+
+                    <!--PROPIEDAD INTELECTUAL FORM-->
+                    <s:div id="INDA_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Número de Obra" cssClass="form-control"/>
+                            <s:textfield name="numero_bol" label="Tipo de Obra" cssClass="form-control"/>
+                            <s:textfield name="numero_p" label="Fecha del Registro" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+
+                    <!--TESIS FORM-->
+                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Número de Tésis" cssClass="form-control"/>
+                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
+                            <s:textfield name="numero_p" label="Fecha de Titulación del Alumno" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+
+                    <!--TT_CURRICULAR FORM-->
+                    <s:div id="TT_FORM"  cssClass="col-lg-9 " align="center" style="display:none;">    
+                        <s:form action="Usuario/Sesion" method="post">
+                            <s:textfield name="nombre_a" label="Número de Trabajo Terminal" cssClass="form-control"/>
+                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
+                            <s:textfield name="numero_p" label="Fecha de Titulación del Alumno" cssClass="form-control"/>
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
+                
+                
+                
+                </div><!--Contenido-->    
+                
+               
             </s:div>  
-        </s:div>        
+        </s:div>
+                
+                
         
         
         
@@ -218,6 +343,7 @@
         
         <!-- Scripts para Bootstrap -->
         <script src="../css/js/jquery.js" type="text/javascript"></script>
+        <script src="../css/js/bootstrap-treeview.js" type="text/javascript"></script>
         <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
         
     </body>

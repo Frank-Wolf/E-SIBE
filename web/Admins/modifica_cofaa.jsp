@@ -30,9 +30,9 @@
             </s:div>
         </header>
         
-        <s:div cssClass="contenedor-general">
-            <s:div cssClass="site-wrapper-inner">   
-                <s:div cssClass="cover-container">   
+        <s:div cssClass="cover-container2">
+            
+                
                     <h2 class="titulos" align="center">
                         Ingrese los cambios deseados al usuario Evaluador</h2>
         
@@ -55,7 +55,7 @@
                     lb.closeConnection();
                     %>
 
-
+                    <div align="center">
                     <s:form action="/Usuario/Modifica_COFAA">
                         <s:set var="id_user"><%=id_user%></s:set>
                         <s:textfield name="usuario" value="%{#id_user}"/>
@@ -71,16 +71,16 @@
                         <br>
                         <s:submit cssClass="btn" value="Guardar"/>
                     </s:form>
+                    </div>
         
-        
-                </s:div>
-            </s:div>
+                
+            
         </s:div>
         <!--footer-->
         <footer class="footer abso">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
-             
                     <!-- Scripts para Bootstrap -->
         <script src="/css/js/jquery.js" type="text/javascript"></script>
         <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
