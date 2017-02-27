@@ -96,8 +96,7 @@
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print(rs.getString("idTypeUsuario"));
-                                out.print("</td>");
-                                
+                                out.print("</td>");   
                             }
                             out.print("</table>");
                             lb.closeConnection();

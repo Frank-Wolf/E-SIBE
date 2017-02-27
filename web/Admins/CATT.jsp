@@ -103,12 +103,12 @@
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Borrar_CATT?nom_prof="
-                                        +rs.getString("nom_prof")+"'>Borrar</a>");
+                                out.print("<a href='Borrar_CATT?id_prof="
+                                        +rs.getString("id_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_catt.jsp?id="
-                                        +rs.getString("nom_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_prof")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");

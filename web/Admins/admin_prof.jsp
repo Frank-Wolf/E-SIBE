@@ -112,12 +112,12 @@
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='/Borrar?nom_prof="//modificar
-                                        +rs.getString("nom_prof")+"'>Borrar</a>");
+                                out.print("<a href='/Borrar?id_prof="//modificar
+                                        +rs.getString("id_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='Admins/modifica_usip.jsp?id="//modificar
-                                        +rs.getString("nom_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_prof")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
