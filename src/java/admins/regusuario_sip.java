@@ -30,7 +30,15 @@ public class regusuario_sip extends ActionSupport {
    public String execute() {
       String ret = SUCCESS;
       Connection conn = null;
-
+      if (user == null || user.trim().equals(""))
+      {
+         addFieldError("user","The name is required");
+         return "test";///probar con cofaa
+      }
+      /*if (age < 28 || age > 65)
+      {
+         addFieldError("age","Age must be in between 28 and 65");
+      }*/
       try {
          String URL = "jdbc:mysql://localhost:3306/prototipo";
          Class.forName("com.mysql.jdbc.Driver");

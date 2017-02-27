@@ -41,6 +41,7 @@
         
          <!--Registra INDAUTOR-->
         <action name="Registra_INDA" class="admins.regusuario_sip">
+            <result name="test">/Admins/admin_inda.jsp</result><!--hacer para el cofaas-->
             <result name="success">/Admins/admin_inda.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
