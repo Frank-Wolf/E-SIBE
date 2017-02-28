@@ -5,8 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="s" uri="/struts-tags" %>
-<%@taglib prefix="sj" uri="/struts-jquery-tags" %>   
+<%@taglib prefix="s" uri="/struts-tags" %>  
 <!DOCTYPE html>
 <html>
     <head>
@@ -92,6 +91,7 @@
                         while (rs.next())
                         {
                             out.print("<tr>");
+                            out.print("<s:hidden name='id_fecha' label='fecha'/>");
                             out.print("<td>");
                             out.print(rs.getString("fecha_inicio"));
                             out.print("</td>");
@@ -99,12 +99,11 @@
                             out.print(rs.getString("fecha_fin"));
                             out.print("</td>");
                             out.print("<td>");
-                            //out.print("<a href='Borrar_fechaacti?nom_prof="+rs.getString("nom_prof")+"'>Borrar</a>");
-                            //out.print("</td>");
-                            //out.print("<td>");
-                            //out.print("<a href='/login/Admins/modifica_inda.jsp?id="
-                              //      +rs.getString("nom_prof")+"'>Modificar</a>");
-                            //out.print("</td>");
+                            out.print("<a href='Borrar_fechaacti?id_fecha="+rs.getInt("id_fecha")+"'>Borrar</a>");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("<a href='/login/Admins/modifica_feacti.jsp?id="+rs.getInt("id_fecha")+"'>Modificar</a>");
+                            out.print("</td>");
                         }
                         out.print("</table>");
                         lb.closeConnection();
@@ -118,8 +117,8 @@
                                      class="sesion.LoginBean"></jsp:useBean>
                         <%
                         ResultSet rt=null;
-                        lb.getConnection();
-                        rs=lb.executeQuery("SELECT * FROM fecha_apelaciones");
+                        ls.getConnection();
+                        rs=ls.executeQuery("SELECT * FROM fecha_apelaciones");
                         out.print("<table class='table table-striped'>");
                         out.print("<tr>");
                         out.print("<th>");
@@ -138,15 +137,12 @@
                             out.print("<td>");
                             out.print(rs.getString("fecha_fin"));
                             out.print("</td>");
-                            //out.print("<td>");
-
-                            //out.print("<a href='Borrar_fechaapela?nom_prof="+rs.getString("nom_prof")
-                              //      +"'>Borrar</a>");
-                            //out.print("</td>");
-                            //out.print("<td>");
-                            //out.print("<a href='/login/Admins/modifica_inda.jsp?id="
-                              //      +rs.getString("nom_prof")+"'>Modificar</a>");
-                            //out.print("</td>");
+                            out.print("<td>");
+                            out.print("<a href='Borrar_fechaapela?id_fecha="+rs.getInt("id_fecha")+"'>Borrar</a>");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("<a href='/login/Admins/modifica_feapela.jsp?id="+rs.getInt("id_fecha")+"'>Modificar</a>");
+                            out.print("</td>");
                         }
                         out.print("</table>");
                         lb.closeConnection();
@@ -160,8 +156,8 @@
                                      class="sesion.LoginBean"></jsp:useBean>
                         <%
                         ResultSet ra=null;
-                        lb.getConnection();
-                        rs=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
+                        lf.getConnection();
+                        rs=lf.executeQuery("SELECT * FROM fecha_evaluaciones");
                         out.print("<table class='table table-striped'>");
                         out.print("<tr>");
                         out.print("<th>");
@@ -180,15 +176,12 @@
                             out.print("<td>");
                             out.print(rs.getString("fecha_fin"));
                             out.print("</td>");
-                            //out.print("<td>");
-
-                            //out.print("<a href='Borrar_fechaeval?nom_prof="+rs.getString("nom_prof")
-                              //      +"'>Borrar</a>");
-                            //out.print("</td>");
-                            //out.print("<td>");
-                            //out.print("<a href='/login/Admins/modifica_inda.jsp?id="
-                              //      +rs.getString("nom_prof")+"'>Modificar</a>");
-                            //out.print("</td>");
+                           out.print("<td>");
+                            out.print("<a href='Borrar_fechaeval?id_fecha="+rs.getInt("id_fecha")+"'>Borrar</a>");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("<a href='/login/Admins/modifica_feeval.jsp?id="+rs.getInt("id_fecha")+"'>Modificar</a>");
+                            out.print("</td>");
                         }
                         out.print("</table>");
                         lb.closeConnection();

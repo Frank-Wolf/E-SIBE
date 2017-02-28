@@ -9,6 +9,41 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            function validatePassword(fld) {
+    var error = "";
+    var illegalChars = /[\W_]/; // allow only letters and numbers
+ 
+    if (fld.value === "") {
+        fld.style.background = 'Yellow';
+        error = "You didn't enter a password.\n";
+        alert(error);
+        return false;
+ 
+    } else if ((fld.value.length < 7) || (fld.value.length > 15)) {
+        error = "The password is the wrong length. \n";
+        fld.style.background = 'Yellow';
+        alert(error);
+        return false;
+ 
+    } else if (illegalChars.test(fld.value)) {
+        error = "The password contains illegal characters.\n";
+        fld.style.background = 'Yellow';
+        alert(error);
+        return false;
+ 
+    } else if ( (fld.value.search(/[a-zA-Z]+/)==-1) || (fld.value.search(/[0-9]+/)==-1) ) {
+        error = "The password must contain at least one numeral.\n";
+        fld.style.background = 'Yellow';
+        alert(error);
+        return false;
+ 
+    } else {
+        fld.style.background = 'White';
+    }
+   return true;
+} 
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link href="<s:url value="/css/bootstrap.css"/>" 
@@ -21,7 +56,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Administrador COFAA</title>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding overflow" onload='document.form1.password.focus()'>
         
         <!--header-->
         <header class="headering">
@@ -71,15 +106,45 @@
                         
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
-                        <s:form id="datos3" action="Registra_COFAA"  >
-                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control" style="width: 100%;"/>
+                        <s:form name="form1" id="datos3" action="Registra_COFAA">
+                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
                             <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control"/>
                             <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
-                            <s:textfield name="u_a" label="Dependencia" cssClass="form-control"/>
-                            <s:hidden name="periodo" label="Periodo" cssClass="form-control"/>
-                            <s:hidden name="idTypeUsuario" label="Tipo de usuario" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value="Registrar Usuario" onSubmit="limpia()"  />
+                            <s:select label="Seleccione una dependencia" cssClass="form-control"
+                            headerKey="-1" headerValue="Dependencia"
+                            list="# {
+                            'ESCOM':'ESCOM',
+                            'ESIA - Unidad Ticomán':'ESIA - Unidad Ticomán',
+                            'ESFM':'ESFM',
+                            'ESIA - Unidad Zacatenco':'ESIA - Unidad Zacatenco',
+                            'ESIME - Unidad Azcapotzalco':'ESIME - Unidad Azcapotzalco',
+                            'UPIBI':'UPIBI',
+                            'ESIME - Unidad Culhuacán':'ESIME - Unidad Culhuacán',
+                            'UPIIZ - Campus Zacatecas':'UPIIZ - Campus Zacatecas',
+                            'ESIME - Unidad Ticomán':'ESIME - Unidad Ticomán',
+                            'UPIICSA':'UPIICSA',
+                            'ESIME - Unidad Zacatenco':'ESIME - Unidad Zacatenco',
+                            'UPIIG - Campus Guanajuato':'UPIIG - Campus Guanajuato',
+                            'ESIQIE':'ESIQIE',
+                            'UPIITA':'UPIITA',
+                            'ESIT':'ESIT',
+                            'ESIA - Unidad Tecamachalco':'ESIA - Unidad Tecamachalco',
+                            'CICS - Unidad Milpa Alta':'CICS - Unidad Milpa Alta',
                             
+                            'ENMyH':'ENMyH',
+                            'CICS - Unidad Santo Tomás':'CICS - Unidad Santo Tomás',
+                            'ESEO':'ESEO',
+                            'ENCB':'ENCB',
+                            'ESM':'ESM',
+                            'ESCA - Unidad Santo Tomás':'ESCA - Unidad Santo Tomás',
+                            'ESE':'ESE',
+                            'ESCA - Unidad Tepepan':'ESCA - Unidad Tepepan',
+                            'EST':'EST'
+                            }"
+                            name="u_a" />
+                            <s:hidden name="periodo" label="Periodo"/>
+                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
+                            <s:submit cssClass="btn" value="Registrar Usuario" />
                         </s:form> 
                     </div>
                     
@@ -128,7 +193,7 @@
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="
-                                        +rs.getString("nom_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_prof")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");

@@ -30,7 +30,7 @@
             </s:div>
         </header>
         
-        <s:div cssClass="cover-container2">
+        <s:div cssClass="inner-cover">
             
                 
                     <h2 class="titulos" align="center">
@@ -47,7 +47,7 @@
                     ResultSet rs=null;
                     lb.getConnection();
                     rs=lb.executeQuery("SELECT * FROM usuarios WHERE "
-                            + "nom_prof='"+user+"'");
+                            + "id_prof='"+user+"'");
                     rs.next();
                         String id_user=rs.getString("nom_prof");
                         String id_prof=rs.getString("id_prof");
@@ -58,13 +58,13 @@
                     <div align="center">
                     <s:form action="/Usuario/Modifica_COFAA">
                         <s:set var="id_user"><%=id_user%></s:set>
-                        <s:textfield name="usuario" value="%{#id_user}"/>
+                        <s:textfield label="Nombre de Usuario" name="usuario" value="%{#id_user}" cssClass="form-control"/>
                         <br>
                         <s:set var="id_prof"><%=id_prof%></s:set>
-                        <s:textfield name="matricula" value="%{#id_prof}" />
+                        <s:textfield label="No. de Empleado" name="matricula" value="%{#id_prof}" cssClass="form-control" />
                         <br>
                         <s:set var="id_password"><%=id_password%></s:set>
-                        <s:textfield name="password" value="%{#id_password}" />
+                        <s:textfield label="Contraseña" name="password" value="%{#id_password}" cssClass="form-control" />
                         <br>
                         <s:set var="user"><%=user%></s:set>
                         <s:hidden name="id" value="%{#user}"/>

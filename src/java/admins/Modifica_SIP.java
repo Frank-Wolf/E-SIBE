@@ -55,7 +55,7 @@ public class Modifica_SIP extends ActionSupport {
     public String execute() throws Exception {
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("UPDATE usuarios SET nom_prof='"+getUsuario()+"',id_prof='"+getMatricula()+"', password='"+getPassword()+"' WHERE nom_prof='"+getId()+"'");
+        int val=lb.executeUpdate("UPDATE usuarios SET nom_prof='"+getUsuario()+"',id_prof='"+getMatricula()+"', password='"+getPassword()+"' WHERE id_prof='"+getId()+"'");
         if(val>0) return "modificar_exitoso";
         else return "modificar_fallo";
     }
