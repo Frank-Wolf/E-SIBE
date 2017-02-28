@@ -14,6 +14,8 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -25,20 +27,31 @@ public class regusuario_sip extends ActionSupport {
    private int periodo;
    private String password;
    private String idTypeUsuario;
-
-
+   
+   private static Pattern pswNamePtrn = Pattern.compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_-]).{6,15})");
+   public static String validatePassword(String paswrd){//
+         
+        Matcher mtch = pswNamePtrn.matcher(paswrd);
+        if(mtch.matches()){
+            return SUCCESS;
+        }
+        else
+            return "test";
+    }
    public String execute() {
       String ret = SUCCESS;
       Connection conn = null;
       if (user == null || user.trim().equals(""))
       {
-         addFieldError("user","The name is required");
+         addFieldError("user", "The name is required");
          return "test";///probar con cofaa
       }
-      /*if (age < 28 || age > 65)
-      {
-         addFieldError("age","Age must be in between 28 and 65");
-      }*/
+      ret = validatePassword(password);
+      if(ret == "test"){
+          addFieldError("password", "La contraseña debe tener al menos 6 caracteres, "
+                  + "máximo 15 y un alfanumérico, caracter especial y un número");
+          return ret;
+      }
       try {
          String URL = "jdbc:mysql://localhost:3306/prototipo";
          Class.forName("com.mysql.jdbc.Driver");
