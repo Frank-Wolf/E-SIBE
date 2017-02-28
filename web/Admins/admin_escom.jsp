@@ -12,10 +12,10 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="/css/bootstrap.css"/>" 
+        <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
         <link href="<s:url value="../css/nav_bar.css"/>" 
@@ -24,7 +24,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Inicio administrador de usuarios en ESCOM</title>
     </head>
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding overflow">
         
         <!--header-->
         <header class="headering">
@@ -53,10 +53,11 @@
                           </div>
                     </div>
                 </nav>
-                <s:div cssClass="cover-container">   
-                    
-                <div class="col-md-6 container-fluid">
-                        <h2 class="h3">Lista de Usuarios de la Unidad Académica activos</h2>
+                <div class="row ">
+                    <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
+                         col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
+                         col-sm-offset-2 ">
+                        <h2 class="h3" align="center">Lista de Usuarios de la Unidad Académica activos</h2>
                     
                         <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lb" scope="session" 
@@ -104,12 +105,13 @@
                     </div>                         
                 </s:div>  
             </s:div>        
-        </s:div>
+        </div>
 
         
         <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
         
         

@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-function resete()
+function limpia()
 {
-    document.getElementById("datos3").reset();
+    document.getElementById("datos3").reload();
 }
+
 
 function mostrar_formulario(clicked_id)
 {

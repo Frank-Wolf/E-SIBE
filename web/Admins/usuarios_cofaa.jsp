@@ -49,8 +49,7 @@
         <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-       <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
-              type="text/javascript"></script>
+      
         <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
@@ -76,10 +75,10 @@
                     <div class="container">
                     
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Administrador COFAA</a>
+                            <a class="navbar-brand letritas" >E-SIBE: Administrador COFAA</a>
                         </div>
                         
-                        <div id="navbar" class="navbar-collapse collapse">
+                        <div id="navbar" class="navbar-collapse collapse ">
                             <ul class="nav navbar-nav">
                                 <li><a href="Menu_COFAA">
                                         Menú Principal</a>
@@ -108,16 +107,49 @@
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
                         <s:form name="form1" id="datos3" action="Registra_COFAA">
-                            <s:textfield name="user" label="Nombre de usuario"/>
-                            <s:textfield name="matricula" label="No. de Empleado"/>
-                            <s:textfield name="password" label="Contraseña"/>
-                            <s:textfield name="u_a" label="Dependencia"/>
+                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:select label="Seleccione una dependencia" cssClass="form-control"
+                            headerKey="-1" headerValue="Dependencia"
+                            list="# {
+                            'ESCOM':'ESCOM',
+                            'ESIA - Unidad Ticomán':'ESIA - Unidad Ticomán',
+                            'ESFM':'ESFM',
+                            'ESIA - Unidad Zacatenco':'ESIA - Unidad Zacatenco',
+                            'ESIME - Unidad Azcapotzalco':'ESIME - Unidad Azcapotzalco',
+                            'UPIBI':'UPIBI',
+                            'ESIME - Unidad Culhuacán':'ESIME - Unidad Culhuacán',
+                            'UPIIZ - Campus Zacatecas':'UPIIZ - Campus Zacatecas',
+                            'ESIME - Unidad Ticomán':'ESIME - Unidad Ticomán',
+                            'UPIICSA':'UPIICSA',
+                            'ESIME - Unidad Zacatenco':'ESIME - Unidad Zacatenco',
+                            'UPIIG - Campus Guanajuato':'UPIIG - Campus Guanajuato',
+                            'ESIQIE':'ESIQIE',
+                            'UPIITA':'UPIITA',
+                            'ESIT':'ESIT',
+                            'ESIA - Unidad Tecamachalco':'ESIA - Unidad Tecamachalco',
+                            'CICS - Unidad Milpa Alta':'CICS - Unidad Milpa Alta',
+                            
+                            'ENMyH':'ENMyH',
+                            'CICS - Unidad Santo Tomás':'CICS - Unidad Santo Tomás',
+                            'ESEO':'ESEO',
+                            'ENCB':'ENCB',
+                            'ESM':'ESM',
+                            'ESCA - Unidad Santo Tomás':'ESCA - Unidad Santo Tomás',
+                            'ESE':'ESE',
+                            'ESCA - Unidad Tepepan':'ESCA - Unidad Tepepan',
+                            'EST':'EST'
+                            }"
+                            name="u_a" />
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
                             <s:submit cssClass="btn" value="Registrar Usuario" />
                         </s:form> 
                     </div>
                     
+                        
+                        
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-6">
                         <h2 class="h3">Lista de Profesores Evaluadores activos</h2>
@@ -183,7 +215,8 @@
                     <!-- Scripts para Bootstrap -->
         <script src="css/js/jquery.js" type="text/javascript"></script>
         <script src="css/js/bootstrap.min.js" type="text/javascript"></script>
-        
+         <script src="<s:url value="../css/js/captura_actividad_profesor.js"/>" 
+              type="text/javascript"></script>
     </body>
     
 </html>

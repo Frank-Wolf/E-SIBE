@@ -2550,7 +2550,7 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
+  width: 300px;
   height: 34px;
   padding: 6px 12px;
   font-size: 15px;
@@ -3402,7 +3402,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 .btn-link {
   font-weight: normal;
-  color: #337ab7;
+  color: #fff;
   border-radius: 0;
 }
 .btn-link,
