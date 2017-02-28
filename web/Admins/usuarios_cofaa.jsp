@@ -188,8 +188,8 @@
                                 out.print(rs.getString("u_a"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Borrar_COFAA?nom_prof="
-                                        +rs.getString("nom_prof")+"'>Borrar</a>");
+                                out.print("<a href='Borrar_COFAA?id_prof="
+                                        +rs.getString("id_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="

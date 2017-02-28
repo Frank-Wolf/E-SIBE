@@ -26,6 +26,7 @@
         <!--Registra SIP-->
         <action name="Registra_SIP" class="admins.regusuario_sip">
             <result name="success">/Admins/admin_sip.jsp</result>
+            <result name="test">/Admins/admin_sip.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         <!--Borra SIP-->
@@ -41,6 +42,7 @@
         
          <!--Registra INDAUTOR-->
         <action name="Registra_INDA" class="admins.regusuario_sip">
+            <result name="test">/Admins/admin_inda.jsp</result><!--hacer para el cofaas-->
             <result name="success">/Admins/admin_inda.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
@@ -60,6 +62,7 @@
         <!--Registra COFAA-->
         <action name="Registra_COFAA" class="admins.regusuario_sip">
             <result name="success">/Admins/usuarios_cofaa.jsp</result>
+            <result name="test">/Admins/usuarios_cofaa.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
@@ -133,6 +136,7 @@
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
             <result name="success">/Admins/CATT.jsp</result>
+            <result name="test">/Admins/CATT.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
@@ -152,6 +156,7 @@
         <!--Registra SS-->
         <action name="Registra_SS" class="admins.regusuario_sip">
             <result name="success">/Admins/Servicio.jsp</result>
+            <result name="test">/Admins/Servicio.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
