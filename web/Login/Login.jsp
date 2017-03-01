@@ -7,32 +7,27 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> E-SIBE</title>
         
-        <link href="<s:url value="/css/bootstrap.css"/>" 
+        <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
 
         
         
-        <link rel="icon" href="<s:url value="icono.ico"/>"/>
+        <link rel="icon" href="<s:url value="../icono.ico"/>"/>
     </head>
     
-    <body background="css/textura.png" class="container-fluid boding">
+    <body background="../css/textura.png" class="container-fluid boding">
         
         <!--header-->
         <header class="headering abso">
             <s:div cssClass="container">            
-                <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" class="img-responsive"/>
+                <img src="<s:url value="../banner_IPN.png"/>" alt="IPN" class="img-responsive"/>
             </s:div>
         </header>
         
-        <s:if test="hasActionErrors()">
-   <div class="errors">
-      <s:actionerror/>
-   </div>
-</s:if>
-        
+ 
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
                 <s:div cssClass="cover-container">

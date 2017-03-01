@@ -9,6 +9,7 @@
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
         <action name="Sesion" class="sesion.Login_Action"> 
+            <result name="test">/Login/Login.jsp</result>
             <!-->Página principal de profesor<-->
             <result name="profesor">/Profesor/Profesor.jsp</result>
             <!-->Páginas de los administradores<-->

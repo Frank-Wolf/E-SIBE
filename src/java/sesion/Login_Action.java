@@ -13,7 +13,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map; //tenemos una entrada y nos va a dar una salida
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 public class Login_Action extends ActionSupport implements SessionAware{
     
@@ -47,29 +49,25 @@ public class Login_Action extends ActionSupport implements SessionAware{
         this.pass = pass;
     }
     
-     public String submitForm()
-    {       
-        if (StringUtils.isBlank(usuario))
-        {
-            addFieldError("usuario", getText("error.name.required"));
-        }
-        else if (pass.length() < 3)
-        {
-            addFieldError("name", getText("error.name.min"));
-        }
-        else if (usuario.length() > 6)
-        {
-            addFieldError("name", getText("error.name.max"));
-        }
-//        else if (!StringUtils.isEmpty(usuario) && !EMAIL_PATTERN.matcher(usuario).matches())
-//        {
-//            addFieldError("email", getText("error.name.email"));
-//        }
-        return INPUT;
-    }
+     
     
     @Override
     public String execute() throws Exception {
+        String ret = SUCCESS;
+      Connection conn = null;
+      
+         if (usuario == null || usuario.trim().equals(""))
+        {
+             addFieldError("usuario","Tu número de empleado es erróneo");
+             return "test";///probar con cofaa
+        }
+         
+        if (pass == null || pass.trim().equals(""))
+        {
+             addFieldError("pass","Contraseña erronea... ¿a quien quieres engañar ?");
+             return "test";
+        }
+        
         SesionBean sb=new SesionBean();
         LoginBean lb=new LoginBean();
         if(lb.validateUser(usuario, pass))
@@ -110,6 +108,8 @@ public class Login_Action extends ActionSupport implements SessionAware{
         else
             return "fail";                  
     }
+        
+       
     
 }
 
