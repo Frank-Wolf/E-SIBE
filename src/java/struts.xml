@@ -15,7 +15,7 @@
             <result name="admin_sip">/Admins/admin_sip.jsp</result>
             <result name="admin_inda">/Admins/admin_inda.jsp</result>
             <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
-            <result name="admin_prof">Admins/admin_prof.jsp</result>
+            <result name="admin_prof">/Admins/admin_prof.jsp</result>
             <result name="admin_escom">/Admins/admin_escom.jsp</result>
             <result name="fail">/error.jsp</result>
         </action>
@@ -38,6 +38,7 @@
         <action name="Modifica" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/admin_sip.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_usip.jsp</result>
         </action> 
         
          <!--Registra INDAUTOR-->
@@ -57,6 +58,7 @@
         <action name="Modifica_INDA" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/admin_inda.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_inda.jsp</result>
         </action> 
         
         <!--Registra COFAA-->
@@ -76,6 +78,7 @@
         <action name="Modifica_COFAA" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_cofaa.jsp</result>
         </action> 
         <!--Periodo de fechas cofaa Actividades-->
         <action name="Registra_actividades" class="admins.RegistraActividades" >
@@ -150,6 +153,7 @@
         <action name="Modifica_CATT" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/CATT.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_catt.jsp</result>
         </action> 
         
         
@@ -170,6 +174,7 @@
         <action name="Modifica_SS" class="admins.Modifica_SIP" >
             <result name="modificar_exitoso">/Admins/Servicio.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_ss.jsp</result>
         </action> 
         
     </package>
