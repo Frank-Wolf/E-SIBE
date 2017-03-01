@@ -56,17 +56,26 @@ public class Login_Action extends ActionSupport implements SessionAware{
         String ret = SUCCESS;
       Connection conn = null;
       
-         if (usuario == null || usuario.trim().equals(""))
-        {
-             addFieldError("usuario","Tu número de empleado es erróneo");
+         if (usuario == null || usuario.trim().equals("") || pass.trim().equals("") || pass== null )
+        {   
+            if(usuario == null || usuario.trim().equals(""))
+            {   
+                addFieldError("usuario","Por favor escribe tu No. de empleado");
+            }
+            if(pass == null || pass.trim().equals(""))
+            {   
+                addFieldError("pass","Por favor escribe tu password");
+            }
              return "test";///probar con cofaa
         }
-         
-        if (pass == null || pass.trim().equals(""))
-        {
-             addFieldError("pass","Contraseña erronea... ¿a quien quieres engañar ?");
-             return "test";
-        }
+       
+      
+//         
+//        if (pass == null || pass.trim().equals(""))
+//        {
+//             addFieldError("pass","Contraseña erronea... ¿a quien quieres engañar ?");
+//             return "test";
+//        }
         
         SesionBean sb=new SesionBean();
         LoginBean lb=new LoginBean();

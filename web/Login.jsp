@@ -27,11 +27,7 @@
             </s:div>
         </header>
         
-        <s:if test="hasActionErrors()">
-   <div class="errors">
-      <s:actionerror/>
-   </div>
-</s:if>
+  
         
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
@@ -39,16 +35,16 @@
                     <h2 class="titulos">E-SIBE</h2>
                     <div>
                     <s:div cssClass="" align ="center">
-                        <s:form id="datos" action="/Usuario/Sesion" method="post"  >
+                        <s:form id="datos" action="/Usuario/Sesion" method="post" name="me" >
                             <s:textfield name="usuario" label="No. de Empleado" cssClass="form-control" style="width: 100%;"/>
-                            <s:password  name="pass" label="Contraseña" cssClass="form-control" style="width: 100%;" />
+                            <s:password  name="pass" label="Contraseña" cssClass="form-control" style="width: 100%;" />                          
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                          
                         </s:form>
                     </s:div>
                         </div>  
                     
-                    
-                </s:div>
+                        
             </s:div>  
 
 

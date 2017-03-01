@@ -289,6 +289,13 @@ ul li:hover ul a
     text-decoration: none;
 }
 
+.errorMessage{
+    background-color:#FFCCCC;
+    border:1px solid #CC0000;
+    width:400px;
+    margin-bottom:8px;
+}
+
 .margen
 {
   margin-top: -80px;   
