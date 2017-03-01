@@ -30,11 +30,11 @@
             </s:div>
         </header>
         
-        <s:div cssClass="inner-cover">
+        <s:div style="align: center;" cssClass="row">
             
-                
-                    <h2 class="titulos" align="center">
+                <h2 class="titulos" align="center">
                         Ingrese los cambios deseados al usuario Evaluador</h2>
+                    
         
                     <%@ page import="java.sql.*" %>
                     <!--jsp:useBean-->
@@ -51,17 +51,53 @@
                     rs.next();
                         String id_user=rs.getString("nom_prof");
                         String id_prof=rs.getString("id_prof");
+                        String id_ua=rs.getString("u_a");
                         String id_password=rs.getString("password");
                     lb.closeConnection();
                     %>
 
-                    <div align="center">
+                    <div class="margen" align="center">
                     <s:form action="/Usuario/Modifica_COFAA">
                         <s:set var="id_user"><%=id_user%></s:set>
                         <s:textfield label="Nombre de Usuario" name="usuario" value="%{#id_user}" cssClass="form-control"/>
                         <br>
                         <s:set var="id_prof"><%=id_prof%></s:set>
                         <s:textfield label="No. de Empleado" name="matricula" value="%{#id_prof}" cssClass="form-control" />
+                        <br>
+                        <s:set var="id_ua"><%=id_ua%></s:set>
+                        <s:select label="Seleccione una dependencia" cssClass="form-control"
+                            headerKey="1" headerValue="Dependencia"
+                            list="# {
+                            'ESCOM':'ESCOM',
+                            'ESIA - Unidad Ticomán':'ESIA - Unidad Ticomán',
+                            'ESFM':'ESFM',
+                            'ESIA - Unidad Zacatenco':'ESIA - Unidad Zacatenco',
+                            'ESIME - Unidad Azcapotzalco':'ESIME - Unidad Azcapotzalco',
+                            'UPIBI':'UPIBI',
+                            'ESIME - Unidad Culhuacán':'ESIME - Unidad Culhuacán',
+                            'UPIIZ - Campus Zacatecas':'UPIIZ - Campus Zacatecas',
+                            'ESIME - Unidad Ticomán':'ESIME - Unidad Ticomán',
+                            'UPIICSA':'UPIICSA',
+                            'ESIME - Unidad Zacatenco':'ESIME - Unidad Zacatenco',
+                            'UPIIG - Campus Guanajuato':'UPIIG - Campus Guanajuato',
+                            'ESIQIE':'ESIQIE',
+                            'UPIITA':'UPIITA',
+                            'ESIT':'ESIT',
+                            'ESIA - Unidad Tecamachalco':'ESIA - Unidad Tecamachalco',
+                            'CICS - Unidad Milpa Alta':'CICS - Unidad Milpa Alta',
+                            
+                            'ENMyH':'ENMyH',
+                            'CICS - Unidad Santo Tomás':'CICS - Unidad Santo Tomás',
+                            'ESEO':'ESEO',
+                            'ENCB':'ENCB',
+                            'ESM':'ESM',
+                            'ESCA - Unidad Santo Tomás':'ESCA - Unidad Santo Tomás',
+                            'ESE':'ESE',
+                            'ESCA - Unidad Tepepan':'ESCA - Unidad Tepepan',
+                            'EST':'EST'
+                            }"
+                            name="u_a" value="%{#id_ua}"/>
+                        
                         <br>
                         <s:set var="id_password"><%=id_password%></s:set>
                         <s:textfield label="Contraseña" name="password" value="%{#id_password}" cssClass="form-control" />

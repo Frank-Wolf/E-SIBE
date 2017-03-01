@@ -74,7 +74,7 @@
         </action>
         
         <!--Modifica COFAA-->
-        <action name="Modifica_COFAA" class="admins.Modifica_SIP" >
+        <action name="Modifica_COFAA" class="admins.modifica_cofaa" >
             <result name="modificar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 

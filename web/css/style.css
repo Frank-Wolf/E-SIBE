@@ -243,6 +243,17 @@ nav ul li a.titulo:hover
     text-decoration: none;
 }
 
+nav ul li.parent
+{
+    
+    border-top: 3px #981354 solid;
+    border-bottom: 2px #981354 solid;
+    border-left: 3px #981354 solid;
+    border-right: 5px #981354 solid;
+    margin-left: -20px;
+    
+}
+
 nav ul li.parent:hover
 {
     color: #6c1a42 ! important;
@@ -276,4 +287,9 @@ ul li:hover ul a
     display: block;
     position: relative; 
     text-decoration: none;
+}
+
+.margen
+{
+  margin-top: -80px;   
 }
