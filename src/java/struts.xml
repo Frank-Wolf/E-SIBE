@@ -200,7 +200,7 @@
         </action>
         <action name="apelacion_prof" class="profesor.try_apelacion">
             <result name="success">/Profesor/Profesor_apelacion.jsp</result>
-            <result name="fail">/Profesor/Profesor_notime.jsp</result>
+            <result name="error">/Profesor/Profesor_notime.jsp</result>
         </action>
     </package>
     
