@@ -11,6 +11,7 @@
         <action name="Sesion" class="sesion.Login_Action"> 
             <!-->Página principal de profesor<-->
             <result name="profesor">/Profesor/Profesor.jsp</result>
+            <result name="profesor_noac">/Profesor/Profesor_notime.jsp</result>
             <!-->Páginas de los administradores<-->
             <result name="admin_sip">/Admins/admin_sip.jsp</result>
             <result name="admin_inda">/Admins/admin_inda.jsp</result>
@@ -196,6 +197,10 @@
         </action>
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
+        </action>
+        <action name="apelacion_prof" class="profesor.try_apelacion">
+            <result name="success">/Profesor/Profesor_apelacion.jsp</result>
+            <result name="fail">/Profesor/Profesor_notime.jsp</result>
         </action>
     </package>
     

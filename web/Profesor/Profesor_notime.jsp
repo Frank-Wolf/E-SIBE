@@ -50,6 +50,12 @@
                             <a class="navbar-brand" >E-SIBE: Profesor</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Inicio</a></li>
+                                <li><a href="apelacion_prof">
+                                        Apelación de alguna actividad</a>
+                                </li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="http://localhost:8084/login/">
                                       Cerrar Sesion</a></li>

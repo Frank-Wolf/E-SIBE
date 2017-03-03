@@ -13,6 +13,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map; //tenemos una entrada y nos va a dar una salida
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
+import java.sql.Connection;
+import java.util.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 
 
 public class Login_Action extends ActionSupport implements SessionAware{
@@ -77,8 +83,45 @@ public class Login_Action extends ActionSupport implements SessionAware{
             type=sb.getUser(usuario, pass);
             sessionMap.put("username", usuario);
             sessionMap.put("type",type);
-            if(type.equals("Profesor"))
-                return "profesor";
+            ////////////////////////Proceso para determinar a qué interfaz irá el profesor
+            if(type.equals("Profesor")){//Veremos, por medio de validaciones a las fechas 
+                //existentes en la base de datos, a qué interfaz será dirigido el profesor
+                Connection conn = null;
+                String ret;
+                Date date_ini = null, date_fin = null, date_curr = new Date();
+                try{
+                    String URL = "jdbc:mysql://localhost:3306/prototipo";
+                    Class.forName("com.mysql.jdbc.Driver");
+                    ResultSet rs=null;
+                    conn = DriverManager.getConnection(URL, "root", "root");
+                    String sql = "select * from fecha_actividades";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    rs=ps.executeQuery(sql);
+                    while(rs.next()){
+                        date_ini=rs.getDate("fecha_inicio");
+                        date_fin=rs.getDate("fecha_fin"); 
+                    }
+                    ret = "profesor";
+                }catch (Exception e) {
+                    ret = "error";
+                    System.out.println(e.getMessage());
+                } finally {
+                if (conn != null) {
+                    try {
+                        conn.close();
+                        } catch (Exception e) {
+                        System.out.println(date_curr);
+                        }
+                    }
+                }
+                if(date_curr.after(date_ini) && date_curr.before(date_fin))
+                    ret = "profesor";
+                else if(date_curr.before(date_ini) || date_curr.after(date_fin))
+                    ret = "profesor_noac";
+                //System.out.println(date_curr);
+                return ret;
+            }
+            /////////////////////////////aquí termina el proceso del profesor
             if(type.equals("usuario_sip"))
                 return "usuario_sip";
             if(type.equals("usuario_inda"))
