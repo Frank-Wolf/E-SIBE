@@ -9,6 +9,7 @@
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
         <action name="Sesion" class="sesion.Login_Action"> 
+            <result name="test">/Login/Login.jsp</result>
             <!-->Página principal de profesor<-->
             <result name="profesor">/Profesor/Profesor.jsp</result>
             <result name="profesor_noac">/Profesor/Profesor_notime.jsp</result>
@@ -76,7 +77,7 @@
         </action>
         
         <!--Modifica COFAA-->
-        <action name="Modifica_COFAA" class="admins.Modifica_SIP" >
+        <action name="Modifica_COFAA" class="admins.modifica_cofaa" >
             <result name="modificar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
             <result name="test">/Admins/modifica_cofaa.jsp</result>

@@ -18,7 +18,7 @@
         <title> E-SIBE</title>
         
         
-        <link href="<s:url value="../css/bootstrap.min.css"/>" 
+        <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
        
         <link href="<s:url value="../css/style.css"/>" 
@@ -36,7 +36,7 @@
             </s:div>
         </header>
        
-       
+     
            
         
         <!--Conteneor general-->    
@@ -48,7 +48,7 @@
                     <div class="container">
                         
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Profesor</a>
+                            <a class="navbar-brand" > E-SIBE: Profesor</a>
                         </div>
                         
                         <div id="navbar" class="navbar-collapse collapse">
