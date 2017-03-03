@@ -112,10 +112,17 @@ public class Login_Action extends ActionSupport implements SessionAware{
             if(type.equals("admin_escom"))
                 return "admin_escom";
             else
-                return "fail";       
+            {
+                addFieldError("password","tus datos son erróneos");
+                return "test";       
+            }
+                
         }
         else
-            return "fail";                  
+            {
+                addFieldError("usuario","tus datos son erróneos");
+                return "test";       
+            }
     }
         
        
