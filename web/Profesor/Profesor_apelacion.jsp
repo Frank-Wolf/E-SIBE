@@ -23,7 +23,7 @@
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
     
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="container-fluid boding overflow">
         
         <!--header-->
         <header class="headering">

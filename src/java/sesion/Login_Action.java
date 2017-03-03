@@ -91,8 +91,8 @@ public class Login_Action extends ActionSupport implements SessionAware{
             ////////////////////////Proceso para determinar a qué interfaz irá el profesor
             if(type.equals("Profesor")){//Veremos, por medio de validaciones a las fechas 
                 //existentes en la base de datos, a qué interfaz será dirigido el profesor
-                Connection conn = null;
-                String ret;
+                //Connection conn = null;
+                //String ret;
                 Date date_ini = null, date_fin = null, date_curr = new Date();
                 try{
                     String URL = "jdbc:mysql://localhost:3306/prototipo";

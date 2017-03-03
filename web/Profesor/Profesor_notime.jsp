@@ -12,8 +12,8 @@
         
     <!--head-->
     <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no, 
-        initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <title> E-SIBE: Profesor</title>
         <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
@@ -21,10 +21,13 @@
         <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
        
+        <link href="<s:url value="/css/js/captura_actividad_profesor.js"/>" 
+              rel="stylesheet" type="text/css"/>
+        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
     
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="container-fluid boding overflow">
         
         <!--header-->
         <header class="headering">
@@ -119,10 +122,10 @@
         
         
         <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
-       
         
                     <!-- Scripts para Bootstrap -->
         <script src="../css/js/jquery.js" type="text/javascript"></script>
