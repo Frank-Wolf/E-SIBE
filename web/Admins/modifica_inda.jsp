@@ -37,8 +37,7 @@
         
                     <%@ page import="java.sql.*" %>
                     <!--jsp:useBean-->
-                    <jsp:useBean id="lb" scope="session" 
-                                 class="sesion.LoginBean"></jsp:useBean>
+                    <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
                     <%
                     String user=request.getParameter("id");
                     HttpSession sesion = request.getSession();
@@ -46,7 +45,7 @@
                     ResultSet rs=null;
                     lb.getConnection();
                     rs=lb.executeQuery("SELECT * FROM usuarios WHERE "
-                            + "nom_prof='"+user+"'");
+                            + "id_prof='"+user+"'");
                     rs.next();
                         String id_user=rs.getString("nom_prof");
                         String id_prof=rs.getString("id_prof");
