@@ -33,7 +33,7 @@
                 <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Administrador ESCOM</a>
+                            <a class="navbar-brand" >E-SIBE: Administrador CATT</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">

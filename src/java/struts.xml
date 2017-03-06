@@ -19,7 +19,13 @@
             <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
             <result name="admin_prof">/Admins/admin_prof.jsp</result>
             <result name="admin_escom">/Admins/admin_escom.jsp</result>
-            <result name="fail">/error.jsp</result>
+            <!-->Páginas de los usuarios de las dependencias<-->
+            <result name="usuario_catt">/CATT/CATT.jsp</result>
+            <result name="usuario_cofaa">/COFAA/COFAA.jsp</result>
+            <result name="usuario_inda">/INDAUTOR/INDAUTOR.jsp</result>
+            <result name="usuario_repua">/Rep_ua/Rep_ua.jsp</result>
+            <result name="usuario_sip">/SIP/SIP.jsp</result>
+            <result name="usuario_ss">/Servicio/Servicio.jsp</result>
         </action>
     </package>
     
