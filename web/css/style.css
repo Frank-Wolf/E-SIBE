@@ -7,9 +7,109 @@ and open the template in the editor.
     Created on : 25/01/2017, 08:23:01 PM
     Author     : le_as
 */
-ul{
-       list-style:none;
-       }
+
+/*Para menu lateral*/
+a
+{
+    
+    text-decoration: none;
+}
+
+ul
+{
+    list-style:none;
+}
+    
+.btn-menu
+{
+    display: block;
+    padding: 10px;
+    background-color: #6c1a42;
+    
+}
+
+.barra {
+    margin-left: -35px;
+    margin-top: -20px;
+    padding:0;
+    background: #6c1a42;
+}
+
+.barra ul li a
+{
+    margin-left: 0px;
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    padding-left: 25px;
+    background-color: #6c1a42;
+    color: #fff;
+}
+
+.barra ul li li
+{
+    margin-left: -30px;
+    width: 110%;
+    display: block;
+    
+    background-color: #6c1a42;
+}
+
+.barra ul li a:hover
+{
+    margin-left: -18px;
+    width: 106%;
+    display: inline-block;
+    padding: 15px 30px;
+    color:#6c1a42;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.activado{
+    background: #fff;
+    color: #6c1a42;
+}
+
+.barra ul ul{
+    display:none;
+}
+
+.barra .icono 
+{
+    font-size: 18px;
+}
+
+.barra .icono.izquierda
+{
+    float: left;
+    margin-right: 15px;
+}
+
+.barra .icono.derecha
+{
+    float: right;
+    margin-left: 30px;
+}
+
+.barra .bl ul li a
+{
+    background-color: #5a5a5a;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.barra .bl ul li a:hover
+{
+    background-color: #fff;
+    color: #6c1a42;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/*Para menu lateral*/
 
 html, body {
         height: 100%;
@@ -202,92 +302,10 @@ background-color: #fff;
     border: 1px solid #6c1a42; 
 }
 
- .nav-lateral
-{
-    font-size: 14px;
-    list-style: none;
-    position: relative ! important;
-    color: #fff;
-    bottom: 0px;
-}
-
-.backcolor
-{
-    background-color: #6c1a42;
-    height: 550px;
-    margin: -20px;
-}
-
 .formulario-oculto{
     display: none;
 }
 
-nav ul li a
-{
-    text-decoration: none;
-    display: block;
-    padding: 5px;
-    display: block;
-    color: #fff;     
-}
-
-nav ul li a.titulo:active
-{
-    color: #6c1a42! important;
-}
-
-nav ul li a.titulo:hover
-{
-    color: #6c1a42 ! important;
-    background-color: #fff;
-    text-decoration: none;
-}
-
-nav ul li.parent
-{
-    
-    border-top: 3px #981354 solid;
-    border-bottom: 2px #981354 solid;
-    border-left: 3px #981354 solid;
-    border-right: 5px #981354 solid;
-    margin-left: -20px;
-    
-}
-
-nav ul li.parent:hover
-{
-    color: #6c1a42 ! important;
-    border: 2px #981354 solid;
-    margin: 1px;
-    background: #981354;
-}
-
-nav ul li a.son:hover
-{
-    color: #6c1a42 ! important;
-    border: 2px #981354 solid;
-    margin: 1px;
-    background: #fff;
-    text-decoration: none;
-}
-
-li ul li a
-{
-    color: #fff;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px;
-    display: none;
-    margin-left: 0px;
-}
-
-ul li:hover ul a
-{
-    color: #fff;
-    display: block;
-    position: relative; 
-    text-decoration: none;
-}
 
 .errorMessage{
     background-color:#FFCCCC;

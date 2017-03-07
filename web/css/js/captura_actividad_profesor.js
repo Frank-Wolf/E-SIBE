@@ -6,7 +6,7 @@
 
 function limpia()
 {
-    document.getElementById("datos3").reload();
+    alert("no es temporada de apelaciones");
 }
 
 
