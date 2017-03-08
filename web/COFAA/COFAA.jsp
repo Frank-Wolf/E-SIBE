@@ -20,7 +20,7 @@
        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding overflow">
         <header class="headering">
             <s:div cssClass="container-fluid">            
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
@@ -39,7 +39,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="periodo_cofaa">Ver registros</a></li>
+                                <li><a href="#">Ver registros</a></li>
                                 <li><a href="#">Modificaciones recientes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -53,12 +53,12 @@
 
                 
                 
-                <s:div cssClass="cover-container">    
+                <s:div cssClass="cover-container2">    
                     
                     
                     
                     
-                    <h2 class="titulos">Holi profesor</h2>
+                    <h2 class="titulos">Bienvenido Profesor Evaluador</h2>
                     
                     
                 </s:div>

@@ -20,7 +20,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Administrador ESCOM</title>
     </head>
-     <body background="../css/textura.png" class="boding">
+     <body background="../css/textura.png" class="boding overflow">
         
         <!--header-->
         <header class="headering">
@@ -29,9 +29,8 @@
             </s:div>
         </header>
         
-        <s:div cssClass="contenedor-general">
-            <s:div cssClass="site-wrapper-inner">   
-                <s:div cssClass="cover-container">   
+        
+                <s:div style="align: center;" cssClass="row">
                     <h2 class="titulos" align="center">
                         Ingrese los cambios deseados al Usuario CATT</h2>
         
@@ -46,7 +45,7 @@
                     ResultSet rs=null;
                     lb.getConnection();
                     rs=lb.executeQuery("SELECT * FROM usuarios WHERE "
-                            + "nom_prof='"+user+"'");
+                            + "id_prof='"+user+"'");
                     rs.next();
                         String id_user=rs.getString("nom_prof");
                         String id_prof=rs.getString("id_prof");
@@ -54,30 +53,30 @@
                     lb.closeConnection();
                     %>
 
-
+                    <div class="margen" align="center">
                     <s:form action="/Usuario/Modifica_CATT">
                         <s:set var="id_user"><%=id_user%></s:set>
-                        <s:textfield name="usuario" value="%{#id_user}"/>
+                        <s:textfield name="usuario" value="%{#id_user}" label="Nombre" cssClass="form-control"/>
                         <br>
                         <s:set var="id_prof"><%=id_prof%></s:set>
-                        <s:textfield name="matricula" value="%{#id_prof}" />
+                        <s:textfield name="matricula" value="%{#id_prof}" label="No: Empleado" cssClass="form-control"/>
                         <br>
                         <s:set var="id_password"><%=id_password%></s:set>
-                        <s:textfield name="password" value="%{#id_password}" />
+                        <s:textfield name="password" value="%{#id_password}" label="Contraseña" cssClass="form-control"/>
                         <br>
                         <s:set var="user"><%=user%></s:set>
                         <s:hidden name="id" value="%{#user}"/>
                         <br>
                         <s:submit cssClass="btn" value="Guardar"/>
                     </s:form>
-        
+        </div>   
         
                 </s:div>
-            </s:div>
-        </s:div>
+
         <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
              
                     <!-- Scripts para Bootstrap -->

@@ -58,10 +58,13 @@
                 </s:div>
             </s:div>       
         </s:div>             
+        
+                    
         <!--footer-->
         <footer class="footer abso">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
-        </footer>
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
+        </footer>            
         
         
                     <!-- Scripts para Bootstrap -->

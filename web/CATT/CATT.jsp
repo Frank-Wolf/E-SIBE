@@ -41,7 +41,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="#">Registrar Tratabjo Terminal</a></li>
                                 <li><a href="#">Registrar datos de Tesis</a></li>
-                                <li><a href="#">Otro...</a></li>
+                                
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="http://localhost:8084/login/">
@@ -54,12 +54,12 @@
 
                 
                 
-                <s:div cssClass="cover-container">    
+                <s:div cssClass="cover-container2">    
                     
                     
                     
                     
-                    <h2 class="titulos">Holi profesor</h2>
+                    <h2 class="titulos">Bienvenido Usuario C.A.T.T.</h2>
                     
                     
                 </s:div>
@@ -69,8 +69,9 @@
         
         
         <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
         
         

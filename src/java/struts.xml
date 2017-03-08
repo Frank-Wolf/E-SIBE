@@ -82,6 +82,11 @@
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
         
+        
+        <action name="Profesor_apela">
+            <result>/Profesor/Profesor_notime.jsp</result>
+        </action>
+        
         <!--Modifica COFAA-->
         <action name="Modifica_COFAA" class="admins.modifica_cofaa" >
             <result name="modificar_exitoso">/Admins/usuarios_cofaa.jsp</result>
@@ -202,6 +207,8 @@
          <action name="Menu_COFAA">
              <result>/Admins/admin_cofaa.jsp</result>
         </action>
+        
+        
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
         </action>

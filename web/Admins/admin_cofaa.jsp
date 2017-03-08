@@ -19,8 +19,6 @@
         <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        
-        
         <link href="<s:url value="../css/nav_bar.css"/>" 
               rel="stylesheet" type="text/css"/>
         

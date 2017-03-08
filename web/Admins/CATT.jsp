@@ -17,9 +17,9 @@
         <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
-        <title>Usuario CATT</title>
+        <title>Administrador ESCOM - CATT</title>
     </head>
-     <body background="../css/textura.png" class="boding">
+     <body background="../css/textura.png" class="boding overflow">
          <!--header-->
         <header class="headering">
             <s:div cssClass="container-fluid">            
@@ -50,25 +50,25 @@
                 <div class="row container-fluid" >
                     
                     <!-- Formulario para registrar un usuario-->
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-md-offset-1">
 
                         <h2 class="h3">Registrar nuevo Usuario C.A.T.T.</h2>
                         <s:set name="u_a" value="%{'ESCOM'}" />
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_catt'}" />
                         <s:form id="datos3" action="Registra_CATT">
-                            <s:textfield name="user" label="Nombre de usuario"/>
-                            <s:textfield name="matricula" label="Matricula"/>
-                            <s:textfield name="password" label="Contraseña"/>
+                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" name="Registrar Usuario"/>
+                            <s:submit cssClass="btn" name="Registrar Usuario" value="Registrar Usuario"/>
                         </s:form> 
                     </div>
                     
                     <!-- Tabla donde se muestran los usuarios Activos-->    
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-md-offset-1">
                         <h2 class="h3">Lista de Usuarios C.A.T.T. activos</h2>
                     
                         <%@ page import="java.sql.*" %>
@@ -122,9 +122,10 @@
               
               
         
-        <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+       <!--footer-->
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
         
         
