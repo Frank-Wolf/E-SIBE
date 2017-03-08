@@ -32,8 +32,8 @@ public class RegistraActividades extends ActionSupport {
          System.out.println(date1);
          PreparedStatement ps = conn.prepareStatement(sql);
          ps.setInt(1, n);
-         ps.setString(2, date2);
-         ps.setString(3, date1);
+         ps.setString(2, date1);
+         ps.setString(3, date2);
          
          int rs = ps.executeUpdate();
       } catch (Exception e) {

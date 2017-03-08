@@ -154,14 +154,14 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 return "admin_escom";
             else
             {
-                addFieldError("password","tus datos son erróneos");
+                addFieldError("password"," Tus datos son erróneos ");
                 return "test";       
             }
                 
         }
         else
             {
-                addFieldError("usuario","tus datos son erróneos");
+                addFieldError("usuario","Tus datos son erróneos");
                 return "test";       
             }
     }

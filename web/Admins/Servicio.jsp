@@ -20,7 +20,7 @@
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
-        <title>Usuario Servicio Social</title>
+        <title>Administrador ESCOM - Servicio Social</title>
     </head>
      <body background="../css/textura.png" class="boding overflow">
          <!--header-->
@@ -66,7 +66,7 @@
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" name="Registrar Usuario"/>
+                            <s:submit cssClass="btn" name="Registrar Usuario" value="Registrar Usuario"/>
                         </s:form> 
                     </div>
                     

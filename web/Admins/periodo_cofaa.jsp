@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <sj:head />
+        
         <link rel="stylesheet" href="/Struts2Example/struts/xhtml/styles.css" type="text/css"/>
 
         <script language="JavaScript" src="/Struts2Example/struts/utils.js"

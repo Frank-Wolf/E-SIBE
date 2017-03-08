@@ -66,8 +66,8 @@
                           </div>
                     </div>
                 </nav>
-                               
-                <s:div cssClass="cover-container" align="center"> 
+                <h2 class="titulos">Bienvenido Profesor</h2>
+                <s:div cssClass="cover-container2" align="center"> 
                     <div class="container row">
                         <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 table-responsive">
                             <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
