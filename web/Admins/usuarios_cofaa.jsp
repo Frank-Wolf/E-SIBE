@@ -21,7 +21,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Administrador COFAA</title>
     </head>
-    <body background="../css/textura.png" class="boding overflow" onload='document.form1.password.focus()'>
+    <body background="../css/textura.png" class="boding overflow">
         
         <!--header-->
         <header class="headering">

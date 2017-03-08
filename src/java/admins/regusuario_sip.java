@@ -43,7 +43,7 @@ public class regusuario_sip extends ActionSupport {
       Connection conn = null;
       if (user == null || user.trim().equals(""))
       {
-         addFieldError("user", "The name is required");
+         addFieldError("user", "El nombre es requerido");
          return "test";///probar con cofaa
       }
       ret = validatePassword(password);

@@ -88,61 +88,9 @@
             <result name="modificar_fallo">borrar_fallo.jsp</result>
             <result name="test">/Admins/modifica_cofaa.jsp</result>
         </action> 
-        <!--Periodo de fechas cofaa Actividades-->
-        <action name="Registra_actividades" class="admins.RegistraActividades" >
-            <result name="success">/Admins/admin_cofaa.jsp</result>
-            <result name="error">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <action name="Registra_apelaciones" class="admins.RegistraApelaciones" >
-            <result name="success">/Admins/admin_cofaa.jsp</result>
-            <result name="error">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <action name="Registra_evaluaciones" class="admins.RegistraEvaluaciones" >
-            <result name="success">/Admins/admin_cofaa.jsp</result>
-            <result name="error">/Admins/borrar_fallo.jsp</result>
-        </action> 
-        <!--acciones para eliminar o modificar las fechas-->
-        <action name="Borrar_fechaacti" class="admins.Borrar_feacti">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
-            <result name="error">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <action name="Modifica_fechaacti" class="admins.modifica_feacti">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
-            <result name="fail">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <action name="Borrar_fechaapela" class="admins.Borrar_feapela">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
-            <result name="error">/Admins/borrar_fallo.jsp</result>
-        </action>
-         <action name="Modifica_fechaapela" class="admins.modifica_feapela">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
-            <result name="fail">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <action name="Borrar_fechaeval" class="admins.Borrar_feeval">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
-            <result name="error">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <action name="Modifica_fechaeval" class="admins.modifica_feeval">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
-            <result name="fail">/Admins/borrar_fallo.jsp</result>
-        </action>
-        <!--acciones para eliminar las fechas Fin-->
         <!--Administracion de usuarios COFAA-->
         <action name="Admin_usuarios" >
             <result>/Admins/usuarios_cofaa.jsp</result>
-        </action>
-        <!--dirigir a jsp de registro de fechas para los diversos periodos-->
-        <action name="Periodos_cofaa" >
-            <result>/Admins/periodo_cofaa.jsp</result>
-        </action>
-        <action name="Apelaciones">
-            <result>/Admins/Apelaciones.jsp</result>
-        </action>
-        <action name="Evaluaciones">
-            <result>/Admins/Evaluaciones.jsp</result>
-        </action>
-        <action name="Reg_Acti">
-            <result>/Admins/Reg_Acti.jsp</result>
         </action>
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
@@ -195,12 +143,8 @@
         <action name="Menu_ESCOM">           
             <result>/Admins/admin_escom.jsp</result>
         </action>
-        
         <action name="About_us">
             <result>/Profesor/About_us.jsp</result>
-        </action>
-         <action name="Menu_COFAA">
-             <result>/Admins/admin_cofaa.jsp</result>
         </action>
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
@@ -210,134 +154,7 @@
             <result name="error">/Profesor/Profesor_notime.jsp</result>
         </action>
     </package>
-    
-    <!--Package Actividad 2.1-->
-    <package name="Actividad_2_1" extends="struts-default" namespace="/Usuario"> 
-        
-        <action name="Actividad_2_1">
-            <result>/Profesor/Actividades/Actividad_2_1/Actividad_2_1.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_1_1" >
-            <result>/Profesor/Actividades/Actividad_2_1/Actividad_2_1_1.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_1_2" >
-            <result>/Profesor/Actividades/Actividad_2_1/Actividad_2_1_2.jsp</result>
-        </action>
-    </package>
-    
-    <!--Package Actividad 2.2-->
-    <package name="Actividad_2_2" extends="struts-default">
-        <action name="Actividad_2_2">
-            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_2_1" >
-            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2_1.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_2_2" >
-            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2_2.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_2_3" >
-            <result>/Profesor/Actividades/Actividad_2_2/Actividad_2_2_3.jsp</result>
-        </action>
-        
-    </package>
-    
-    <!--Package Actividad 2.3-->
-    <package name="Actividad_2_3" extends="struts-default">
-        <action name="Actividad_2_3">
-            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_3_1">
-            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3_1.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_3_2">
-            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3_2.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_3_3">
-            <result>/Profesor/Actividades/Actividad_2_3/Actividad_2_3_3.jsp</result>
-        </action>
-    </package>
-    
-    <!--Package Actividad 2.4-->
-    <package name="Actividad_2_4" extends="struts-default">
-        <action name="Actividad_2_4">
-            <result>/Profesor/Actividades/Actividad_2_4/Actividad_2_4_2.jsp</result>
-        </action>
-    </package>
-    
-    <!--Package Actividad 2.5-->
-    <package name="Actividad_2_5" extends="struts-default">
-        <action name="Actividad_2_5">
-            <result>/Profesor/Actividades/Actividad_2_5/Actividad_2_5_2.jsp</result>
-        </action>
-    </package>
-       
-    <!--Package Actividad 2.11-->
-    <package name="Actividad_2_11" extends="struts-default">
-        <action name="Actividad_2_11">
-            <result>/Profesor/Actividades/Actividad_2_11/Actividad_2_11.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_11_1">
-            <result>/Profesor/Actividades/Actividad_2_11/Actividad_2_11_1.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_11_2">
-            <result>/Profesor/Actividades/Actividad_2_11/Actividad_2_11_2.jsp</result>
-        </action>
-    </package>
-    
-    <!--Package Actividad 2.12-->
-    <package name="Actividad_2_12" extends="struts-default">
-        <action name="Actividad_2_12">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_1">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_1.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_2">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_2.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_3">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_3.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_4">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_4.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_5">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_5.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_6">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_6.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_7">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_7.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_8">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_8.jsp</result>
-        </action>
-        
-        <action name="Actividad_2_12_9">
-            <result>/Profesor/Actividades/Actividad_2_12/Actividad_2_12_9.jsp</result>
-        </action>        
-    </package>
-    
+    <!--paquete de la escom (redirigir a catt o a servicio social)-->
     <package name="ESCOM" extends="struts-default" namespace="/Usuario">
         <action name="CATT">
             <result>/Admins/CATT.jsp</result>
@@ -345,5 +162,64 @@
         <action name="Servicio">
             <result>/Admins/Servicio.jsp</result>
         </action>
-    </package>  
+    </package> 
+    <!--paquete para las fechas-->
+    <package name="Fechas_Catt" extends="struts-default">
+        <!--acciones para eliminar o modificar las fechas-->
+        <action name="Borrar_fechaacti" class="admins.Borrar_feacti">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Modifica_fechaacti" class="admins.modifica_feacti">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="fail">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Borrar_fechaapela" class="admins.Borrar_feapela">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+         <action name="Modifica_fechaapela" class="admins.modifica_feapela">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="fail">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Borrar_fechaeval" class="admins.Borrar_feeval">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Modifica_fechaeval" class="admins.modifica_feeval">
+            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="fail">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <!--Periodo de fechas cofaa Actividades-->
+        <action name="Registra_actividades" class="admins.RegistraActividades" >
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Registra_apelaciones" class="admins.RegistraApelaciones" >
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action>
+        <action name="Registra_evaluaciones" class="admins.RegistraEvaluaciones" >
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="error">/Admins/borrar_fallo.jsp</result>
+        </action> 
+        <!--acciones para eliminar las fechas Fin-->
+        <!--dirigir a jsp de registro de fechas para los diversos periodos-->
+        <action name="Periodos_cofaa" >
+            <result>/Admins/periodo_cofaa.jsp</result>
+        </action>
+        <action name="Apelaciones">
+            <result>/Admins/Apelaciones.jsp</result>
+        </action>
+        <action name="Evaluaciones">
+            <result>/Admins/Evaluaciones.jsp</result>
+        </action>
+        <action name="Reg_Acti">
+            <result>/Admins/Reg_Acti.jsp</result>
+        </action>
+        <!--Aqui se acaba lo de ya sabes qué, las fechas-->
+        <action name="Menu_COFAA">
+             <result>/Admins/admin_cofaa.jsp</result>
+        </action>
+    </package> 
 </struts>
