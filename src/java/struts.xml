@@ -82,7 +82,7 @@
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
         
-        
+        <!--opción para que el profesor apele-->
         <action name="Profesor_apela">
             <result>/Profesor/Profesor_notime.jsp</result>
         </action>
@@ -93,10 +93,6 @@
             <result name="modificar_fallo">borrar_fallo.jsp</result>
             <result name="test">/Admins/modifica_cofaa.jsp</result>
         </action> 
-        <!--Administracion de usuarios COFAA-->
-        <action name="Admin_usuarios" >
-            <result>/Admins/usuarios_cofaa.jsp</result>
-        </action>
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
             <result name="success">/Admins/CATT.jsp</result>
@@ -170,44 +166,44 @@
             <result>/Admins/Servicio.jsp</result>
         </action>
     </package> 
-    <!--paquete para las fechas-->
-    <package name="Fechas_Catt" extends="struts-default">
+    <!--paquete para las fechas y administrador cofaa-->
+    <package name="Fechas_Cofaa" extends="struts-default" namespace="/Usuario">
         <!--acciones para eliminar o modificar las fechas-->
         <action name="Borrar_fechaacti" class="admins.Borrar_feacti">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="success">/Admins/Reg_Acti.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Modifica_fechaacti" class="admins.modifica_feacti">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="success">/Admins/Reg_Acti.jsp</result>
             <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Borrar_fechaapela" class="admins.Borrar_feapela">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="success">/Admins/Apelaciones.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
          <action name="Modifica_fechaapela" class="admins.modifica_feapela">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="success">/Admins/Apelaciones.jsp</result>
             <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Borrar_fechaeval" class="admins.Borrar_feeval">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="success">/Admins/Evaluaciones.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Modifica_fechaeval" class="admins.modifica_feeval">
-            <result name="success">/Admins/periodo_cofaa.jsp</result>
+            <result name="success">/Admins/Evaluaciones.jsp</result>
             <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <!--Periodo de fechas cofaa Actividades-->
         <action name="Registra_actividades" class="admins.RegistraActividades" >
-            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="success">/Admins/Reg_Acti.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Registra_apelaciones" class="admins.RegistraApelaciones" >
-            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="success">/Admins/Apelaciones.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Registra_evaluaciones" class="admins.RegistraEvaluaciones" >
-            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="success">/Admins/Evaluaciones.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action> 
         <!--acciones para eliminar las fechas Fin-->
@@ -227,6 +223,10 @@
         <!--Aqui se acaba lo de ya sabes qué, las fechas-->
         <action name="Menu_COFAA">
              <result>/Admins/admin_cofaa.jsp</result>
+        </action>
+        <!--Administracion de usuarios COFAA-->
+        <action name="Admin_usuarios" >
+            <result>/Admins/usuarios_cofaa.jsp</result>
         </action>
     </package> 
 </struts>

@@ -51,7 +51,9 @@
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="Admin_usuarios">Administrar usuarios COFAA</a></li>
-                                <li><a href="Periodos_cofaa">Administrar periodos</a></li>
+                                <li><a href="Reg_Acti">Registro de actividades</a></li>
+                                <li><a href="Apelaciones">Apelaciones</a></li>
+                                <li><a href="Evaluaciones">Evaluaciones</a></li>
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">

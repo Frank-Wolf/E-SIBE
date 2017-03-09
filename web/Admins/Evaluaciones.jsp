@@ -53,21 +53,62 @@
                 <s:div cssClass="cover-container2">    
                     <h2 class="titulos">Indique las fechas para las evaluaciones de los registros</h2>   
                 </s:div>
-                <s:div cssClass="cover-inner" align ="center">
+                <div class="col-md-6">
                     <s:form action="Registra_evaluaciones" method="post">
                         <sj:datepicker name="date1" label="Fecha de inicio" displayFormat="dd-mm-yy"/>
                         <sj:datepicker name="date2" label="Fecha de finalización" displayFormat="dd-mm-yy"/>
                         <s:submit value="Registrar fechas" name="submit" />
                     </s:form> 
-                </s:div>
-            </s:div>       
-        </s:div>             
+                </div>
+                    <div class="col-md-6">
+                        <h2 class="h3"><b>Fechas de evaluaciones</b></h2>
+                        <%@ page import="java.sql.*" %>
+                        <jsp:useBean id="lf" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <%
+                        ResultSet ra=null;
+                        lf.getConnection();
+                        ra=lf.executeQuery("SELECT * FROM fecha_evaluaciones");
+                        out.print("<table class='table table-striped'>");
+                        out.print("<tr>");
+                        out.print("<th>");
+                        out.print("Fecha de inicio");
+                        out.print("</th>");
+                        out.print("<th>");
+                        out.print("Fecha límite");
+                        out.print("</th>");
+                        out.print("</tr>");
+                        while (ra.next())
+                        {
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print(ra.getString("fecha_inicio"));
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print(ra.getString("fecha_fin"));
+                            out.print("</td>");
+                           out.print("<td>");
+                            out.print("<a href='Borrar_fechaeval?id_fecha="+ra.getInt("id_fecha")+"'>Borrar</a>");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("<a href='/login/Admins/modifica_feeval.jsp?id="+ra.getInt("id_fecha")+"'>Modificar</a>");
+                            out.print("</td>");
+                        }
+                        out.print("</table>");
+                        lf.closeConnection();
+                        %>
+                    </div>
+            </s:div>  
+        </s:div>   
+                    
+              
         
         <!--footer-->
         <footer class="footer abso">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>            
+        
         
         
                     <!-- Scripts para Bootstrap -->
