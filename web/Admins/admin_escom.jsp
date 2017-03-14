@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,51 +58,54 @@
                     <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
                          col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
                          col-sm-offset-2 ">
-                        <h2 class="h3" align="center">Lista de Usuarios de la Unidad Académica activos</h2>
+                        <h2 class="h3" align="center">Bienvenido, administrador</h2>
                     
-                        <%@ page import="java.sql.*" %>
-                        <jsp:useBean id="lb" scope="session" 
-                                     class="sesion.LoginBean"></jsp:useBean>
-                        <%
-                            ResultSet rs=null;
-                            lb.getConnection();
-                            rs=lb.executeQuery("SELECT nom_prof, "
-                                    + "id_prof, idTypeUsuario FROM usuarios WHERE "
-                                    + "idTypeUsuario = 'usuario_ss'"
-                                    + "or idTypeUsuario='usuario_catt'");
-                            out.print("<table class='table table-striped'>");
-                            out.print("<tr>");
-                            out.print("<th>");
-                            out.print("  Id de Usuario  ");
-                            out.print("</th>");
-                            out.print("<th>");
-                            out.print(  "Nombre de Usuario  ");
-                            out.print("</th>");
-                            out.print("<th>");
-                            out.print(  "Departamento  ");
-                            out.print("</th>");
-                            out.print("</tr>");
-                            
-                            while (rs.next())
-                            {
-                                out.print("<tr>");
-                                out.print("<td>");
-                                out.print("  ");
-                                out.print(rs.getString("id_prof"));
-                                out.print("  ");
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print("  ");
-                                out.print(rs.getString("nom_prof"));
-                                out.print("  ");
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print(rs.getString("idTypeUsuario"));
-                                out.print("</td>");   
-                            }
-                            out.print("</table>");
-                            lb.closeConnection();
-                        %>
+                        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+                        <s:set var="username" value="%{#session.username}" />
+                        <jsp:useBean id="username" type="java.lang.String"/>
+                            <%
+                            String mystring = username;
+                             ResultSet rs=null;
+                             lb.getConnection();
+                             rs=lb.executeQuery("SELECT nom_prof, u_a, id_prof "
+                                     + "FROM usuarios WHERE id_prof = " 
+                                     + mystring);
+                             out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                             while (rs.next()){
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("Nombre de profesor");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("nom_prof"));
+                                 out.print("</td>");
+
+                                 out.print("</tr>");
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("No. de Empleado");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("id_prof"));
+                                 out.print("</td>");
+                                 
+                                 out.print("</tr>");
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("Dependencia");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("u_a"));    
+                                 out.print("</td>");
+                    
+                                 out.print("</tr>");
+
+                             }
+                             out.print("</table>");
+                             lb.closeConnection();
+                            %>
                     </div>                         
                 </s:div>  
             </s:div>        

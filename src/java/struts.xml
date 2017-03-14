@@ -33,7 +33,7 @@
     <package name="AltaUsuarios"  extends="struts-default" namespace="/Usuario"><!--Paquete para dar de alta usuarios SIP-->
         <!--Registra SIP-->
         <action name="Registra_SIP" class="admins.regusuario_sip">
-            <result name="success">/Admins/admin_sip.jsp</result>
+            <result name="success">/Admins/sip_regExi.jsp</result>
             <result name="test">/Admins/admin_sip.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
@@ -52,7 +52,7 @@
          <!--Registra INDAUTOR-->
         <action name="Registra_INDA" class="admins.regusuario_sip">
             <result name="test">/Admins/admin_inda.jsp</result><!--hacer para el cofaas-->
-            <result name="success">/Admins/admin_inda.jsp</result>
+            <result name="success">/Admins/inda_regExi.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
@@ -71,7 +71,7 @@
         
         <!--Registra COFAA-->
         <action name="Registra_COFAA" class="admins.regusuario_sip">
-            <result name="success">/Admins/usuarios_cofaa.jsp</result>
+            <result name="success">/Admins/cofaa_regExi.jsp</result>
             <result name="test">/Admins/usuarios_cofaa.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
@@ -95,7 +95,7 @@
         </action> 
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
-            <result name="success">/Admins/CATT.jsp</result>
+            <result name="success">/Admins/catt_regExi.jsp</result>
             <result name="test">/Admins/CATT.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
@@ -116,7 +116,7 @@
         
         <!--Registra SS-->
         <action name="Registra_SS" class="admins.regusuario_sip">
-            <result name="success">/Admins/Servicio.jsp</result>
+            <result name="success">/Admins/ss_regExi.jsp</result>
             <result name="test">/Admins/Servicio.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
@@ -147,8 +147,23 @@
         <action name="About_us">
             <result>/Profesor/About_us.jsp</result>
         </action>
-        
-        
+        <!--Regresos a páginas de adminsitradores de usuarios después del registro-->
+        <action name="Catt_registro">
+            <result>/Admins/CATT.jsp</result>
+        </action>
+        <action name="Inda_registro">
+            <result>/Admins/admin_inda.jsp</result>
+        </action>
+        <action name="Cofaa_registro">
+            <result>/Admins/usuarios_cofaa.jsp</result>
+        </action>
+        <action name="SS_registro">
+            <result>/Admins/Servicio.jsp</result>
+        </action>
+        <action name="Sip_registro">
+            <result>/Admins/admin_sip.jsp</result>
+        </action>
+        <!--Regresos a páginas de adminsitradores de usuarios después del registroFIN-->
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
         </action>

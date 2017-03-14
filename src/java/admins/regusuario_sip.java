@@ -9,78 +9,27 @@ package admins;
  *
  * @author PsysacElrick
  */
-import static com.opensymphony.xwork2.Action.ERROR;
-import static com.opensymphony.xwork2.Action.SUCCESS;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import com.opensymphony.xwork2.ActionSupport;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-public class regusuario_sip extends ActionSupport {
-
-   private String user;
+public class regusuario_sip extends ActionSupport{
+    
+    private String user;
    private int matricula;
    private String u_a;
-   private int periodo;
+   private int periodo = 0;
    private String password;
    private String idTypeUsuario;
-   
-   private static Pattern pswNamePtrn = Pattern.compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_-]).{6,15})");
-   public static String validatePassword(String paswrd){//
-         
-        Matcher mtch = pswNamePtrn.matcher(paswrd);
-        if(mtch.matches()){
-            return SUCCESS;
-        }
-        else
-            return "test";
+   private int counter;
+
+    public String getUser() {
+        return user;
     }
-   public String execute() {
-      String ret = SUCCESS;
-      Connection conn = null;
-      if (user == null || user.trim().equals(""))
-      {
-         addFieldError("user", "El nombre es requerido");
-         return "test";///probar con cofaa
-      }
-      ret = validatePassword(password);
-      if(ret == "test"){
-          addFieldError("password", "La contraseña debe tener al menos 6 caracteres, "
-                  + "máximo 15 y un alfanumérico, caracter especial y un número");
-          return ret;
-      }
-      try {
-         String URL = "jdbc:mysql://localhost:3306/prototipo";
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "INSERT INTO usuarios(nom_prof, id_prof, u_a, periodo, password, idTypeUsuario) VALUES";//probar con select*
-         sql+="(?, ?, ?, ?, ?, ?)";
-         PreparedStatement ps = conn.prepareStatement(sql);
-         ps.setString(1, user);
-         ps.setInt(2, matricula);
-         ps.setString(3, u_a);
-         ps.setInt(4, periodo);
-         ps.setString(5, password);
-         ps.setString(6, idTypeUsuario);
-         int rs = ps.executeUpdate();
-         ret=SUCCESS;
-      } catch (Exception e) {
-         ret = ERROR;
-         System.out.println(e.getMessage());
-      } finally {
-         if (conn != null) {
-            try {
-               conn.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-         }
-      }
-      return ret;
-   }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public int getMatricula() {
         return matricula;
@@ -106,21 +55,6 @@ public class regusuario_sip extends ActionSupport {
         this.periodo = periodo;
     }
 
-    public String getIdTypeUsuario() {
-        return idTypeUsuario;
-    }
-
-    public void setIdTypeUsuario(String idTypeUsuario) {
-        this.idTypeUsuario = idTypeUsuario;
-    }
-        public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -128,5 +62,61 @@ public class regusuario_sip extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+    public String getIdTypeUsuario() {
+        return idTypeUsuario;
+    }
+
+    public void setIdTypeUsuario(String idTypeUsuario) {
+        this.idTypeUsuario = idTypeUsuario;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+    
+    public regusuario_sip() {
+    }
+    
+    private static Pattern pswNamePtrn = Pattern.compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_-]).{6,15})");
+   public static String validatePassword(String paswrd){//
+         
+        Matcher mtch = pswNamePtrn.matcher(paswrd);
+        if(mtch.matches()){
+            return SUCCESS;
+        }
+        else
+            return "test";
+    }
+    @Override
+    public String execute() throws Exception {
+        String ret = SUCCESS;
+      if (user == null || user.trim().equals(""))
+      {
+         addFieldError("user", "El nombre es requerido");
+         return "test";///probar con cofaa
+      }
+      ret = validatePassword(password);
+      if(ret == "test"){
+          addFieldError("password", "La contraseña debe tener al menos 6 caracteres, "
+                  + "máximo 15 y un alfanumérico, caracter especial y un número");
+          return ret;
+      }
+      System.out.println(counter);
+      if(counter>=3){
+          addFieldError("user", "El número máximo de usuarios es de 3");
+          return "test";
+      }
+        LoginBean lb = new LoginBean();
+        lb.getConnection();
+        int val=lb.executeUpdate("INSERT INTO usuarios(nom_prof, id_prof, u_a, periodo, password, idTypeUsuario) "
+                + "VALUES ('"+getUser()+"', "+getMatricula()+", '"+getU_a()+"', "+getPeriodo()+", '"+getPassword()+"', '"+getIdTypeUsuario()+"');");
+        lb.closeConnection();
+        if (val>0) return SUCCESS;
+        else return ERROR; 
+    }   
+}

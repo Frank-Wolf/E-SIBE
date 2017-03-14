@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="com.opensymphony.xwork2.ActionContext" %>
+<%@ page import="com.opensymphony.xwork2.util.ValueStack" %>
 
 <!DOCTYPE html>
 <html>
@@ -51,21 +53,7 @@
                 
                 <div class="row container-fluid" >
                     <!-- Formulario para registrar un usuario-->
-                    <div class="col-md-4 col-md-offset-1">
-                        <h2 class="h3">Registrar nuevo usuario SIP</h2>
-                        <s:set name="u_a" value="%{'SIP'}" />
-                        <s:set name="periodo" value="%{0}" />
-                        <s:set name="idTypeUsuario" value="%{'usuario_sip'}" />
-                        <s:form id="datos3" action="/Usuario/Registra_SIP">
-                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
-                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
-                            <s:hidden name="u_a" label="Dependencia"/>
-                            <s:hidden name="periodo" label="Periodo"/>
-                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:submit cssClass="btn" name="Registrar Usuario" value="Registrar Usuario"/>
-                        </s:form> 
-                    </div>
+                    
                     
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-4 col-md-offset-1">
@@ -77,6 +65,8 @@
                         <%
                         ResultSet rs=null;
                         lb.getConnection();
+                        ValueStack stack = ActionContext.getContext().getValueStack();
+                        int i = 0;
                         rs=lb.executeQuery("SELECT nom_prof, "
                                     + "id_prof FROM usuarios WHERE "
                                     + "idTypeUsuario = 'usuario_sip'");
@@ -91,6 +81,7 @@
                         out.print("</tr>");
                         while (rs.next())
                         {
+                            i++;
                             out.print("<tr>");
                             out.print("<td>");
                             out.print("  ");
@@ -114,8 +105,27 @@
                         }
                         out.print("</table>");
                         lb.closeConnection();
+                        stack.getContext().put("varName", i);
+                        stack.setValue("#attr['varName']", i, false);
                         %>
-                    </div>   
+                    </div>  
+                    
+                    <div class="col-md-4 col-md-offset-1">
+                        <h2 class="h3">Registrar nuevo usuario SIP</h2>
+                        <s:set name="counter" value="#varName"/>
+                        <s:set name="u_a" value="%{'SIP'}" />
+                        <s:set name="periodo" value="%{0}" />
+                        <s:set name="idTypeUsuario" value="%{'usuario_sip'}" />
+                        <s:form id="datos3" action="/Usuario/Registra_SIP">
+                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:hidden name="u_a" label="Dependencia"/>
+                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
+                            <s:hidden name="counter" label="Número de usuarios registrados"/>
+                            <s:submit cssClass="btn" name="Registrar Usuario" value="Registrar Usuario"/>
+                        </s:form> 
+                    </div>
                 </div>                 
             </s:div>  
         </s:div>        

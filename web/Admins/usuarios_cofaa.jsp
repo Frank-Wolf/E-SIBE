@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="com.opensymphony.xwork2.ActionContext" %>
+<%@ page import="com.opensymphony.xwork2.util.ValueStack" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,14 +63,70 @@
 
                 
                 <div class="row container-fluid" >
+                        
+                        
+                    <!-- Tabla donde se muestran los usuarios Activos-->    
+                    <div class="col-md-6">
+                        <h2 class="h3">Lista de Profesores Evaluadores activos</h2>
                     
-                    <!-- Formulario para registrar un usuario-->
+                        <%@ page import="java.sql.*" %>
+                        <jsp:useBean id="lb" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <%
+                            ResultSet rs=null;
+                            lb.getConnection();
+                            int i = 0;
+                            ValueStack stack = ActionContext.getContext().getValueStack();
+                            rs=lb.executeQuery("SELECT nom_prof, "
+                                    + "id_prof, u_a FROM usuarios WHERE "
+                                    + "idTypeUsuario = 'usuario_cofaa'");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  No. de Empleado  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Nombre de Usuario  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Unidad Académica  ");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs.next())
+                            {
+                                i++;
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs.getString("id_prof"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("nom_prof"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("u_a"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='Borrar_COFAA?id_prof="
+                                        +rs.getString("id_prof")+"'>Borrar</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="
+                                        +rs.getString("id_prof")+"'>Modificar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                            lb.closeConnection();
+                            stack.getContext().put("varName", i);
+                            stack.setValue("#attr['varName']", i, false);
+                        %>
+                    </div>
+                    
                     <div class="col-md-6">
 
                         <h2 class="h3">Registrar nuevo Profesor Evaluador</h2>
                         
 
-                        
+                        <s:set name="counter" value="#varName"/>
                         <s:set name="periodo" value="%{0}" />
                         <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
                         <s:form name="form1" id="datos3" action="Registra_COFAA">
@@ -107,63 +165,10 @@
                             'EST':'EST'
                             }"
                             name="u_a" />
-                            <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
+                            <s:hidden name="counter" label="Número de usuarios registrados"/>
                             <s:submit cssClass="btn" value="Registrar Usuario" />
                         </s:form> 
-                    </div>
-                    
-                        
-                        
-                    <!-- Tabla donde se muestran los usuarios Activos-->    
-                    <div class="col-md-6">
-                        <h2 class="h3">Lista de Profesores Evaluadores activos</h2>
-                    
-                        <%@ page import="java.sql.*" %>
-                        <jsp:useBean id="lb" scope="session" 
-                                     class="sesion.LoginBean"></jsp:useBean>
-                        <%
-                            ResultSet rs=null;
-                            lb.getConnection();
-                            rs=lb.executeQuery("SELECT nom_prof, "
-                                    + "id_prof, u_a FROM usuarios WHERE "
-                                    + "idTypeUsuario = 'usuario_cofaa'");
-                            out.print("<table class='table table-striped'>");
-                            out.print("<tr>");
-                            out.print("<th>");
-                            out.print("  No. de Empleado  ");
-                            out.print("</th>");
-                            out.print("<th>");
-                            out.print(  "Nombre de Usuario  ");
-                            out.print("</th>");
-                            out.print("<th>");
-                            out.print(  "Unidad Académica  ");
-                            out.print("</th>");
-                            out.print("</tr>");
-                            while (rs.next())
-                            {
-                                out.print("<tr>");
-                                out.print("<td>");
-                                out.print(rs.getString("id_prof"));
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print(rs.getString("nom_prof"));
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print(rs.getString("u_a"));
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print("<a href='Borrar_COFAA?id_prof="
-                                        +rs.getString("id_prof")+"'>Borrar</a>");
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="
-                                        +rs.getString("id_prof")+"'>Modificar</a>");
-                                out.print("</td>");
-                            }
-                            out.print("</table>");
-                            lb.closeConnection();
-                        %>
                     </div>
                         
                 </div>                 
