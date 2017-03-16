@@ -27,6 +27,16 @@
             <result name="usuario_sip">/SIP/SIP.jsp</result>
             <result name="usuario_ss">/Servicio/Servicio.jsp</result>
         </action>
+        <action name="Cerrar_sesion" class="sesion.Login_Action" method="logout">
+            <result name="success">/Login.jsp</result>
+        </action>
+        <action name="Recupera_pass">
+            <result>/Recover_pass.jsp</result>
+        </action>
+        <action name="Envia_email" class="email.send_email">
+            <result name="success">/Login.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
     </package>
     
     <!--Paquetes de los administradores (todos)-->

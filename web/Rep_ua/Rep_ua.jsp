@@ -43,7 +43,7 @@
                                 <li><a href="#">Evento académico</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="http://localhost:8084/login/">
+                              <li><a href="Cerrar_sesion">
                                       Cerrar Sesión</a></li>
                             </ul>
                           </div>

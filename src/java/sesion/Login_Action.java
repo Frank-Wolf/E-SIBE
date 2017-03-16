@@ -11,8 +11,8 @@ package sesion;
  */
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map; //tenemos una entrada y nos va a dar una salida
-import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.interceptor.SessionAware;//Session control
+import org.apache.struts2.dispatcher.SessionMap;//Session control
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.DriverManager;
@@ -23,19 +23,24 @@ import java.sql.ResultSet;
 
 public class Login_Action extends ActionSupport implements SessionAware{
     
-    public Login_Action() {
-    }
     private String usuario;
     private String pass;
     private String type;
-    private Map<String, Object> sessionMap;
-     
+    //private Map<String, Object> sessionMap;
+    SessionMap<String, String> sessionMap;
     
     @Override
+    public void setSession(Map map) {
+        sessionMap=(SessionMap)map;  
+        sessionMap.put("login","true");  
+        } 
+     
+    
+    /*@Override
     public void setSession(Map<String, Object> sessionMap) //recuperar la sesion
     {
     this.sessionMap = sessionMap;
-    }    
+    } */   
     
     public String getUsuario() {
         return usuario;
@@ -52,7 +57,6 @@ public class Login_Action extends ActionSupport implements SessionAware{
     public void setPass(String pass) {
         this.pass = pass;
     }
-    
      
     
     @Override
@@ -165,6 +169,11 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 return "test";       
             }
     }
+    
+        public String logout(){ 
+            sessionMap.invalidate();  
+            return "success";  
+        }  
         
        
     
