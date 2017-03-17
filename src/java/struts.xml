@@ -254,4 +254,9 @@
             <result>/Admins/usuarios_cofaa.jsp</result>
         </action>
     </package> 
+    <package name="Paquete_sip" extends="struts-default" namespace="/Usuario">
+        <action name="Proyecto_sip">
+            <result>/SIP/proyecto_sip.jsp</result>
+        </action>
+    </package>
 </struts>
