@@ -10,7 +10,6 @@ package email;
  * @author PsysacElrick
  */
 import static com.opensymphony.xwork2.Action.ERROR;
-import static com.opensymphony.xwork2.Action.SUCCESS;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -23,17 +22,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 
 public class send_email extends ActionSupport {
 
+   private int token;
    private String usuario;
    private String from="e.sibe2017a031@gmail.com";
    private String password="e_sibe031";
    private String to;
    private String subject="Sistema de recuperación de contraseñas de E-SIBE";
-   private String body="Su contraseña es ";//text where we gonna put the password
-   private String user_password;
+   private String body="Ingrese al siguiente link para cambiar su contraseña: http://localhost:8084/login/actualiza_pass.jsp?token=";//text where we gonna put the password
    private String e_address;
 
    static Properties properties = new Properties();
@@ -61,9 +59,9 @@ public class send_email extends ActionSupport {
            rs=ps.executeQuery(sql);
             while(rs.next()){
            e_address =rs.getString("correo_electronico");
-           user_password=rs.getString("password");
+           token=rs.getInt("token");
             }
-           ret = SUCCESS;
+           ret = "test";
                 }catch (Exception e) {
                     ret = ERROR;
                     System.out.println(e.getMessage());
@@ -78,7 +76,7 @@ public class send_email extends ActionSupport {
                 }
        to=e_address;
        //end connection to mysql
-       body=body+user_password;
+       body=body+token;/*user_password*/
        System.out.println(body);
        System.out.println(e_address);
        //now let's send the email 
@@ -164,18 +162,21 @@ public class send_email extends ActionSupport {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-        public String getUser_password() {
-        return user_password;
-    }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
-    }
     public String getE_address() {
         return e_address;
     }
 
     public void setE_address(String e_address) {
         this.e_address = e_address;
+    }
+
+
+    public int getToken() {
+        return token;
+    }
+
+    public void setToken(int token) {
+        this.token = token;
     }
 }

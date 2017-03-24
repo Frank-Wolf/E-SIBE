@@ -1,5 +1,13 @@
+<%-- 
+    Document   : reset_password
+    Created on : Mar 23, 2017, 7:42:09 PM
+    Author     : PsysacElrick
+--%>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="com.opensymphony.xwork2.ActionContext" %>
+<%@ page import="com.opensymphony.xwork2.util.ValueStack" %>
 
 <html>
     <!--head-->
@@ -18,7 +26,7 @@
         <link rel="icon" href="<s:url value="icono.ico"/>"/>
     </head>
     
-    <body background="../css/textura.png" class="container-fluid boding">
+    <body background="css/textura.png" class="container-fluid boding">
         
         <!--header-->
         <header class="headering abso">
@@ -27,7 +35,6 @@
             </s:div>
         </header>
         
-  
         
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
@@ -35,10 +42,19 @@
                     <h2 class="titulos">E-SIBE</h2>
                     <div>
                     <s:div cssClass="" align ="center">
-                        <p>Ingrese su número de empleado y un mensaje será enviado a su correo.</p>
-                        <s:form id="datos" action="/Usuario/Envia_email" method="post">
-                            <s:textfield name="usuario" label="No. de Empleado" cssClass="form-control" style="width: 100%;"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        <%                           
+                            ValueStack stack = ActionContext.getContext().getValueStack();
+                            String i = request.getParameter("token");
+                            stack.getContext().put("varName", i);
+                            stack.setValue("#attr['varName']", i, false);
+                        %>
+                        <p>Restaure la contraseña</p>
+                        <s:set name="token" value="#varName"/>
+                        <s:form id="datos" action="/Usuario/Reset_pass" method="post">
+                            <s:password name="password" label="Nueva contraseña" cssClass="form-control" style="width: 100%;"/>
+                            <s:password name="password2" label="Ingrese nuevamente la contraseña" cssClass="form-control" style="width: 100%;"/>
+                            <s:hidden name="token" label="Token temporal"/>
+                            <s:submit cssClass="btn" value= "Cambiar contraseña"><span></span></s:submit>
                         </s:form>
                     </s:div>
                         </div>  

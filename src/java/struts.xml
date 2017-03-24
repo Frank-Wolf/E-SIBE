@@ -8,7 +8,7 @@
     
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
-        <action name="Sesion" class="sesion.Login_Action"> 
+        <action name="Sesion" class="sesion.Login_Action">
             <result name="test">/Login/Login.jsp</result>
             <!-->Página principal de profesor<-->
             <result name="profesor">/Profesor/Profesor.jsp</result>
@@ -28,13 +28,20 @@
             <result name="usuario_ss">/Servicio/Servicio.jsp</result>
         </action>
         <action name="Cerrar_sesion" class="sesion.Login_Action" method="logout">
-            <result name="success">/Login.jsp</result>
+            <result name="test">/Login/Login.jsp</result>
         </action>
         <action name="Recupera_pass">
             <result>/Recover_pass.jsp</result>
         </action>
         <action name="Envia_email" class="email.send_email">
-            <result name="success">/Login.jsp</result>
+            <result name="test">/Login/Login.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="actualiza_pass">
+            <result>/actualiza_pass.jsp</result>
+        </action>
+        <action name="Reset_pass" class="email.reset_pass">
+            <result name="test">/Login/reset_contra.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
     </package>

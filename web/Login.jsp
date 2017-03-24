@@ -40,8 +40,8 @@
                             <s:password  name="pass" label="Contraseña" cssClass="form-control" style="width: 100%;" />                          
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
-                        <s:a href="Usuario/Recupera_pass">¿Olvidó su contraseña?</s:a>
-                    </s:div>    
+                            <a href="/login/Usuario/Recupera_pass">¿Olvidó su contraseña?</a>
+                    </s:div>
                         </div>  
                     
                         

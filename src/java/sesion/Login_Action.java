@@ -172,7 +172,7 @@ public class Login_Action extends ActionSupport implements SessionAware{
     
         public String logout(){ 
             sessionMap.invalidate();  
-            return "success";  
+            return "test";  
         }  
         
        

@@ -29,6 +29,7 @@
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
             </s:div>
         </header>  
+        <b><%=request.getParameter("token")%></b>
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
             <s:div cssClass="site-wrapper-inner">
