@@ -42,6 +42,7 @@
         </action>
         <action name="Reset_pass" class="email.reset_pass">
             <result name="test">/Login/reset_contra.jsp</result>
+            <!--result name="false">/actualiza_pass.jsp</result-->
             <result name="error">/error.jsp</result>
         </action>
     </package>

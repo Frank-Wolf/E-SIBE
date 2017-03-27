@@ -26,6 +26,8 @@ public class reset_pass extends ActionSupport {
    @Override
    public String execute() throws IOException, SQLException, PropertyVetoException 
    {
+       //if(getPassword()!= getPassword2())
+         //  return "false";
        admins.LoginBean lb = new admins.LoginBean();
         lb.getConnection();
         int val=lb.executeUpdate("UPDATE usuarios SET password='"+getPassword()+"', token='"+token2+"' WHERE token='"+getToken()+"'");
