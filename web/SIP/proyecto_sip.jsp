@@ -20,7 +20,7 @@
        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
-    <body background="../css/textura.png" class="boding">
+    <body background="../css/textura.png" class="boding overflow">
         <header class="headering">
             <s:div cssClass="container-fluid">            
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
@@ -35,16 +35,16 @@
                 <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Usuario Representante de Unidad Académica</a>
+                            <a class="navbar-brand" >E-SIBE: Usuario SIP</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Compulsar obra</a></li>
-                                <li><a href="#">Evento académico</a></li>
+                                <li><a href="Proyecto_sip y alumnos BEIFI">Proyecto SIP</a></li>
+                                <li><a href="#">Arbitraje de publicación</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">
-                                      Cerrar Sesión</a></li>
+                                      Cerrar Sesion</a></li>
                             </ul>
                           </div>
                     </div>
@@ -53,12 +53,12 @@
 
                 
                 
-                <s:div cssClass="cover-container">    
+                <s:div cssClass="cover-container2">    
                     
                     
                     
                     
-                    <h2 class="titulos">Holi profesor</h2>
+                    <h2 class="titulos">Bienvenido Usuario SIP</h2>
                     
                     
                 </s:div>
@@ -67,9 +67,10 @@
         </s:div>        
         
         
-        <!--footer-->
-        <footer class="footer">
-            <h3 class="subtitulos"> Gracias por utilizarnos</h3>
+       <!--footer-->
+        <footer class="footer abso">
+            <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
+            <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
         
         
@@ -78,3 +79,4 @@
         <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
+

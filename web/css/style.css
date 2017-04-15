@@ -120,7 +120,7 @@ html, body {
 .boding
 {
     color: #6c1a42;
-    font-size: 25px;
+    font-size: 15px;
     font-family: Helvetica,Arial,sans-serif;    
         /*Margenes*/
     margin-left: 0px;
@@ -312,6 +312,8 @@ background-color: #fff;
     border:1px solid #CC0000;
     width:400px;
     margin-bottom:8px;
+    font-size: 15px;
+    
 }
 
 .margen

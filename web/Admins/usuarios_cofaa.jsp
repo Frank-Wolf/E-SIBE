@@ -13,11 +13,11 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link href="<s:url value="/css/bootstrap.css"/>" 
+        <link href="<s:url value="../css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
       
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
@@ -53,7 +53,7 @@
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="http://localhost:8084/login/">
+                                <li><a href="Cerrar_sesion">
                                       Cerrar Sesion</a></li>
                             </ul>
                         </div>

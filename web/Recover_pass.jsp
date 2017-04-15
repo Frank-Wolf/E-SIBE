@@ -7,10 +7,10 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> E-SIBE</title>
         
-        <link href="<s:url value="../css/bootstrap.css"/>" 
+        <link href="<s:url value="/css/bootstrap.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="../css/style.css"/>" 
+        <link href="<s:url value="/css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
 
         
@@ -23,30 +23,30 @@
         <!--header-->
         <header class="headering abso">
             <s:div cssClass="container">            
-                <img src="<s:url value="../banner_IPN.png"/>" alt="IPN" class="img-responsive"/>
+                <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" class="img-responsive"/>
             </s:div>
         </header>
         
- 
+  
+        
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
+            <h2 class="titulos">E-SIBE</h2>
                 <s:div cssClass="cover-container">
-                    <h2 class="titulos">E-SIBE</h2>
+                    
                     <div>
                     <s:div cssClass="" align ="center">
-                        <s:form id="datos" action="/Usuario/Sesion" method="post"  >
+                        <p>Ingrese su número de empleado y un mensaje será enviado a su correo.</p>
+                        <s:form id="datos" action="/Usuario/Envia_email" method="post">
                             <s:textfield name="usuario" label="No. de Empleado" cssClass="form-control" style="width: 100%;"/>
-                            <s:password  name="pass" label="Contraseña" cssClass="form-control" style="width: 100%;" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
-                            <a href="/login/Usuario/Recupera_pass" class="subtitulos">¿Olvidó su contraseña?</a>
                     </s:div>
                         </div>  
                     
-                    
-                </s:div>
+                        
             </s:div>  
-
+</s:div>
 
         <!--footer-->
        

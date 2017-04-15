@@ -22,8 +22,6 @@ import sesion.SesionBean;
 public class try_apelacion {
     
     public String execute() {
-        SesionBean sb=new SesionBean();
-        LoginBean lb=new LoginBean();
         Connection conn = null;
                 String ret;
                 Date date_ini = null, date_fin = null, date_curr = new Date();

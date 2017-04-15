@@ -47,7 +47,7 @@
                                 <li><a>Borrar Usuario</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="http://localhost:8084/login/">
+                              <li><a href="Cerrar_sesion">
                                       Cerrar Sesion</a></li>
                             </ul>
                           </div>
