@@ -1,12 +1,11 @@
 <%-- 
-    Document   : Profesor
-    Created on : 27/01/2017, 07:11:22 PM
-    Author     : le_as
+    Document   : test_doc
+    Created on : Mar 30, 2017, 8:28:48 PM
+    Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
         
@@ -58,9 +57,6 @@
                                 <li><a href="apelacion_prof">
                                         Apelación de alguna actividad</a>
                                 </li>
-                                <li><a href="test_doc"><!--test to upload files-->
-                                        test_doc</a>
-                                </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="Cerrar_sesion">
@@ -71,55 +67,19 @@
                 </nav>
                 <h2 class="titulos">Bienvenido Profesor</h2>
                 <s:div cssClass="cover-container2" align="center"> 
-                    <div class="container row">
-                        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 table-responsive">
-                            <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
-                            <s:set var="username" value="%{#session.username}" />
-                            <jsp:useBean id="username" type="java.lang.String"/>
-                                <%
-                                String mystring = username;
-                                 ResultSet rs=null;
-                                 lb.getConnection();
-                                 rs=lb.executeQuery("SELECT nom_prof, u_a, puntaje "
-                                         + "FROM usuarios WHERE id_prof = " 
-                                         + mystring);
-                                 out.print("<table  class='table table-striped table-condensed'>");
-                                 while (rs.next()){
-                                     out.print("<tr>");
-                                     out.print("<th>");
-                                     out.print("Nombre de profesor");
-                                     out.print("</th>");
-                                     out.print("<td>");
-                                     out.print(rs.getString("nom_prof"));
-                                     out.print("</td>");
-                                     out.print("</tr>");
-                                     out.print("<tr>");
-                                     out.print("<th>");
-                                     out.print("Unidad Académica");
-                                     out.print("</th>");
-                                     out.print("<td>");
-                                     out.print(rs.getString("u_a"));    
-                                     out.print("</td>");
-                                     out.print("</tr>");
-                                     out.print("<tr>");
-                                     out.print("<th>");
-                                     out.print("Puntaje");
-                                     out.print("</th>");
-                                     out.print("<td>");
-                                     out.print(rs.getString("puntaje"));
-                                     out.print("</td>");
-                                     out.print("</tr>");
-                                     
-                                 }
-                                 out.print("</table>");
-                                 lb.closeConnection();
-                                %>       
-                        </div>
-                    </div>
              
-           
+        <s:set name="username" value="%{#session.username}" />
+        <s:form id = "datos" action="upload_file" method="post" enctype="multipart/form-data">
+            <s:label for="myFile">Suba su constancia (máximo 10 MB y formato pdf):</s:label>
+            <s:file name="myFile" />
+            <s:hidden name="username" label="Matrícula"/>
+            <s:submit value="Subir"/>
+        </s:form>
                     
                 </s:div>
+                <s:form id="datos" action="create_pdf" method="post">
+                    <s:submit value="Generar PDF"/>
+                </s:form>
             </s:div>  
         </s:div>        
         

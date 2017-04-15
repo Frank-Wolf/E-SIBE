@@ -57,6 +57,9 @@
                                 <li><a href="Actividades_Profesor">
                                         Validación de Actividades</a>
                                 </li>
+                                <li><a href="test_doc"><!--test to upload files-->
+                                        test_doc</a>
+                                </li>
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
