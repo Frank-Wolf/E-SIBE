@@ -5,7 +5,9 @@
 <struts>
     <include file="example.xml"/>
     <!-- Configuration for the default package. -->
-    
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="global" />
+    <constant name="struts.multipart.maxSize" value="20000000" /><!--Constante para definir el tamaño de los archivos a subir-->
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
         <action name="Sesion" class="sesion.Login_Action">
@@ -182,12 +184,44 @@
             <result>/Admins/admin_sip.jsp</result>
         </action>
         <!--Regresos a páginas de adminsitradores de usuarios después del registroFIN-->
+    </package>
+    <package name="PROFESOR" extends="struts-default" namespace="/Usuario">
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
         </action>
         <action name="apelacion_prof" class="profesor.try_apelacion">
             <result name="success">/Profesor/Profesor_apelacion.jsp</result>
             <result name="error">/Profesor/Profesor_notime.jsp</result>
+        </action>
+        <action name="test_doc">
+            <result>/Profesor/test_doc.jsp</result>
+        </action>
+        <action name="fileUploadAction" class="PDF.Subir_PDF" method="display"><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssss-->
+	    <result name="none">/Profesor/test_doc.jsp</result>
+	</action>
+        <action name="upload_file" class="PDF.Subir_PDF">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Profesor.jsp</result>
+            <result name="input">/Profesor/test_doc.jsp</result>
+        </action><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+        <action name="create_pdf" class="PDF.GenerateSimplePdfReportWithJasperReports">
+            <result name="success">/Profesor/Profesor.jsp</result>
+            <result name="error">/error.jsp</result>
         </action>
     </package>
     <!--paquete de la escom (redirigir a catt o a servicio social)-->

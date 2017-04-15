@@ -28,7 +28,6 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         
        
-         <!--<script src="https://use.fontawesome.com/bb87f67ebc.js"></script>-->
         <link rel="stylesheet" href="<s:url value="../css/font-awesome-4.7.0/css/font-awesome.min.css"/>"/>
         
     </head>
