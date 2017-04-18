@@ -7,6 +7,7 @@
     <!-- Configuration for the default package. -->
     <constant name="struts.devMode" value="true" />
     <constant name="struts.custom.i18n.resources" value="global" />
+    <constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/>
     <constant name="struts.multipart.maxSize" value="20000000" /><!--Constante para definir el tamaño de los archivos a subir-->
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
@@ -205,7 +206,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>

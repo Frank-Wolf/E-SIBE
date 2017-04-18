@@ -23,7 +23,7 @@ public class Subir_PDF extends ActionSupport{
     public String execute()
    {
       /* Copy file to a safe location */
-      destPath = "\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+      destPath = "C:\\Users\\le_as\\Documents\\Escuela\\popo";//\\psf\Home\Documents\Prueba
       destPath += username +"\\AlumnosBEIFI";
       try{
      	 System.out.println("Src File name: " + myFile);
