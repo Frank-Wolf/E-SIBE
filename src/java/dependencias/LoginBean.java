@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admins;//aqui haremos el insert
+package dependencias;//aqui haremos el insert
 
 /**
  *
- * @author PsysacElrick
+ * @author le_as
  */
 import sesion.*;
 import java.beans.PropertyVetoException;

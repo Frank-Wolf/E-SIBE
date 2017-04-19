@@ -77,9 +77,9 @@
                             lb.getConnection();
                             int i = 0;
                             ValueStack stack = ActionContext.getContext().getValueStack();
-                            rs=lb.executeQuery("SELECT nom_prof, "
-                                    + "id_prof, u_a FROM usuarios WHERE "
-                                    + "idTypeUsuario = 'usuario_cofaa'");
+                            rs=lb.executeQuery("SELECT nom_usuario, "
+                                    + "id_usuario, u_a FROM usuario WHERE "
+                                    + "id_type_usuario = 6");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -97,21 +97,21 @@
                                 i++;
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs.getString("id_prof"));
+                                out.print(rs.getString("id_usuario"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs.getString("nom_prof"));
+                                out.print(rs.getString("nom_usuario"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print(rs.getString("u_a"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Borrar_COFAA?id_prof="
-                                        +rs.getString("id_prof")+"'>Borrar</a>");
+                                out.print("<a href='Borrar_COFAA?id_usuario="
+                                        +rs.getString("id_usuario")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_cofaa.jsp?id="
-                                        +rs.getString("id_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_usuario")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -127,12 +127,13 @@
                         
 
                         <s:set name="counter" value="#varName"/>
-                        <s:set name="periodo" value="%{0}" />
-                        <s:set name="idTypeUsuario" value="%{'usuario_cofaa'}" />
+                        
+                        <s:set name="idTypeUsuario" value="%{6}" />
                         <s:form name="form1" id="datos3" action="Registra_COFAA">
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
                             <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control"/>
                             <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name='email' label="Correo electrónico" cssClass="form-control"/>
                             <s:select label="Seleccione una dependencia" cssClass="form-control"
                             headerKey="-1" headerValue="Dependencia"
                             list="# {

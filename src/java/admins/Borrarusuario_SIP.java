@@ -13,14 +13,14 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class Borrarusuario_SIP extends ActionSupport{
     
-    private String id_prof;
+    private String id_usuario;
 
-    public String getId_prof() {
-        return id_prof;
+    public String getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_prof(String nom_prof) {
-        this.id_prof = nom_prof;
+    public void setId_usuario(String nom_prof) {
+        this.id_usuario = nom_prof;
     }
     
     public Borrarusuario_SIP() {
@@ -29,7 +29,7 @@ public class Borrarusuario_SIP extends ActionSupport{
     public String execute() throws Exception {
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("DELETE FROM usuarios WHERE id_prof='"+getId_prof()+"'");
+        int val=lb.executeUpdate("DELETE FROM usuario WHERE id_usuario='"+getId_usuario()+"'");
         lb.closeConnection();
         if (val>0) return "borrar_exitoso";
         else return "borrar_fallo"; 

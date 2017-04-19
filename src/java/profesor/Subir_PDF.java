@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PDF;
+package profesor;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import java.io.IOException; 
 import com.opensymphony.xwork2.ActionSupport;
-import java.beans.PropertyVetoException;
-import java.sql.SQLException;
 
 /**
  *
@@ -22,20 +20,17 @@ public class Subir_PDF extends ActionSupport{
     private String destPath;
     private String username;
     
-    public String execute() throws SQLException, PropertyVetoException
+    public String execute()
    {
       /* Copy file to a safe location */
-      destPath = "C:\\Users\\le_as\\Documents\\Escuela\\popo\\";//\\psf\Home\Documents\Prueba
-      destPath += username;
+      destPath = "C:\\Users\\le_as\\Documents\\Escuela\\popo";//\\psf\Home\Documents\Prueba
+      destPath += username +"\\AlumnosBEIFI";
       try{
      	 System.out.println("Src File name: " + myFile);
      	 System.out.println("Dst File name: " + myFileFileName);
      	    	 
      	 File destFile  = new File(destPath, myFileFileName);
     	 FileUtils.copyFile(myFile, destFile);
-         profesor.LoginBean lb = new profesor.LoginBean();
-         lb.getConnection();
-         int ruta = lb.executeUpdate("update profesor_tiene_obra set ruta_alm='"+destPath+myFileFileName+"' where id_usuario='"+getUsername()+"';");
   
       }catch(IOException e){
          e.printStackTrace();

@@ -24,7 +24,7 @@ public class RegistraApelaciones extends ActionSupport {
       String ret = SUCCESS;
       Connection conn = null;
       try {
-         String URL = "jdbc:mysql://localhost:3306/prototipo";
+         String URL = "jdbc:mysql://localhost:3306/esibe";
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(URL, "root", "root");
          String sql = "insert into fecha_apelaciones (id_fecha, fecha_inicio, fecha_fin) values ";//probar con select*

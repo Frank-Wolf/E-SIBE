@@ -66,9 +66,9 @@ public class modifica_cofaa extends ActionSupport {
     public String execute() throws Exception {
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("UPDATE usuarios SET nom_prof='"+getUsuario()
-                +"',id_prof='"+getMatricula()+"', password='"+getPassword()
-                +"',u_a='"+getU_a()+"' WHERE id_prof='"+getId()+"'");
+        int val=lb.executeUpdate("UPDATE usuario SET nom_usuario='"+getUsuario()
+                +"',id_usuario='"+getMatricula()+"', password='"+getPassword()
+                +"',u_a='"+getU_a()+"' WHERE id_usuario='"+getId()+"'");
         if(val>0) return "modificar_exitoso";
         else return "modificar_fallo";
     }

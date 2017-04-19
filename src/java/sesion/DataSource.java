@@ -24,7 +24,7 @@ public class DataSource { //accesible a traves de paquete
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         ds.setUsername("root");
         ds.setPassword("root");
-        ds.setUrl("jdbc:mysql://localhost:3306/prototipo");
+        ds.setUrl("jdbc:mysql://localhost:3306/esibe");
      // settings
         ds.setMinIdle(5);
         ds.setMaxIdle(20);

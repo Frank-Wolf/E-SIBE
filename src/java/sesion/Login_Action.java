@@ -93,13 +93,13 @@ public class Login_Action extends ActionSupport implements SessionAware{
             sessionMap.put("username", usuario);
             sessionMap.put("type",type);
             ////////////////////////Proceso para determinar a qué interfaz irá el profesor
-            if(type.equals("Profesor")){//Veremos, por medio de validaciones a las fechas 
+            if(type.equals("11")){//Veremos, por medio de validaciones a las fechas 
                 //existentes en la base de datos, a qué interfaz será dirigido el profesor
                 //Connection conn = null;
                 //String ret;
                 Date date_ini = null, date_fin = null, date_curr = new Date();
                 try{
-                    String URL = "jdbc:mysql://localhost:3306/prototipo";
+                    String URL = "jdbc:mysql://localhost:3306/esibe";
                     Class.forName("com.mysql.jdbc.Driver");
                     ResultSet rs=null;
                     conn = DriverManager.getConnection(URL, "root", "root");
@@ -131,31 +131,43 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 return ret;
             }
             /////////////////////////////aquí termina el proceso del profesor
-            if(type.equals("usuario_sip"))
+            
+            //administradores
+            if(type.equals("1")) //antes: admin_cofaa
+                return "admin_cofaa";
+            
+            if(type.equals("2")) //antes: admin_sip
+                return "admin_sip";
+            
+            if(type.equals("3")) //antes: admin_inda
+                return "admin_inda";
+            
+            if(type.equals("4")) //antes: admin_prof
+                return "admin_prof";
+            
+            if(type.equals("5")) //antes: admin_escom
+                return "admin_escom";
+            
+            // Usuarios
+            if(type.equals("6")) //antes:usuario_cofaa
+                return "usuario_cofaa";
+            
+            if(type.equals("7")) //antes:usuario_sip
                 return "usuario_sip";
-            if(type.equals("usuario_inda"))
+            
+            if(type.equals("8")) //antes: usuario_inda
                 return "usuario_inda";
-            if(type.equals("usuario_catt"))
+            
+            if(type.equals("9")) //antes: usuario_catt
                 return "usuario_catt";
             if(type.equals("usuario_ua"))
                 return "usuario_ua";
-            if(type.equals("usuario_ss"))
+            if(type.equals("10")) //antes: usuario_ss
                 return "usuario_ss";
             if(type.equals("usuario_repua"))
                 return "usuario_repua";
-            if(type.equals("usuario_cofaa"))
-                return "usuario_cofaa";
-            //administradores
-            if(type.equals("admin_sip"))
-                return "admin_sip";
-            if(type.equals("admin_inda"))
-                return "admin_inda";
-            if(type.equals("admin_cofaa"))
-                return "admin_cofaa";
-            if(type.equals("admin_prof"))
-                return "admin_prof";
-            if(type.equals("admin_escom"))
-                return "admin_escom";
+            
+            
             else
             {
                 addFieldError("password"," Tus datos son erróneos ");

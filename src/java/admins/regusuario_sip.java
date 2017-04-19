@@ -15,11 +15,20 @@ import java.util.regex.Pattern;
 
 public class regusuario_sip extends ActionSupport{
     
-    private String user;
+   private String user;
    private int matricula;
    private String u_a,aux;
    private int periodo = 0;
    private String password;
+   private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
    private String idTypeUsuario;
    private int counter;
 
@@ -127,7 +136,7 @@ public class regusuario_sip extends ActionSupport{
           return "test";
       }
       System.out.println(counter);
-      if(counter>=3){
+      if(counter>=30){
           addFieldError("user", "El número máximo de usuarios es de 3");
           return "test";
       }
@@ -139,8 +148,9 @@ public class regusuario_sip extends ActionSupport{
       }
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("INSERT INTO usuarios(nom_prof, id_prof, u_a, periodo, password, idTypeUsuario) "
-                + "VALUES ('"+getUser()+"', "+getMatricula()+", '"+getU_a()+"', "+getPeriodo()+", '"+getPassword()+"', '"+getIdTypeUsuario()+"');");
+        
+        int val=lb.executeUpdate("INSERT INTO usuario(id_usuario,id_type_usuario,nom_usuario,email, password,u_a,token) "
+                + "VALUES ('"+getMatricula()+"', "+getIdTypeUsuario()+", '"+getUser()+"','"+getEmail()+"' , '"+getPassword()+"', '"+getU_a()+"',1);");
         lb.closeConnection();
         if (val>0) return "test";
         else return "test"; 

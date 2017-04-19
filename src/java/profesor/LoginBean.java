@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admins;//aqui haremos el insert
+package profesor;//aqui haremos el insert
 
 /**
  *
@@ -52,6 +52,39 @@ public class LoginBean
         }
         return false;
     }
+    
+    public boolean valida_datos(String username, int id_obra, int id_tipo_obra) throws IOException, SQLException, PropertyVetoException
+    {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DataSource.getInstance().getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select id_usuario from profesor_tiene_obra where id_usuario='"
+                    +username+"' and id_obra='"+id_obra+"' and id_tipo_obra='"+id_tipo_obra+"' and validado=0;");//cambiar nom_prof por id_prof
+            
+            while(resultSet.next())
+            {
+                System.out.println(resultSet.getString("id_usuario"));
+                if(resultSet.getString("id_usuario").equals(username))
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (PropertyVetoException e)
+        {
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
+            if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
+            if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
+        }
+        return false;
+    }
+    
+    
     public void getConnection()throws IOException, SQLException, PropertyVetoException
     {
         try{

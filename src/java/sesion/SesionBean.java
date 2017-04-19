@@ -26,11 +26,11 @@ public class SesionBean {
         try {
             connection = DataSource.getInstance().getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select idTypeUsuario from usuarios where id_prof='"+userName+"';");//cambiar nom_prof y userName
+            resultSet = statement.executeQuery("select id_type_usuario from usuario where id_usuario='"+userName+"';");//cambiar nom_prof y userName
             while(resultSet.next())
             {
-                System.out.println(resultSet.getString("idTypeUsuario"));
-                return user=resultSet.getString("idTypeUsuario");
+                System.out.println(resultSet.getString("id_type_usuario"));
+                return user=resultSet.getString("id_type_usuario");
             }
         } catch (SQLException e) {
             e.printStackTrace();

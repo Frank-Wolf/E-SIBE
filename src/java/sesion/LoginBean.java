@@ -31,7 +31,7 @@ public class LoginBean
         try {
             connection = DataSource.getInstance().getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select password from usuarios where id_prof='"+userName+"';");//cambiar nom_prof por id_prof
+            resultSet = statement.executeQuery("select password from usuario where id_usuario='"+userName+"';");//cambiar nom_prof por id_prof
             /*aqui cambie el id_prof por nom_prof*/
             while(resultSet.next())
             {

@@ -22,6 +22,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Inicio administrador COFAA </title>
     </head>
+    
     <body background="../css/textura.png" class="boding overflow">
         <!--header-->
         <header class="headering">

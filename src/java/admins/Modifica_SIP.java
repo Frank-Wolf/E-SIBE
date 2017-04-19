@@ -81,7 +81,7 @@ public class Modifica_SIP extends ActionSupport {
       }
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("UPDATE usuarios SET nom_prof='"+getUsuario()+"',id_prof='"+getMatricula()+"', password='"+getPassword()+"' WHERE id_prof='"+getId()+"'");
+        int val=lb.executeUpdate("UPDATE usuario SET nom_usuario='"+getUsuario()+"',id_usuario='"+getMatricula()+"', password='"+getPassword()+"' WHERE id_usuario='"+getId()+"'");
         if(val>0) return ret;
         else return "modificar_fallo";
     }

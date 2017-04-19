@@ -234,6 +234,38 @@
             <result>/Admins/Servicio.jsp</result>
         </action>
     </package> 
+    <!--Paquete para las dependencias que registran actividades-->
+    <package name="registrar_actividades" extends="struts-default" namespace="/Usuario">
+        <action name="registra_obra" class="dependencias.RegistraObra">
+            <result name="success">/INDAUTOR/INDAUTOR.jsp</result>
+            <result name="error">/INDAUTOR/INDAUTOR.jsp</result>
+        </action>
+    </package>
+    
+    <!--Paquete para los profesores que validad actividades-->
+    <package name="Valida_actividades" extends="struts-default" namespace="/Usuario">
+        <action name="valida_inda" class="profesor.valida_obra">
+             <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+    </package>
+    
     <!--paquete para las fechas y administrador cofaa-->
     <package name="Fechas_Cofaa" extends="struts-default" namespace="/Usuario">
         <!--acciones para eliminar o modificar las fechas-->

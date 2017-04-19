@@ -113,11 +113,11 @@
                             </li>
                             
                             <!--Actividad 2.4: Proyecto de Investigación SIP-->
-                            <li><a><i class="icono izquierda fa fa-file-text" aria-hidden="true"></i> 
+                            <li><a id="PRO_SIP" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-file-text" aria-hidden="true"></i> 
                                     Actividad 2.4.2: Proyecto SIP </a></li>
                             
                             <!--Actividad 2.5: Registro de propiedad Intelectual-->        
-                            <li><a><i class="icono izquierda fa fa-lock" aria-hidden="true"></i> 
+                            <li><a id="INDAUTOR" onClick="mostrar_formulario(this.id)"><i  class="icono izquierda fa fa-lock" aria-hidden="true"></i> 
                                     Actividad 2.5.2.2: Propiedad Intelectual </a></li>
                             
                                     
@@ -273,11 +273,14 @@
                     </s:div>    
 
                     <!--PROPIEDAD INTELECTUAL FORM-->
-                    <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Obra" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Tipo de Obra" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha del Registro" cssClass="form-control"/>
+                    <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
+                           style="display:none;">    
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:form action="valida_inda" method="post">
+                            <s:textfield name="username" label="Matrícula"/>
+                            <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
+                            <s:textfield name="id_tipo_obra" label="Tipo de Obra" cssClass="form-control"/>
+                            
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
