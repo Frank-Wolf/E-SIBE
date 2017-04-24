@@ -9,6 +9,7 @@
     <constant name="struts.custom.i18n.resources" value="global" />
     <constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/>
     <constant name="struts.multipart.maxSize" value="20000000" /><!--Constante para definir el tamaño de los archivos a subir-->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
         <action name="Sesion" class="sesion.Login_Action">
@@ -356,6 +357,14 @@
         </action>
         <action name="Regresar_cofaa2">
             <result>/COFAA/Registros.jsp</result>
+        </action>
+         <action name="ver_constancia2_5" class="PDF.visualiza_constancia2_5">
+            <result name="success" type="stream">
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">inline;filename="prueba.pdf"</param>
+                <param name="bufferSize">1024</param>
+            </result>
         </action>
     </package>
     <!--package name="Regresar" extends="struts-default" namespace="/COFAA">

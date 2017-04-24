@@ -65,7 +65,7 @@
                         out.print("<h2 class='Titular' align='center'>Lista de actividades del profesor </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
-                    <div class="col-md-6">
+                    <!--div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
                             ResultSet rs=null;
@@ -78,9 +78,6 @@
                             out.print("<th>");
                             out.print("  Boleta de alumno  ");
                             out.print("</th>");
-                             out.print("<th>");
-                            out.print(  "Constancias");
-                            out.print("</th>");
                             out.print("</tr>");
                             while (rs.next())
                             {
@@ -89,16 +86,20 @@
                                 out.print(rs.getString("id_alumno"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href=/login/Usuario/Ver_constancia_alumno></a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                             //stack.getContext().put("varName", i);
                             //stack.setValue("#attr['varName']", i, false);
                         %>
-                    </div>
-                    <div class="col-md-6">
+                    </div-->
+                    <!--div class="col-md-6">
                     <h2 class="h3">2.2 Publicaciones científicas y de divulgación impresas y/o en línea</h2>   
                     <%
                         ResultSet rd=lb.executeQuery("SELECT * "
@@ -117,13 +118,16 @@
                                 out.print(rd.getString("id_publicacion"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href= " + rd.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
-                    </div>
+                    </div-->
                     <!--div class="col-md-6">
                     <h2 class="h3">2.3 Trabajos de investigación presentados en congresos, reuniones y eventos académicos</h2>   
                     <%
@@ -143,7 +147,10 @@
                                 out.print(ra.getString("id_evento"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href= " + ra.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -169,7 +176,10 @@
                                 out.print(rv.getString("id_proyecto"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href= " + rs.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -195,14 +205,17 @@
                                 out.print(rb.getString("id_obra"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///C:" + rb.getString("ruta_alm") + "'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
                     </div>
-                    <div class="col-md-6">
+                    <!--div class="col-md-6">
                     <h2 class="h3">2.11 Direcciones y codirecciones de tésis</h2>   
                     <%
                         ResultSet rn=lb.executeQuery("SELECT * "
@@ -221,14 +234,17 @@
                                 out.print(rn.getString("id_TT"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href= " + rn.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
-                    </div>
-                    <div class="col-md-6">
+                    </div-->
+                    <!--div class="col-md-6">
                     <h2 class="h3">2.12 Coordinación o participación en la elaboración de un plan de estudios</h2>   
                     <%
                         ResultSet rm=lb.executeQuery("SELECT * "
@@ -247,13 +263,16 @@
                                 out.print(rm.getString("id_parteeeewe"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href= " + rm.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             lb.closeConnection();
                     %>
-                    </div>
+                    </div-->
                     
                 </s:div>
             </s:div>  

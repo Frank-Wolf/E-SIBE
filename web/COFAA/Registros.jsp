@@ -74,7 +74,6 @@
                             out.print("</tr>");
                             while (rs.next())
                             {
-                                //i++;
                                 out.print("<tr>");
                                 out.print("<td>");
                                 out.print(rs.getString("id_usuario_prof"));
@@ -86,8 +85,6 @@
                             }
                             out.print("</table>");
                             lb.closeConnection();
-                            //stack.getContext().put("varName", i);
-                            //stack.setValue("#attr['varName']", i, false);
                         %>
                     </div>
                     
