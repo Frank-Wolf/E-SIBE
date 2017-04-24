@@ -69,8 +69,7 @@
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
                             ResultSet rs=null;
-                            //int i = 0;
-                            //ValueStack stack = ActionContext.getContext().getValueStack();
+                            
                             rs=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
                                     + "id_usuario = " + user);
@@ -78,6 +77,9 @@
                             out.print("<tr>");
                             out.print("<th>");
                             out.print("  Boleta de alumno  ");
+                            out.print("</th>");
+                             out.print("<th>");
+                            out.print(  "Constancias");
                             out.print("</th>");
                             out.print("</tr>");
                             while (rs.next())
