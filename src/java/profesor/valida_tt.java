@@ -89,10 +89,12 @@ public class valida_tt extends ActionSupport{
     
          profesor.LoginBean lb = new profesor.LoginBean();
             lb.getConnection();
-            
+            System.out.println(username);
+            System.out.println(id_TT);
+            System.out.println(id_alumno);
             if(lb.valida_TT(username,id_TT,id_alumno))
             {
-                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+getUsername()+"' and id_TT='"+getId_TT()+"';" );
+                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+username+"'and id_alumno='"+id_alumno+"' and id_TT='"+id_TT+"';" );
                 if(acepta>0)
                 {
                     lb.closeConnection();

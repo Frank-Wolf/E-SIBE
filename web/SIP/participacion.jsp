@@ -1,8 +1,9 @@
 <%-- 
-    Document   : BEIFI
-    Created on : 23/04/2017, 09:38:52 AM
+    Document   : participacion
+    Created on : 24/04/2017, 01:09:30 PM
     Author     : le_as
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>
@@ -40,7 +41,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a>Alumno BEIFI</a></li>
+                                <li><a href="Proyecto_sip">Proyecto SIP</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="SIP_Principal">
@@ -52,17 +53,28 @@
 
                 <s:div cssClass="cover-container2">    
                     
-                    <h2 class="titulos">Bienvenido Usuario SIP - Registre Alumno BEIFI</h2>
+                    <h2 class="titulos">Bienvenido Usuario SIP</h2>
                        <div class="col-md-9" align="center">
-                        
-                        <s:form action="registra_BEIFI" method="post">
-                            <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
-                            <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                            <s:textfield name="nom_proyecto" label="Titulo del Proyecto" cssClass="form-control"/>
-                            <s:textfield name="rol_profesor" label="Rol del profesor en el proyecto" cssClass="form-control"/>
-                            <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
-                            <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
+                        <s:set name="u_a" value="%{'SIP'}" />
+                        <s:form action="registra_part_sip" method="post">
+                            <s:textfield name="id_participacion" label="Id de Participacion" cssClass="form-control"/>                           
+                            <s:textfield name="Asignatura" label="Título del proyecto" cssClass="form-control"/>
+                            <s:textfield name="id_usuario" label="No. Empleado del Participante" cssClass="form-control" />
+                            <s:select label="Seleccione el Tipo de participacion" cssClass="form-control"
+                            headerKey="-1" headerValue="tipo de participacion"
+                            list="# {
+                            '1':'Coordinacion en la elaboracion de un plan de estudios',
+                            '2':'Coordinacion en la actualización de un plan de estudios',
+                            '3':'Participacion en la elaboracion de un plan de estudios',
+                            '4':'Participacion en la actualizacion de un plan de estudios',
+                            '5':'Coordinacion en la elaboracion de un programa de estudios',
+                            '6':'Coordinacion en la actualización de un programa de estudios',
+                            '7':'Participacion en la elaboracion de un programa de estudios',
+                            '8':'Participacion en la actualizacion de un programa de estudios'
+                            }"
+                            name="id_tipo_part_plan" />   
                             <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
+                            
                             <s:submit value="Registrar Proyecto" cssClass="btn" />
                         </s:form> 
                                                 
@@ -88,3 +100,4 @@
         <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
+

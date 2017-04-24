@@ -16,7 +16,15 @@ import java.util.Random;
 public class RegistraBEIFI extends ActionSupport
 {   
 
-    private String id_proyecto,nom_alumno;
+    private String id_proyecto,nom_alumno,rol_profesor;
+
+    public String getRol_profesor() {
+        return rol_profesor;
+    }
+
+    public void setRol_profesor(String rol_profesor) {
+        this.rol_profesor = rol_profesor;
+    }
     private int id_alumno,id_usuario;
     private String fecha_reg;
 
@@ -83,18 +91,47 @@ public class RegistraBEIFI extends ActionSupport
          if(lb.valida_alumno(id_alumno))
          {
              System.out.println("update");
-             int rs4 = lb.executeUpdate("update proyecto set id_alumno='"+getId_alumno()+"' where id_proyecto='"+getId_proyecto()+"'");
-             int rs5 = lb.executeUpdate("update profesor_tiene_proyecto set id_alumno='"+getId_alumno()+"' where id_proyecto='"+getId_proyecto()+"'");
              
+                System.out.println(fecha_reg);
+                System.out.println(id_proyecto);
+                System.out.println(id_alumno);
+         
+            String borrau= "delete from profesor_tiene_proyecto where id_usuario='"+id_usuario+"' and id_proyecto='"+id_proyecto+"' and id_alumno='0'";
+            PreparedStatement  borru= conn.prepareStatement (borrau);
+            int boru = borru.executeUpdate();
+            System.out.println("delete listo");
+            
+            int proy= lb.executeUpdate("update proyecto set id_alumno="+id_alumno+" where id_proyecto='"+id_proyecto+"' and id_alumno=0");            
+            System.out.println("update listo");
+            
+            System.out.println("valores para insert");
+            System.out.println(id_usuario);
+            System.out.println(id_alumno);
+            System.out.println(id_proyecto);
+            System.out.println(rol_profesor);
+            int insertau = lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_alumno,id_proyecto,rol_profesor,validado,validado_alumno) values ("+id_usuario+","+id_alumno+",'"+id_proyecto+"','"+rol_profesor+"',0,0) ");
+            
+            int fecha= lb.executeUpdate("update profesor_tiene_proyecto set fecha_val = str_to_date('"+fecha_reg+"',%d-%m-%Y)");
+         
          }
          else
          {           
-         System.out.println("insert y update");    
-            int rs = lb.executeUpdate("insert into alumno (id_alumno, nom_alumno,recibido) values ('"+getId_alumno()+"','"+getNom_alumno()+"',0)");
-            int rs3 = lb.executeUpdate("update proyecto set id_alumno='"+getId_alumno()+"' where id_proyecto='"+getId_proyecto()+"'");
+         System.out.println("insert y update");  
+         System.out.println(fecha_reg);
+            int ins = lb.executeUpdate("insert into alumno (id_alumno, nom_alumno,recibido) values ('"+id_alumno+"','"+nom_alumno+"',0)");
+            int borra= lb.executeUpdate( "delete from profesor_tiene_proyecto where id_usuario='"+id_usuario+"' and id_proyecto='"+id_proyecto+"' and id_alumno='0'");
+            int proy= lb.executeUpdate("update proyecto set id_alumno="+id_alumno+" where id_proyecto='"+id_proyecto+"' and id_alumno=0");
+            int inserta= lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_alumno,id_proyecto,rol_profesor,validado_alumno,fecha_val) values ('"+id_usuario+",'"+id_alumno+"','"+id_proyecto+"' ,'"+rol_profesor+"' ,0,str_to_date('"+fecha_reg+"', '%d-%m-%Y') )");
+            
+            
          }
+           
          
-                   
+         
+         
+         
+
+         
       } catch (Exception e) {
          ret = ERROR;
          System.out.println(e.getMessage());

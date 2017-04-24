@@ -67,8 +67,8 @@ public class LoginBean
             while(resultSet.next())
             {
                 System.out.println(resultSet.getString("id_alumno"));
-                if(resultSet.getString("id_alumno").equals(id_alumno))
-                return false;
+                if(resultSet.getInt("id_alumno")== id_alumno)
+                return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class LoginBean
             if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
             if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
         }
-        return true;
+        return false;
     }
 
     public boolean valida_prof_proyecto(String id_proyecto) throws IOException, SQLException, PropertyVetoException

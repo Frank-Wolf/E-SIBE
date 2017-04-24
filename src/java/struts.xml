@@ -258,7 +258,11 @@
         <action name="registra_TT" class="dependencias.RegistraTT">
             <result name="success">/CATT/CATT.jsp</result>
             <result name="error">/CATT/Reg_TT.jsp</result>    
-            
+        </action>
+        
+        <action name="registra_part_sip" class="dependencias.RegistraParticipacion_sip">
+            <result name="success">/SIP/SIP.jsp</result>
+            <result name="error">/SIP/participacion.jsp</result>
         </action>
         
     </package>
@@ -356,6 +360,11 @@
         <action name="reg_obra">
             <result>/INDAUTOR/registra_obra.jsp</result>
         </action>
+        
+        <action name="part_sip">
+            <result>/SIP/participacion.jsp</result>
+        </action>
+            
         
         <action name="BEIFI">
             <result>/SIP/BEIFI.jsp</result>
