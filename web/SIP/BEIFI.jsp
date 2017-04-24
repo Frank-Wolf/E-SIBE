@@ -1,9 +1,8 @@
 <%-- 
-    Document   : SIP
-    Created on : Feb 8, 2017, 8:07:49 AM
-    Author     : PsysacElrick
+    Document   : BEIFI
+    Created on : 23/04/2017, 09:38:52 AM
+    Author     : le_as
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>
@@ -41,7 +40,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="Proyecto_sip">Proyecto SIP</a></li>
+                                <li><a>Alumno BEIFI</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="SIP_Principal">
@@ -53,22 +52,15 @@
 
                 <s:div cssClass="cover-container2">    
                     
-                    <h2 class="titulos">Bienvenido Usuario SIP</h2>
+                    <h2 class="titulos">Bienvenido Usuario SIP - Registre Alumno BEIFI</h2>
                        <div class="col-md-9" align="center">
-                        <s:set name="id_alumno" value="%{0}" />
-                        <s:form action="registra_proyecto" method="post">
+                        
+                        <s:form action="registra_BEIFI" method="post">
+                            <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
                             <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                            <s:textfield name="nom_proyecto" label="Título del proyecto" cssClass="form-control"/>
-                            <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" />
-                           <s:select label="Seleccione el Rol de Profesor" cssClass="form-control"
-                            headerKey="-1" headerValue="Rol de Profesor"
-                            list="# {
-                            'Coordinador':'Coordinador',
-                            'Colaborador':'Colaborador'
-                            }"
-                            name="rol" />   
+                            <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
+                            <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
                             <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
-                            <s:hidden name="id_alumno" label="id_alumno"/>
                             <s:submit value="Registrar Proyecto" cssClass="btn" />
                         </s:form> 
                                                 
@@ -94,4 +86,3 @@
         <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
-

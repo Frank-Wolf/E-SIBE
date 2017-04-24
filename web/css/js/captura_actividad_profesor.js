@@ -9,6 +9,10 @@ function limpia()
     alert("no es temporada de apelaciones");
 }
 
+function dos()
+{
+    document.getElementById("autor_2").style.display = "block";
+}
 
 function mostrar_formulario(clicked_id)
 {

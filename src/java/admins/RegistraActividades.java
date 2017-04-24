@@ -17,7 +17,17 @@ import java.util.Random;
 
 public class RegistraActividades extends ActionSupport {
 
-   private String date1, date2;
+   private String date1, date2,username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+   
+   
    Random rand = new Random();
    int  n = rand.nextInt(500) + 1;
    public String execute() {
@@ -27,9 +37,10 @@ public class RegistraActividades extends ActionSupport {
          String URL = "jdbc:mysql://localhost:3306/esibe";
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "insert into fecha_actividades (id_fecha, fecha_inicio, fecha_fin) values ";//probar con select*
-         sql+=" (?, str_to_date(?, '%d-%m-%Y'), str_to_date(?, '%d-%m-%Y'))";
+         String sql = "insert into fecha_actividades (id_fecha, fecha_inicio, fecha_fin,id_usuario) values ";//probar con select*
+         sql+=" (?, str_to_date(?, '%d-%m-%Y'), str_to_date(?, '%d-%m-%Y'),'"+username+"')";
          System.out.println(date1);
+         System.out.println(username);
          PreparedStatement ps = conn.prepareStatement(sql);
          ps.setInt(1, n);
          ps.setString(2, date1);

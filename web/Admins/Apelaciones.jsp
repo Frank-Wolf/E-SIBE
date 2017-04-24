@@ -29,7 +29,7 @@
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
             </s:div>
         </header>  
-        <b><%=request.getParameter("token")%></b>
+        
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
             <s:div cssClass="site-wrapper-inner">
@@ -56,8 +56,10 @@
                 </s:div>
                 <div class="col-md-6">
                     <s:form action="Registra_apelaciones" method="post">
+                        <s:set var="username" value="%{#session.username}" />
                         <sj:datepicker name="date1" label="Fecha de inicio" displayFormat="dd-mm-yy"/>
                         <sj:datepicker name="date2" label="Fecha de finalización" displayFormat="dd-mm-yy"/>
+                        <s:hidden name="username"/>
                         <s:submit value="Registrar fechas" name="submit" />
                     </s:form> 
                 </div>

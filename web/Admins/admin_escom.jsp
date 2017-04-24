@@ -67,8 +67,8 @@
                             String mystring = username;
                              ResultSet rs=null;
                              lb.getConnection();
-                             rs=lb.executeQuery("SELECT nom_prof, u_a, id_prof "
-                                     + "FROM usuarios WHERE id_prof = " 
+                             rs=lb.executeQuery("SELECT nom_usuario, u_a, id_usuario "
+                                     + "FROM usuario WHERE id_usuario = " 
                                      + mystring);
                              out.print("<table  class=' table "
                                      + "table-container table-striped "
@@ -79,7 +79,7 @@
                                  out.print("Nombre de profesor");
                                  out.print("</th>");
                                  out.print("<td>");
-                                 out.print(rs.getString("nom_prof"));
+                                 out.print(rs.getString("nom_usuario"));
                                  out.print("</td>");
 
                                  out.print("</tr>");
@@ -88,7 +88,7 @@
                                  out.print("No. de Empleado");
                                  out.print("</th>");
                                  out.print("<td>");
-                                 out.print(rs.getString("id_prof"));
+                                 out.print(rs.getString("id_usuario"));
                                  out.print("</td>");
                                  
                                  out.print("</tr>");

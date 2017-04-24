@@ -45,11 +45,11 @@
                     sesion.setAttribute("id",user);
                     ResultSet rs=null;
                     lb.getConnection();
-                    rs=lb.executeQuery("SELECT * FROM usuarios WHERE "
-                            + "id_prof='"+user+"'");
+                    rs=lb.executeQuery("SELECT * FROM usuario WHERE "
+                            + "id_usuario='"+user+"'");
                     rs.next();
-                        String id_user=rs.getString("nom_prof");
-                        String id_prof=rs.getString("id_prof");
+                        String id_user=rs.getString("nom_usuario");
+                        String id_prof=rs.getString("id_usuario");
                         String id_password=rs.getString("password");
                     lb.closeConnection();
                     %>

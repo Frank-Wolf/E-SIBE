@@ -37,7 +37,7 @@
                     
         
                     <%@ page import="java.sql.*" %>
-                    <!--jsp:useBean-->
+                    <!--jsp:useBean--->
                     <jsp:useBean id="lb" scope="session" 
                                  class="sesion.LoginBean"></jsp:useBean>
                     <%

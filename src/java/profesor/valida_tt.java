@@ -16,10 +16,14 @@ import sesion.*;
  *
  * @author le_as
  */
-public class valida_obra extends ActionSupport{
+public class valida_tt extends ActionSupport{
     String test;
-    private String id_obra,username;
-    private int  id_tipo_obra;
+    private File myFile;
+    private String myFileContentType;
+    private String myFileFileName;
+    private String destPath;
+    private String username;
+    private int id_TT, id_alumno;
 
     public File getMyFile() {
         return myFile;
@@ -53,25 +57,22 @@ public class valida_obra extends ActionSupport{
         this.destPath = destPath;
     }
     
-    private File myFile;
-    private String myFileContentType;
-    private String myFileFileName;
-    private String destPath;
+    
            
-    public String getId_obra() {
-        return id_obra;
+    public int getId_TT() {
+        return id_TT;
     }
 
-    public void setId_obra(String id_obra) {
-        this.id_obra = id_obra;
+    public void setId_TT(int id_TT) {
+        this.id_TT = id_TT;
     }
 
-    public int getId_tipo_obra() {
-        return id_tipo_obra;
+    public int getId_alumno() {
+        return id_alumno;
     }
 
-    public void setId_tipo_obra(int id_tipo_obra) {
-        this.id_tipo_obra = id_tipo_obra;
+    public void setId_alumno(int id_alumno) {
+        this.id_alumno = id_alumno;
     }
 
     public String getUsername() {
@@ -89,9 +90,9 @@ public class valida_obra extends ActionSupport{
          profesor.LoginBean lb = new profesor.LoginBean();
             lb.getConnection();
             
-            if(lb.valida_obra(username,id_obra))
+            if(lb.valida_TT(username,id_TT,id_alumno))
             {
-                int acepta=lb.executeUpdate("update profesor_tiene_obra set validado=1 where id_usuario='"+getUsername()+"';" );
+                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+getUsername()+"';" );
                 if(acepta>0)
                 {
                     lb.closeConnection();

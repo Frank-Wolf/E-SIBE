@@ -4,6 +4,7 @@
     Author     : PsysacElrick
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
@@ -39,7 +40,8 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="Proyecto_sip y alumnos BEIFI">Proyecto SIP</a></li>
+                                <li><a href="BEIFI">Alumno BEIFI</a></li>
+                                <li><a href="Proyecto_sip">Proyecto SIP</a></li>
                                 <li><a href="#">Arbitraje de publicación</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -53,19 +55,73 @@
 
                 
                 
-                <s:div cssClass="cover-container2">    
+                <div class="cover-container2 ">    
+                    <div class="container">
+                        <div class="row ">
+                    <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
+                         col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
+                         col-sm-offset-2 ">
+
+                        <h2 class="titulos">Bienvenido Administrador SIP</h2>
+                        
+                        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+                        <s:set var="username" value="%{#session.username}" />
+                        <jsp:useBean id="username" type="java.lang.String"/>
+                            <%
+                            String mystring = username;
+                             ResultSet rs=null;
+                             lb.getConnection();
+                             rs=lb.executeQuery("SELECT nom_usuario, u_a, id_usuario "
+                                     + "FROM usuario WHERE id_usuario = " 
+                                     + mystring);
+                             out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                             while (rs.next()){
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("Nombre de profesor");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("nom_usuario"));
+                                 out.print("</td>");
+
+                                 out.print("</tr>");
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("No. de Empleado");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("id_usuario"));
+                                 out.print("</td>");
+                                 
+                                 out.print("</tr>");
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("Dependencia");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("u_a"));    
+                                 out.print("</td>");
                     
+                                 out.print("</tr>");
+
+                             }
+                             out.print("</table>");
+                             lb.closeConnection();
+                            %>
+                        </div>    
+                    </div>
                     
+                            
+                        </div>
+                    </div> 
+                    <!-- Tabla donde se muestran los usuarios Activos-->    
+
                     
-                    
-                    <h2 class="titulos">Bienvenido Usuario SIP</h2>
-                    
-                    
-                </s:div>
             </s:div>  
-              
         </s:div>        
-        
+
         
        <!--footer-->
         <footer class="footer abso">
