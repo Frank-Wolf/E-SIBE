@@ -22,8 +22,8 @@ public class valida_tt extends ActionSupport{
     private String myFileContentType;
     private String myFileFileName;
     private String destPath;
-    private String username;
-    private int id_TT, id_alumno;
+    private String id_TT,username;
+    private int  id_alumno;
 
     public File getMyFile() {
         return myFile;
@@ -59,11 +59,11 @@ public class valida_tt extends ActionSupport{
     
     
            
-    public int getId_TT() {
+    public String getId_TT() {
         return id_TT;
     }
 
-    public void setId_TT(int id_TT) {
+    public void setId_TT(String id_TT) {
         this.id_TT = id_TT;
     }
 
@@ -92,7 +92,7 @@ public class valida_tt extends ActionSupport{
             
             if(lb.valida_TT(username,id_TT,id_alumno))
             {
-                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+getUsername()+"';" );
+                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+getUsername()+"' and id_TT='"+getId_TT()+"';" );
                 if(acepta>0)
                 {
                     lb.closeConnection();

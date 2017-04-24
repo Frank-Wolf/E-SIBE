@@ -99,11 +99,11 @@ public class RegistraTT extends ActionSupport
          String URL = "jdbc:mysql://localhost:3306/esibe";
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "insert into alumno (id_alumno, nom_alumno) values ";//probar con select*
-         sql+=" ('"+getId_alumno()+"','"+getNom_alumno()+"')";
+         String sql = "insert into alumno (id_alumno, nom_alumno,recibido) values ";//probar con select*
+         sql+=" ('"+getId_alumno()+"','"+getNom_alumno()+"',1)";
          
-         String tt = "insert into tt(id_TT,folio,nom_TT,fecha_pro) values ";
-         tt += "('"+getId_TT()+"','0','"+getNom_TT()+"',str_to_date(?, '%d-%m-%Y'))";
+         String tt = "insert into tt(id_TT,nom_TT,fecha_pro) values ";
+         tt += "('"+getId_TT()+"','"+getNom_TT()+"',str_to_date(?, '%d-%m-%Y'))";
          
          String val="INSERT INTO profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val) VALUES";
          val+=" ('"+getId_usuario()+"','"+getId_TT()+"','"+getId_alumno()+"',0,str_to_date(?,'%d-%m-%Y'))";

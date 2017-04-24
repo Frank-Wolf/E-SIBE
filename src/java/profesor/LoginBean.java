@@ -117,7 +117,7 @@ public class LoginBean
     }
     
     
-        public boolean valida_TT(String username, int id_TT, int id_alumno) throws IOException, SQLException, PropertyVetoException
+        public boolean valida_TT(String username, String id_TT, int id_alumno) throws IOException, SQLException, PropertyVetoException
     {
         Connection connection = null;
         Statement statement = null;
@@ -125,13 +125,13 @@ public class LoginBean
         try {
             connection = DataSource.getInstance().getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select id_usuario from profesor_tiene_tt where id_usuario='"
+            resultSet = statement.executeQuery("select id_usuario,id_TT,id_alumno from profesor_tiene_tt where id_usuario='"
                     +username+"' and id_TT='"+id_TT+"' and id_alumno='"+id_alumno+"' and validado = 0;");//cambiar nom_prof por id_prof
             
             while(resultSet.next())
             {
                 System.out.println(resultSet.getString("id_usuario"));
-                if(resultSet.getString("id_usuario").equals(username))
+                if(resultSet.getString("id_usuario").equals(username)&&resultSet.getString("id_TT").equals(id_TT)&&resultSet.getString("id_alumno").equals(id_alumno))
                 return true;
             }
         } catch (SQLException e) {

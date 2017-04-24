@@ -104,10 +104,10 @@ public class RegistraProyecto extends ActionSupport
              System.out.println(id_usuario);
              System.out.println(id_usuario);
              System.out.println(id_usuario);
-             System.out.println(id_usuario);
+             System.out.println(id_alumno);
              
-              String val2="INSERT INTO profesor_tiene_proyecto(id_usuario,id_proyecto,rol_profesor,validado,id_alumno,fecha_val) VALUES";
-         val2+=" ('"+getId_usuario()+"','"+getId_proyecto()+"','"+getRol()+"',0,0,str_to_date(?, '%d-%m-%Y'))";
+              String val2="INSERT INTO profesor_tiene_proyecto(id_usuario,id_proyecto,id_alumno,rol_profesor,validado,fecha_val) VALUES";
+         val2+=" ('"+getId_usuario()+"','"+getId_proyecto()+"',0,'"+getRol()+"',0,str_to_date(?, '%d-%m-%Y'))";
              System.out.println(id_usuario);
              PreparedStatement ps3 = conn.prepareStatement (val2);
              ps3.setString(1, fecha_reg);
@@ -116,15 +116,16 @@ public class RegistraProyecto extends ActionSupport
          }
          else{
          String sql = "insert into proyecto (id_proyecto,id_alumno, nom_proyecto, fecha_reg) values ";//probar con select*
-         sql+=" ('"+getId_proyecto()+"','"+getId_alumno()+"','"+getNom_proyecto()+"',str_to_date(?, '%d-%m-%Y'))";
+         sql+=" ('"+getId_proyecto()+"','0','"+getNom_proyecto()+"',str_to_date(?, '%d-%m-%Y'))";
          
-         String val="INSERT INTO profesor_tiene_proyecto(id_usuario,id_proyecto,rol_profesor,validado,id_alumno,fecha_val) VALUES";
-         val+=" ('"+getId_usuario()+"','"+getId_proyecto()+"','"+getRol()+"',0,0,str_to_date(?, '%d-%m-%Y'))";
+         String val="INSERT INTO profesor_tiene_proyecto(id_usuario,id_proyecto,id_alumno,rol_profesor,validado,fecha_val) VALUES";
+         val+=" ('"+id_usuario+"','"+id_proyecto+"','"+id_alumno+"','"+rol+"',0,str_to_date(?, '%d-%m-%Y'))";
          
          actividad="profesor_tiene_proyecto";
-         System.out.println(actividad);
-         System.out.println(fecha_reg);
          System.out.println(id_usuario);
+         System.out.println(id_proyecto);
+         System.out.println(id_alumno);
+         System.out.println(rol);
          PreparedStatement ps = conn.prepareStatement(sql);
          PreparedStatement ps2 = conn.prepareStatement (val);
          
