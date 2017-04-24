@@ -35,12 +35,12 @@
                 <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Usuario COFAA</a>
+                            <a class="navbar-brand" >E-SIBE: Evaluador COFAA</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Ver registros</a></li>
-                                <li><a href="#">Modificaciones recientes</a></li>
+                                <li><a href="ver_registros">Ver registros</a></li>
+                                <li><a href="apelaciones_cofaa">Modificaciones recientes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">

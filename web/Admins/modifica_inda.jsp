@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +34,7 @@
                     <h2 class="titulos" align="center">
                         Ingrese los cambios deseados al usuario INDAUTOR</h2>
         
-                    <%@ page import="java.sql.*" %>
+                    
                     <!--jsp:useBean-->
                     <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
                     <%

@@ -6,7 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@taglib prefix="sj" uri="/struts-jquery-tags" %>  
+<%@taglib prefix="sj" uri="/struts-jquery-tags" %> 
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,7 +63,6 @@
                 </div>
                     <div class="col-md-6">
                         <h2 class="h3"><b>Fechas de evaluaciones</b></h2>
-                        <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lf" scope="session" 
                                      class="sesion.LoginBean"></jsp:useBean>
                         <%

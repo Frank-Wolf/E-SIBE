@@ -1,11 +1,12 @@
 <%-- 
-    Document   : SIP
-    Created on : Feb 8, 2017, 8:07:49 AM
+    Document   : Apelaciones_cofaa
+    Created on : Apr 19, 2017, 7:46:37 PM
     Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,16 +36,13 @@
                 <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Usuario SIP</a>
+                            <a class="navbar-brand" >E-SIBE: Evaluador COFAA</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Proyecto_sip">Registro de Proyecto SIP y alumnos BEIFI</a></li>
-                                <li><a href="#">Arbitraje de publicación</a></li>
-                            </ul>
+
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="Cerrar_sesion">
-                                      Cerrar Sesion</a></li>
+                              <li><a href="Regresar_cofaa">
+                                      Regresar</a></li>
                             </ul>
                           </div>
                     </div>
@@ -54,11 +52,7 @@
                 
                 
                 <s:div cssClass="cover-container2">    
-                    
-                    
-                    
-                    
-                    <h2 class="titulos">Bienvenido Usuario SIP</h2>
+                    <h2 class="Titular" align="center"> Seleccione la apelación que se desee realizar </h2>
                     
                     
                 </s:div>
@@ -67,12 +61,11 @@
         </s:div>        
         
         
-       <!--footer-->
+        <!--footer-->
         <footer class="footer abso">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
-        
         
                     <!-- Scripts para Bootstrap -->
         <script src="../css/js/jquery.js" type="text/javascript"></script>

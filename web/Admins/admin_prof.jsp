@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -80,7 +81,6 @@
                     <div class="col-md-6">
                         <h3 class="subtitulos">Lista de usuarios SIP activos</h3>
                     
-                        <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lb" scope="session" 
                                      class="sesion.LoginBean"></jsp:useBean>
                         <%

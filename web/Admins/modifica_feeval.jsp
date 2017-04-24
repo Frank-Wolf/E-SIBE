@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %> 
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,7 +49,6 @@
                 <s:div cssClass="cover-container2">    
                     <h2 class="titulos">Ingrese las nuevas fechas para el periodo</h2>   
                 </s:div>
-                <%@ page import="java.sql.*" %>
                 <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
                 <%
                     String fecha=request.getParameter("id");

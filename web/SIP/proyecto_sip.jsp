@@ -38,10 +38,7 @@
                             <a class="navbar-brand" >E-SIBE: Usuario SIP</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Proyecto_sip y alumnos BEIFI">Proyecto SIP</a></li>
-                                <li><a href="#">Arbitraje de publicación</a></li>
-                            </ul>
+                            <a class="navbar-brand" >Registro de proyecto SIP</a>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">
                                       Cerrar Sesion</a></li>

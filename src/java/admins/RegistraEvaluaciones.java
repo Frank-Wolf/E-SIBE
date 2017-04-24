@@ -9,10 +9,8 @@ package admins;
  *
  * @author PsysacElrick
  */
-import static com.opensymphony.xwork2.Action.ERROR;
-import static com.opensymphony.xwork2.Action.SUCCESS;
-import java.sql.*;
 import com.opensymphony.xwork2.ActionSupport;
+import java.sql.ResultSet;
 import java.util.Random;
 
 public class RegistraEvaluaciones extends ActionSupport {
@@ -20,35 +18,60 @@ public class RegistraEvaluaciones extends ActionSupport {
    private String date1, date2;
    Random rand = new Random();
    int  n = rand.nextInt(500) + 1;
-   public String execute() {
-      String ret = SUCCESS;
-      Connection conn = null;
-      try {
-         String URL = "jdbc:mysql://localhost:3306/esibe";
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "insert into fecha_evaluaciones (id_fecha, fecha_inicio, fecha_fin) values ";//probar con select*
-         sql+=" (?, str_to_date(?, '%d-%m-%Y'), str_to_date(?, '%d-%m-%Y'))";
-         System.out.println(date1);
-         PreparedStatement ps = conn.prepareStatement(sql);
-         ps.setInt(1, n);
-         ps.setString(2, date1);
-         ps.setString(3, date2);
-         
-         int rs = ps.executeUpdate();
-      } catch (Exception e) {
-         ret = ERROR;
-         System.out.println(e.getMessage());
-      } finally {
-         if (conn != null) {
-            try {
-               conn.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-         }
-      }
-      return ret;
+   int p = 0, e = 0, d, r;//p -->professor  e---> evaluator    d -->division r --> residue  i -->counter
+   int ps = 0;//counter that will be positioning the array
+   String[] profesores = new String[100], evaluadores = new String[100];
+   @Override
+   public String execute() throws Exception{
+       LoginBean lb = new LoginBean();
+       ResultSet rs, rp, re;//rs --> verification date   rp-->get number of prof re-->get number of evaluator
+       lb.getConnection();
+       rs = lb.executeQuery("SELECT fecha_inicio, fecha_fin FROM fecha_evaluaciones");
+       
+       while(rs.next()) {
+           lb.closeConnection();
+           return "existe_evalu";
+        }
+       int ra = lb.executeUpdate("INSERT INTO fecha_evaluaciones (id_fecha, fecha_inicio, fecha_fin) VALUES"
+               + "(" + n + ", str_to_date('" + getDate1() + "', '%d-%m-%Y'), str_to_date('" + getDate2() + "', '%d-%m-%Y'))");
+       if(ra > 0){
+           //llamar a la función que asignará los profesores a los evaluadores
+           rp = lb.executeQuery("SELECT * FROM profesor");
+           while(rp.next()){
+               profesores[p] = rp.getString("id_usuario");
+               p++;
+           }
+           re = lb.executeQuery("SELECT * FROM evaluador");
+           while(re.next()){
+               evaluadores[e] = re.getString("id_usuario");
+               e++;
+           }
+           d = p / e;//get the division between professors and evaluators
+           r = p % e;//get residue of the division
+           for(int i = 0; i < e; i++){
+               for(int j = 0; j < d; j++){
+                   int ri = lb.executeUpdate("INSERT INTO evaluador_evalua_profesor(id_usuario_ev, "
+                           + "id_usuario_prof, puntaje_final) VALUES"
+                           + "('" + evaluadores[i] + "', '" + profesores[ps] + "', 0)");
+                   ps++;
+               }
+           }
+           if(r != 0){
+               for(int i = 0; i < r; i++){
+                   int ri2 = lb.executeUpdate("INSERT INTO evaluador_evalua_profesor(id_usuario_ev, "
+                           + "id_usuario_prof, puntaje_final) VALUES"
+                           + "('" + evaluadores[r] + "', '" + profesores[ps] + "', 0)");
+                   ps++;
+                }
+           }
+           //Aquí finaliza
+           lb.closeConnection();
+           return "success";
+       }
+       else{
+           lb.closeConnection();
+           return "fail";
+        }
    }
    public String getDate1() {
         return date1;

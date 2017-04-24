@@ -80,8 +80,8 @@
                                 String mystring = username;
                                  ResultSet rs=null;
                                  lb.getConnection();
-                                 rs=lb.executeQuery("SELECT nom_prof, u_a, puntaje "
-                                         + "FROM usuarios WHERE id_prof = " 
+                                 rs=lb.executeQuery("SELECT nom_usuario, u_a "
+                                         + "FROM usuario WHERE id_usuario = " 
                                          + mystring);
                                  out.print("<table  class='table table-striped table-condensed'>");
                                  while (rs.next()){
@@ -90,7 +90,7 @@
                                      out.print("Nombre de profesor");
                                      out.print("</th>");
                                      out.print("<td>");
-                                     out.print(rs.getString("nom_prof"));
+                                     out.print(rs.getString("nom_usuario"));
                                      out.print("</td>");
                                      out.print("</tr>");
                                      out.print("<tr>");
@@ -99,14 +99,6 @@
                                      out.print("</th>");
                                      out.print("<td>");
                                      out.print(rs.getString("u_a"));    
-                                     out.print("</td>");
-                                     out.print("</tr>");
-                                     out.print("<tr>");
-                                     out.print("<th>");
-                                     out.print("Puntaje");
-                                     out.print("</th>");
-                                     out.print("<td>");
-                                     out.print(rs.getString("puntaje"));
                                      out.print("</td>");
                                      out.print("</tr>");
                                      
