@@ -37,7 +37,8 @@
                         Ingrese los cambios deseados al usuario Evaluador</h2>
                     
         
-                    <!--jsp:useBean-->
+                    <%@ page import="java.sql.*" %>
+                    <!--jsp:useBean--->
                     <jsp:useBean id="lb" scope="session" 
                                  class="sesion.LoginBean"></jsp:useBean>
                     <%
@@ -62,7 +63,7 @@
                         <s:textfield label="Nombre de Usuario" name="usuario" value="%{#id_user}" cssClass="form-control"/>
                         <br>
                         <s:set var="id_prof"><%=id_prof%></s:set>
-                        <s:textfield label="No. de Empleado" name="matricula" value="%{#id_prof}" cssClass="form-control" />
+                        <!--s:textfield label="No. de Empleado" name="matricula" value="%{#id_prof}" cssClass="form-control" /-->
                         <br>
                         <s:set var="id_ua"><%=id_ua%></s:set>
                         <s:select label="Seleccione una dependencia" cssClass="form-control"

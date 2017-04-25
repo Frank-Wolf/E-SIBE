@@ -15,7 +15,16 @@ import java.util.Random;
 
 public class RegistraApelaciones extends ActionSupport {
 
-   private String date1, date2;
+   private String date1, date2,username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+   
    Random rand = new Random();
    int  n = rand.nextInt(500) + 1;
    @Override
@@ -27,8 +36,8 @@ public class RegistraApelaciones extends ActionSupport {
            lb.closeConnection();
            return "existe_evalu";
         }
-       int ra = lb.executeUpdate("INSERT INTO fecha_apelaciones (id_fecha, fecha_inicio, fecha_fin) VALUES"
-               + "(" + n + ", str_to_date('" + getDate1() + "', '%d-%m-%Y'), str_to_date('" + getDate2() + "', '%d-%m-%Y'))");
+       int ra = lb.executeUpdate("INSERT INTO fecha_apelaciones (id_fecha, fecha_inicio, fecha_fin, id_usuario) VALUES"
+               + "(" + n + ", str_to_date('" + getDate1() + "', '%d-%m-%Y'), str_to_date('" + getDate2() + "', '%d-%m-%Y'), '" + username + "')");
        if(ra > 0){
            lb.closeConnection();
            //llamar a la función que asignará los profesores a los evaluadores

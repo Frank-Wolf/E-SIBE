@@ -264,10 +264,12 @@
                     </s:div>  
                 
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
-                    <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Proyecto de Investigación" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha de Proyecto" cssClass="form-control"/>
+                    <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
+                           style="display:none;">    
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:form action="valida_proyecto" method="post">
+                            <s:hidden name="username" label="Matrícula"/>
+                            <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
@@ -276,31 +278,32 @@
                     <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
+                        <s:set name="actividad" value="%{'Obra'}"/>
                         <s:form action="valida_inda" method="post">
-                            <s:textfield name="username" label="Matrícula"/>
+                            <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
-                            <s:textfield name="id_tipo_obra" label="Tipo de Obra" cssClass="form-control"/>
-                            
+                            <s:hidden name="actividad" label="Actividad"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
 
                     <!--TESIS FORM-->
                     <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Tésis" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha de Titulación del Alumno" cssClass="form-control"/>
+                        <s:form action="valida_tt" method="post">
+                            <s:hidden name="username" label="Matrícula"/>
+                            <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
+                            <s:textfield name="id_alumno" label="Numero de boleta del Alumno" cssClass="form-control"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
 
                     <!--TT_CURRICULAR FORM-->
                     <s:div id="TT_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Trabajo Terminal" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha de Titulación del Alumno" cssClass="form-control"/>
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:form action="valida_tt" method="post">
+                            <s:hidden name="username" label="Matrícula"/>
+                            <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
+                            <s:textfield name="id_alumno" label="Numero de boleta del Alumno" cssClass="form-control"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    

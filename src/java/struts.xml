@@ -92,14 +92,14 @@
         </action> 
         
         <!--Registra COFAA-->
-        <action name="Registra_COFAA" class="admins.regusuario_sip">
+        <action name="Registra_COFAA" class="admins.regusuario_cofaa">
             <result name="success">/Admins/cofaa_regExi.jsp</result>
             <result name="test">/Admins/usuarios_cofaa.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
         <!--Borra COFAA-->
-        <action name="Borrar_COFAA" class="admins.Borrarusuario_SIP">
+        <action name="Borrar_COFAA" class="admins.Borrarusuario_cofaa">
             <result name="borrar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
@@ -176,6 +176,9 @@
         <action name="Inda_registro">
             <result>/Admins/admin_inda.jsp</result>
         </action>
+        <action name="Reg_TT">
+            <result>/CATT/Reg_TT.jsp</result>
+        </action>
         <action name="Cofaa_registro">
             <result>/Admins/usuarios_cofaa.jsp</result>
         </action>
@@ -237,31 +240,48 @@
     </package> 
     <!--Paquete para las dependencias que registran actividades-->
     <package name="registrar_actividades" extends="struts-default" namespace="/Usuario">
+        
+        <action name="registra_BEIFI" class="dependencias.RegistraBEIFI">
+            <result name="success">/SIP/SIP.jsp</result>
+            <result name="error">/SIP/BEIFI.jsp</result>
+        </action>
+        
         <action name="registra_obra" class="dependencias.RegistraObra">
             <result name="success">/INDAUTOR/INDAUTOR.jsp</result>
             <result name="error">/INDAUTOR/INDAUTOR.jsp</result>
         </action>
+        
+        <action name="registra_proyecto" class="dependencias.RegistraProyecto">
+            <result name="success">/SIP/SIP.jsp</result>
+            <result name="error">/SIP/proyecto_sip.jsp</result>
+        </action>
+        
+        <action name="registra_TT" class="dependencias.RegistraTT">
+            <result name="success">/CATT/CATT.jsp</result>
+            <result name="error">/CATT/Reg_TT.jsp</result>    
+        </action>
+        
+        <action name="registra_part_sip" class="dependencias.RegistraParticipacion_sip">
+            <result name="success">/SIP/SIP.jsp</result>
+            <result name="error">/SIP/participacion.jsp</result>
+        </action>
+        
     </package>
     
     <!--Paquete para los profesores que validad actividades-->
     <package name="Valida_actividades" extends="struts-default" namespace="/Usuario">
         <action name="valida_inda" class="profesor.valida_obra">
-             <interceptor-ref name="exception"/>
-            <interceptor-ref name="i18n"/>
-            <interceptor-ref name="fileUpload">
-                <param name="maximumSize">10485760</param>
-                <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
-            </interceptor-ref>
-            <interceptor-ref name="params">
-                <param name="excludeParams">dojo\..*,^struts\..*</param>
-            </interceptor-ref>
-            <interceptor-ref name="validation">
-                <param name="excludeMethods">input,back,cancel,browse</param>
-            </interceptor-ref>
-            <interceptor-ref name="workflow">
-                <param name="excludeMethods">input,back,cancel,browse</param>
-            </interceptor-ref>
+             
+            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
+        <action name="valida_proyecto" class="profesor.valida_proyecto">
+            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
+        <action name="valida_tt" class="profesor.valida_tt">
             <result name="test">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
@@ -332,9 +352,32 @@
              <result>/Admins/admin_cofaa.jsp</result>
         </action>
         <!--Administracion de usuarios COFAA-->
-        <action name="Admin_usuarios" >
-            <result>/Admins/usuarios_cofaa.jsp</result>
+        <action name="Admin_usuarios" class="admins.verifica_fecha_usuario" >
+            <result name="success">/Admins/usuarios_cofaa.jsp</result>
+            <result name="denied">/Admins/no_evaluadores_permitido.jsp</result>
         </action>
+        
+        <action name="SIP_Principal">
+            <result>/SIP/SIP.jsp</result>
+        </action>
+        
+        <action name="Menu_INDA">
+            <result>/INDAUTOR/INDAUTOR.jsp</result>
+        </action>
+        
+        <action name="reg_obra">
+            <result>/INDAUTOR/registra_obra.jsp</result>
+        </action>
+        
+        <action name="part_sip">
+            <result>/SIP/participacion.jsp</result>
+        </action>
+            
+        
+        <action name="BEIFI">
+            <result>/SIP/BEIFI.jsp</result>
+        </action>
+        
     </package> 
     <package name="Paquete_sip" extends="struts-default" namespace="/Usuario">
         <action name="Proyecto_sip">
@@ -343,11 +386,13 @@
     </package>
     <!--Paquete para el evaluador cofaa y el administrador, en el que se harán los reportes y se calificará-->
     <package name="Paquete_cofaa" extends="struts-default" namespace="/Usuario">
-        <action name="ver_registros">
-            <result>/COFAA/Registros.jsp</result>
+        <action name="ver_registros" class="dependencias.verifica_fechaEva">
+            <result name="success">/COFAA/Registros.jsp</result>
+            <result name="denied">/COFAA/No_evalua.jsp</result>
         </action>
-        <action name="apelaciones_cofaa">
-            <result>/COFAA/Apelaciones_cofaa.jsp</result>
+        <action name="apelaciones_cofaa" class="dependencias.Verifica_fechaApela">
+            <result name="success">/COFAA/Apelaciones_cofaa.jsp</result>
+            <result name="denied">/COFAA/No_apelacion.jsp</result>
         </action>
         <action name="Regresar_cofaa">
             <result>/COFAA/COFAA.jsp</result>

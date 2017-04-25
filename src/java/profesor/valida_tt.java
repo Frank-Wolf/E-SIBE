@@ -5,16 +5,25 @@
  */
 package profesor;
 
+import static com.opensymphony.xwork2.Action.ERROR;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import sesion.*;
 /**
  *
  * @author le_as
  */
-public class valida_obra extends ActionSupport{
+public class valida_tt extends ActionSupport{
     String test;
-    private String id_obra,username;
-    private int  id_tipo_obra;
+    private File myFile;
+    private String myFileContentType;
+    private String myFileFileName;
+    private String destPath;
+    private String id_TT,username;
+    private int  id_alumno;
 
     public File getMyFile() {
         return myFile;
@@ -48,25 +57,22 @@ public class valida_obra extends ActionSupport{
         this.destPath = destPath;
     }
     
-    private File myFile;
-    private String myFileContentType;
-    private String myFileFileName;
-    private String destPath;
+    
            
-    public String getId_obra() {
-        return id_obra;
+    public String getId_TT() {
+        return id_TT;
     }
 
-    public void setId_obra(String id_obra) {
-        this.id_obra = id_obra;
+    public void setId_TT(String id_TT) {
+        this.id_TT = id_TT;
     }
 
-    public int getId_tipo_obra() {
-        return id_tipo_obra;
+    public int getId_alumno() {
+        return id_alumno;
     }
 
-    public void setId_tipo_obra(int id_tipo_obra) {
-        this.id_tipo_obra = id_tipo_obra;
+    public void setId_alumno(int id_alumno) {
+        this.id_alumno = id_alumno;
     }
 
     public String getUsername() {
@@ -83,10 +89,12 @@ public class valida_obra extends ActionSupport{
     
          profesor.LoginBean lb = new profesor.LoginBean();
             lb.getConnection();
-            
-            if(lb.valida_obra(username,id_obra))
+            System.out.println(username);
+            System.out.println(id_TT);
+            System.out.println(id_alumno);
+            if(lb.valida_TT(username,id_TT,id_alumno))
             {
-                int acepta=lb.executeUpdate("update profesor_tiene_obra set validado=1 where id_usuario='"+getUsername()+"';" );
+                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+username+"'and id_alumno='"+id_alumno+"' and id_TT='"+id_TT+"';" );
                 if(acepta>0)
                 {
                     lb.closeConnection();

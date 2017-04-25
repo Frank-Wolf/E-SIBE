@@ -52,9 +52,11 @@
                     <h2 class="titulos">Registre las fechas para el registro de las actividades</h2>   
                 </s:div>
                 <div class="col-md-6">
+                    <s:set var="username" value="%{#session.username}" />
                     <s:form action="Registra_actividades" method="post">
                         <sj:datepicker name="date1" label="Fecha de inicio" displayFormat="dd-mm-yy"/>
                         <sj:datepicker name="date2" label="Fecha de finalización" displayFormat="dd-mm-yy"/>
+                        <s:hidden name="username"/>
                         <s:submit value="Registrar fechas" name="submit" />
                     </s:form> 
                 </div>

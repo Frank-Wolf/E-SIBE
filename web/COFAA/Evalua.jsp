@@ -166,7 +166,7 @@
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("  ID de proyecto  ");
+                            out.print("ID de proyecto");
                             out.print("</th>");
                             out.print("</tr>");
                             while (rv.next())
@@ -176,7 +176,7 @@
                                 out.print(rv.getString("id_proyecto"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rs.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href= " + rv.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
@@ -205,7 +205,7 @@
                                 out.print(rb.getString("id_obra"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='file:///C:" + rb.getString("ruta_alm") + "'>Ver constancia</a>");
+                                out.print("<a href='file:///" + rb.getString("ruta_alm") + "'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos

@@ -66,9 +66,9 @@
                             lb.getConnection();
                             int i = 0;
                             ValueStack stack = ActionContext.getContext().getValueStack();
-                            rs=lb.executeQuery("SELECT nom_prof, "
-                                    + "id_prof FROM usuarios WHERE "
-                                    + "idTypeUsuario = 'usuario_catt'");
+                            rs=lb.executeQuery("SELECT nom_usuario, "
+                                    + "id_usuario FROM usuario WHERE "
+                                    + "id_type_usuario = 9");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -84,21 +84,21 @@
                                 out.print("<tr>");
                                 out.print("<td>");
                                 out.print("  ");
-                                out.print(rs.getString("id_prof"));
+                                out.print(rs.getString("id_usuario"));
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("  ");
-                                out.print(rs.getString("nom_prof"));
+                                out.print(rs.getString("nom_usuario"));
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Borrar_CATT?id_prof="
-                                        +rs.getString("id_prof")+"'>Borrar</a>");
+                                out.print("<a href='Borrar_CATT?id_usuario="
+                                        +rs.getString("id_usuario")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_catt.jsp?id="
-                                        +rs.getString("id_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_usuario")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print(i);
@@ -112,13 +112,15 @@
                     <div class="col-md-4 col-md-offset-1">
                         <h2 class="h3">Registrar nuevo Usuario C.A.T.T.</h2>
                         <s:set name="u_a" value="%{'ESCOM'}" />
-                        <s:set name="idTypeUsuario" value="%{'usuario_catt'}" />
+                        <s:set name="idTypeUsuario" value="%{9}" />
                         <s:set name="counter" value="#varName"/> <!-- prints 0 -->
                         <s:form action="Registra_CATT">
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
                             <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
                             <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name="email" label="Correo electronico" cssClass="form-control"/>
                             <s:hidden name="u_a" label="Dependencia"/>
+                            
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
                             <s:hidden name="counter" label="Número de usuarios registrados"/>
                             <s:submit cssClass="btn" name="Registrar Usuario" value="Registrar Usuario"/>

@@ -20,8 +20,8 @@ import java.util.Random;
  */
 public class RegistraObra extends ActionSupport
 {   
-    private String nom_obra;
-    private int id_obra,id_tipo_obra,id_usuario;
+    private String id_obra,nom_obra;
+    private int id_tipo_obra,id_usuario;
 
     public int getId_usuario() {
         return id_usuario;
@@ -40,11 +40,11 @@ public class RegistraObra extends ActionSupport
         this.nom_obra = nom_obra;
     }
 
-    public int getId_obra() {
+    public String getId_obra() {
         return id_obra;
     }
 
-    public void setId_obra(int id_obra) {
+    public void setId_obra(String id_obra) {
         this.id_obra = id_obra;
     }
 
@@ -78,22 +78,45 @@ public class RegistraObra extends ActionSupport
          String URL = "jdbc:mysql://localhost:3306/esibe";
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "insert into obra (id_obra, id_tipo_obra, nom_obra, fecha_registro) values ";//probar con select*
+         
+         if(lb.valida_prof_obra(id_obra))
+         {
+             System.out.println(id_usuario);
+             System.out.println(id_usuario);
+             System.out.println(id_usuario);
+             System.out.println(id_usuario);
+             System.out.println(id_usuario);
+             
+              String val2="INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra,validado,fecha_val) VALUES";
+         val2+=" ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"',0,str_to_date(?, '%d-%m-%Y'))";
+             System.out.println(id_usuario);
+             PreparedStatement ps3 = conn.prepareStatement (val2);
+             ps3.setString(1, fecha_registro);
+             
+             int res = ps3.executeUpdate();
+         }
+         else{
+         String sql = "insert into obra (id_obra,id_tipo_obra, nom_obra, fecha_registro) values ";//probar con select*
          sql+=" ('"+getId_obra()+"','"+getId_tipo_obra()+"','"+getNom_obra()+"',str_to_date(?, '%d-%m-%Y'))";
          
-         String val="INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra) VALUES";
-         val+=" ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"')";
-                 
+         String val="INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra,validado,fecha_val) VALUES";
+         val+=" ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"',0,str_to_date(?, '%d-%m-%Y'))";
+         
+         
          
          System.out.println(fecha_registro);
+         System.out.println(id_usuario);
          PreparedStatement ps = conn.prepareStatement(sql);
          PreparedStatement ps2 = conn.prepareStatement (val);
          
          ps.setString(1, fecha_registro);
+         ps2.setString(1, fecha_registro);
          
          
          int rs = ps.executeUpdate();
          int rs2 = ps2.executeUpdate();
+         }       
+         
       } catch (Exception e) {
          ret = ERROR;
          System.out.println(e.getMessage());

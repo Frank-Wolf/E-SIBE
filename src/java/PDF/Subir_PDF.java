@@ -25,7 +25,7 @@ public class Subir_PDF extends ActionSupport{
     public String execute() throws SQLException, PropertyVetoException
    {
       /* Copy file to a safe location */
-      destPath = "C:\\Users\\le_as\\Documents\\Escuela\\popo\\";//\\psf\Home\Documents\Prueba
+      destPath = "C:\\psf\\Home\\Documents\\5555\\AlumnosBEIFI\\";//\\psf\Home\Documents\Prueba
       destPath += username;
       try{
      	 System.out.println("Src File name: " + myFile);

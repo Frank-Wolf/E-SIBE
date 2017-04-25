@@ -3,7 +3,7 @@
     Created on : Feb 8, 2017, 8:07:49 AM
     Author     : PsysacElrick
 --%>
-
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
@@ -12,13 +12,13 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, 
         initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title> E-SIBE</title>
-        <link href="<s:url value="/css/style.css"/>" 
+        <link href="<s:url value="../css/style.css"/>" 
               rel="stylesheet" type="text/css"/>
         
-        <link href="<s:url value="/css/bootstrap.min.css"/>" 
+        <link href="<s:url value="../css/bootstrap.min.css"/>" 
               rel="stylesheet" type="text/css"/>
        
-        <link rel="icon" href="<s:url value="/icono.ico"/>"/>
+        <link rel="icon" href="<s:url value="../icono.ico"/>"/>
     </head>
     <body background="../css/textura.png" class="boding">
         <header class="headering">
@@ -39,7 +39,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Registrar Tratabjo Terminal</a></li>
+                                <li><a href="Reg_TT">Registrar Tratabjo Terminal</a></li>
                                 <li><a href="#">Registrar datos de Tesis</a></li>
                                 
                             </ul>
@@ -59,8 +59,62 @@
                     
                     
                     
-                    <h2 class="titulos">Bienvenido Usuario C.A.T.T.</h2>
                     
+                     <div class="row ">
+                    <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
+                         col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
+                         col-sm-offset-2 ">
+
+                    <h2 class="titulos">Bienvenido Usuario C.A.T.T.</h2>
+                        
+                        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+                        <s:set var="username" value="%{#session.username}" />
+                        <jsp:useBean id="username" type="java.lang.String"/>
+                            <%
+                            String mystring = username;
+                             ResultSet rs=null;
+                             lb.getConnection();
+                             rs=lb.executeQuery("SELECT nom_usuario, u_a, id_usuario "
+                                     + "FROM usuario WHERE id_usuario = " 
+                                     + mystring);
+                             out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                             while (rs.next()){
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("Nombre de profesor");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("nom_usuario"));
+                                 out.print("</td>");
+
+                                 out.print("</tr>");
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("No. de Empleado");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("id_usuario"));
+                                 out.print("</td>");
+                                 
+                                 out.print("</tr>");
+                                 out.print("<tr>");
+                                 out.print("<th>");
+                                 out.print("Dependencia");
+                                 out.print("</th>");
+                                 out.print("<td>");
+                                 out.print(rs.getString("u_a"));    
+                                 out.print("</td>");
+                    
+                                 out.print("</tr>");
+
+                             }
+                             out.print("</table>");
+                             lb.closeConnection();
+                            %>
+                        </div>    
+                    </div>
                     
                 </s:div>
             </s:div>  

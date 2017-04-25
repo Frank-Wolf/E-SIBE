@@ -71,13 +71,14 @@
         <s:set name="username" value="%{#session.username}" />
         <s:form id = "datos" action="upload_file" method="post" enctype="multipart/form-data">
             <s:label for="myFile">Suba su constancia (máximo 10 MB y formato pdf):</s:label>
+            
             <s:file name="myFile" />
             <s:hidden name="username" label="Matrícula"/>
-            <s:submit value="Subir"/>
+            <s:submit value="Subir" cssClass="btn"/>
         </s:form>
                     
                 </s:div>
-                <s:form id="datos" action="create_pdf" method="post">
+                <s:form id="datos" action="create_pdf" method="post" style="display:block;" >
                     <s:submit value="Generar PDF"/>
                 </s:form>
             </s:div>  

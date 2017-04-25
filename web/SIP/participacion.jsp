@@ -1,7 +1,7 @@
 <%-- 
-    Document   : SIP
-    Created on : Feb 8, 2017, 8:07:49 AM
-    Author     : PsysacElrick
+    Document   : participacion
+    Created on : 24/04/2017, 01:09:30 PM
+    Author     : le_as
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -55,20 +55,26 @@
                     
                     <h2 class="titulos">Bienvenido Usuario SIP</h2>
                        <div class="col-md-9" align="center">
-                        <s:set name="id_alumno" value="%{0}" />
-                        <s:form action="registra_proyecto" method="post">
-                            <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                            <s:textfield name="nom_proyecto" label="Título del proyecto" cssClass="form-control"/>
-                            <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" />
-                           <s:select label="Seleccione el Rol de Profesor" cssClass="form-control"
-                            headerKey="-1" headerValue="Rol de Profesor"
+                        <s:set name="u_a" value="%{'SIP'}" />
+                        <s:form action="registra_part_sip" method="post">
+                            <s:textfield name="id_participacion" label="Id de Participacion" cssClass="form-control"/>                           
+                            <s:textfield name="Asignatura" label="Título del proyecto" cssClass="form-control"/>
+                            <s:textfield name="id_usuario" label="No. Empleado del Participante" cssClass="form-control" />
+                            <s:select label="Seleccione el Tipo de participacion" cssClass="form-control"
+                            headerKey="-1" headerValue="tipo de participacion"
                             list="# {
-                            'Coordinador':'Coordinador',
-                            'Colaborador':'Colaborador'
+                            '1':'Coordinacion en la elaboracion de un plan de estudios',
+                            '2':'Coordinacion en la actualización de un plan de estudios',
+                            '3':'Participacion en la elaboracion de un plan de estudios',
+                            '4':'Participacion en la actualizacion de un plan de estudios',
+                            '5':'Coordinacion en la elaboracion de un programa de estudios',
+                            '6':'Coordinacion en la actualización de un programa de estudios',
+                            '7':'Participacion en la elaboracion de un programa de estudios',
+                            '8':'Participacion en la actualizacion de un programa de estudios'
                             }"
-                            name="rol" />   
+                            name="id_tipo_part_plan" />   
                             <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
-                            <s:hidden name="id_alumno" label="id_alumno"/>
+                            
                             <s:submit value="Registrar Proyecto" cssClass="btn" />
                         </s:form> 
                                                 

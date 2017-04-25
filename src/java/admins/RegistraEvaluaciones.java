@@ -15,7 +15,15 @@ import java.util.Random;
 
 public class RegistraEvaluaciones extends ActionSupport {
 
-   private String date1, date2;
+   private String date1, date2,username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
    Random rand = new Random();
    int  n = rand.nextInt(500) + 1;
    int p = 0, e = 0, d, r;//p -->professor  e---> evaluator    d -->division r --> residue  i -->counter
@@ -32,8 +40,8 @@ public class RegistraEvaluaciones extends ActionSupport {
            lb.closeConnection();
            return "existe_evalu";
         }
-       int ra = lb.executeUpdate("INSERT INTO fecha_evaluaciones (id_fecha, fecha_inicio, fecha_fin) VALUES"
-               + "(" + n + ", str_to_date('" + getDate1() + "', '%d-%m-%Y'), str_to_date('" + getDate2() + "', '%d-%m-%Y'))");
+       int ra = lb.executeUpdate("INSERT INTO fecha_evaluaciones (id_fecha, fecha_inicio, fecha_fin, id_usuario) VALUES"
+               + "(" + n + ", str_to_date('" + getDate1() + "', '%d-%m-%Y'), str_to_date('" + getDate2() + "', '%d-%m-%Y'), '" + username + "')");
        if(ra > 0){
            //llamar a la función que asignará los profesores a los evaluadores
            rp = lb.executeQuery("SELECT * FROM profesor");
@@ -41,6 +49,7 @@ public class RegistraEvaluaciones extends ActionSupport {
                profesores[p] = rp.getString("id_usuario");
                p++;
            }
+           System.out.println("");
            re = lb.executeQuery("SELECT * FROM evaluador");
            while(re.next()){
                evaluadores[e] = re.getString("id_usuario");

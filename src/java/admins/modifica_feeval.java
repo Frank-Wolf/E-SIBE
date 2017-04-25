@@ -47,8 +47,14 @@ public class modifica_feeval extends ActionSupport {
         LoginBean lb = new LoginBean();
         lb.getConnection();
         int val=lb.executeUpdate("UPDATE fecha_evaluaciones SET fecha_inicio=str_to_date('"+getDate1()+"', '%d-%m-%Y'),fecha_fin=str_to_date('"+getDate2()+"', '%d-%m-%Y') WHERE id_fecha="+getId_fecha());
-        if(val>0) return "success";
-        else return "fail";
+        if(val > 0){
+            lb.closeConnection();
+            return "success";
+        } 
+        else{
+            lb.closeConnection();
+            return "fail";
+            }
     }
     
 }
