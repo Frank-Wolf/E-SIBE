@@ -9,8 +9,7 @@ package admins;
  *
  * @author PsysacElrick
  */
-import static com.opensymphony.xwork2.Action.ERROR;
-import static com.opensymphony.xwork2.Action.SUCCESS;
+
 import java.sql.*;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Random;
@@ -61,6 +60,7 @@ public class RegistraActividades extends ActionSupport {
       }
       return ret;
    }
+   
    public String getDate1() {
         return date1;
    }

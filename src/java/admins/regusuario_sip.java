@@ -152,7 +152,9 @@ public class regusuario_sip extends ActionSupport{
         int val=lb.executeUpdate("INSERT INTO usuario(id_usuario,id_type_usuario,nom_usuario,email, password,u_a,token) "
                 + "VALUES ('"+getMatricula()+"', "+getIdTypeUsuario()+", '"+getUser()+"','"+getEmail()+"' , '"+getPassword()+"', '"+getU_a()+"',1);");
         lb.closeConnection();
-        if (val>0) return "test";
-        else return "test"; 
+        if (val > 0) 
+            return "test";
+        else 
+            return "test"; 
     }   
 }

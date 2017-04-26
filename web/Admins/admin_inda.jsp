@@ -8,6 +8,7 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="com.opensymphony.xwork2.util.ValueStack" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,7 +59,6 @@
                     <div class="col-md-4 col-md-offset-1">
                         <h2 class="h3">Lista de usuarios INDAUTOR activos</h2>
                     
-                        <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lb" scope="session" 
                                      class="sesion.LoginBean"></jsp:useBean>
                         <%

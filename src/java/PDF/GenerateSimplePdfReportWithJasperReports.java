@@ -34,7 +34,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import java.io.IOException;
 
 public class GenerateSimplePdfReportWithJasperReports {
-        private static String FILE = "C:\\Users\\le_as\\Documents\\Escuela\\Pruebas PDF\\Reporte de Actividades_E-SIBE.pdf";
+        private static String FILE = "C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\Reporte de Actividades_E-SIBE.pdf";
         private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 17,
                         Font.BOLD);
         private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
@@ -85,8 +85,8 @@ public class GenerateSimplePdfReportWithJasperReports {
 
          private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            Image cofaa= Image.getInstance("C:\\Users\\le_as\\Documents\\NetBeansProjects\\login\\web\\css\\cofaa.png");
-            Image IPN= Image.getInstance("C:\\Users\\le_as\\Documents\\NetBeansProjects\\login\\web\\css\\ipn.png");
+            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);

@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,7 +63,7 @@
                         <s:textfield label="Nombre de Usuario" name="usuario" value="%{#id_user}" cssClass="form-control"/>
                         <br>
                         <s:set var="id_prof"><%=id_prof%></s:set>
-                        <s:textfield label="No. de Empleado" name="matricula" value="%{#id_prof}" cssClass="form-control" />
+                        <!--s:textfield label="No. de Empleado" name="matricula" value="%{#id_prof}" cssClass="form-control" /-->
                         <br>
                         <s:set var="id_ua"><%=id_ua%></s:set>
                         <s:select label="Seleccione una dependencia" cssClass="form-control"

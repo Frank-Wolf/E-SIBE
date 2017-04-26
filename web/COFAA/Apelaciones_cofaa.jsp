@@ -1,11 +1,12 @@
 <%-- 
-    Document   : SIP
-    Created on : Feb 8, 2017, 8:07:49 AM
+    Document   : Apelaciones_cofaa
+    Created on : Apr 19, 2017, 7:46:37 PM
     Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,13 +39,10 @@
                             <a class="navbar-brand" >E-SIBE: Evaluador COFAA</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="ver_registros">Ver registros</a></li>
-                                <li><a href="apelaciones_cofaa">Modificaciones recientes</a></li>
-                            </ul>
+
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="Cerrar_sesion">
-                                      Cerrar Sesión</a></li>
+                              <li><a href="Regresar_cofaa">
+                                      Regresar</a></li>
                             </ul>
                           </div>
                     </div>
@@ -54,11 +52,7 @@
                 
                 
                 <s:div cssClass="cover-container2">    
-                    
-                    
-                    
-                    
-                    <h2 class="titulos">Bienvenido Profesor Evaluador</h2>
+                    <h2 class="Titular" align="center"> Seleccione la apelación que se desee realizar </h2>
                     
                     
                 </s:div>
@@ -78,4 +72,3 @@
         <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
-

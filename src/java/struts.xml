@@ -9,6 +9,7 @@
     <constant name="struts.custom.i18n.resources" value="global" />
     <constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/>
     <constant name="struts.multipart.maxSize" value="20000000" /><!--Constante para definir el tamaño de los archivos a subir-->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <!--Package inicio de Sesion -->
     <package name="inicio_sesion" extends="struts-default" namespace="/Usuario">
         <action name="Sesion" class="sesion.Login_Action">
@@ -91,14 +92,14 @@
         </action> 
         
         <!--Registra COFAA-->
-        <action name="Registra_COFAA" class="admins.regusuario_sip">
+        <action name="Registra_COFAA" class="admins.regusuario_cofaa">
             <result name="success">/Admins/cofaa_regExi.jsp</result>
             <result name="test">/Admins/usuarios_cofaa.jsp</result>
             <result name="error">regusuario_fallo.jsp</result>
         </action>
         
         <!--Borra COFAA-->
-        <action name="Borrar_COFAA" class="admins.Borrarusuario_SIP">
+        <action name="Borrar_COFAA" class="admins.Borrarusuario_cofaa">
             <result name="borrar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
         </action>
@@ -326,37 +327,44 @@
         <!--Periodo de fechas cofaa Actividades-->
         <action name="Registra_actividades" class="admins.RegistraActividades" >
             <result name="success">/Admins/Reg_Acti.jsp</result>
+            <result name="existe_evalu">/Admins/Existe_FeAct.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Registra_apelaciones" class="admins.RegistraApelaciones" >
             <result name="success">/Admins/Apelaciones.jsp</result>
+            <result name="existe_evalu">/Admins/Existe_FeApe.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action>
         <action name="Registra_evaluaciones" class="admins.RegistraEvaluaciones" >
             <result name="success">/Admins/Evaluaciones.jsp</result>
+            <result name="existe_evalu">/Admins/Existe_FeEval.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action> 
         <!--acciones para eliminar las fechas Fin-->
         <!--dirigir a jsp de registro de fechas para los diversos periodos-->
-        <action name="Periodos_cofaa" >
-            <result>/Admins/periodo_cofaa.jsp</result>
+        <action name="Apelaciones" class="admins.Verifica_fecha_apelacion">
+            <result name="success">/Admins/Apelaciones.jsp</result>
+            <result name="success_borro">/Admins/borrado_apelacion.jsp</result>
+            <result name="fail">/Admins/admin_cofaa.jsp></result>
         </action>
-        <action name="Apelaciones">
-            <result>/Admins/Apelaciones.jsp</result>
+        <action name="Evaluaciones" class="admins.Verifica_fecha_evaluacion">
+            <result name="success">/Admins/Evaluaciones.jsp</result>
+            <result name="success_borro">/Admins/borrado_evaluacion.jsp</result>
+            <result name="fail">/Admins/admin_cofaa.jsp></result>
         </action>
-        <action name="Evaluaciones">
-            <result>/Admins/Evaluaciones.jsp</result>
-        </action>
-        <action name="Reg_Acti">
-            <result>/Admins/Reg_Acti.jsp</result>
+        <action name="Reg_Acti" class="admins.Verifica_fecha_actividad">
+            <result name="success">/Admins/Reg_Acti.jsp</result>
+            <result name="success_borro">/Admins/borrado_actividades.jsp</result>
+            <result name="fail">/Admins/admin_cofaa.jsp></result>
         </action>
         <!--Aqui se acaba lo de ya sabes qué, las fechas-->
         <action name="Menu_COFAA">
              <result>/Admins/admin_cofaa.jsp</result>
         </action>
         <!--Administracion de usuarios COFAA-->
-        <action name="Admin_usuarios" >
-            <result>/Admins/usuarios_cofaa.jsp</result>
+        <action name="Admin_usuarios" class="admins.verifica_fecha_usuario" >
+            <result name="success">/Admins/usuarios_cofaa.jsp</result>
+            <result name="denied">/Admins/no_evaluadores_permitido.jsp</result>
         </action>
         
         <action name="SIP_Principal">
@@ -386,4 +394,40 @@
             <result>/SIP/proyecto_sip.jsp</result>
         </action>
     </package>
+    <!--Paquete para el evaluador cofaa y el administrador, en el que se harán los reportes y se calificará-->
+    <package name="Paquete_cofaa" extends="struts-default" namespace="/Usuario">
+        <action name="ver_registros" class="dependencias.verifica_fechaEva">
+            <result name="success">/COFAA/Registros.jsp</result>
+            <result name="denied">/COFAA/No_evalua.jsp</result>
+        </action>
+        <action name="apelaciones_cofaa" class="dependencias.Verifica_fechaApela">
+            <result name="success">/COFAA/Apelaciones_cofaa.jsp</result>
+            <result name="denied">/COFAA/No_apelacion.jsp</result>
+        </action>
+        <action name="Regresar_cofaa">
+            <result>/COFAA/COFAA.jsp</result>
+        </action>
+        <action name="visualiza_registro">
+            <result>/COFAA/Evalua.jsp</result>
+        </action>
+        <action name="Regresar_cofaa2">
+            <result>/COFAA/Registros.jsp</result>
+        </action>
+         <action name="ver_constancia2_5" class="PDF.visualiza_constancia2_5">
+            <result name="success" type="stream">
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">inline;filename="prueba.pdf"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+    </package>
+    <!--package name="Regresar" extends="struts-default" namespace="/COFAA">
+        <action name="Regresar_cofaa2">
+            <result>/COFAA/Registros.jsp</result>
+        </action>
+        <action name="Regresar_cofaa">
+            <result>/COFAA/COFAA.jsp</result>
+        </action>
+    </package-->
 </struts>

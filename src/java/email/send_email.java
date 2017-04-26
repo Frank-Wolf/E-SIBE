@@ -50,15 +50,15 @@ public class send_email extends ActionSupport {
        Connection conn = null;
        String ret;
        try{
-           String URL = "jdbc:mysql://localhost:3306/prototipo";
+           String URL = "jdbc:mysql://localhost:3306/esibe";
            Class.forName("com.mysql.jdbc.Driver");
            ResultSet rs=null;
            conn = DriverManager.getConnection(URL, "root", "root");
-           String sql = "select * from usuarios where id_prof="+usuario;//we look for the specific user
+           String sql = "SELECT * FROM usuario WHERE id_usuario="+usuario;//we look for the specific user
            PreparedStatement ps = conn.prepareStatement(sql);
            rs=ps.executeQuery(sql);
             while(rs.next()){
-           e_address =rs.getString("correo_electronico");
+           e_address =rs.getString("email");
            token=rs.getInt("token");
             }
            ret = "test";

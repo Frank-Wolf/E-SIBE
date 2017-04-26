@@ -86,7 +86,7 @@ public class Login_Action extends ActionSupport implements SessionAware{
 //        }
         
         SesionBean sb=new SesionBean();
-        LoginBean lb=new LoginBean();
+        LoginBean lb=new LoginBean(), ln = new LoginBean();
         if(lb.validateUser(usuario, pass))
         {
             type=sb.getUser(usuario, pass);
@@ -98,31 +98,14 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 //Connection conn = null;
                 //String ret;
                 Date date_ini = null, date_fin = null, date_curr = new Date();
-                try{
-                    String URL = "jdbc:mysql://localhost:3306/esibe";
-                    Class.forName("com.mysql.jdbc.Driver");
-                    ResultSet rs=null;
-                    conn = DriverManager.getConnection(URL, "root", "root");
-                    String sql = "select * from fecha_actividades";
-                    PreparedStatement ps = conn.prepareStatement(sql);
-                    rs=ps.executeQuery(sql);
-                    while(rs.next()){
+                ln.getConnection();
+                ResultSet rs = ln.executeQuery("SELECT * FROM fecha_actividades");
+                while(rs.next()){
                         date_ini=rs.getDate("fecha_inicio");
                         date_fin=rs.getDate("fecha_fin"); 
                     }
-                    ret = "profesor";
-                }catch (Exception e) {
-                    ret = "error";
-                    System.out.println(e.getMessage());
-                } finally {
-                if (conn != null) {
-                    try {
-                        conn.close();
-                        } catch (Exception e) {
-                        System.out.println(date_curr);
-                        }
-                    }
-                }
+                ret = "profesor";
+                ln.closeConnection();
                 if(date_curr.after(date_ini) && date_curr.before(date_fin))
                     ret = "profesor";
                 else if(date_curr.before(date_ini) || date_curr.after(date_fin))

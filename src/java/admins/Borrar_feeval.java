@@ -28,8 +28,12 @@ public class Borrar_feeval {
         LoginBean lb = new LoginBean();
         lb.getConnection();
         int val=lb.executeUpdate("DELETE FROM fecha_evaluaciones WHERE id_fecha='"+getId_fecha()+"'");
+        int val2 = lb.executeUpdate("DELETE FROM evaluador_evalua_profesor");
         lb.closeConnection();
-        if (val>0) return "success";
-        else return "fail"; 
+        if (val > 0) 
+            return "success";
+        //else 
+          //  return "fail"; 
+        return "success";  
     }
 }

@@ -29,7 +29,9 @@ public class Borrar_feapela {
         lb.getConnection();
         int val=lb.executeUpdate("DELETE FROM fecha_apelaciones WHERE id_fecha='"+getId_fecha()+"'");
         lb.closeConnection();
-        if (val>0) return "success";
-        else return "fail"; 
+        if (val>0) 
+            return "success";
+        else 
+            return "fail"; 
     }
 }

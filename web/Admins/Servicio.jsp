@@ -9,6 +9,7 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="com.opensymphony.xwork2.util.ValueStack" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,7 +61,6 @@
                     <div class="col-md-6">
                         <h2 class="h3">Lista de Usuarios de Servicio Social activos</h2>
                     
-                        <%@ page import="java.sql.*" %>
                         <jsp:useBean id="lb" scope="session" 
                                      class="sesion.LoginBean"></jsp:useBean>
                         <%

@@ -78,7 +78,7 @@
         </s:form>
                     
                 </s:div>
-                <s:form id="datos" action="create_pdf" method="post" style="display:none;" >
+                <s:form id="datos" action="create_pdf" method="post" style="display:block;" >
                     <s:submit value="Generar PDF"/>
                 </s:form>
             </s:div>  

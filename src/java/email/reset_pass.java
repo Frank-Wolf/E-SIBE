@@ -30,7 +30,7 @@ public class reset_pass extends ActionSupport {
          //  return "false";
        admins.LoginBean lb = new admins.LoginBean();
         lb.getConnection();
-        int val=lb.executeUpdate("UPDATE usuarios SET password='"+getPassword()+"', token='"+token2+"' WHERE token='"+getToken()+"'");
+        int val=lb.executeUpdate("UPDATE usuario SET password='"+getPassword()+"', token='"+token2+"' WHERE token='"+getToken()+"'");
         if(val>0) 
             return "test";
         else 

@@ -1,11 +1,12 @@
 <%-- 
-    Document   : SIP
-    Created on : Feb 8, 2017, 8:07:49 AM
+    Document   : Registros.jsp
+    Created on : Apr 19, 2017, 7:46:20 PM
     Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,13 +39,9 @@
                             <a class="navbar-brand" >E-SIBE: Evaluador COFAA</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="ver_registros">Ver registros</a></li>
-                                <li><a href="apelaciones_cofaa">Modificaciones recientes</a></li>
-                            </ul>
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="Cerrar_sesion">
-                                      Cerrar Sesión</a></li>
+                              <li><a href="Regresar_cofaa">
+                                      Regresar</a></li>
                             </ul>
                           </div>
                     </div>
@@ -54,12 +51,42 @@
                 
                 
                 <s:div cssClass="cover-container2">    
-                    
-                    
-                    
-                    
-                    <h2 class="titulos">Bienvenido Profesor Evaluador</h2>
-                    
+                    <h2 class="Titular" align="center">Lista de profesores asignados para evaluar</h2>
+                    <div class="col-md-6">
+                        <h2 class="h3">Seleccione un profesor para comenzar con su evaluación</h2>
+                        <s:set var="username" value="%{#session.username}" />
+                        <jsp:useBean id="lb" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <jsp:useBean id="username" type="java.lang.String"/>
+                        <%
+                            ResultSet rs=null;
+                            lb.getConnection();
+                            //int i = 0;
+                            //ValueStack stack = ActionContext.getContext().getValueStack();
+                            rs=lb.executeQuery("SELECT id_usuario_prof "
+                                    + " FROM evaluador_evalua_profesor WHERE "
+                                    + "id_usuario_ev = " + username);
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  No. de Empleado  ");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs.getString("id_usuario_prof"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/COFAA/Evalua.jsp?id="
+                                        +rs.getString("id_usuario_prof")+"'>Evaluar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                            lb.closeConnection();
+                        %>
+                    </div>
                     
                 </s:div>
             </s:div>  
@@ -78,4 +105,3 @@
         <script src="../css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
-

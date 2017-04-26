@@ -16,16 +16,16 @@ public class modifica_cofaa extends ActionSupport {
     private String id;
     private String usuario;
     private String u_a;
-    private String matricula;
+    //private String matricula;
     private String password;
 
-    public String getMatricula() {
+    /*public String getMatricula() {
         return matricula;
     }
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
-    }
+    }*/
 
     public String getPassword() {
         return password;
@@ -67,10 +67,17 @@ public class modifica_cofaa extends ActionSupport {
         LoginBean lb = new LoginBean();
         lb.getConnection();
         int val=lb.executeUpdate("UPDATE usuario SET nom_usuario='"+getUsuario()
-                +"',id_usuario='"+getMatricula()+"', password='"+getPassword()
+                +"',password='"+getPassword()
                 +"',u_a='"+getU_a()+"' WHERE id_usuario='"+getId()+"'");
-        if(val>0) return "modificar_exitoso";
-        else return "modificar_fallo";
+        //int val2=lb.executeUpdate("UPDATE evaluador SET id_usuario='" + getMatricula() + "' "
+          //      + "WHERE id_usuario = '" + getId() +"'");
+        lb.closeConnection();
+        if(val > 0){
+            return "modificar_exitoso";
+        } 
+        else{
+            return "modificar_fallo";     
+            } 
     }
     
 }
