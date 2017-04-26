@@ -30,9 +30,9 @@
             }
 
             a:hover + .box,.box:hover{
-                display: block;
+                display: inline-block;
                 position: relative;
-                z-index: 100;
+                z-index: 9999;
             }
         </style>
     </head>
@@ -218,8 +218,10 @@
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///" + rb.getString("ruta_alm") + "'>Ver constancia</a>");
-                                out.print("<div class='box'><iframe src='file:///" + rb.getString("ruta_alm") + "' "
-                                        + "width = '500px' height = '500px'></iframe></div>");
+                                //out.print("<div class='box'><iframe src='file:///" + rb.getString("ruta_alm") + "' "
+                                //        + "width = '500px' height = '500px'></iframe></div>");
+                                out.print("<div class='box'><iframe src='http://en.wikipedia.org/' "
+                                        + "width = '100px' height = '100px'></iframe></div>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
