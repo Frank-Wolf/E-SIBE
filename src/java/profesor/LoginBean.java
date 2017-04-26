@@ -149,7 +149,7 @@ public class LoginBean
     }    
         
     
-        public boolean valida_alumno(int id_alumno, String nom_alumno) throws IOException, SQLException, PropertyVetoException
+        public boolean valida_alumnoB(int id_alumno,String id_usuario, String id_proyecto, String tipo_alumno) throws IOException, SQLException, PropertyVetoException
     {
         Connection connection = null;
         Statement statement = null;
@@ -157,13 +157,17 @@ public class LoginBean
         try {
             connection = DataSource.getInstance().getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select id_alumno from proyecto where id_alumno='"
-                    +id_alumno+"' and nom_alumno='"+nom_alumno+"' ;");//cambiar nom_prof por id_prof
+            resultSet = statement.executeQuery("select id_alumno,id_proyecto,tipo_alumno from "
+                    + "profesor_tiene_proyecto where id_alumno="
+                    +id_alumno+" and id_proyecto='"+id_proyecto+"' and tipo_alumno='"+tipo_alumno+"' ;");//cambiar nom_prof por id_prof
             
             while(resultSet.next())
             {
                 System.out.println(resultSet.getString("id_alumno"));
-                if(resultSet.getString("id_alumno").equals(id_alumno))
+                System.out.println(resultSet.getString("id_usuario"));
+                System.out.println(resultSet.getString("id_proyecto"));
+                System.out.println(resultSet.getString("tipo_alumno"));
+                if(resultSet.getString("id_alumno").equals(id_alumno) && resultSet.getString("id_proyecto").equals(id_proyecto) && resultSet.getString("tipo_alumno").equals(tipo_alumno))
                 return true;
             }
         } catch (SQLException e) {

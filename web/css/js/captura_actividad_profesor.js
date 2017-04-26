@@ -30,6 +30,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     }
     
     if(clicked_id ==="SERVICIO")
@@ -46,6 +47,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     } 
     
     if(clicked_id === "BOLETINES")
@@ -62,6 +64,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     }
     
     if(clicked_id ==="NOARBITRAJE")
@@ -78,6 +81,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     } 
 
     if(clicked_id === "ARBITRAJE")
@@ -94,6 +98,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     }
     
     if(clicked_id ==="INST_SINPONENCIA")
@@ -110,6 +115,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     } 
     
     if(clicked_id === "CONRESUMEN")
@@ -126,6 +132,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     }
     
     if(clicked_id ==="EXTENSO")
@@ -142,6 +149,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     } 
     
     if(clicked_id === "PRO_SIP")
@@ -158,6 +166,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     }
     
     if(clicked_id ==="INDAUTOR")
@@ -174,6 +183,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "block";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     } 
     
     if(clicked_id === "TESIS")
@@ -190,6 +200,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "block";
         document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="none";
     }
     
     if(clicked_id ==="OPCION_CURRICULAR")
@@ -206,8 +217,25 @@ function mostrar_formulario(clicked_id)
         document.getElementById("INDA_FORM").style.display = "none";
         document.getElementById("TESIS_FORM").style.display = "none";
         document.getElementById("TT_FORM").style.display = "block";
+        document.getElementById("PART_FORM").style.display="none";
     } 
     
+    if(clicked_id ==="PART")
+    {
+        document.getElementById("BEIFI_FORM").style.display = "none";
+        document.getElementById("SERVICIO_FORM").style.display = "none";
+        document.getElementById("BOLETINES_FORM").style.display = "none";
+        document.getElementById("SINAR_FORM").style.display = "none";
+        document.getElementById("CONAR_FORM").style.display = "none";
+        document.getElementById("SIN_PONENCIA_FORM").style.display = "none";
+        document.getElementById("CON_RESUMEN_FORM").style.display = "none";
+        document.getElementById("EN_EXTENSO_FORM").style.display = "none";
+        document.getElementById("PROYECTO_FORM").style.display = "none";
+        document.getElementById("INDA_FORM").style.display = "none";
+        document.getElementById("TESIS_FORM").style.display = "none";
+        document.getElementById("TT_FORM").style.display = "none";
+        document.getElementById("PART_FORM").style.display="block";
+    }
     //FALTA AGREGAR EL PUNTO 12
     
 }

@@ -58,7 +58,6 @@
                         <s:form action="registra_BEIFI" method="post">
                             <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
                             <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                            <s:textfield name="nom_proyecto" label="Titulo del Proyecto" cssClass="form-control"/>
                             <s:textfield name="rol_profesor" label="Rol del profesor en el proyecto" cssClass="form-control"/>
                             <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
                             <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>

@@ -3,11 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dependencias;
 
 import static com.opensymphony.xwork2.Action.ERROR;
@@ -16,7 +11,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.sql.*;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
-
 import java.util.Random;
 
 /**
@@ -86,56 +80,30 @@ public class RegistraTT extends ActionSupport
     }
 
     
-   Random rand = new Random();
-   int  n = rand.nextInt(500) + 1;
    public String execute() throws IOException, SQLException, PropertyVetoException 
    {
-      String ret = SUCCESS;
-      Connection conn = null;
+        String ret = SUCCESS;
+        
+        
         LoginBean lb = new LoginBean();
         lb.getConnection();
-   
-        try {
-         String URL = "jdbc:mysql://localhost:3306/esibe";
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(URL, "root", "root");
-         String sql = "insert into alumno (id_alumno, nom_alumno,recibido) values ";//probar con select*
-         sql+=" ('"+getId_alumno()+"','"+getNom_alumno()+"',1)";
-         
-         String tt = "insert into tt(id_TT,nom_TT,fecha_pro) values ";
-         tt += "('"+getId_TT()+"','"+getNom_TT()+"',str_to_date(?, '%d-%m-%Y'))";
-         
-         String val="INSERT INTO profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val) VALUES";
-         val+=" ('"+getId_usuario()+"','"+getId_TT()+"','"+getId_alumno()+"',0,str_to_date(?,'%d-%m-%Y'))";
-                 
-         
-         System.out.println(fecha_reg);
-        PreparedStatement ps = conn.prepareStatement(sql);
-         PreparedStatement ps2 = conn.prepareStatement(tt);
-         PreparedStatement ps3 = conn.prepareStatement (val);
-         
-         ps2.setString(1, fecha_pro);
-         ps3.setString(1, fecha_reg);
-         
-         int rs = ps.executeUpdate();
-         int rs2 = ps2.executeUpdate();
-         int rs3 = ps3.executeUpdate();
-      } catch (Exception e) {
-         ret = ERROR;
-         System.out.println(e.getMessage());
-      } finally {
-         if (conn != null) {
-            try {
-               conn.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-         }
-      }
-      return ret; 
+
+        int alumno= lb.executeUpdate("insert into alumno (id_alumno, nom_alumno,recibido) values ('"+getId_alumno()+"','"+getNom_alumno()+"',1)"); 
+        int tt = lb.executeUpdate("insert into tt(id_TT,nom_TT,fecha_pro) values ('"+getId_TT()+"','"+getNom_TT()+"',str_to_date('"+fecha_reg+"', '%d-%m-%Y'))");
+        int p_t = lb.executeUpdate("INSERT INTO profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val) VALUES ('"+getId_usuario()+"','"+getId_TT()+"','"+getId_alumno()+"',0,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+        if(alumno <1)
+        {   
+            if(tt <1)
+            {
+               if(p_t <1) 
+               {
+                   lb.closeConnection();
+                   return ret=ERROR;
+               }
+            }    
+        }
         
-    }
-    
-    
-    
+        lb.closeConnection();
+        return ret; 
+    }   
 }

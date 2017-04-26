@@ -132,44 +132,9 @@
                                                 Actividad 2.11.2: Opción Curricular </a>    
                                 </ul>
                             </li>
-                            <li class="activado"><a><i class="icono izquierda fa fa-pencil" aria-hidden="true"></i>
-                                    Actividad 2.12: Plan de Estudios <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="12_1" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.1: Coordinación en 
-                                            la elaboración de un plan de estudios 
-                                            de carrera</a></li>
-                                            
-                                        <li><a id="12_2" onClick="mostrar_formulario(this.id)">
-                                               Actividad 2.12.2: Coordinación en
-                                               la actualización de un plan de estudios 
-                                               de carrera</a></li>    
-                                            
-                                        <li><a id="12_3" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.3: Participación en
-                                            la elaboración de un plan de estudios</a></li>
-                                            
-                                        <li><a id="12_4" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.4: Participación en
-                                            la actualización de un plan de estudios</a></li>
-                                            
-                                        <li><a id="12_5" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.5: Coordinación en
-                                            la elaboración de un programa de estudios</a></li>
-                                            
-                                        <li><a id="12_6" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.6: Coordinación en
-                                            la actualización de un programa de estudios</a></li>    
-                                            
-                                        <li><a id="12_7" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.7: Participación en
-                                            la elaboración de un programa de estudios</a></li>
-                                            
-                                        <li><a id="12_8" onClick="mostrar_formulario(this.id)">
-                                               Actividad 2.12.8: Participación en
-                                               la actualización de un programa de estudios</a></li>
-                                    
-                                </ul>
+                            <li class="activado"><a  id="PART" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-pencil" aria-hidden="true"  ></i>
+                                    Actividad 2.12: Plan de Estudios</a>
+                               
                             </li>
                         </ul>
                     
@@ -178,22 +143,28 @@
                     <h2 class="Titular" align="center"> Registro de Actividades </h2>
                     
                     <!--FORM BEIFI -->
-                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Nombre de Alumno BEIFI" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno BEIFI" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Numero de Proyecto SIP" cssClass="form-control"/>
+                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
+                           style="display:none;">    
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:set name="tipo_alumno" value="%{'BEIFI'}" />
+                        <s:form action="valida_alumnoB" method="post">
+                            <s:hidden name="username" label="Matrícula"/>
+                            <s:hidden name="tipo_alumno" label="tipo de alumno"/>
+                            <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
+                            <s:textfield name="id_alumno" label="Matrícula del Alumno" cssClass="form-control"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
                     
                     <!--SERVICIO FORM-->
-                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Nombre de Alumno en Servicio Social" cssClass="form-control" />
-                            <s:textfield name="numero_ss" label="Numero de Registro de Servicio Social" cssClass="form-control" />
-                            <s:textfield name="fecha_ss_fin" label="Fecha de Finalización de Servicio Social" cssClass="form-control" />
-                            
+                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
+                           style="display:none;">    
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:set name="tipo_alumno" value="%{'SS'}" />
+                        <s:form action="valida_AlumnoB" method="post">
+                            <s:hidden name="username" label="Matrícula"/>
+                            <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
+                            <s:textfield name="id_alumno" label="Matrícula del Alumno" cssClass="form-control"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>  
@@ -307,7 +278,24 @@
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
-                
+                    
+                    <s:div id="PART_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:form action="valida_partt" method="post">
+                            <s:hidden name="username" label="Matrícula"/>
+                            <s:textfield name="id_part" label="Número de Participacion" cssClass="form-control"/>
+                            <s:select label="Seleccione la dependecia con la que participó" cssClass="form-control"
+                            headerKey="-1" headerValue="Dependencia"
+                            list="# {
+                            'SIP':'SIP',
+                            'DES':'DES',
+                            'DEMS':'DEMS'
+                            }"
+                            name="u_a" />   
+                            
+                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                        </s:form>
+                    </s:div>    
                 
                 
                 </div><!--Contenido-->    

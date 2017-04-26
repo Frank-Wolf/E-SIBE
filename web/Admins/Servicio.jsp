@@ -68,9 +68,9 @@
                             lb.getConnection();
                             int i = 0;
                             ValueStack stack = ActionContext.getContext().getValueStack();
-                            rs=lb.executeQuery("SELECT nom_prof, "
-                                    + "id_prof FROM usuarios WHERE "
-                                    + "idTypeUsuario = 'usuario_ss'");
+                            rs=lb.executeQuery("SELECT nom_usuario, "
+                                    + "id_usuario FROM usuario WHERE "
+                                    + "id_type_usuario = 10");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -86,21 +86,21 @@
                                 out.print("<tr>");
                                 out.print("<td>");
                                 out.print("  ");
-                                out.print(rs.getString("id_prof"));
+                                out.print(rs.getString("id_usuario"));
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("  ");
-                                out.print(rs.getString("nom_prof"));
+                                out.print(rs.getString("nom_usuario"));
                                 out.print("  ");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href='Borrar_SS?id_prof="
+                                out.print("<a href='Borrar_SS?id_usuario="
                                         +rs.getString("id_prof")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_ss.jsp?id="
-                                        +rs.getString("id_prof")+"'>Modificar</a>");
+                                        +rs.getString("id_usuario")+"'>Modificar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -115,7 +115,7 @@
                         <s:set name="counter" value="#varName"/>
                         <s:set name="u_a" value="%{'ESCOM'}" />
                         <s:set name="periodo" value="%{0}" />
-                        <s:set name="idTypeUsuario" value="%{'usuario_ss'}" />
+                        <s:set name="idTypeUsuario" value="%{10}" />
                         <s:form id="datos3" action="Registra_SS" >
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
                             <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>

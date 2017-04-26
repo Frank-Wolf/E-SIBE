@@ -57,6 +57,7 @@
                        <div class="col-md-9" align="center">
                         <s:set name="u_a" value="%{'SIP'}" />
                         <s:form action="registra_part_sip" method="post">
+                            <s:hidden name="u_a" label="dependencia"/>
                             <s:textfield name="id_participacion" label="Id de Participacion" cssClass="form-control"/>                           
                             <s:textfield name="Asignatura" label="Título del proyecto" cssClass="form-control"/>
                             <s:textfield name="id_usuario" label="No. Empleado del Participante" cssClass="form-control" />
