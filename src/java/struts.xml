@@ -284,6 +284,16 @@
             <result name="test">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
+        
+        <action name="valida_alumnoB" class="profesor.valida_BEIFI">
+            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
+        <action name="valida_partt" class="profesor.valida_part">
+            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
     </package>
     
     <!--paquete para las fechas y administrador cofaa-->

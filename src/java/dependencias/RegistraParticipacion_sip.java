@@ -20,7 +20,15 @@ import java.util.Random;
  */
 public class RegistraParticipacion_sip extends ActionSupport
 {   
-    private String id_participacion,Asignatura, fecha_reg;
+    private String id_participacion,Asignatura, fecha_reg,u_a;
+
+    public String getU_a() {
+        return u_a;
+    }
+
+    public void setU_a(String u_a) {
+        this.u_a = u_a;
+    }
     private int id_tipo_part_plan,id_usuario;
 
     public String getId_participacion() {
@@ -67,60 +75,25 @@ public class RegistraParticipacion_sip extends ActionSupport
    int  n = rand.nextInt(500) + 1;
    public String execute() throws IOException, SQLException, PropertyVetoException 
    {
-      String ret = SUCCESS;
-      Connection conn = null;
+        String ret = SUCCESS;
+   
         LoginBean lb = new LoginBean();
         lb.getConnection();
    
-        try {
-         String URL = "jdbc:mysql://localhost:3306/esibe";
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(URL, "root", "root");
+        int part_p = lb.executeUpdate("INSERT INTO part_plan_est(id_part,id_tipo_part,fecha,asignatura,u_a) VALUES "
+                + "('"+getId_participacion()+"','"+getId_tipo_part_plan()+"',str_to_date('"+fecha_reg+"', '%d-%m-%Y'),'"+getAsignatura()+"','"+u_a+"')");
+
+        int p_t_pl= lb.executeUpdate ("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val) "
+                + "VALUES ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,str_to_date('"+fecha_reg+"', '%d-%m-%Y'))");
+         
+        if(part_p<1 || p_t_pl <1)
+        {
+            lb.closeConnection();
+            return ERROR;
+        }
+         
+        lb.closeConnection();
+        return ret; 
         
-         String val2="INSERT INTO part_plan_est(id_part,id_tipo_part_plan,fecha,asignatura) VALUES";
-         val2+=" ('"+getId_participacion()+"','"+getId_tipo_part_plan()+"',str_to_date(?, '%d-%m-%Y'),'"+getAsignatura()+"')";
-             System.out.println(id_usuario);
-             PreparedStatement ps3 = conn.prepareStatement (val2);
-             ps3.setString(1, fecha_reg);
-             
-             int res = ps3.executeUpdate();
-         
-       
-         
-         String val="INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part_plan,validado,fecha_val) VALUES";
-         val+=" ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,str_to_date(?, '%d-%m-%Y'))";
-         
-         
-         
-         System.out.println(fecha_reg);
-         System.out.println(id_usuario);
-         
-         PreparedStatement ps2 = conn.prepareStatement (val);
-         
-         
-         ps2.setString(1, fecha_reg);
-         
-         
-         int rs = ps3.executeUpdate();
-         int rs2 = ps2.executeUpdate();
-                
-         
-      } catch (Exception e) {
-         ret = ERROR;
-         System.out.println(e.getMessage());
-      } finally {
-         if (conn != null) {
-            try {
-               conn.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-         }
-      }
-      return ret; 
-        
-    }
-    
-    
-    
+    }  
 }

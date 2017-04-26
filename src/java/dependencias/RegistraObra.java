@@ -64,75 +64,44 @@ public class RegistraObra extends ActionSupport
         this.fecha_registro = fecha_registro;
     }
     
-    
-   Random rand = new Random();
-   int  n = rand.nextInt(500) + 1;
+   
    public String execute() throws IOException, SQLException, PropertyVetoException 
    {
-      String ret = SUCCESS;
-      Connection conn = null;
+        String ret = SUCCESS;
+       
         LoginBean lb = new LoginBean();
         lb.getConnection();
-   
-        try {
-         String URL = "jdbc:mysql://localhost:3306/esibe";
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(URL, "root", "root");
          
-         if(lb.valida_prof_obra(id_obra))
-         {
-             System.out.println(id_usuario);
-             System.out.println(id_usuario);
-             System.out.println(id_usuario);
-             System.out.println(id_usuario);
-             System.out.println(id_usuario);
-             
-              String val2="INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra,validado,fecha_val) VALUES";
-         val2+=" ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"',0,str_to_date(?, '%d-%m-%Y'))";
-             System.out.println(id_usuario);
-             PreparedStatement ps3 = conn.prepareStatement (val2);
-             ps3.setString(1, fecha_registro);
-             
-             int res = ps3.executeUpdate();
-         }
-         else{
-         String sql = "insert into obra (id_obra,id_tipo_obra, nom_obra, fecha_registro) values ";//probar con select*
-         sql+=" ('"+getId_obra()+"','"+getId_tipo_obra()+"','"+getNom_obra()+"',str_to_date(?, '%d-%m-%Y'))";
-         
-         String val="INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra,validado,fecha_val) VALUES";
-         val+=" ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"',0,str_to_date(?, '%d-%m-%Y'))";
-         
-         
-         
-         System.out.println(fecha_registro);
-         System.out.println(id_usuario);
-         PreparedStatement ps = conn.prepareStatement(sql);
-         PreparedStatement ps2 = conn.prepareStatement (val);
-         
-         ps.setString(1, fecha_registro);
-         ps2.setString(1, fecha_registro);
-         
-         
-         int rs = ps.executeUpdate();
-         int rs2 = ps2.executeUpdate();
-         }       
-         
-      } catch (Exception e) {
-         ret = ERROR;
-         System.out.println(e.getMessage());
-      } finally {
-         if (conn != null) {
-            try {
-               conn.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+        if(lb.valida_prof_obra(id_obra))
+        {
+            int obra = lb.executeUpdate("INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra,validado,fecha_val) "
+                    + "VALUES ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"',0,str_to_date('"+fecha_registro+"', '%d-%m-%Y'))");
+              
+            if(obra<1)
+            {
+                lb.closeConnection();
+                return ERROR;
             }
+              
          }
-      }
-      return ret; 
         
+        else
+        {
+            int ins_obra = lb.executeUpdate("insert into obra (id_obra,id_tipo_obra, nom_obra, fecha_registro) values "
+                    + "('"+getId_obra()+"','"+getId_tipo_obra()+"','"+getNom_obra()+"',str_to_date(?, '%d-%m-%Y')) ");
+
+            int p_t_o = lb.executeUpdate("INSERT INTO profesor_tiene_obra(id_usuario,id_obra,id_tipo_obra,validado,fecha_val) "
+                    + "VALUES ('"+getId_usuario()+"','"+getId_obra()+"','"+getId_tipo_obra()+"',0,str_to_date(?, '%d-%m-%Y'))");
+
+            if(ins_obra <1|| p_t_o <1)
+            {
+                lb.closeConnection();
+                return ERROR;
+            }       
+        }    
+    
+    lb.closeConnection();
+    return ret; 
+         
     }
-    
-    
-    
 }

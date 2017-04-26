@@ -48,7 +48,7 @@ public class valida_proyecto extends ActionSupport
             
             if(lb.valida_proyecto(username,id_proyecto))
             {
-                System.out.println("Huevos");
+                
                 int acepta=lb.executeUpdate("update profesor_tiene_proyecto set validado=1 where id_usuario='"+getUsername()+"';" );
                 if(acepta>0)
                 {
