@@ -23,6 +23,18 @@
               rel="stylesheet" type="text/css"/>
        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
+        <style>
+            .box{
+            display: none;
+            width: 100%;
+            }
+
+            a:hover + .box,.box:hover{
+                display: block;
+                position: relative;
+                z-index: 100;
+            }
+        </style>
     </head>
     <body background="../css/textura.png" class="boding overflow">
         <header class="headering">
@@ -206,6 +218,8 @@
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///" + rb.getString("ruta_alm") + "'>Ver constancia</a>");
+                                out.print("<div class='box'><iframe src='file:///" + rb.getString("ruta_alm") + "' "
+                                        + "width = '500px' height = '500px'></iframe></div>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
