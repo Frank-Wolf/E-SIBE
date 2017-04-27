@@ -144,6 +144,38 @@ public class LoginBean
         }
         return false;
     }    
+    
+    public boolean valida_numero_prof(int id_usuario) throws IOException, SQLException, PropertyVetoException
+    {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DataSource.getInstance().getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select id_usuario from usuario where id_usuario='"
+                    +id_usuario+"'");//cambiar nom_prof por id_prof
+            
+            while(resultSet.next())
+            {
+                System.out.println(resultSet.getString("id_usuario"));
+                if(resultSet.getString("id_usuario").equals(id_usuario))
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (PropertyVetoException e)
+        {
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
+            if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
+            if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
+        }
+        return false;
+    }
+    
     public void getConnection()throws IOException, SQLException, PropertyVetoException
     {
         try{

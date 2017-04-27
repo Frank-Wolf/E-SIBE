@@ -240,15 +240,15 @@
     </package> 
     <!--Paquete para las dependencias que registran actividades-->
     <package name="registrar_actividades" extends="struts-default" namespace="/Usuario">
-        
         <action name="registra_BEIFI" class="dependencias.RegistraBEIFI">
             <result name="success">/SIP/SIP.jsp</result>
             <result name="error">/SIP/BEIFI.jsp</result>
         </action>
         
-        <action name="registra_obra" class="dependencias.RegistraObra">
+        <action name="registra_obra" class="dependencias.RegistraObra" method="execute">
             <result name="success">/INDAUTOR/INDAUTOR.jsp</result>
             <result name="error">/INDAUTOR/INDAUTOR.jsp</result>
+            <result name="fallo">/INDAUTOR/No_prof.jsp</result>
         </action>
         
         <action name="registra_proyecto" class="dependencias.RegistraProyecto">
