@@ -10,6 +10,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import org.apache.commons.io.FileUtils;
 import sesion.*;
 /**
@@ -86,38 +87,49 @@ public class valida_tt extends ActionSupport{
            
    
     public String execute() throws Exception {
-//    
-//         profesor.LoginBean lb = new profesor.LoginBean();
-//            lb.getConnection();
-//            System.out.println(username);
-//            System.out.println(id_TT);
-//            System.out.println(id_alumno);
-//            if(lb.valida_TT(username,id_TT,id_alumno))
-//            {
-//                int acepta=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_usuario='"+username+"'and id_alumno='"+id_alumno+"' and id_TT='"+id_TT+"';" );
-//                if(acepta>0)
-//                {
-//                    lb.closeConnection();
-//                    return "test";
-//                }
-//                else
-//                {
-//                    lb.closeConnection();
-//                    addFieldError("id_obra","Hay un problema");
-//                    return "error";
-//                }
-//            }
-//
-//
-//            else
-//            { 
-//                addFieldError("id_obra","Hay un problema con tus datos o quizas ya fue registrada");
-//                lb.closeConnection();
-//                return "error";
-//            } 
-//        }
-//       
-//        
-//    
-return ERROR;}
+        
+        
+        if(id_TT.equals(""))
+        {
+            addFieldError("id_TT","Este campo no puede ser vacio");
+            return ERROR;
+        }
+        if(id_alumno==0)
+        {
+            addFieldError("id_alumno","Este campo no puede ser vacio");
+            return ERROR;
+        }
+    
+        profesor.LoginBean lb = new profesor.LoginBean();
+        lb.getConnection();
+        ResultSet obra=lb.executeQuery("select * from tt where id_tt='"+id_TT+"'");
+        while(obra.next())
+        {
+            ResultSet rela=lb.executeQuery("select * from profesor_tiene_tt where id_tt='"+id_TT+"' and id_usuario='"+username+"' and id_alumno="+id_alumno+"");
+            while(rela.next())
+            {
+                int r=lb.executeUpdate("update profesor_tiene_tt set validado=1 where id_tt='"+id_TT+"' and id_usuario='"+username+"' and id_alumno="+id_alumno+" and validado=0");
+                if(r<1)
+                {
+                    addFieldError("id_TT","Esta obra ya fue registrada");
+                    
+                    lb.closeConnection();
+                    return ERROR;
+                }
+                else
+                {
+                    lb.closeConnection();
+                    return SUCCESS;
+                }
+                    
+            }
+            lb.closeConnection();
+            addFieldError("id_TT","Este Trabajo terminal no tiene vinculo con Usted, Verifique sus datos");
+            return ERROR;
+        }
+        lb.closeConnection();
+        addFieldError("id_TT","Este Trabajo terminal no esta registrado en el sistema, comuniquese con la C.A.T.T.");
+        return ERROR;
+              
+    }
 }

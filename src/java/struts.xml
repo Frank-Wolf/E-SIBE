@@ -286,7 +286,7 @@
         </action>
         
         <action name="valida_tt" class="profesor.valida_tt">
-            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="success">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         

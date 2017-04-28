@@ -127,35 +127,37 @@ public class RegistraTT extends ActionSupport
                 ResultSet rela=lb.executeQuery("select * from profesor_tiene_tt where id_alumno="+id_alumno+" and id_usuario="+id_usuario+"");
                 while(rela.next())
                 {
-                    addFieldError("id_profesor","Este registro ya esta hecho");
+                    addFieldError("id_usuario","Este registro ya esta hecho");
                     lb.closeConnection();
                     return ERROR;
                 }
-                lb.executeUpdate("update alumno set recibido=1 where id_alumno="+id_alumno+"");
+                    lb.executeUpdate("update alumno set recibido=1 where id_alumno="+id_alumno+"");
                 
-                lb.executeUpdate("insert into tt (id_tt,nom_tt,fecha_pro) values "
-                        + "('"+id_TT+"','"+nom_TT+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                    lb.executeUpdate("insert into tt (id_TT,nom_TT,fecha_pro) values('"+id_TT+"','"+nom_TT+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                    
+                    lb.executeUpdate("insert into profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val)"
+                            + " values('"+id_usuario+"','"+id_TT+"',"+id_alumno+",1,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                    
+                    
+                    lb.closeConnection();
+                    return SUCCESS;
                 
-                lb.executeUpdate("INSERT INTO profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val) "
-                        + "VALUES ("+id_usuario+",'"+id_TT+"',"+id_alumno+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
-                lb.closeConnection();
-                return SUCCESS;
             }
             
             lb.executeUpdate("insert into alumno(id_alumno,nom_alumno,recibido) values("+id_alumno+",'"+nom_alumno+"',1)");
             
-            lb.executeUpdate("insert into tt (id_tt,nom_tt,fecha_pro) values "
-                    + "('"+id_TT+"','"+nom_TT+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
-            
-            lb.executeUpdate("INSERT INTO profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val) "
-                + "VALUES ('"+getId_usuario()+"','"+getId_TT()+"',"+getId_alumno()+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
-            
+            lb.executeUpdate("insert into tt (id_TT,nom_TT,fecha_pro) values('"+id_TT+"','"+nom_TT+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                    
+            lb.executeUpdate("insert into profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val)"
+                + " values('"+id_usuario+"','"+id_TT+"',"+id_alumno+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                    
+                    
             lb.closeConnection();
             return SUCCESS;
         }
         
         addFieldError("id_usuario","El profesor no se encuentra registrado en el sistema");
         lb.closeConnection();
-        return ret; 
+        return ERROR; 
     }   
 }
