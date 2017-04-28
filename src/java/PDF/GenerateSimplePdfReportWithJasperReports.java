@@ -32,9 +32,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfContentByte;
 import java.io.IOException;
+import java.sql.ResultSet;  
 
 public class GenerateSimplePdfReportWithJasperReports {
-        private static String FILE = "C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\Reporte de Actividades_E-SIBE.pdf";
+        private static String FILE;
         private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 17,
                         Font.BOLD);
         private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
@@ -45,9 +46,41 @@ public class GenerateSimplePdfReportWithJasperReports {
                         Font.BOLD);
         
         private static Font encabezadost = new Font(Font.FontFamily.TIMES_ROMAN,12, Font.NORMAL,BaseColor.WHITE);
+        private String username;//employee number
+        LoginBean lb = new LoginBean();
+        //lb.getConnection();
+        //private String destPath;//Path where the file will be saved
+        //private static String FILE;
 
-        public String execute() 
+        public String execute() throws Exception 
         {
+            //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+            FILE += getUsername() + "Reporte_de_Actividades_E-SIBE_"
+                     + getUsername() + ".pdf";
+             lb.getConnection();
+             int i = 0;
+             ResultSet ra;
+             ra = lb.executeQuery("SELECT p.ruta_alm, pr.ruta_alm, t.ruta_alm, ob.ruta_alm, \n" +
+                     "ev.ruta_alm, pra.ruta_alumno, pu.ruta_alm\n" +
+                     "FROM\n" +
+                     "profesor_participa_en_plan p, profesor_tiene_proyecto pr, \n" +
+                     "profesor_tiene_tt t, profesor_tiene_obra ob, profesor_participa_ev ev, \n" +
+                     "profesor_tiene_proyecto pra, profesor_tiene_pub pu\n" +
+                     "WHERE\n" +
+                     "pu.id_usuario = '" + getUsername() + "' and \n" +
+                     "p.id_usuario = '" + getUsername() + "' and \n" +
+                     "pr.id_usuario = '" + getUsername() + "' and \n" +
+                     "t.id_usuario = '" + getUsername() + "' and \n" +
+                     "ob.id_usuario = '" + getUsername() + "' and \n" +
+                     "ev.id_usuario = '" + getUsername() + "' and\n" +
+                     "pra.id_usuario = '" + getUsername() + "';");
+             while(ra.next()){
+                 i++;
+             }
+             //lb.closeConnection();
+             if(i == 0)
+                 return "no_registro";
+
                 try 
                 {
                         Document document = new Document();
@@ -69,8 +102,10 @@ public class GenerateSimplePdfReportWithJasperReports {
                 catch (Exception e) 
                 {
                         e.printStackTrace();
+                        lb.closeConnection();
                         return "error";
                 }
+                lb.closeConnection();
                 return "success";
         }
 
@@ -97,7 +132,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             document.add(IPN);
         }
         
-        private static void addEncabezado(Document document) throws DocumentException 
+        private void addEncabezado(Document document) throws DocumentException 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 4);
@@ -110,7 +145,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             document.add(preface);
         }
         
-        private static void addResumenProf(Document document) throws DocumentException
+        private void addResumenProf(Document document) throws DocumentException, Exception
         {              
             Paragraph preface = new Paragraph();
             preface.add(new Paragraph("Datos Generales del Profesor",smallBold));
@@ -120,7 +155,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             document.add(TablaDatos());
         }
         
-        private static void addPunto1(Document document) throws DocumentException 
+        private void addPunto1(Document document) throws Exception
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -129,7 +164,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             
         }
         
-        private static void addPunto2(Document document) throws DocumentException 
+        private void addPunto2(Document document) throws Exception 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -138,7 +173,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             
         }
         
-        private static void addPunto3(Document document) throws DocumentException 
+        private void addPunto3(Document document) throws Exception 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -147,7 +182,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             
         }
         
-        private static void addPunto4(Document document) throws DocumentException 
+        private void addPunto4(Document document) throws Exception 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -156,7 +191,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             
         }
         
-        private static void addPunto5(Document document) throws DocumentException 
+        private void addPunto5(Document document) throws Exception 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -165,7 +200,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             
         }
         
-        private static void addPunto11(Document document) throws DocumentException 
+        private void addPunto11(Document document) throws Exception 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -174,7 +209,7 @@ public class GenerateSimplePdfReportWithJasperReports {
             
         }
         
-        private static void addPunto12(Document document) throws DocumentException 
+        private void addPunto12(Document document) throws Exception 
         {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 3);    
@@ -184,7 +219,7 @@ public class GenerateSimplePdfReportWithJasperReports {
         }
        
          
-        private static PdfPTable TablaDatos() throws BadElementException, DocumentException 
+        private PdfPTable TablaDatos() throws Exception
         {
                 PdfPTable Datos_prof = new PdfPTable(5);              
                 Datos_prof.setWidths(new int[]{2,3,2,2,2});
@@ -218,16 +253,27 @@ public class GenerateSimplePdfReportWithJasperReports {
                 Datos_prof.addCell(Nivel);
 
                 /*Aqui van las consultas de los datos del profesor*/
-                Datos_prof.addCell("Leonel Escobar Olivares");
-                Datos_prof.addCell("2013630185");
-                Datos_prof.addCell("ESCOM");
-                Datos_prof.addCell("50");
-                Datos_prof.addCell("I");
-                
+                //LoginBean lb = new LoginBean();
+                ResultSet rp = lb.executeQuery("SELECT * FROM usuario WHERE id_usuario = '" + getUsername() + "'"), rn, rt;
+                while(rp.next()){
+                    Datos_prof.addCell(rp.getString("nom_usuario"));
+                    Datos_prof.addCell(rp.getString("id_usuario"));
+                    Datos_prof.addCell(rp.getString("u_a"));
+                    //Datos_prof.addCell("50");
+                    //Datos_prof.addCell("I");
+                }
+                rn = lb.executeQuery("SELECT * FROM evaluador_evalua_profesor WHERE id_usuario_prof = '" + getUsername() + "'");
+                while(rn.next()){
+                    Datos_prof.addCell(rn.getString("puntaje_final"));
+                }
+                rt = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = '" + getUsername() + "'");
+                while(rt.next()){
+                    Datos_prof.addCell(rt.getString("periodo"));
+                }
                 return Datos_prof;
         }
 
-        private static PdfPTable dospuntouno() throws BadElementException, DocumentException 
+        private PdfPTable dospuntouno() throws Exception 
         {
                 PdfPTable Dos_uno = new PdfPTable(5);  
                 Dos_uno.setWidths(new int[]{2,2,3,2,3});
@@ -270,18 +316,20 @@ public class GenerateSimplePdfReportWithJasperReports {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                
-                
-                
-                Dos_uno.addCell("2.1.1");
-                Dos_uno.addCell("Alumno BEIFI");
-                Dos_uno.addCell("Hipervinculo");
-                Dos_uno.addCell("50");
-                Dos_uno.addCell("-");
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_uno.addCell("2.1.1 o 2.1.2");
+                    Dos_uno.addCell("Alumno BEIFI o de Servicio Social");
+                    Dos_uno.addCell(rb.getString("ruta_alumno"));
+                    Dos_uno.addCell(rb.getString("puntaje_alumno"));
+                    Dos_uno.addCell(rb.getString("comentarios"));
+                }
                 
                 return Dos_uno;
         }
         
-        private static PdfPTable dospuntodos() throws BadElementException, DocumentException 
+        private PdfPTable dospuntodos() throws Exception 
         {
                 PdfPTable Dos_dos = new PdfPTable(5);  
                 Dos_dos.setWidths(new int[]{2,2,3,2,3});
@@ -323,17 +371,20 @@ public class GenerateSimplePdfReportWithJasperReports {
                 Dos_dos.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-
-                Dos_dos.addCell("2.1.1");
-                Dos_dos.addCell("Alumno BEIFI");
-                Dos_dos.addCell("Hipervinculo");
-                Dos_dos.addCell("50");
-                Dos_dos.addCell("-");
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_dos.addCell("2.2");
+                    Dos_dos.addCell("Publicación institucional o internacional, arbitrada o no arbitrada");
+                    Dos_dos.addCell(rb.getString("ruta_alm"));
+                    Dos_dos.addCell(rb.getString("puntaje"));
+                    Dos_dos.addCell(rb.getString("comentarios"));
+                }
                 
                 return Dos_dos;
         }
         
-        private static PdfPTable dospuntotres() throws BadElementException, DocumentException 
+        private PdfPTable dospuntotres() throws Exception
         {
                 PdfPTable Dos_tres = new PdfPTable(5);  
                 Dos_tres.setWidths(new int[]{2,2,3,2,3});
@@ -376,18 +427,22 @@ public class GenerateSimplePdfReportWithJasperReports {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_tres.addCell("2.3");
+                    Dos_tres.addCell("Evento académico");
+                    Dos_tres.addCell(rb.getString("ruta_alm"));
+                    Dos_tres.addCell("Duda???");
+                    Dos_tres.addCell(rb.getString("comentarios"));
+                }
                 
                 
-                Dos_tres.addCell("2.1.1");
-                Dos_tres.addCell("Alumno BEIFI");
-                Dos_tres.addCell("Hipervinculo");
-                Dos_tres.addCell("50");
-                Dos_tres.addCell("-");
                 
                 return Dos_tres;
         }
         
-        private static PdfPTable dospuntocuatro() throws BadElementException, DocumentException 
+        private PdfPTable dospuntocuatro() throws Exception 
         {
                 PdfPTable Dos_cuatro = new PdfPTable(5);  
                 Dos_cuatro.setWidths(new int[]{2,2,3,2,3});
@@ -430,18 +485,21 @@ public class GenerateSimplePdfReportWithJasperReports {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_cuatro.addCell("2.4.2");
+                    Dos_cuatro.addCell("Proyecto SIP");
+                    Dos_cuatro.addCell(rb.getString("id_proyecto"));
+                    Dos_cuatro.addCell(rb.getString("puntaje"));
+                    Dos_cuatro.addCell(rb.getString("ruta_alm"));
+                }
                 
-                
-                Dos_cuatro.addCell("2.1.1");
-                Dos_cuatro.addCell("Alumno BEIFI");
-                Dos_cuatro.addCell("Hipervinculo");
-                Dos_cuatro.addCell("50");
-                Dos_cuatro.addCell("-");
                 
                 return Dos_cuatro;
         }
         
-        private static PdfPTable dospuntocinco() throws BadElementException, DocumentException 
+        private PdfPTable dospuntocinco() throws Exception 
         {
                PdfPTable Dos_cinco = new PdfPTable(5);  
                 Dos_cinco.setWidths(new int[]{2,2,3,2,3});
@@ -484,18 +542,21 @@ public class GenerateSimplePdfReportWithJasperReports {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_cinco.addCell("2.5");
+                    Dos_cinco.addCell("Obras con derechos de autor");
+                    Dos_cinco.addCell(rb.getString("ruta_alm"));
+                    Dos_cinco.addCell(rb.getString("puntaje"));
+                    Dos_cinco.addCell(rb.getString("comentarios"));
+                }
                 
-                
-                Dos_cinco.addCell("2.1.1");
-                Dos_cinco.addCell("Alumno BEIFI");
-                Dos_cinco.addCell("Hipervinculo");
-                Dos_cinco.addCell("50");
-                Dos_cinco.addCell("-");
                 
                 return Dos_cinco;
         }
         
-        private static PdfPTable dospuntoonce() throws BadElementException, DocumentException 
+        private PdfPTable dospuntoonce() throws Exception 
         {
                 PdfPTable Dos_once = new PdfPTable(5);  
                 Dos_once.setWidths(new int[]{2,2,3,2,3});
@@ -539,18 +600,22 @@ public class GenerateSimplePdfReportWithJasperReports {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                 
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_tt WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_once.addCell("2.11");
+                    Dos_once.addCell("Dirección de tt");
+                    Dos_once.addCell(rb.getString("ruta_alm"));
+                    Dos_once.addCell(rb.getString("puntaje"));
+                    Dos_once.addCell(rb.getString("comentarios"));
+                }
                 
-                Dos_once.addCell("2.1.1");
-                Dos_once.addCell("Alumno BEIFI");
-                Dos_once.addCell("Hipervinculo");
-                Dos_once.addCell("50");
-                Dos_once.addCell("-");
                 
                 return Dos_once;
         }
         
         
-        private static PdfPTable dospuntodoce() throws BadElementException, DocumentException 
+        private PdfPTable dospuntodoce() throws Exception 
         {
                 PdfPTable Dos_doce = new PdfPTable(5);  
                 Dos_doce.setWidths(new int[]{2,2,3,2,3});
@@ -594,19 +659,21 @@ public class GenerateSimplePdfReportWithJasperReports {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                
-                
-                
-                Dos_doce.addCell("2.1.1");
-                Dos_doce.addCell("Alumno BEIFI");
-                Dos_doce.addCell("Hipervinculo");
-                Dos_doce.addCell("50");
-                Dos_doce.addCell("-");
+               ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
+                        + "id_usuario = '" + getUsername() +"'");
+                while(rb.next()){
+                    Dos_doce.addCell("2.12");
+                    Dos_doce.addCell("Participación en planes de estudio");
+                    Dos_doce.addCell(rb.getString("ruta_alm"));
+                    Dos_doce.addCell(rb.getString("puntaje"));
+                    Dos_doce.addCell(rb.getString("comentarios"));
+                } 
                 
                 return Dos_doce;
         }
         
         
-        private static void createList(Section subCatPart) {
+        private void createList(Section subCatPart) {
                 List list = new List(true, false, 10);
                 list.add(new ListItem("First point"));
                 list.add(new ListItem("Second point"));
@@ -614,9 +681,17 @@ public class GenerateSimplePdfReportWithJasperReports {
                 subCatPart.add(list);
         }
 
-        private static void addEmptyLine(Paragraph paragraph, int number) {
+        private void addEmptyLine(Paragraph paragraph, int number) {
                 for (int i = 0; i < number; i++) {
                         paragraph.add(new Paragraph(" "));
                 }
+                
         }
+            public String getUsername() {
+         return username;
+     }
+ 
+     public void setUsername(String username) {
+         this.username = username;
+     }
 }

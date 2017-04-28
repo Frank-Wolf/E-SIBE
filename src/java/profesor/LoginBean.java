@@ -52,8 +52,11 @@ public class LoginBean
         }
         return false;
     }
+//<<<<<<< Upstream, based on origin/master
         
         
+//=======
+//>>>>>>> 7836515 
     public void getConnection()throws IOException, SQLException, PropertyVetoException
     {
         try{

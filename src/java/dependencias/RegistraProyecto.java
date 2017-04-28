@@ -128,11 +128,14 @@ public class RegistraProyecto extends ActionSupport
             return SUCCESS;
         }
             
+//<<<<<<< Upstream, based on origin/master
         System.out.println("Profesor no encontrado");
         lb.closeConnection();
         addFieldError("id_usuario","El id del profesor no coincide con algun registro en el sistema");
         return ERROR;
     }            
+  
+//>>>>>>> 7836515 
 }
 
 

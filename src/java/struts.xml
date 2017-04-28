@@ -7,7 +7,7 @@
     <!-- Configuration for the default package. -->
     <constant name="struts.devMode" value="true" />
     <constant name="struts.custom.i18n.resources" value="global" />
-    <constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/>
+    <!--constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/-->
     <constant name="struts.multipart.maxSize" value="20000000" /><!--Constante para definir el tamaño de los archivos a subir-->
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <!--Package inicio de Sesion -->
@@ -253,7 +253,7 @@
         </action>
         <action name="apelacion_prof" class="profesor.try_apelacion">
             <result name="success">/Profesor/Profesor_apelacion.jsp</result>
-            <result name="error">/Profesor/Profesor_notime.jsp</result>
+            <result name="error">/Profesor/Profesor_notime2.jsp</result>
         </action>
         <action name="test_doc">
             <result>/Profesor/test_doc.jsp</result>
@@ -283,6 +283,7 @@
         </action><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
         <action name="create_pdf" class="PDF.GenerateSimplePdfReportWithJasperReports">
             <result name="success">/Profesor/Profesor.jsp</result>
+            <result name="no_registro">/Profesor/No_Registro.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
     </package>

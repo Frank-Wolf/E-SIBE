@@ -43,10 +43,11 @@ public class valida_proyecto extends ActionSupport
     }
     
     
+//<<<<<<< Upstream, based on origin/master
     
     public String execute() throws Exception {
-        
-        if(id_proyecto.equals(""))
+//=======
+         if(id_proyecto.equals(""))
         {
             addFieldError("id_proyecto","Este campo es necesario");
             return ERROR;
@@ -75,6 +76,8 @@ public class valida_proyecto extends ActionSupport
         addFieldError("id_proyecto","No se encontro vinculo entre usted y el proyecto, comuniquese a SIP");
         lb.closeConnection();
         return "error";
+        }
+       
             
     } 
-}
+

@@ -104,8 +104,10 @@ public class Login_Action extends ActionSupport implements SessionAware{
                         date_ini=rs.getDate("fecha_inicio");
                         date_fin=rs.getDate("fecha_fin"); 
                     }
-                ret = "profesor";
+                ret = "profesor_noac";
                 ln.closeConnection();
+                if(date_ini == null)
+                    return ret;
                 if(date_curr.after(date_ini) && date_curr.before(date_fin))
                     ret = "profesor";
                 else if(date_curr.before(date_ini) || date_curr.after(date_fin))
