@@ -240,7 +240,6 @@
     </package> 
     <!--Paquete para las dependencias que registran actividades-->
     <package name="registrar_actividades" extends="struts-default" namespace="/Usuario">
-        
         <action name="registra_BEIFI" class="dependencias.RegistraBEIFI">
             <result name="success">/SIP/SIP.jsp</result>
             <result name="error">/SIP/BEIFI.jsp</result>

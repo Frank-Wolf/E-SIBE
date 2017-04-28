@@ -22,7 +22,9 @@ public class Subir_PDF extends ActionSupport{
     private String destPath;
     private String username;
     
-    public String execute() throws SQLException, PropertyVetoException
+    public String execute() throws SQLException, PropertyVetoException//each time the professor calls this function,
+            //we need to receive the username (employee number) and the name of the table
+            //thus, we can get the complete address of the saved file
    {
       /* Copy file to a safe location */
       destPath = "C:\\psf\\Home\\Documents\\5555\\AlumnosBEIFI\\";//\\psf\Home\Documents\Prueba
