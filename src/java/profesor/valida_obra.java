@@ -7,6 +7,7 @@ package profesor;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.sql.ResultSet;
 /**
  *
  * @author le_as
@@ -80,35 +81,41 @@ public class valida_obra extends ActionSupport{
            
    
     public String execute() throws Exception {
+        
+        if(id_obra.equals(""))
+        {
+            addFieldError("id_obra","Este campo no puede ser vacio");
+            return ERROR;
+        }    
     
-         profesor.LoginBean lb = new profesor.LoginBean();
-            lb.getConnection();
-            
-            if(lb.valida_obra(username,id_obra))
+        profesor.LoginBean lb = new profesor.LoginBean();
+        lb.getConnection();
+        ResultSet obra=lb.executeQuery("select * from obra where id_obra='"+id_obra+"'");
+        while(obra.next())
+        {
+            ResultSet rela=lb.executeQuery("select * from profesor_tiene_obra where id_obra='"+id_obra+"' and id_usuario='"+username+"'");
+            while(rela.next())
             {
-                int acepta=lb.executeUpdate("update profesor_tiene_obra set validado=1 where id_usuario='"+getUsername()+"';" );
-                if(acepta>0)
+                int r=lb.executeUpdate("update profesor_tiene_obra set validado=1 where id_obra='"+id_obra+"' and id_usuario='"+username+"' and validado=0");
+                if(r<1)
                 {
+                    addFieldError("id_obra","Esta obra ya fue registrada");
                     lb.closeConnection();
-                    return "test";
+                    return ERROR;
                 }
                 else
                 {
                     lb.closeConnection();
-                    addFieldError("id_obra","Hay un problema");
-                    return "error";
+                    return SUCCESS;
                 }
+                    
             }
-
-
-            else
-            { 
-                addFieldError("id_obra","Hay un problema con tus datos o quizas ya fue registrada");
-                lb.closeConnection();
-                return "error";
-            } 
+            lb.closeConnection();
+            addFieldError("id_obra","Esta Obra no tiene vinculo con Usted, Verifique sus datos");
+            return ERROR;
         }
-       
-        
-     
+        lb.closeConnection();
+        addFieldError("id_obra","Esta Obra no esta registrada en el sistema, comuniquese con INDAUTOR");
+        return ERROR;
+    }      
 }

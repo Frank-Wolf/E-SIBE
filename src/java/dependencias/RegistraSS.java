@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author le_as
  */
-public class RegistraBEIFI extends ActionSupport
+public class RegistraSS extends ActionSupport
 {   
 
     private String id_proyecto,nom_alumno,rol_profesor, tipo_alumno;
@@ -137,7 +137,7 @@ public class RegistraBEIFI extends ActionSupport
                                 return SUCCESS;
                     }
                     lb.executeUpdate("insert into alumno(id_alumno,nom_alumno,recibido) values("+id_alumno+",'"+nom_alumno+"',0)");
-                    lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, tipo_alumno='BEIFI' "
+                    lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, tipo_alumno='SS' "
                             + "where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
                     lb.closeConnection();
                     return SUCCESS;

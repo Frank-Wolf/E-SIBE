@@ -246,9 +246,14 @@
             <result name="error">/SIP/BEIFI.jsp</result>
         </action>
         
+        <action name="registra_SS" class="dependencias.RegistraSS">
+            <result name="success">/Servicio/Servicio.jsp</result>
+            <result name="error">/Servicio/Reg_SS.jsp</result>
+        </action>
+        
         <action name="registra_obra" class="dependencias.RegistraObra">
             <result name="success">/INDAUTOR/INDAUTOR.jsp</result>
-            <result name="error">/INDAUTOR/INDAUTOR.jsp</result>
+            <result name="error">/INDAUTOR/registra_obra.jsp</result>
         </action>
         
         <action name="registra_proyecto" class="dependencias.RegistraProyecto">
@@ -272,12 +277,12 @@
     <package name="Valida_actividades" extends="struts-default" namespace="/Usuario">
         <action name="valida_inda" class="profesor.valida_obra">
              
-            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="success">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
         <action name="valida_proyecto" class="profesor.valida_proyecto">
-            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="success">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -365,6 +370,14 @@
         <action name="Admin_usuarios" class="admins.verifica_fecha_usuario" >
             <result name="success">/Admins/usuarios_cofaa.jsp</result>
             <result name="denied">/Admins/no_evaluadores_permitido.jsp</result>
+        </action>
+        
+        <action name="Servicio_Principal">
+            <result>/Servicio/Servicio.jsp</result>
+        </action>
+        
+        <action name="Reg_SS">
+            <result>/Servicio/Reg_SS.jsp</result>
         </action>
         
         <action name="SIP_Principal">

@@ -83,33 +83,56 @@ public class RegistraProyecto extends ActionSupport
     
     
    
-   public String execute() throws IOException, SQLException, PropertyVetoException 
+   public  String execute() throws IOException, SQLException, PropertyVetoException 
    {
         
         LoginBean lb = new LoginBean();
         lb.getConnection();
-   
+        ResultSet pr=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
         
-         if(lb.valida_prof_proyecto(id_proyecto))
-         {
-             int p_p = lb.executeUpdate("INSERT INTO profesor_tiene_proyecto(id_usuario,id_proyecto,id_alumno,rol_profesor,"
-                + "validado,fecha_val) VALUES ('"+getId_usuario()+"','"+getId_proyecto()+"',0,'"+getRol()+"',0,str_to_date('"+fecha_reg+"', '%d-%m-%Y'))");
-             
-             if(p_p<1)
-             {
+        System.out.println(id_usuario);
+        while(pr.next())
+        {   
+            ResultSet pro=lb.executeQuery("select * from proyecto where id_proyecto='"+id_proyecto+"'");
+            System.out.println("Verificando proyecto");
+            while(pro.next())
+            {
+                System.out.println("Proyecto encontrado");
+                ResultSet or= lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+id_usuario+" "
+                        + "and id_proyecto='"+id_proyecto+"'");
+                
+                while(or.next())
+                {
+                    if(id_proyecto.equals(or.getString("id_proyecto")) && id_usuario==or.getInt("id_usuario"))
+                    {
+                        System.out.println("Este wey ya habia registrado este proyecto");
+                        addFieldError("id_proyecto","Este proyecto ya habia sido registrado");
+                        lb.closeConnection();
+                        return ERROR;
+                    }
+                    else
+                    {
+                        System.out.println("Aqui falla");
+                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,id_rol_profesor,validado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0)");
+                        lb.closeConnection();
+                        return SUCCESS;
+                    }
+                }
                 lb.closeConnection();
-                 return  ERROR;
-             }    
-         }
-         else
-         {
-            int proyecto = lb.executeUpdate("insert into proyecto (id_proyecto, nom_proyecto, fecha_reg) values"
-                 + " ('"+getId_proyecto()+"','"+getNom_proyecto()+"',str_to_date('"+fecha_reg+"', '%d-%m-%Y'))");
+                addFieldError("id_proyecto","PROBLEM");
+            }
+
+            lb.executeUpdate("insert into proyecto(id_proyecto,nom_proyecto,fecha_reg) values('"+id_proyecto+"','"+nom_proyecto+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+            lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,rol_profesor,validado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0)");
+            lb.closeConnection();
+            return SUCCESS;
+        }
             
-            int p_t_p = lb.executeUpdate("INSERT INTO profesor_tiene_proyecto(id_usuario,id_proyecto,id_alumno,"
-                    + "rol_profesor,validado,fecha_val) VALUES ('"+id_usuario+"','"+id_proyecto+"','"+id_alumno+"','"+rol+"',0,str_to_date('"+fecha_reg+"', '%d-%m-%Y'))");
-         }       
-         lb.closeConnection();
-         return SUCCESS;    
-    }   
+        System.out.println("Profesor no encontrado");
+        lb.closeConnection();
+        addFieldError("id_usuario","El id del profesor no coincide con algun registro en el sistema");
+        return ERROR;
+    }            
 }
+
+

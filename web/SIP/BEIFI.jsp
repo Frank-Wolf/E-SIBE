@@ -54,7 +54,7 @@
                     
                     <h2 class="titulos">Bienvenido Usuario SIP - Registre Alumno BEIFI</h2>
                        <div class="col-md-9" align="center">
-                        
+                           <s:set name="tipo_alumno" value="%{'BEIFI'}"/>
                         <s:form action="registra_BEIFI" method="post">
                             <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
                             <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
@@ -62,6 +62,7 @@
                             <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
                             <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
                             <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
+                            <s:hidden name="tipo_alumno"/>
                             <s:submit value="Registrar Proyecto" cssClass="btn" />
                         </s:form> 
                                                 
@@ -73,7 +74,8 @@
             </s:div>  
               
         </s:div>        
-        
+                    
+                    
         
        <!--footer-->
         <footer class="footer abso">

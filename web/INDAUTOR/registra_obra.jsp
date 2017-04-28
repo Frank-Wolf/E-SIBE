@@ -71,7 +71,7 @@
                         
                         
                         
-                        <s:submit value="Registrar" name="submit" />
+                        <s:submit value="Registrar" />
                     </s:form> 
                 </div>
                     

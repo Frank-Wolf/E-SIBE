@@ -249,11 +249,11 @@
                     <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        <s:set name="actividad" value="%{'Obra'}"/>
+                        
                         <s:form action="valida_inda" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
-                            <s:hidden name="actividad" label="Actividad"/>
+                        
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    

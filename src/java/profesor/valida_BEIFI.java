@@ -6,6 +6,7 @@
 package profesor;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.sql.ResultSet;
 
 /**
  *
@@ -52,22 +53,82 @@ public class valida_BEIFI extends ActionSupport
 
     public String execute() throws Exception 
     {
+         
+        
+        if(id_proyecto.equals("")){
+            addFieldError("id_proyecto","Este campo es necesario");
+            
+        }
+        
+        if(id_alumno==0){
+            addFieldError("id_alumno","Este campo es necesario");
+            return ERROR;
+        }
+        
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
-
-            int acepta=lb.executeUpdate("update profesor_tiene_proyecto set validado_alumno=1 where id_alumno='"+id_alumno+"' and"
-                    + " id_usuario='"+getUsername()+"' and validado_alumno=0 and tipo_alumno='"+tipo_alumno+"' and id_proyecto='"+id_proyecto+"'" );
-            if(acepta>0)
+        
+        System.out.println(username);
+        System.out.println(id_alumno);
+        ResultSet ex_prof_proy=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_alumno="+id_alumno+"");  //verifica que el profesor está asociado con el proyecto
+        while(ex_prof_proy.next())
+        {
+            System.out.println(ex_prof_proy.getString("id_proyecto"));
+            
+            if(id_proyecto.equals(ex_prof_proy.getString("id_proyecto")))
             {
-                lb.closeConnection();
-                return "test";
+                System.out.println("Encontro relacion entre proyecto y alumno");
+                System.out.println(id_alumno);
+                //ResultSet alumno= lb.executeQuery("select * from alumno");
+                if(id_alumno ==ex_prof_proy.getInt("id_alumno"))
+                {
+                    System.out.println("Busca alumno");
+                    //ResultSet ap=lb.executeQuery("select * from alumno");
+                    if(id_alumno == ex_prof_proy.getInt("id_alumno"))
+                    {
+                        System.out.println("Valida alumno");
+                        int acepta=lb.executeUpdate("update profesor_tiene_proyecto set validado_alumno=1 where id_alumno='"+id_alumno+"' and"
+                        + " id_usuario='"+getUsername()+"' and validado_alumno=0 and tipo_alumno='"+tipo_alumno+"' and id_proyecto='"+id_proyecto+"'" );
+                        if(acepta>0)
+                        {
+                            lb.closeConnection();
+                            return "test";
+                        }
+                        else
+                        {
+                           lb.closeConnection();
+                           addFieldError("id_alumno","Hay un problema");
+                           return "error";
+                        }
+                    }
+                    else
+                    {
+                        System.out.println(ex_prof_proy.getString("No encontro alumno"));
+                        lb.closeConnection();
+                        addFieldError("id_alumno","Este alumno no esta registrado en tu proyecto");
+                        return "error";
+                    }        
+                }
+                else
+                {
+                    lb.closeConnection();
+                        addFieldError("id_alumno","Este alumno no esta registrado en ESIBE, comunicate a SIP");
+                        return "error";
+                }
             }
             else
             {
                 lb.closeConnection();
-                addFieldError("id_alumno","Hay un problema");
+                addFieldError("id_proyecto","Lo sentimos, este proyecto no se relaciona con usted, comuniquese a SIP");
                 return "error";
             }
+                    
+        
+        }
+        lb.closeConnection();
+        addFieldError("id_proyecto","Lo sentimos, este Alumno no se relaciona con usted");
+        return "error";
+            
     }
   
 }

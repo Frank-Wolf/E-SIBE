@@ -70,7 +70,6 @@
                     <s:form action="registra_TT" method="post">
                         <s:textfield name="id_alumno" label="Matricula del Alumno graduado" cssClass="form-control"/>
                         <s:textfield name="nom_alumno" label="Nombre del Alumno graduado" cssClass="form-control"/>
-                        <sj:datepicker name="fecha_pro" label="Fecha de Graduacion del alumno" displayFormat="dd-mm-yy" cssClass="form-control"/>
                         <s:textfield name="id_TT" label="numero del TT" cssClass="form-control"/>
                         <s:textfield name="nom_TT" label="Título del TT" cssClass="form-control"/>
                         <s:textfield name="id_usuario" label="No. Empleado del Director" cssClass="form-control" />

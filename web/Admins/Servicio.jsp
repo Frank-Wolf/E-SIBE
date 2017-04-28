@@ -96,7 +96,7 @@
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='Borrar_SS?id_usuario="
-                                        +rs.getString("id_prof")+"'>Borrar</a>");
+                                        +rs.getString("id_usuario")+"'>Borrar</a>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Admins/modifica_ss.jsp?id="
@@ -119,6 +119,7 @@
                         <s:form id="datos3" action="Registra_SS" >
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
                             <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
+                            <s:textfield name="email" label="Correo Electronico" cssClass="form-control"/>
                             <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
