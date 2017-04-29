@@ -6,6 +6,7 @@
 package profesor;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.sql.ResultSet;
 
 /**
  *
@@ -41,21 +42,46 @@ public class valida_part extends ActionSupport
     }
     public String execute() throws Exception 
     {
+        if(id_part.equals(""))
+        {
+            addFieldError("id_part","Este campo es necesario");
+            return ERROR;
+        }
+        
+        if(u_a.equals(""))
+        {
+            addFieldError("u_a","Este campo es necesario");
+            return ERROR;
+        }
+
+        
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
-
-            int acepta=lb.executeUpdate("update profesor_participa_en_plan set validado=1 where id_usuario='"+username+"' and  id_part='"+id_part+"' and validado=0" );
-            if(acepta>0)
-            {
+        
+        ResultSet val=lb.executeQuery("select * from part_plan_est where id_part ='"+id_part+"' and u_a='"+u_a+"'");
+        while(val.next())
+        {
+            ResultSet prof_val=lb.executeQuery("select * from profesor_participa_en_plan where id_usuario="+username+" and id_part='"+id_part+"'");
+            while(prof_val.next())
+            {   
+                ResultSet profd=lb.executeQuery("select * from profesor_participa_en_plan where id_usuario="+username+" and id_part='"+id_part+"' and validado=0");
+                while(profd.next())
+                {
+                    lb.executeUpdate("update profesor_participa_en_plan set validado=1 where id_usuario="+username+" and id_part='"+id_part+"'");
+                    lb.closeConnection();
+                    return SUCCESS;
+                }
+                
+                addFieldError("id_part","Esta Participacion ya fue registrada");
                 lb.closeConnection();
-                return "test";
+                return ERROR;    
             }
-            else
-            {
-                lb.closeConnection();
-                addFieldError("id_alumno","Hay un problema");
-                return "error";
-            }
+            addFieldError("id_part","Esta Participacion no tiene relacion con usted");
+            lb.closeConnection();
+            return ERROR;
+        }
+        addFieldError("id_part","Esta Participacion no existe, verifique sus datos");
+        lb.closeConnection();
+        return ERROR;    
     }
-  
 }

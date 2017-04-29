@@ -130,7 +130,10 @@ public class Login_Action extends ActionSupport implements SessionAware{
             
             if(type.equals("5")) //antes: admin_escom
                 return "admin_escom";
-            
+            if(type.equals("13")) //antes: admin_escom
+                return "admin_DES";
+            if(type.equals("12")) //antes: admin_escom
+                return "admin_DEMS";
             // Usuarios
             if(type.equals("6")) //antes:usuario_cofaa
                 return "usuario_cofaa";
@@ -150,6 +153,10 @@ public class Login_Action extends ActionSupport implements SessionAware{
             if(type.equals("usuario_repua"))
                 return "usuario_repua";
             
+            if(type.equals("15"))
+                return "usuario_DES";
+            if(type.equals("14"))
+                return "usuario_DEMS";
             
             else
             {

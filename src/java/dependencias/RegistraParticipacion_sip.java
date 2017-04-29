@@ -71,29 +71,89 @@ public class RegistraParticipacion_sip extends ActionSupport
         this.id_usuario = id_usuario;
     }
 
-   Random rand = new Random();
-   int  n = rand.nextInt(500) + 1;
+
    public String execute() throws IOException, SQLException, PropertyVetoException 
    {
-        String ret = SUCCESS;
+       
+       if(id_tipo_part_plan<1)
+       {
+           addFieldError("id_tipo_part_plan","Este campo es necesario");
+           return ERROR;
+       }
+       
+        if(id_usuario==0)
+       {
+           addFieldError("id_usuario","Este campo es necesario");
+           return ERROR;
+       }
+       
+       if(id_participacion.equals(""))
+       {
+           addFieldError("id_part","Este campo es necesario");
+           return ERROR;
+       }
+       
+       if(u_a.equals(""))
+       {
+           addFieldError("u_a","Este campo es necesario");
+           return ERROR;
+       }
+       
+       if(fecha_reg.equals(""))
+       {
+           addFieldError("fecha_reg","Este campo es necesario");
+           return ERROR;
+       }
+       
+       if(Asignatura.equals(""))
+       {
+           addFieldError("Asignatura","Este campo es necesario");
+           return ERROR;
+       }
+
+       String ret = SUCCESS;
+       System.out.println(id_tipo_part_plan);
    
         LoginBean lb = new LoginBean();
         lb.getConnection();
    
-        int part_p = lb.executeUpdate("INSERT INTO part_plan_est(id_part,id_tipo_part,fecha,asignatura,u_a) VALUES "
-                + "('"+getId_participacion()+"','"+getId_tipo_part_plan()+"',str_to_date('"+fecha_reg+"', '%d-%m-%Y'),'"+getAsignatura()+"','"+u_a+"')");
-
-        int p_t_pl= lb.executeUpdate ("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val) "
-                + "VALUES ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,str_to_date('"+fecha_reg+"', '%d-%m-%Y'))");
-         
-        if(part_p<1 || p_t_pl <1)
+        ResultSet prof=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
+        while(prof.next())
         {
-            lb.closeConnection();
-            return ERROR;
-        }
          
+            ResultSet part=lb.executeQuery("select * from part_plan_est where id_part='"+id_participacion+"'");
+            
+            while(part.next())
+            {
+                ResultSet prof_en=lb.executeQuery("select * from profesor_participa_en_plan where id_usuario="+id_usuario+" and id_part='"+id_participacion+"'");
+                while(prof_en.next())
+                {
+                    lb.closeConnection();
+                    addFieldError("id_usuario","Esta actividad ya fue registrada");
+                    return ERROR;
+                }
+                
+                int nuevo_part=lb.executeUpdate("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val)"
+                              + " VALUES ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,"
+                              + "str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                lb.closeConnection();
+                return SUCCESS; 
+            }
+            int part_p = lb.executeUpdate("INSERT INTO part_plan_est(id_part,id_tipo_part,fecha,asignatura,u_a) VALUES "
+                        + "('"+getId_participacion()+"','"+getId_tipo_part_plan()+"',str_to_date('"+fecha_reg+"', '%d-%m-%Y'),"
+                        + "'"+getAsignatura()+"','"+u_a+"')");
+            
+            int nuevo_part=lb.executeUpdate("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val)"
+                              + " VALUES ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,"
+                              + "str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+            
+            lb.closeConnection();
+            return SUCCESS;
+            
+        }
+        addFieldError("id_usuario","Este profesor no está registrado en el sistema");
         lb.closeConnection();
-        return ret; 
+        return ERROR; 
         
     }  
 }

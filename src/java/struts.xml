@@ -23,6 +23,8 @@
             <result name="admin_cofaa">/Admins/admin_cofaa.jsp</result>
             <result name="admin_prof">/Admins/admin_prof.jsp</result>
             <result name="admin_escom">/Admins/admin_escom.jsp</result>
+            <result name="admin_DES">/Admins/admin_DES.jsp</result>
+            <result name="admin_DEMS">/Admins/admin_DEMS.jsp</result>
             <!-->Páginas de los usuarios de las dependencias<-->
             <result name="usuario_catt">/CATT/CATT.jsp</result>
             <result name="usuario_cofaa">/COFAA/COFAA.jsp</result>
@@ -30,6 +32,9 @@
             <result name="usuario_repua">/Rep_ua/Rep_ua.jsp</result>
             <result name="usuario_sip">/SIP/SIP.jsp</result>
             <result name="usuario_ss">/Servicio/Servicio.jsp</result>
+            <result name="usuario_DES">/DESyDEMS/DES.jsp</result>
+            <result name="usuario_DEMS">/DESyDEMS/DEMS.jsp</result>
+            
         </action>
         <action name="Cerrar_sesion" class="sesion.Login_Action" method="logout">
             <result name="test">/Login/Login.jsp</result>
@@ -91,6 +96,46 @@
             <result name="test">/Admins/modifica_inda.jsp</result>
         </action> 
         
+        
+        <!--Registra DES-->
+        <action name="Registra_DES" class="admins.regusuario_sip">
+            <result name="test">/Admins/usuarios_DES.jsp</result><!--hacer para el cofaas-->
+            <result name="success">/Admins/usuarios_DES.jsp</result>
+            <result name="error">regusuario_fallo.jsp</result>
+        </action>
+        
+        <!--Borra DES-->
+        <action name="Borrar_DES" class="admins.Borrarusuario_SIP">
+            <result name="borrar_exitoso">/Admins/usuarios_DES.jsp</result>
+            <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+        </action>
+        
+        <!--Modifica DES-->
+        <action name="Modifica_DES" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso">/Admins/usuarios_DES.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_DES.jsp</result>
+        </action> 
+        
+        <action name="Registra_DEMS" class="admins.regusuario_sip">
+            <result name="test">/Admins/usuarios_DES.jsp</result><!--hacer para el cofaas-->
+            <result name="success">/Admins/usuarios_DES.jsp</result>
+            <result name="error">regusuario_fallo.jsp</result>
+        </action>
+        
+        <!--Borra DES-->
+        <action name="Borrar_DEMS" class="admins.Borrarusuario_SIP">
+            <result name="borrar_exitoso">/Admins/usuarios_DES.jsp</result>
+            <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+        </action>
+        
+        <!--Modifica DES-->
+        <action name="Modifica_DEMS" class="admins.Modifica_SIP" >
+            <result name="modificar_exitoso">/Admins/usuarios_DEMS.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
+            <result name="test">/Admins/modifica_DEMS.jsp</result>
+        </action> 
+         
         <!--Registra COFAA-->
         <action name="Registra_COFAA" class="admins.regusuario_cofaa">
             <result name="success">/Admins/cofaa_regExi.jsp</result>
@@ -188,6 +233,18 @@
         <action name="Sip_registro">
             <result>/Admins/admin_sip.jsp</result>
         </action>
+        <action name="part_DES">
+            <result>/DESyDEMS/Part_DES.jsp</result>
+        </action>
+        <action name="DES_P">
+            <result>/DESyDEMS/DES.jsp</result>
+        </action>
+        <action name="part_DEMS">
+            <result>/DESyDEMS/Part_DEMS.jsp</result>
+        </action>
+        <action name="DEMS_P">
+            <result>/DESyDEMS/DEMS.jsp</result>
+        </action>
         <!--Regresos a páginas de adminsitradores de usuarios después del registroFIN-->
     </package>
     <package name="PROFESOR" extends="struts-default" namespace="/Usuario">
@@ -270,6 +327,11 @@
             <result name="error">/SIP/participacion.jsp</result>
         </action>
         
+        <action name="registra_part_DES" class="dependencias.RegistraParticipacion_sip">
+            <result name="success">/DESyDEMS/DES.jsp</result>
+            <result name="error">/DESyDEMS/Part_DES.jsp</result>
+        </action>
+        
     </package>
     
     <!--Paquete para los profesores que validad actividades-->
@@ -296,7 +358,7 @@
         </action>
         
         <action name="valida_partt" class="profesor.valida_part">
-            <result name="test">/Profesor/test_doc.jsp</result>
+            <result name="success">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
     </package>
@@ -378,6 +440,32 @@
         <action name="Reg_SS">
             <result>/Servicio/Reg_SS.jsp</result>
         </action>
+        
+        <action name="Us_DES">
+            <result>/Admins/usuarios_DES.jsp</result>
+        </action>
+        
+        <action name="DES_PRIN">
+            <result>/Admins/admin_DES.jsp</result>
+        </action>
+        
+        <action name="DEMS_PRIN">
+            <result>/Admins/admin_DEMS.jsp</result>
+        </action>
+        
+        
+        
+        <action name="PROG_EST">
+            <result>/Admins/Prog_est.jsp</result>
+        </action>
+        <action name="Us_DEMS">
+            <result>/Admins/usuarios_DEMS.jsp</result>
+        </action>
+        
+        <action name="PROG_EST2">
+            <result>/Admins/Prog_est2.jsp</result>
+        </action>
+        
         
         <action name="SIP_Principal">
             <result>/SIP/SIP.jsp</result>
