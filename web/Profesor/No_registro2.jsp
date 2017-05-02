@@ -1,6 +1,6 @@
 <%-- 
-    Document   : No_Registro
-    Created on : Apr 30, 2017, 4:55:51 PM
+    Document   : No_registro2
+    Created on : May 1, 2017, 4:12:43 PM
     Author     : PsysacElrick
 --%>
 
@@ -16,7 +16,7 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
 
 <body> 
 
-<jsp:include page="/Profesor/Profesor.jsp"></jsp:include>
+<jsp:include page="/Profesor/Profesor_notime.jsp"></jsp:include>
 
 </body>
 </html>

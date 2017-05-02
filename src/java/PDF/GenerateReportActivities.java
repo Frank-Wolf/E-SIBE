@@ -34,7 +34,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import java.io.IOException;
 import java.sql.ResultSet;  
 
-public class GenerateSimplePdfReportWithJasperReports {
+public class GenerateReportActivities {
         private static String FILE;
         private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 17,
                         Font.BOLD);
@@ -54,9 +54,7 @@ public class GenerateSimplePdfReportWithJasperReports {
 
         public String execute() throws Exception 
         {
-            //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
-            FILE += getUsername() + "Reporte_de_Actividades_E-SIBE_"
-                     + getUsername() + ".pdf";
+             FILE = "C:\\psf\\Home\\Documents\\ " + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
              lb.getConnection();
              int i = 0;
              ResultSet ra;
@@ -78,8 +76,11 @@ public class GenerateSimplePdfReportWithJasperReports {
                  i++;
              }
              //lb.closeConnection();
-             if(i == 0)
+             if(i == 0){
+                 lb.closeConnection();
                  return "no_registro";
+             }
+                 
 
                 try 
                 {

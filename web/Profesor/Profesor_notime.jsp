@@ -58,9 +58,6 @@
                                 <li><a href="apelacion_prof">
                                         Apelación de alguna actividad</a>
                                 </li>
-                                <li><a href="test_doc"><!--test to upload files-->
-                                        test_doc</a>
-                                </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="Cerrar_sesion">
@@ -107,7 +104,18 @@
                                  lb.closeConnection();
                                 %>       
                         </div>
+                                <%
+                                out.print("<p>");
+                                out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
+                                        username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
+                                                + "</a>");
+                                out.print("</p>");
+                                %>
                     </div>
+                    <s:form id="datos" action="create_pdf_apela" method="post" style="display:block;" >
+                    <s:hidden name="username" label="Matrícula"/>
+                    <s:submit value="Generar reporte de actividades"/>
+                    </s:form>
              
            
                     

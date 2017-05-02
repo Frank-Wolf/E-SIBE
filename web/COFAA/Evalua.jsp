@@ -83,7 +83,7 @@
                             ResultSet rs=null;
                             
                             rs=lb.executeQuery("SELECT * "
-                                    + "FROM profesor_tiene_tt WHERE "
+                                    + "FROM profesor_tiene_proyecto WHERE "
                                     + "id_usuario = " + user);
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
@@ -98,10 +98,11 @@
                                 out.print(rs.getString("id_alumno"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=/login/Usuario/Ver_constancia_alumno></a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rs.getString("ruta_alumno") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_1.jsp?id="
+                                        +  rs.getString("id_alumno") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                                 
                             }
@@ -130,10 +131,11 @@
                                 out.print(rd.getString("id_publicacion"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rd.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rd.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_2.jsp?id="
+                                        +  rd.getString("id_publicacion") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -159,10 +161,11 @@
                                 out.print(ra.getString("id_evento"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + ra.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + ra.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_3.jsp?id="
+                                        +  ra.getString("id_evento") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -187,12 +190,12 @@
                                 out.print("<td>");
                                 out.print(rv.getString("id_proyecto"));
                                 out.print("</td>");
-                                out.print("<td>");
-                                out.print("<a href= " + rv.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rv.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
-                                out.print("</td>");
+                                out.print("<a href='/login/COFAA/Evalua_2_4.jsp?id="
+                                        +  rd.getString("id_proyecto") + "'>Asigna puntaje y/o comentarios</a>");
+                               out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
@@ -224,7 +227,8 @@
                                         + "width = '100px' height = '100px'></iframe></div>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_5.jsp?id="
+                                        +  rd.getString("id_obra") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -249,11 +253,11 @@
                                 out.print("<td>");
                                 out.print(rn.getString("id_TT"));
                                 out.print("</td>");
-                                out.print("<td>");
-                                out.print("<a href= " + rn.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rn.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_11.jsp?id="
+                                        +  rn.getString("id_TT") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -276,13 +280,13 @@
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rm.getString("id_parteeeewe"));
+                                out.print(rm.getString("id_part"));
+                                out.print("</td>");
+                                out.print("<a href='file:///" + rm.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rm.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_12.jsp?id="
+                                        +  rm.getString("id_part") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
