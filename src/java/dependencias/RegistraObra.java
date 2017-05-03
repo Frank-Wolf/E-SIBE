@@ -109,7 +109,7 @@ public class RegistraObra extends ActionSupport
             {
                 
                 System.out.println("Encontro la obra");
-                ResultSet vnuevo=lb.executeQuery("select * from profesor_tiene_obra where id_obra="+id_obra+" id_usuario="+id_usuario+"");
+                ResultSet vnuevo=lb.executeQuery("select * from profesor_tiene_obra where id_obra='"+id_obra+"' and id_usuario="+id_usuario+"");
                 while(vnuevo.next())
                 {
                     System.out.println("Ya esta hecho");

@@ -43,7 +43,7 @@
                                 <li><a href="BEIFI">Alumno BEIFI</a></li>
                                 <li><a href="Proyecto_sip">Proyecto SIP</a></li>
                                 <li><a href="part_sip">Participacion en Plan de Estudios</a></li>
-                                <li><a href="#">Arbitraje de publicación</a></li>
+                                <li><a href="publicacion_arbitraje">Publicación con Arbitraje</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">

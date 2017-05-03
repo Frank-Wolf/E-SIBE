@@ -152,7 +152,7 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 return "usuario_ua";
             if(type.equals("10")) //antes: usuario_ss
                 return "usuario_ss";
-            if(type.equals("usuario_repua"))
+            if(type.equals("16"))
                 return "usuario_repua";
             
             if(type.equals("15"))
