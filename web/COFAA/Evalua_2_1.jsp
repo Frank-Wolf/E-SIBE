@@ -8,6 +8,7 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="java.sql.*" %>
+<%@taglib prefix="sj" uri="/struts-jquery-tags" %> 
 <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -75,62 +76,39 @@
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
                             + "id_alumno='"+user+"'");
                             rs.next();
-                            boolean aceptado = rs.getBoolean("aceptado_alumno");
+                            //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             String comentario=rs.getString("comentarios");
-                            Date Fecha_evaluar=rs.getDate("fecha_val");
-                            int puntaje=rs.getInt("puntaje_alumno");
+                            //Date fecha_evaluar=rs.getDate("fecha_val");
+                            //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();
                         %>
                     </div>
                     
-                    <div class="col-md-6">
+                    <div cssClass="" align ="center">
 
                         <h2 class="h3">Asignar registro</h2>
                         
-
-                        
-                        
-                        <s:set name="idTypeUsuario" value="%{6}" />
-                        <s:form name="form1" id="datos3" action="Registra_COFAA">
-                            <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control"/>
-                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
-                            <s:textfield name='email' label="Correo electrónico" cssClass="form-control"/>
-                            <s:select label="Seleccione una dependencia" cssClass="form-control"
-                            headerKey="-1" headerValue="Dependencia"
-                            list="# {
-                            'ESCOM':'ESCOM',
-                            'ESIA - Unidad Ticomán':'ESIA - Unidad Ticomán',
-                            'ESFM':'ESFM',
-                            'ESIA - Unidad Zacatenco':'ESIA - Unidad Zacatenco',
-                            'ESIME - Unidad Azcapotzalco':'ESIME - Unidad Azcapotzalco',
-                            'UPIBI':'UPIBI',
-                            'ESIME - Unidad Culhuacán':'ESIME - Unidad Culhuacán',
-                            'UPIIZ - Campus Zacatecas':'UPIIZ - Campus Zacatecas',
-                            'ESIME - Unidad Ticomán':'ESIME - Unidad Ticomán',
-                            'UPIICSA':'UPIICSA',
-                            'ESIME - Unidad Zacatenco':'ESIME - Unidad Zacatenco',
-                            'UPIIG - Campus Guanajuato':'UPIIG - Campus Guanajuato',
-                            'ESIQIE':'ESIQIE',
-                            'UPIITA':'UPIITA',
-                            'ESIT':'ESIT',
-                            'ESIA - Unidad Tecamachalco':'ESIA - Unidad Tecamachalco',
-                            'CICS - Unidad Milpa Alta':'CICS - Unidad Milpa Alta',
-                            
-                            'ENMyH':'ENMyH',
-                            'CICS - Unidad Santo Tomás':'CICS - Unidad Santo Tomás',
-                            'ESEO':'ESEO',
-                            'ENCB':'ENCB',
-                            'ESM':'ESM',
-                            'ESCA - Unidad Santo Tomás':'ESCA - Unidad Santo Tomás',
-                            'ESE':'ESE',
-                            'ESCA - Unidad Tepepan':'ESCA - Unidad Tepepan',
-                            'EST':'EST'
-                            }"
-                            name="u_a" />
-                            <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
-                            <s:hidden name="counter" label="Número de usuarios registrados"/>
-                            <s:submit cssClass="btn" value="Registrar Usuario" />
+                        <s:set var="id_actividad"><%=user%></s:set>
+                        <s:set var="comentario"><%=comentario%></s:set>
+                        <s:form action="/Usuario/evalua_2_1">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" value="%{#comentario}" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      0:0,
+                                      25:25
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
                     </div>
                         
