@@ -142,11 +142,11 @@ public class RegistraBEIFI extends ActionSupport
                     lb.closeConnection();
                     return SUCCESS;
                 }
-                addFieldError("id_proyeto","No existe un vinculo entre el proyecto y el profesor");
+                addFieldError("id_proyecto","No existe un vinculo entre el proyecto y el profesor");
                 lb.closeConnection();
                 return ERROR;
             }
-            addFieldError("id_proyeto","No se tiene registrado este proyecto");
+            addFieldError("id_proyecto","No se tiene registrado este proyecto");
             lb.closeConnection();
             return ERROR;
         }    
