@@ -7,7 +7,7 @@ package dependencias;//aqui haremos el insert
 
 /**
  *
- * @author le_as
+ * @author PsysacElrick
  */
 import sesion.*;
 import java.beans.PropertyVetoException;
@@ -37,7 +37,7 @@ public class LoginBean
             {
                 System.out.println(resultSet.getString("password"));
                 if(resultSet.getString("password").equals(password))
-                return false;
+                return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,10 +50,8 @@ public class LoginBean
             if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
             if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
         }
-        return true;
+        return false;
     }
-  
-        
     public void getConnection()throws IOException, SQLException, PropertyVetoException
     {
         try{

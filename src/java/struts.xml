@@ -7,7 +7,7 @@
     <!-- Configuration for the default package. -->
     <constant name="struts.devMode" value="true" />
     <constant name="struts.custom.i18n.resources" value="global" />
-    <constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/>
+    <!--constant name="struts.multipart.saveDir" value="C:/Users/le_as/Documents/Escuela"/-->
     <constant name="struts.multipart.maxSize" value="20000000" /><!--Constante para definir el tamaño de los archivos a subir-->
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <!--Package inicio de Sesion -->
@@ -253,10 +253,7 @@
         </action>
         <action name="apelacion_prof" class="profesor.try_apelacion">
             <result name="success">/Profesor/Profesor_apelacion.jsp</result>
-            <result name="error">/Profesor/Profesor_notime.jsp</result>
-        </action>
-        <action name="test_doc">
-            <result>/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Profesor_notime2.jsp</result>
         </action>
         <action name="fileUploadAction" class="PDF.Subir_PDF" method="display"><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssss-->
 	    <result name="none">/Profesor/test_doc.jsp</result>
@@ -281,10 +278,19 @@
             <result name="success">/Profesor/Profesor.jsp</result>
             <result name="input">/Profesor/test_doc.jsp</result>
         </action><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
-        <action name="create_pdf" class="PDF.GenerateSimplePdfReportWithJasperReports">
+        <action name="create_pdf_reporte" class="PDF.GenerateReportActivities"><!--Regresa a menu de profesor con tiempo de registro de actividades-->
             <result name="success">/Profesor/Profesor.jsp</result>
+            <result name="no_registro">/Profesor/No_Registro.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="create_pdf_apela" class="PDF.GenerateReportActivities"><!--Regresa a menu de profesor en tiempo de apelaciones-->
+            <result name="success">/Profesor/Profesor_notime.jsp</result>
+            <result name="no_registro">/Profesor/No_registro2.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <!--action name="visualiza_reporteactivities" class="PDF.">
+            <result></result>
+        </action-->
     </package>
     <!--paquete de la escom (redirigir a catt o a servicio social)-->
     <package name="ESCOM" extends="struts-default" namespace="/Usuario">
@@ -528,14 +534,30 @@
         <action name="Regresar_cofaa2">
             <result>/COFAA/Registros.jsp</result>
         </action>
-         <action name="ver_constancia2_5" class="PDF.visualiza_constancia2_5">
-            <result name="success" type="stream">
-                <param name="contentType">application/pdf</param>
-                <param name="inputName">inputStream</param>
-                <param name="contentDisposition">inline;filename="prueba.pdf"</param>
-                <param name="bufferSize">1024</param>
-            </result>
+        <action name="Menu_evalua">
+            <result>/COFAA/Evalua.jsp</result>
         </action>
+        <action name="evalua_2_1" class="cofaa.evalua_2_1">
+            <result name="success">/COFAA/Evalua_listo21.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="evalua_2_4" class="cofaa.evalua_2_4">
+            <result name="success">/COFAA/Evalua_listo21.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="evalua_2_5" class="cofaa.evalua_2_5">
+            <result name="success">/COFAA/Evalua_listo21.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="evalua_2_11" class="cofaa.evalua_2_11">
+            <result name="success">/COFAA/Evalua_listo21.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="evalua_2_12" class="cofaa.evalua_2_12">
+            <result name="success">/COFAA/Evalua_listo21.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        
     </package>
     <!--package name="Regresar" extends="struts-default" namespace="/COFAA">
         <action name="Regresar_cofaa2">

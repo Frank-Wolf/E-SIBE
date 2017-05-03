@@ -57,9 +57,6 @@
                                 <li><a href="Actividades_Profesor">
                                         Validación de Actividades</a>
                                 </li>
-                                <li><a href="test_doc"><!--test to upload files-->
-                                        test_doc</a>
-                                </li>
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
@@ -132,7 +129,18 @@
                     
                             
                         </div>
-                    </div>    
+                        <%
+                                out.print("<p>");
+                                out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
+                                        username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
+                                                + "</a>");
+                                out.print("</p>");
+                                %>
+                    </div>  
+                    <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >
+                    <s:hidden name="username" label="Matrícula"/>
+                    <s:submit value="Generar reporte de actividades"/>
+                    </s:form>
                 
             </s:div>
         </s:div>  

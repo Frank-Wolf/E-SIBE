@@ -36,7 +36,7 @@
             }
         </style>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding">
         <header class="headering">
             <s:div cssClass="container-fluid">            
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
@@ -77,14 +77,14 @@
                         out.print("<h2 class='Titular' align='center'>Lista de actividades del profesor </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
-                    <!--div class="col-md-6">
+                    <div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
                             ResultSet rs=null;
                             
                             rs=lb.executeQuery("SELECT * "
-                                    + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + user);
+                                    + "FROM profesor_tiene_proyecto WHERE "
+                                    + "id_usuario = " + user + " AND aceptado_alumno IS NULL");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -98,10 +98,11 @@
                                 out.print(rs.getString("id_alumno"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=/login/Usuario/Ver_constancia_alumno></a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rs.getString("ruta_alumno") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_1.jsp?id="
+                                        +  rs.getString("id_alumno") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                                 
                             }
@@ -110,13 +111,13 @@
                             //stack.getContext().put("varName", i);
                             //stack.setValue("#attr['varName']", i, false);
                         %>
-                    </div-->
-                    <!--div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                     <h2 class="h3">2.2 Publicaciones científicas y de divulgación impresas y/o en línea</h2>   
                     <%
                         ResultSet rd=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_pub WHERE "
-                                    + "id_usuario = " + user);
+                                    + "id_usuario = " + user + " AND aceptado IS NULL");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -130,22 +131,23 @@
                                 out.print(rd.getString("id_publicacion"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rd.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rd.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_2.jsp?id="
+                                        +  rd.getString("id_publicacion") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
-                    </div-->
-                    <!--div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                     <h2 class="h3">2.3 Trabajos de investigación presentados en congresos, reuniones y eventos académicos</h2>   
                     <%
                         ResultSet ra=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_ev WHERE "
-                                    + "id_usuario = " + user);
+                                    + "id_usuario = " + user + " AND aceptado IS NULL");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -159,22 +161,23 @@
                                 out.print(ra.getString("id_evento"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + ra.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + ra.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_3.jsp?id="
+                                        +  ra.getString("id_evento") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
-                    </div-->
-                    <!--div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                     <h2 class="h3">2.4 Investigación y/o desarrollo tecnológico satisfactorio</h2>   
                     <%
                         ResultSet rv=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_proyecto WHERE "
-                                    + "id_usuario = " + user);
+                                    + "id_usuario = " + user + " AND aceptado IS NULL");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -188,22 +191,23 @@
                                 out.print(rv.getString("id_proyecto"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rv.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rv.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
-                                out.print("</td>");
+                                out.print("<a href='/login/COFAA/Evalua_2_4.jsp?id="
+                                        +  rv.getString("id_proyecto") + "'>Asigna puntaje y/o comentarios</a>");
+                               out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
-                    </div-->
+                    </div>
                     <div class="col-md-6">
                     <h2 class="h3">2.5 Derechos de autor</h2>   
                     <%
                         ResultSet rb=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_obra WHERE "
-                                    + "id_usuario = " + user);
+                                    + "id_usuario = " + user + " AND aceptado IS NULL");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -224,19 +228,20 @@
                                         + "width = '100px' height = '100px'></iframe></div>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_5.jsp?id="
+                                        +  rb.getString("id_obra") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
                     </div>
-                    <!--div class="col-md-6">
+                    <div class="col-md-6">
                     <h2 class="h3">2.11 Direcciones y codirecciones de tésis</h2>   
                     <%
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + user);
+                                    + "id_usuario = " + user + " AND aceptado IS NULL");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -250,22 +255,23 @@
                                 out.print(rn.getString("id_TT"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rn.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rn.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_11.jsp?id="
+                                        +  rn.getString("id_TT") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             //lb.closeConnection();
                     %>
-                    </div-->
-                    <!--div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                     <h2 class="h3">2.12 Coordinación o participación en la elaboración de un plan de estudios</h2>   
                     <%
                         ResultSet rm=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_en_plan WHERE "
-                                    + "id_usuario = " + user);
+                                    + "id_usuario = " + user + " AND aceptado IS NULL ");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -276,19 +282,20 @@
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rm.getString("id_parteeeewe"));
+                                out.print(rm.getString("id_part"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href= " + rm.getString("ruta_alm") + ">Ver constancia</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='file:///" + rm.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print("<a href=#>Asigna puntaje y/o comentarios</a>");//Aquí poner la ruta de los alumnos
+                                out.print("<a href='/login/COFAA/Evalua_2_12.jsp?id="
+                                        +  rm.getString("id_part") + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             lb.closeConnection();
                     %>
-                    </div-->
+                    </div>
                     
                 </s:div>
             </s:div>  

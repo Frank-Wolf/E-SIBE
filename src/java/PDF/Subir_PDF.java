@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package PDF;
+import static com.opensymphony.xwork2.Action.ERROR;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import java.io.IOException; 
@@ -21,30 +22,31 @@ public class Subir_PDF extends ActionSupport{
     private String myFileFileName;
     private String destPath;
     private String username;
+    private String activity;
     
     public String execute() throws SQLException, PropertyVetoException//each time the professor calls this function,
             //we need to receive the username (employee number) and the name of the table
             //thus, we can get the complete address of the saved file
    {
       /* Copy file to a safe location */
-      destPath = "C:\\psf\\Home\\Documents\\5555\\AlumnosBEIFI\\";//\\psf\Home\Documents\Prueba
-      destPath += username;
+      destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+      destPath += getUsername() + "\\" + getActivity() + "\\";//First username, then activity (from the instructive or the report of activities)
       try{
      	 System.out.println("Src File name: " + myFile);
-     	 System.out.println("Dst File name: " + myFileFileName);
+     	 System.out.println("Dst File name: " + getActivity());
      	    	 
      	 File destFile  = new File(destPath, myFileFileName);
     	 FileUtils.copyFile(myFile, destFile);
          profesor.LoginBean lb = new profesor.LoginBean();
          lb.getConnection();
-         int ruta = lb.executeUpdate("update profesor_tiene_obra set ruta_alm='"+destPath+myFileFileName+"' where id_usuario='"+getUsername()+"';");
-  
+         int ruta = lb.executeUpdate("update profesor_tiene_obra set ruta_alm='" + destPath + getMyFileFileName() + "' "
+                 + "where id_usuario='" + getUsername() + "';");
+         lb.closeConnection();
       }catch(IOException e){
          e.printStackTrace();
          return ERROR;
       }
-
-      return SUCCESS;
+      return ERROR;
    }
     
     public File getMyFile() {
@@ -76,5 +78,13 @@ public class Subir_PDF extends ActionSupport{
     public String display() {
 		return NONE;
 	}
+    
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
     
 }
