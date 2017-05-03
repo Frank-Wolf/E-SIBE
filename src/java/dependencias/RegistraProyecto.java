@@ -85,6 +85,30 @@ public class RegistraProyecto extends ActionSupport
    
    public  String execute() throws IOException, SQLException, PropertyVetoException 
    {
+    
+        if(id_proyecto.equals(""))
+        {
+            addFieldError("id_proyecto","Este campo es necesario");
+            return ERROR;
+        }
+        
+        if(nom_proyecto.equals(""))
+        {
+            addFieldError("nom_proyecto","Este campo es necesario");
+            return ERROR;
+        }
+        
+        if(id_usuario==0)
+        {
+            addFieldError("id_usuario","Este campo es necesario");
+            return ERROR;
+        }
+       
+        if(rol.equals("-1"))
+        {
+            addFieldError("rol","Este campo es necesario");
+            return ERROR;
+        }
         
         LoginBean lb = new LoginBean();
         lb.getConnection();
@@ -120,6 +144,7 @@ public class RegistraProyecto extends ActionSupport
                 }
                 lb.closeConnection();
                 addFieldError("id_proyecto","PROBLEM");
+                return ERROR;
             }
 
             lb.executeUpdate("insert into proyecto(id_proyecto,nom_proyecto,fecha_reg) values('"+id_proyecto+"','"+nom_proyecto+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");

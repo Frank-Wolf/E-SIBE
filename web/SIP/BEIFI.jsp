@@ -58,7 +58,13 @@
                         <s:form action="registra_BEIFI" method="post">
                             <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
                             <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                            <s:textfield name="rol_profesor" label="Rol del profesor en el proyecto" cssClass="form-control"/>
+                            <s:select label="Seleccione el Rol de Profesor" cssClass="form-control"
+                            headerKey="-1" headerValue="Rol de Profesor"
+                            list="# {
+                            'Coordinador':'Coordinador',
+                            'Colaborador':'Colaborador'
+                            }"
+                            name="rol_profesor" /> 
                             <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
                             <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
                             <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>

@@ -332,6 +332,11 @@
             <result name="error">/DESyDEMS/Part_DES.jsp</result>
         </action>
         
+        <action name="registra_pub_bol" class="dependencias.Registra_pubBol">
+            <result name="success">/Rep_ua/Rep_ua.jsp</result>
+            <result name="error">/Rep_ua/Boletin.jsp</result>
+        </action>
+        
     </package>
     
     <!--Paquete para los profesores que validad actividades-->
@@ -466,6 +471,9 @@
             <result>/Admins/Prog_est2.jsp</result>
         </action>
         
+        <action name="publicacion_arbitraje">
+            <result>/SIP/publicacion_ar.jsp</result>
+        </action>
         
         <action name="SIP_Principal">
             <result>/SIP/SIP.jsp</result>
@@ -483,6 +491,13 @@
             <result>/SIP/participacion.jsp</result>
         </action>
             
+        <action name="boletin">
+            <result>/Rep_ua/Boletin.jsp</result>
+        </action>
+        
+        <action name="sin_arbitraje">
+            <result>/Rep_ua/Sin_arbitraje.jsp</result>
+        </action> 
         
         <action name="BEIFI">
             <result>/SIP/BEIFI.jsp</result>
