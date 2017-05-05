@@ -147,6 +147,7 @@
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
                         <s:set name="tipo_alumno" value="%{'BEIFI'}" />
+                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_alumnoB" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:hidden name="tipo_alumno" label="tipo de alumno"/>
@@ -161,6 +162,7 @@
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
                         <s:set name="tipo_alumno" value="%{'SS'}" />
+                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_AlumnoB" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
@@ -171,7 +173,7 @@
 
                     <!--PUBLICACIONES EN BOLETINES FORM-->
                     <s:div id="BOLETINES_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        
+                        <s:set name="actividad22" value="%{'Actividad_2_2'}"/>
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_publi" label="Nombre del Artículo" cssClass="form-control"/>
                             <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control"/>                           
@@ -181,6 +183,7 @@
                     
                     <!--PUBLICACIONES SIN ARBITRAJE FORM-->
                     <s:div  id="SINAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
+                        <s:set name="actividad22" value="%{'Actividad_2_2'}"/>
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
                             <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
@@ -192,6 +195,7 @@
                     
                     <!--PUBLICACIONES CON ARBITRAJE FORM-->
                     <s:div  id="CONAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
+                        <s:set name="actividad22" value="%{'Actividad_2_2'}"/>
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
                             <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
@@ -203,6 +207,7 @@
 
                     <!--EVENTOS SIN PONENCIA FORM-->        
                     <s:div  id="SIN_PONENCIA_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
+                        <s:set name="actividad23" value="%{'Actividad_2_3'}"/>
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_ea" label="Nombre de Evento Académico" cssClass="form-control" />
                             <s:textfield name="fecha_ev" label="Fecha del Evento" cssClass="form-control" />
@@ -214,7 +219,7 @@
 
                     <!--PUBLICACIONES CON RESUMEN FORM-->
                     <s:div id="CON_RESUMEN_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        
+                        <s:set name="actividad23" value="%{'Actividad_2_3'}"/>
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_ea" label="Nombre del Evento Académico" cssClass="form-control"/>
                             <s:textfield name="fecha_ea" label="Fecha del Evento Académico" cssClass="form-control"/>
@@ -225,6 +230,7 @@
                             
                     <!--PUBLICACIONES EN EXTENSO FORM-->
                     <s:div  id="EN_EXTENSO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
+                        <s:set name="actividad23" value="%{'Actividad_2_3'}"/>
                         <s:form action="Usuario/Sesion" method="post">
                             <s:textfield name="nombre_a" label="Nombre de la publicación" cssClass="form-control" />
                             <s:textfield name="numero_ss" label="Numero de Publicación" cssClass="form-control" />
@@ -236,7 +242,8 @@
                 
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
                     <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
-                           style="display:none;">    
+                           style="display:none;">
+                        <s:set name="actividad24" value="%{'Actividad_2_4'}"/>
                         <s:set name="username" value="%{#session.username}" />
                         <s:form action="valida_proyecto" method="post">
                             <s:hidden name="username" label="Matrícula"/>
@@ -249,7 +256,7 @@
                     <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        
+                        <s:set name="actividad25" value="%{'Actividad_2_5'}"/>
                         <s:form action="valida_inda" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
@@ -259,7 +266,8 @@
                     </s:div>    
 
                     <!--TESIS FORM-->
-                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
+                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
+                        <s:set name="actividad211" value="%{'Actividad_2_11'}"/>
                         <s:form action="valida_tt" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
@@ -271,6 +279,7 @@
                     <!--TT_CURRICULAR FORM-->
                     <s:div id="TT_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
+                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_tt" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
@@ -281,6 +290,7 @@
                     
                     <s:div id="PART_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
+                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_partt" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_part" label="Número de Participacion" cssClass="form-control"/>
