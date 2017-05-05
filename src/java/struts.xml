@@ -378,6 +378,16 @@
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
+        <action name="valida_evento" class="profesor.valida_evento">
+            <result name="success">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
+        <action name="valida_publicacion" class="profesor.valida_publicacion">
+            <result name="success">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
         <action name="valida_alumnoB" class="profesor.valida_BEIFI">
             <interceptor-ref name="exception"/>
             <interceptor-ref name="i18n"/>
