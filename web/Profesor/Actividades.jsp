@@ -72,45 +72,16 @@
                         <ul class="bl">
                             
                             <!--Actividad 2.1: Formación de Recursos Humanos para la Investigación-->
-                            <li class="activado"><a><i class="icono izquierda fa fa-users"></i> 
-                                    Actividad 2.1: Alumnos <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="BEIFI" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.1.1: Alumnos BEIFI</a>
-                                    <li><a id="SERVICIO" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.1.2: Alumnos S.S.</a> 
-                                </ul>
-                            </li>
+                            <li><a id="ALUMNOS" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-users"></i> 
+                                    Actividad 2.1: Alumnos </a></li>
                             
                             <!--Actividad 2.2: Publicaciones-->
-                            <li class="activado"><a><i class="icono izquierda fa fa-newspaper-o" aria-hidden="true"></i>
-                                    Actividad 2.2: Publicaciones <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="BOLETINES" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.2.1: En boletínes </a>
-                                        
-                                        <li><a id="NOARBITRAJE" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.2.2: Sin arbitraje</a>    
-                                            
-                                        <li><a id="ARBITRAJE" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.2.3: Con arbitraje</a>    
-                                </ul>
-                            </li>    
+                            <li><a id="PUBLICACIONES" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-newspaper-o" aria-hidden="true"></i>
+                                    Actividad 2.2: Publicaciones</a></li>    
                             
                             <!--Actividad 2.3: Eventos Académicos-->
-                            <li class="activado"><a><i class="icono izquierda fa fa-university" aria-hidden="true"></i> 
-                                    Actividad 2.3: Eventos Académicos <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="INST_SINPONENCIA" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.3.1: Publicación Inst. sin Ponencia</a>
-                                            
-                                        <li><a id="CONRESUMEN" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.3.2: Publicación con Resúmen</a>    
-                                            
-                                        <li><a id="EXTENSO"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.3.3: Publicación en Extenso</a>   
-                                </ul>
-                            </li>
+                            <li><a id ="EVENTOS" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-university" aria-hidden="true"></i> 
+                                    Actividad 2.3: Eventos Académicos</a></li>
                             
                             <!--Actividad 2.4: Proyecto de Investigación SIP-->
                             <li><a id="PRO_SIP" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-file-text" aria-hidden="true"></i> 
@@ -133,8 +104,7 @@
                                 </ul>
                             </li>
                             <li class="activado"><a  id="PART" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-pencil" aria-hidden="true"  ></i>
-                                    Actividad 2.12: Plan de Estudios</a>
-                               
+                                    Actividad 2.12: Plan de Estudios</a> 
                             </li>
                         </ul>
                     
@@ -142,98 +112,66 @@
                     
                     <h2 class="Titular" align="center"> Registro de Actividades </h2>
                     
-                    <!--FORM BEIFI -->
-                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
+                    <!--FORM ALUMNNOS -->
+                    <s:div id="ALUMNOS_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        <s:set name="tipo_alumno" value="%{'BEIFI'}" />
+                        
                         <s:form action="valida_alumnoB" method="post">
                             <s:hidden name="username" label="Matrícula"/>
-                            <s:hidden name="tipo_alumno" label="tipo de alumno"/>
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
                             <s:textfield name="id_alumno" label="Matrícula del Alumno" cssClass="form-control"/>
+                            <s:select label="Seleccione el tipo de Alumno que participo en su proyecto SIP" cssClass="form-control"
+                            headerKey="-1" headerValue="Tipo de Alumno"
+                            list="# {
+                            'BEIFI':'A lumno BEIFI',
+                            'SS':'Alumno en Servicio Social'
+                            }"
+                            name="tipo_alumno" /> 
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
-                    
-                    <!--SERVICIO FORM-->
-                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
-                           style="display:none;">    
+                                
+                    <!--PUBLICACIONES FORM-->
+                    <s:div  id="PUBLICACIONES_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:set name="username" value="%{#session.username}" />
-                        <s:set name="tipo_alumno" value="%{'SS'}" />
-                        <s:form action="valida_AlumnoB" method="post">
+                        <s:form action="valida_publicacion" method="post">
+                            <s:textfield name="id_publicacion" label="ID de la Publicacion" cssClass="form-control" />
+                            <s:textfield name="nombre_publicacion" label="Nombre de publicación" cssClass="form-control" />
+                            <s:select label="Seleccione el tipo de publicacion que realizo" cssClass="form-control"
+                            headerKey="-1" headerValue="Tipo de Publicacion"
+                            list="# {
+                            '1':'Boletin Institucional',
+                            '2':'Sin arbitraje, Nacional',
+                            '3':'Sin arbitraje, Internacional',
+                            '4':'Con arbitraje, Nacional',
+                            '5':'Con arbitraje, Internacional'
+                            }"
+                            name="id_tipo_pub" /> 
                             <s:hidden name="username" label="Matrícula"/>
-                            <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
-                            <s:textfield name="id_alumno" label="Matrícula del Alumno" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>  
-
-                    <!--PUBLICACIONES EN BOLETINES FORM-->
-                    <s:div id="BOLETINES_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_publi" label="Nombre del Artículo" cssClass="form-control"/>
-                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control"/>                           
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-                    
-                    <!--PUBLICACIONES SIN ARBITRAJE FORM-->
-                    <s:div  id="SINAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
-                            <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
-                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>         
-                    
-                    <!--PUBLICACIONES CON ARBITRAJE FORM-->
-                    <s:div  id="CONAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
-                            <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
-                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control" />
-                            
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>     
 
-                    <!--EVENTOS SIN PONENCIA FORM-->        
-                    <s:div  id="SIN_PONENCIA_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_ea" label="Nombre de Evento Académico" cssClass="form-control" />
-                            <s:textfield name="fecha_ev" label="Fecha del Evento" cssClass="form-control" />
-                            <s:textfield name="num_pub" label="Número de Publicación" cssClass="form-control" />
-                            
+                    <!--EVENTOS FORM-->        
+                    <s:div  id="EVENTOS_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
+                        <s:set name="username" value="%{#session.username}" />
+                        <s:form action="valida_evento" method="post">
+                            <s:textfield name="id_evento" label="ID del Evento Académico" cssClass="form-control" />
+                            <s:textfield name="id_publicacion" label="Número de Publicación" cssClass="form-control" />
+                            <s:select label="Seleccione la dependecia con la que participó" cssClass="form-control"
+                            headerKey="-1" headerValue="Tipo de publicacion"
+                            list="# {
+                            '6':'Institucional, sin ponencia publicada',
+                            '7':'Institucional, con resumen publicado',
+                            '8':'Institucional, publicado en extenso'
+                            }"
+                            name="id_tipo_pub" />   
+                            <s:hidden name="username" label="Matrícula"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div> 
 
-                    <!--PUBLICACIONES CON RESUMEN FORM-->
-                    <s:div id="CON_RESUMEN_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_ea" label="Nombre del Evento Académico" cssClass="form-control"/>
-                            <s:textfield name="fecha_ea" label="Fecha del Evento Académico" cssClass="form-control"/>
-                            <s:textfield name="ponencia" label="Titulo de Ponencia" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-                            
-                    <!--PUBLICACIONES EN EXTENSO FORM-->
-                    <s:div  id="EN_EXTENSO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Nombre de la publicación" cssClass="form-control" />
-                            <s:textfield name="numero_ss" label="Numero de Publicación" cssClass="form-control" />
-                            <s:textfield name="fecha_ss_fin" label="Fecha de Publicación" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>  
-                
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
                     <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    

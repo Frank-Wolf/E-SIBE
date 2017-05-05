@@ -38,12 +38,13 @@
                 <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Administrador ESCOM</a>
+                            <a class="navbar-brand" >Representante de U.A.</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="boletin">Registrar una publicación en boletín informativo</a></li>
-                                <li><a href="sin_arbitraje">Registrar Publicacion sin Arbitraje</a></li>
+                                <li><a href="boletin">Reg. una publicación en boletín</a></li>
+                                <li><a href="sin_arbitraje">Reg. Publicacion sin Arbitraje</a></li>
+                                <li><a href="Evento_aca">Reg. Participacion en Evento Académico</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">

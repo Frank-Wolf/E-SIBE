@@ -308,6 +308,11 @@
             <result name="error">/SIP/BEIFI.jsp</result>
         </action>
         
+        <action name="registra_evento" class="dependencias.Eventos">
+            <result name="success">/Rep_ua/Rep_ua.jsp</result>
+            <result name="error">/Rep_ua/Evento_aca.jsp</result>
+        </action>
+        
         <action name="registra_SS" class="dependencias.RegistraSS">
             <result name="success">/Servicio/Servicio.jsp</result>
             <result name="error">/Servicio/Reg_SS.jsp</result>
@@ -359,6 +364,16 @@
         </action>
         
         <action name="valida_tt" class="profesor.valida_tt">
+            <result name="success">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
+        <action name="valida_evento" class="profesor.valida_evento">
+            <result name="success">/Profesor/test_doc.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
+        <action name="valida_publicacion" class="profesor.valida_publicacion">
             <result name="success">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
@@ -504,6 +519,14 @@
         <action name="sin_arbitraje">
             <result>/Rep_ua/Sin_arbitraje.jsp</result>
         </action> 
+        
+        <action name="Menu_RUA">
+            <result>/Rep_ua/Rep_ua.jsp</result>
+        </action> 
+        
+        <action name="Evento_aca">
+            <result>/Rep_ua/Evento_aca.jsp</result>
+        </action>   
         
         <action name="BEIFI">
             <result>/SIP/BEIFI.jsp</result>

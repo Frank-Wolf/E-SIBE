@@ -33,20 +33,19 @@
             <s:div cssClass="site-wrapper-inner">
                 
                                     
-                <nav class="navbar navbar-default">
+               <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Usuario CATT</a>
+                            <a class="navbar-brand" >E-SIBE: Representante de Unidad Académica</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Registrar Tratabjo Terminal</a></li>
-                                <li><a href="#">Registrar datos de Tesis</a></li>
+                                
                                 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                              <li><a href="Cerrar_sesion">
-                                      Cerrar Sesión</a></li>
+                              <li><a href="SIP_Principal">
+                                      Menu Principal</a></li>
                             </ul>
                           </div>
                     </div>
