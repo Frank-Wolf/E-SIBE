@@ -33,7 +33,7 @@
             <s:div cssClass="site-wrapper-inner">
                 
                                     
-               <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" >E-SIBE: Representante de Unidad Académica</a>
@@ -64,27 +64,53 @@
                     <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
                          col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
                          col-sm-offset-2 ">
+
+    
+                    
+                    <s:set name="Nacional" value="%{1}"/>
+                    <s:set name="compulsado" value="%{1}"/>
+                    <s:set name="ISBN" value="%{' - '}"/>
+                    <s:set name="ISSN" value="%{' - '}"/>
+                    <s:set name="Nombre_Rev" value="%{' - '}"/>
+                    <s:set name="volumen" value="%{' - '}"/>
+                    <s:set name="annio" value="%{' - '}"/>
+                    <s:set name="numero" value="%{' - '}"/>
+                    <s:set name="sede" value="%{'ESCOM'}"/>
+                    
+                    <s:form action="registra_evento" method="post">
+                        <s:textfield name="id_evento" label="Id de Participacion en el evento" cssClass="form-control"/>
+                        <s:textfield name="nom_evento" label="Nombre del evento Academico" cssClass="form-control"/>
+                        <sj:datepicker name="fecha_inicio" label="Fecha de Inicio" displayFormat="dd-mm-yy" style="width: 89%;"/>
+                        <sj:datepicker name="fecha_fin" label="Fecha de Cierre " displayFormat="dd-mm-yy" style="width: 89%;"/>
                         
-                    <s:set name="id_evento" value="%{0}"/>            
-                    <s:set name="id_tipo_pub" value="%{1}"/>
-                    <s:set name="ISSN" value="%{0}"/>
-                    <s:set name="ISBN" value="%{0}"/>
-                    <s:form action="registra_pub_bol" method="post">
                         <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control"/>
-                        <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control"/>
                         <s:textfield name="Nom_Public" label="Nombre de la publicacion" cssClass="form-control"/>
+                        <s:select label="Seleccione una dependencia" cssClass="form-control"
+                            headerKey="-1" headerValue="Tipo de publicacion"
+                            list="# {
+                            '6':'Institucional, sin ponencia publicada',
+                            '7':'Institucional, con resumen publicado',
+                            '8':'Institucional, publicado en extenso'
+                            
+                            }"
+                            name="id_tipo_pub" />
+                        <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" style="width: 89%;" />
+                        
                         <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" />
-                        <s:textfield name="nom_usuario" label="Nombre del Autor" cssClass="form-control" />
-                        <s:textfield name="numero" label="Numero de la revista" cssClass="form-control"/>
-                        <s:textfield name="volumen" label="Volumen" cssClass="form-control"/>
-                        <s:textfield name="annio" label="Año" cssClass="form-control" />
-                        <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" cssClass="form-control" style="width =80%"/>
-                        <s:hidden name="id_evento" />
-                        <s:hidden name="id_tipo_pub" />
-                        <s:hidden name="ISSN" />
-                        <s:hidden name="ISBN" />
-                         <s:submit cssClass="btn" name="Registrar TT" value="Registrar Usuario"/>
-                    </s:form> 
+                        
+                        
+                        <s:hidden name="Nacional" cssClass="form-control"/>
+                        <s:hidden name="compulsado" cssClass="form-control"/>
+                        <s:hidden name="ISSN" label="ISSN" cssClass="form-control" />
+                        <s:hidden name="ISBN" label="ISBN" cssClass="form-control" />
+                        <s:hidden name="Nombre_Rev" label="ISBN" cssClass="form-control" />
+                        <s:hidden name="volumen" label="Volumen" cssClass="form-control"/>
+                        <s:hidden name="annio" label="Año" cssClass="form-control" />
+                        <s:hidden name="numero" label="Año" cssClass="form-control" />
+                        <s:hidden name="sede" label="Año" cssClass="form-control" />
+                        
+                        <s:submit cssClass="btn" name="Registrar"/>
+                    </s:form>  
                 </div>
                          </div>
                     </s:div>

@@ -90,7 +90,7 @@ public class valida_BEIFI extends ActionSupport
                         else
                         {
                            lb.closeConnection();
-                           addFieldError("id_alumno","Hay un problema");
+                           addFieldError("id_tipo_alumno","Tipo de Alumno Erroneo");
                            return "error";
                         }
                     }
