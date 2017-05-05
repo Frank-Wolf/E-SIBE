@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/************************************In the select statement, include condition 
+ periodo = periodo of professor******************************************/
 package PDF;
 
 /**
@@ -54,10 +56,10 @@ public class GenerateReportActivities {
 
         public String execute() throws Exception 
         {
-             FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
-             //FILE = "C:\\psf\\Home\\Documents\\ " + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+             //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
+             FILE = "C:\\psf\\Home\\Documents\\ " + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
              lb.getConnection();
-             /*int i = 0;
+             int i = 0;
              ResultSet ra;
              ra = lb.executeQuery("SELECT p.ruta_alm, pr.ruta_alm, t.ruta_alm, ob.ruta_alm, \n" +
                      "ev.ruta_alm, pra.ruta_alumno, pu.ruta_alm\n" +
@@ -80,7 +82,7 @@ public class GenerateReportActivities {
              if(i == 0){
                  lb.closeConnection();
                  return "no_registro";
-             }*/
+             }
                  
 
                 try 
@@ -319,7 +321,7 @@ public class GenerateReportActivities {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"' AND validado_alumno = 1");
                 while(rb.next()){
                     Dos_uno.addCell("2.1.1 o 2.1.2");
                     Dos_uno.addCell(rb.getString("tipo_alumno"));
@@ -374,7 +376,7 @@ public class GenerateReportActivities {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
-                        + "id_usuario = '" + getUsername() +"'"), rj;
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
                     Dos_dos.addCell("2.2");
                     Dos_dos.addCell(rb.getString("id_tipo_pub"));//Add the type of every type pub
@@ -430,7 +432,7 @@ public class GenerateReportActivities {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
                     Dos_tres.addCell("2.3");
                     Dos_tres.addCell("Evento académico");
@@ -451,7 +453,7 @@ public class GenerateReportActivities {
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.4"
                         + " - Investigación y/o Desarrollo Satisfactorio",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
-                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
+                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("ID del proyecto SIP"));
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
@@ -488,13 +490,13 @@ public class GenerateReportActivities {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
                     Dos_cuatro.addCell("2.4.2");
-                    Dos_cuatro.addCell("Proyecto SIP");
                     Dos_cuatro.addCell(rb.getString("id_proyecto"));
-                    Dos_cuatro.addCell(rb.getString("puntaje"));
                     Dos_cuatro.addCell(rb.getString("ruta_alm"));
+                    Dos_cuatro.addCell(rb.getString("puntaje"));
+                    Dos_cuatro.addCell(rb.getString("comentarios"));
                 }
                 
                 
@@ -545,7 +547,7 @@ public class GenerateReportActivities {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
                     Dos_cinco.addCell(rb.getString("id_obra"));
@@ -603,7 +605,7 @@ public class GenerateReportActivities {
                
                 
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_tt WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
                     Dos_once.addCell("2.11");
                     Dos_once.addCell(rb.getString("id_TT"));
@@ -668,7 +670,7 @@ public class GenerateReportActivities {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
                     //Dos_doce.addCell("2.12");
                     Dos_doce.addCell(rb.getString("id_part"));

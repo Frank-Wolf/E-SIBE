@@ -147,12 +147,15 @@
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
                         <s:set name="tipo_alumno" value="%{'BEIFI'}" />
-                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
-                        <s:form action="valida_alumnoB" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_1'}"/>
+                        <s:form action="valida_alumnoB" method="post" enctype="multipart/form-data">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:hidden name="tipo_alumno" label="tipo de alumno"/>
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
                             <s:textfield name="id_alumno" label="Matrícula del Alumno" cssClass="form-control"/>
+                            <s:label for="myFile">Suba su constancia (máximo 10 MB y formato pdf):</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                     </s:div>    
@@ -162,7 +165,7 @@
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
                         <s:set name="tipo_alumno" value="%{'SS'}" />
-                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
+                        <s:set name="activity" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_AlumnoB" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>

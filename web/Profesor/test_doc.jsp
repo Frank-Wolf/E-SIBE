@@ -72,10 +72,9 @@
         <s:set name="nom_actividad" value="%{'Nombre_de_actividad'}"/>
         <s:form id = "datos" action="upload_file" method="post" enctype="multipart/form-data">
             <s:label for="myFile">Suba su constancia (máximo 10 MB y formato pdf):</s:label>
-            
             <s:file name="myFile" />
-            <s:hidden name="username" label="Matrícula"/>
             <s:hidden name="nom_actividad"/>
+            <s:hidden name="username" label="Matrícula"/>
             <s:submit value="Subir" cssClass="btn"/>
         </s:form>
                     

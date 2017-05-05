@@ -129,18 +129,20 @@
                     
                             
                         </div>
-                        <%
+                        </div>
+                        <div align="center">
+                                <%
                                 out.print("<p>");
                                 out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
                                         username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
                                                 + "</a>");
                                 out.print("</p>");
                                 %>
-                    </div>  
-                    <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >
-                    <s:hidden name="username" label="Matrícula"/>
-                    <s:submit value="Generar reporte de actividades"/>
-                    </s:form>
+                                <s:form id="datos" action="create_pdf_apela" method="post" style="display:block;" >
+                                    <s:hidden name="username" label="Matrícula"/>
+                                    <s:submit value="Generar reporte de actividades"/>
+                                </s:form>
+                    </div>
                 
             </s:div>
         </s:div>  
