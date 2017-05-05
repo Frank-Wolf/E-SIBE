@@ -57,9 +57,9 @@ public class GenerateReportActivities {
         public String execute() throws Exception 
         {
              //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
-             FILE = "C:\\psf\\Home\\Documents\\ " + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+             FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
              lb.getConnection();
-             int i = 0;
+             /*int i = 0;
              ResultSet ra;
              ra = lb.executeQuery("SELECT p.ruta_alm, pr.ruta_alm, t.ruta_alm, ob.ruta_alm, \n" +
                      "ev.ruta_alm, pra.ruta_alumno, pu.ruta_alm\n" +
@@ -82,7 +82,7 @@ public class GenerateReportActivities {
              if(i == 0){
                  lb.closeConnection();
                  return "no_registro";
-             }
+             }*/
                  
 
                 try 
@@ -325,7 +325,9 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_uno.addCell("2.1.1 o 2.1.2");
                     Dos_uno.addCell(rb.getString("tipo_alumno"));
-                    Dos_uno.addCell(rb.getString("ruta_alumno"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alumno"));
+                    anchor.setReference(rb.getString("ruta_alumno"));
+                    Dos_uno.addCell(anchor);
                     Dos_uno.addCell(rb.getString("puntaje_alumno"));
                     Dos_uno.addCell(rb.getString("comentarios"));
                 }
@@ -380,7 +382,9 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_dos.addCell("2.2");
                     Dos_dos.addCell(rb.getString("id_tipo_pub"));//Add the type of every type pub
-                    Dos_dos.addCell(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    Dos_dos.addCell(anchor);
                     Dos_dos.addCell(rb.getString("puntaje"));
                     Dos_dos.addCell(rb.getString("comentarios"));
                 }
@@ -436,7 +440,9 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_tres.addCell("2.3");
                     Dos_tres.addCell("Evento académico");
-                    Dos_tres.addCell(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    Dos_tres.addCell(anchor);
                     Dos_tres.addCell(rb.getString("puntaje"));
                     Dos_tres.addCell(rb.getString("comentarios"));
                 }
@@ -489,12 +495,27 @@ public class GenerateReportActivities {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                
-                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
+                ResultSet rb = lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios "
+                        + "FROM profesor_tiene_proyecto "
+                        + "WHERE id_usuario = '" + getUsername() +"' AND "
+                        + "aceptado = 1 AND "
+                        + "validado = 1 "
+                        + "GROUP BY id_proyecto "
+                        + "HAVING COUNT(*) > 1");
+                /*
+                   SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios 
+                   FROM profesor_tiene_proyecto
+                   WHERE id_usuario = 11014 AND 
+                   aceptado = 1 AND
+                   validado = 1
+                   GROUP BY id_proyecto
+                   HAVING COUNT(*) > 1; */
                 while(rb.next()){
                     Dos_cuatro.addCell("2.4.2");
                     Dos_cuatro.addCell(rb.getString("id_proyecto"));
-                    Dos_cuatro.addCell(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    Dos_cuatro.addCell(anchor);
                     Dos_cuatro.addCell(rb.getString("puntaje"));
                     Dos_cuatro.addCell(rb.getString("comentarios"));
                 }
@@ -551,7 +572,9 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
                     Dos_cinco.addCell(rb.getString("id_obra"));
-                    Dos_cinco.addCell(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    Dos_cinco.addCell(anchor);
                     Dos_cinco.addCell(rb.getString("puntaje"));
                     Dos_cinco.addCell(rb.getString("comentarios"));
                 }
@@ -609,7 +632,9 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_once.addCell("2.11");
                     Dos_once.addCell(rb.getString("id_TT"));
-                    Dos_once.addCell(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    Dos_once.addCell(anchor);
                     Dos_once.addCell(rb.getString("puntaje"));
                     Dos_once.addCell(rb.getString("comentarios"));
                 }
@@ -670,12 +695,14 @@ public class GenerateReportActivities {
                 /*Aqui van las consultas de las Actividades del profesor*/
                
                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1 " /*AND periodo = que el que tiene registrado el profesor*/);
                 while(rb.next()){
                     //Dos_doce.addCell("2.12");
                     Dos_doce.addCell(rb.getString("id_part"));
                     Dos_doce.addCell(rb.getString("id_tipo_part"));//Agregar a la parte de abajo el tipo de párticiáción
-                    Dos_doce.addCell(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    Dos_doce.addCell(anchor);
                     Dos_doce.addCell(rb.getString("puntaje"));
                     Dos_doce.addCell(rb.getString("comentarios"));
                 } 

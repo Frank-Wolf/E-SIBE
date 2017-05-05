@@ -349,42 +349,111 @@
         </action>
         
     </package>
-    
+    <!--tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt-->
     <!--Paquete para los profesores que validad actividades-->
     <package name="Valida_actividades" extends="struts-default" namespace="/Usuario">
         <action name="valida_inda" class="profesor.valida_obra">
-             
-            <result name="success">/Profesor/test_doc.jsp</result>
+             <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
         <action name="valida_proyecto" class="profesor.valida_proyecto">
-            <result name="success">/Profesor/test_doc.jsp</result>
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
         <action name="valida_tt" class="profesor.valida_tt">
-            <result name="success">/Profesor/test_doc.jsp</result>
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
         <action name="valida_evento" class="profesor.valida_evento">
-            <result name="success">/Profesor/test_doc.jsp</result>
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
         <action name="valida_publicacion" class="profesor.valida_publicacion">
-            <result name="success">/Profesor/test_doc.jsp</result>
-            <result name="error">/Profesor/Actividades.jsp</result>
-        </action>
-        
-        <action name="valida_evento" class="profesor.valida_evento">
-            <result name="success">/Profesor/test_doc.jsp</result>
-            <result name="error">/Profesor/Actividades.jsp</result>
-        </action>
-        
-        <action name="valida_publicacion" class="profesor.valida_publicacion">
-            <result name="success">/Profesor/test_doc.jsp</result>
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -410,11 +479,27 @@
         </action>
         
         <action name="valida_partt" class="profesor.valida_part">
-            <result name="success">/Profesor/test_doc.jsp</result>
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
     </package>
-    
+    <!--tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt-->
     <!--paquete para las fechas y administrador cofaa-->
     <package name="Fechas_Cofaa" extends="struts-default" namespace="/Usuario">
         <!--acciones para eliminar o modificar las fechas-->

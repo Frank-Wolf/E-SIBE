@@ -5,8 +5,12 @@
  */
 package profesor;
 
+import static com.opensymphony.xwork2.Action.ERROR;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -16,6 +20,11 @@ public class valida_part extends ActionSupport
 {
     String test;
     private String username, u_a,id_part;
+    private File myFile;
+    private String myFileFileName;
+    private String destPath;
+    private String activity;
+    private String myFileContentType;
 
    public String getU_a() {
         return u_a;
@@ -42,6 +51,8 @@ public class valida_part extends ActionSupport
     }
     public String execute() throws Exception 
     {
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_part.equals(""))
         {
             addFieldError("id_part","Este campo es necesario");
@@ -68,6 +79,22 @@ public class valida_part extends ActionSupport
                 while(profd.next())
                 {
                     lb.executeUpdate("update profesor_participa_en_plan set validado=1 where id_usuario="+username+" and id_part='"+id_part+"'");
+                    /************************************************************************************************/
+                            try{
+                                System.out.println("Src File name: " + myFile);
+                                System.out.println("Dst File name: " + destPath);
+                                
+                                File destFile  = new File(destPath, myFileFileName);
+                                FileUtils.copyFile(myFile, destFile);
+                                int ruta = lb.executeUpdate("UPDATE profesor_participa_en_plan SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_usuario = " + username + "AND id_part = '" + getId_part() + "'");
+                            }catch(IOException e){
+                                e.printStackTrace();
+                                lb.closeConnection();
+                                return ERROR;
+                            }
+                            /************************************************************************************************/
                     lb.closeConnection();
                     return SUCCESS;
                 }
@@ -84,4 +111,46 @@ public class valida_part extends ActionSupport
         lb.closeConnection();
         return ERROR;    
     }
+
+    public File getMyFile() {
+        return myFile;
+    }
+
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
+    }
+
+    public String getDestPath() {
+        return destPath;
+    }
+
+    public void setDestPath(String destPath) {
+        this.destPath = destPath;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+    
+    
 }

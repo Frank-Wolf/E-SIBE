@@ -25,6 +25,11 @@
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
+        <script type="text/javascript">
+window.onload = function(){//window.addEventListener('load',function(){...}); (for Netscape) and window.attachEvent('onload',function(){...}); (for IE and Opera) also work
+    alert("¡No olvide registrar todas sus actividades, está a tiempo todavía!");
+};
+    </script>
     </head>
     
     <body background="../css/textura.png" class="container-fluid boding overflow">

@@ -177,10 +177,21 @@
                     <div class="col-md-6">
                     <h2 class="h3">2.4 Investigación y/o desarrollo tecnológico satisfactorio</h2>   
                     <%
-                        ResultSet rv=lb.executeQuery("SELECT * "
-                                    + "FROM profesor_tiene_proyecto WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "validado = 1");
+                        ResultSet rv=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm "
+                                    + "FROM profesor_tiene_proyecto "
+                                + " WHERE id_usuario = " + user 
+                                    + " AND aceptado IS NULL AND "
+                                            + "validado = 1"
+                                            + " GROUP BY id_proyecto"
+                                        + " HAVING COUNT(*) > 1;");
+                                    /*
+                                    SELECT count(*), id_proyecto
+                                    FROM profesor_tiene_proyecto
+                                    WHERE id_usuario = 11014 AND 
+                                    aceptado IS NULL AND
+                                    validado = 1
+                                    GROUP BY id_proyecto
+                                    HAVING COUNT(*) > 1;*/
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
