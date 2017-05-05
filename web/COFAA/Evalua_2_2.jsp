@@ -89,7 +89,7 @@
                         <h2 class="h3">Asignar registro</h2>
                         
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:form action="/Usuario/evalua_2_1">
+                        <s:form action="/Usuario/evalua_2_2">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {

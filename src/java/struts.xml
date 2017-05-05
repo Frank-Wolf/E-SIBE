@@ -379,6 +379,22 @@
         </action>
         
         <action name="valida_alumnoB" class="profesor.valida_BEIFI">
+            <!--interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref-->
             <result name="test">/Profesor/test_doc.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
@@ -561,6 +577,10 @@
             <result>/COFAA/Evalua.jsp</result>
         </action>
         <action name="evalua_2_1" class="cofaa.evalua_2_1">
+            <result name="success">/COFAA/Evalua_listo21.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="evalua_2_2" class="cofaa.evalua_2_2">
             <result name="success">/COFAA/Evalua_listo21.jsp</result>
             <result name="fail">/error.jsp</result>
         </action>

@@ -174,7 +174,8 @@
 
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
                     <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
-                           style="display:none;">    
+                           style="display:none;">
+                        <s:set name="actividad24" value="%{'Actividad_2_4'}"/>
                         <s:set name="username" value="%{#session.username}" />
                         <s:form action="valida_proyecto" method="post">
                             <s:hidden name="username" label="Matrícula"/>
@@ -187,7 +188,7 @@
                     <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        
+                        <s:set name="actividad25" value="%{'Actividad_2_5'}"/>
                         <s:form action="valida_inda" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
@@ -197,7 +198,8 @@
                     </s:div>    
 
                     <!--TESIS FORM-->
-                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
+                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
+                        <s:set name="actividad211" value="%{'Actividad_2_11'}"/>
                         <s:form action="valida_tt" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
@@ -209,6 +211,7 @@
                     <!--TT_CURRICULAR FORM-->
                     <s:div id="TT_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
+                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_tt" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
@@ -219,6 +222,7 @@
                     
                     <s:div id="PART_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
+                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
                         <s:form action="valida_partt" method="post">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_part" label="Número de Participacion" cssClass="form-control"/>

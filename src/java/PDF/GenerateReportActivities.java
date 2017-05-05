@@ -54,9 +54,10 @@ public class GenerateReportActivities {
 
         public String execute() throws Exception 
         {
-             FILE = "C:\\psf\\Home\\Documents\\ " + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+             FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
+             //FILE = "C:\\psf\\Home\\Documents\\ " + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
              lb.getConnection();
-             int i = 0;
+             /*int i = 0;
              ResultSet ra;
              ra = lb.executeQuery("SELECT p.ruta_alm, pr.ruta_alm, t.ruta_alm, ob.ruta_alm, \n" +
                      "ev.ruta_alm, pra.ruta_alumno, pu.ruta_alm\n" +
@@ -79,7 +80,7 @@ public class GenerateReportActivities {
              if(i == 0){
                  lb.closeConnection();
                  return "no_registro";
-             }
+             }*/
                  
 
                 try 
@@ -321,7 +322,7 @@ public class GenerateReportActivities {
                         + "id_usuario = '" + getUsername() +"'");
                 while(rb.next()){
                     Dos_uno.addCell("2.1.1 o 2.1.2");
-                    Dos_uno.addCell("Alumno BEIFI o de Servicio Social");
+                    Dos_uno.addCell(rb.getString("tipo_alumno"));
                     Dos_uno.addCell(rb.getString("ruta_alumno"));
                     Dos_uno.addCell(rb.getString("puntaje_alumno"));
                     Dos_uno.addCell(rb.getString("comentarios"));
@@ -337,7 +338,7 @@ public class GenerateReportActivities {
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.2"
                         + " - Publicaciones Científicas y/o de Divulgación",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
-                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
+                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad* (Consultar parte de abajo)"));
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
@@ -373,10 +374,10 @@ public class GenerateReportActivities {
 
                 /*Aqui van las consultas de las Actividades del profesor*/
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
-                        + "id_usuario = '" + getUsername() +"'");
+                        + "id_usuario = '" + getUsername() +"'"), rj;
                 while(rb.next()){
                     Dos_dos.addCell("2.2");
-                    Dos_dos.addCell("Publicación institucional o internacional, arbitrada o no arbitrada");
+                    Dos_dos.addCell(rb.getString("id_tipo_pub"));//Add the type of every type pub
                     Dos_dos.addCell(rb.getString("ruta_alm"));
                     Dos_dos.addCell(rb.getString("puntaje"));
                     Dos_dos.addCell(rb.getString("comentarios"));
@@ -434,7 +435,7 @@ public class GenerateReportActivities {
                     Dos_tres.addCell("2.3");
                     Dos_tres.addCell("Evento académico");
                     Dos_tres.addCell(rb.getString("ruta_alm"));
-                    Dos_tres.addCell("Duda???");
+                    Dos_tres.addCell(rb.getString("puntaje"));
                     Dos_tres.addCell(rb.getString("comentarios"));
                 }
                 
@@ -507,7 +508,7 @@ public class GenerateReportActivities {
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.5.2"
                         + " - Derechos de Autor",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
-                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
+                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Identificador de obra"));
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
@@ -547,7 +548,7 @@ public class GenerateReportActivities {
                         + "id_usuario = '" + getUsername() +"'");
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
-                    Dos_cinco.addCell("Obras con derechos de autor");
+                    Dos_cinco.addCell(rb.getString("id_obra"));
                     Dos_cinco.addCell(rb.getString("ruta_alm"));
                     Dos_cinco.addCell(rb.getString("puntaje"));
                     Dos_cinco.addCell(rb.getString("comentarios"));
@@ -564,7 +565,7 @@ public class GenerateReportActivities {
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.11"
                         + " - Direcciones y Codirecciones",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
-                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
+                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Identificador de TT o tesis"));
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
@@ -605,7 +606,7 @@ public class GenerateReportActivities {
                         + "id_usuario = '" + getUsername() +"'");
                 while(rb.next()){
                     Dos_once.addCell("2.11");
-                    Dos_once.addCell("Dirección de tt");
+                    Dos_once.addCell(rb.getString("id_TT"));
                     Dos_once.addCell(rb.getString("ruta_alm"));
                     Dos_once.addCell(rb.getString("puntaje"));
                     Dos_once.addCell(rb.getString("comentarios"));
@@ -623,12 +624,14 @@ public class GenerateReportActivities {
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.12"
                         + " - Coordinación o Participación en la elaboración o actualización"
                         + "de un plan de estudios",encabezadost));
-                PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
-                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
+                //PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
+                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Identificador de Plan de estudios"));
+                PdfPCell Tipo_parti = new PdfPCell(new Phrase("Tipo de participación** (Ver parte de abajo)"));
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
-                PdfPCell celda=new PdfPCell();
+             
+                //PdfPCell celda=new PdfPCell();
                 
                 
                 Titulo_tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -638,13 +641,17 @@ public class GenerateReportActivities {
                 Titulo_tabla.setExtraParagraphSpace(15f);
                 Dos_doce.addCell(Titulo_tabla);
                 
-                Num_Actividad.setHorizontalAlignment(Element.ALIGN_CENTER);
+                /*Num_Actividad.setHorizontalAlignment(Element.ALIGN_CENTER);
                 Num_Actividad.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                Dos_doce.addCell(Num_Actividad);
+                Dos_doce.addCell(Num_Actividad);*/
 
                 Tipo_Actividad.setHorizontalAlignment(Element.ALIGN_CENTER);
                 Tipo_Actividad.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 Dos_doce.addCell(Tipo_Actividad);
+                
+                Tipo_parti.setHorizontalAlignment(Element.ALIGN_CENTER);
+                Tipo_parti.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                Dos_doce.addCell(Tipo_parti);
 
                 Ruta_alm.setHorizontalAlignment(Element.ALIGN_CENTER);
                 Ruta_alm.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -663,8 +670,9 @@ public class GenerateReportActivities {
                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
                         + "id_usuario = '" + getUsername() +"'");
                 while(rb.next()){
-                    Dos_doce.addCell("2.12");
-                    Dos_doce.addCell("Participación en planes de estudio");
+                    //Dos_doce.addCell("2.12");
+                    Dos_doce.addCell(rb.getString("id_part"));
+                    Dos_doce.addCell(rb.getString("id_tipo_part"));//Agregar a la parte de abajo el tipo de párticiáción
                     Dos_doce.addCell(rb.getString("ruta_alm"));
                     Dos_doce.addCell(rb.getString("puntaje"));
                     Dos_doce.addCell(rb.getString("comentarios"));

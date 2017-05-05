@@ -30,8 +30,8 @@ public class evalua_2_11 extends ActionSupport{
             puntajebueno = Integer.parseInt(getPuntaje());
             LoginBean lb = new LoginBean();
             lb.getConnection();
-            int val=lb.executeUpdate("UPDATE profesor_tiene_tt SET aceptado_alumno = " + i + 
-                ", comentarios = '" + getComentario() + "', puntaje_alumno = " + puntajebueno 
+            int val=lb.executeUpdate("UPDATE profesor_tiene_tt SET aceptado = " + i + 
+                ", comentarios = '" + getComentario() + "', puntaje = " + puntajebueno 
                         + " WHERE id_TT='"+ getId_actividad() +"'");
             lb.closeConnection();
             if (val > 0) 

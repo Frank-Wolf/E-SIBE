@@ -17,7 +17,7 @@ public class evalua_2_2 extends ActionSupport{
     private String comentario;
     private String puntaje;
     private String id_actividad;
-    private String accept = "Aceptado";
+    //private String accept = "Aceptado";
     int i;
     int puntajebueno;
     
@@ -30,9 +30,9 @@ public class evalua_2_2 extends ActionSupport{
             puntajebueno = Integer.parseInt(getPuntaje());
             LoginBean lb = new LoginBean();
             lb.getConnection();
-            int val=lb.executeUpdate("UPDATE profesor_tiene_proyecto SET aceptado_alumno = " + i + 
-                ", comentarios = '" + getComentario() + "', puntaje_alumno = " + puntajebueno 
-                        + " WHERE id_alumno='"+ getId_actividad() +"'");
+            int val=lb.executeUpdate("UPDATE profesor_tiene_pub SET aceptado = " + i + 
+                ", comentarios = '" + getComentario() + "', puntaje = " + puntajebueno 
+                        + " WHERE id_publicacion='"+ getId_actividad() +"'");
             lb.closeConnection();
             if (val > 0) 
                 return "success";
@@ -44,9 +44,9 @@ public class evalua_2_2 extends ActionSupport{
             //puntajebueno = Integer.parseInt(getPuntaje());
             LoginBean lb = new LoginBean();
             lb.getConnection();
-            int val=lb.executeUpdate("UPDATE profesor_tiene_proyecto SET aceptado_alumno = " + i + 
-                ", comentarios = '" + getComentario() + "', validado_alumno = 0, puntaje_alumno = 0"
-                        + " WHERE id_alumno='"+ getId_actividad() +"'");
+            int val=lb.executeUpdate("UPDATE profesor_tiene_pub SET aceptado = " + i + 
+                ", comentarios = '" + getComentario() + "', validado = 0, puntaje = 0"
+                        + " WHERE id_publicacion='"+ getId_actividad() +"'");
             lb.closeConnection();
             if (val > 0) 
                 return "success";
