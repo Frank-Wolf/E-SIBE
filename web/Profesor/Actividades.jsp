@@ -34,7 +34,9 @@
     </head>
     
     <body background="../css/textura.png" class="container-fluid" style="overflow: scroll">
-        
+        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+        <s:set var="username" value="%{#session.username}" />
+        <jsp:useBean id="username" type="java.lang.String"/>
         <!--header-->
         <header class="headering rela">
             <s:div cssClass="container">            
@@ -115,6 +117,7 @@
                     <!--FORM ALUMNNOS -->
                     <s:div id="ALUMNOS_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
+                       
                         <s:set name="username" value="%{#session.username}" />
                         
                         <s:form action="valida_alumnoB" method="post">
@@ -130,6 +133,45 @@
                             name="tipo_alumno" /> 
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                             <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                            <%
+                            
+                            ResultSet alumnos=null;
+                            lb.getConnection();
+                            alumnos=lb.executeQuery("SELECT id_proyecto, id_alumno, tipo_alumno "
+                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado_alumno=0");
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Matricula del Alumno");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de alumno");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (alumnos.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print(alumnos.getString("id_proyecto"));
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(alumnos.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(alumnos.getString("tipo_alumno"));
+                                out.print("</td>");
+                                out.print("</tr>");
+
+                            }
+                            out.print("</table>");
+                            
+                        %>    
                     </s:div>    
                                 
                     <!--PUBLICACIONES FORM-->
@@ -151,6 +193,51 @@
                             <s:hidden name="username" label="Matrícula"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                    
+                        <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: En boletin - 1, Nacional sin arbitraje - 2, Internacional sin arbitraje - 3, Nacional con arbitraje - 4, Nacional sin Arbitraje - 5</h2>
+                        <%
+                            
+                            ResultSet rs=null;
+                            
+                            rs=lb.executeQuery("SELECT id_publicacion, id_tipo_pub "
+                                     + "FROM profesor_tiene_pub WHERE id_usuario = "+ username +" and validado=0 and id_evento='0'");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de Publicacion");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs.next())
+                            {
+                                ResultSet publica=lb.executeQuery("select Nom_Public from publicacion where id_publicacion='"+rs.getString("id_publicacion")+"' and id_tipo_pub='"+rs.getString("id_tipo_pub")+"'");
+                                while(publica.next())
+                                {
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(rs.getString("id_publicacion"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(publica.getString("Nom_Public"));
+                                    out.print("</td>");
+                                    out.print("<td>");
+                                    out.print(rs.getString("id_tipo_pub"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            
+                        %>          
                     </s:div>     
 
                     <!--EVENTOS FORM-->        
@@ -170,6 +257,59 @@
                             <s:hidden name="username" label="Matrícula"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                        
+                        <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: Institucional, Sin ponencia - 6, Institucional, con resumen publicado - 7, Institucional, publicado en extenso - 8</h2>
+                        <%
+                            
+                            ResultSet rws=null;
+                            
+                            rws=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_tiene_pub WHERE id_usuario = "+ username +" and validado=0 and id_evento<>'0'");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("ID del Evento");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Numero de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de Publicacion");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rws.next())
+                            {
+                                ResultSet ev=lb.executeQuery("select Nom_Public from publicacion where id_publicacion='"+rws.getString("id_publicacion")+"' and id_tipo_pub='"+rws.getString("id_tipo_pub")+"'");
+                                while(ev.next())
+                                {
+                                    
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(rws.getString("id_evento"));
+                                    out.print("</th>");
+                                    out.print("<th>");
+                                    out.print(rws.getString("id_publicacion"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(ev.getString("Nom_Public"));
+                                    out.print("</td>");
+                                    out.print("<td>");
+                                    out.print(rws.getString("id_tipo_pub"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            
+                        %>    
+                            
                     </s:div> 
 
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
@@ -182,6 +322,44 @@
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                        
+                        <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                        <%
+                            
+                            ResultSet proyecto=null;
+                            
+                            proyecto=lb.executeQuery("SELECT id_proyecto "
+                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado=0 and id_alumno=0");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de Proyecto");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (proyecto.next())
+                            {
+                                ResultSet pr=lb.executeQuery("select * from proyecto where id_proyecto='"+proyecto.getString("id_proyecto")+"'");
+                                while(pr.next())
+                                {
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(proyecto.getString("id_proyecto"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(pr.getString("nom_proyecto"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            
+                        %> 
                     </s:div>    
 
                     <!--PROPIEDAD INTELECTUAL FORM-->
@@ -195,6 +373,43 @@
                         
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                        <%
+                            
+                            ResultSet obra=null;
+                            
+                            obra=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=0");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Obra");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de obra");
+                            out.print("</th>");
+                            
+                            out.print("</tr>");
+                            while (obra.next())
+                            {
+                                ResultSet ob=lb.executeQuery("select nom_obra from obra where id_obra='"+obra.getString("id_obra")+"'");
+                                while(ob.next())
+                                {
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print(obra.getString("id_obra"));
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(ob.getString("nom_obra"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                        %>            
+                           
                     </s:div>    
 
                     <!--TESIS FORM-->
@@ -237,6 +452,65 @@
                             
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                            
+                        <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                        <h2 class="subtitulos" align="center">Tipo de participacion:</h2>
+                        <h2 class="subtitulos">Coordinacion en la elaboracion de un plan de estudios - 1, Coordinacion en la actualización de un plan de estudios - 2</h2>   
+                        <h2 class="subtitulos">Participacion en la elaboracion de un plan de estudios - 3, Participacion en la actualizacion de un plan de estudios - 4</h2>   
+                        <h2 class="subtitulos">Coordinacion en la elaboracion de un programa de estudios - 5, Coordinacion en la actualización de un programa de estudios - 6</h2>
+                        <h2 class="subtitulos">Participacion en la elaboracion de un programa de estudios - 7, Participacion en la actualizacion de un programa de estudios - 8</h2>   
+                         <%
+                            
+                            ResultSet participacion=null;
+                            
+                            participacion=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_participa_en_plan WHERE id_usuario = "+ username +" and validado=0");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero Participacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Asignatura");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Unidad Academica con la que colaboro");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de participacion");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (participacion.next())
+                            {
+                                ResultSet part=lb.executeQuery("select asignatura, u_a from part_plan_est where id_part='"+participacion.getString("id_part")+"'");
+                                while(part.next())
+                                {
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(participacion.getString("id_part"));
+                                    out.print("</th>");
+
+                                    out.print("<td>");
+                                    out.print(part.getString("asignatura"));
+                                    out.print("</td>");
+
+                                    out.print("<td>");
+                                    out.print(part.getString("u_a"));
+                                    out.print("</td>");
+
+                                    out.print("<td>");
+                                    out.print(participacion.getString("id_tipo_part"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            lb.closeConnection();
+                        %>   
+                        
                     </s:div>    
                 
                 
