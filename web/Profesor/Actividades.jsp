@@ -95,15 +95,9 @@
                             
                                     
                             <!--Actividad 2.11: Dirección de Tesis-->        
-                            <li class="activado"><a><i class="icono izquierda fa fa-graduation-cap" aria-hidden="true"></i> 
-                                    Actividad 2.11: Dirección de Tesis <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="TESIS" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.11.1 Dirección de Tesis individual</a>
-                                            
-                                        <li><a id="OPCION_CURRICULAR" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.11.2: Opción Curricular </a>    
-                                </ul>
+                            <li class="activado"><a id="TT" onclick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-graduation-cap" aria-hidden="true"></i> 
+                                    Actividad 2.11: Dirección de Tesis </a>
+                                
                             </li>
                             <li class="activado"><a  id="PART" onClick="mostrar_formulario(this.id)"><i class="icono izquierda fa fa-pencil" aria-hidden="true"  ></i>
                                     Actividad 2.12: Plan de Estudios</a> 
@@ -119,18 +113,22 @@
                            style="display:none;">    
                        
                         <s:set name="username" value="%{#session.username}" />
-                        
-                        <s:form action="valida_alumnoB" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_1'}"/>
+                        <s:form action="valida_alumnoB" method="post" enctype="multipart/form-data">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
                             <s:textfield name="id_alumno" label="Matrícula del Alumno" cssClass="form-control"/>
                             <s:select label="Seleccione el tipo de Alumno que participo en su proyecto SIP" cssClass="form-control"
                             headerKey="-1" headerValue="Tipo de Alumno"
                             list="# {
-                            'BEIFI':'A lumno BEIFI',
+                            'BEIFI':'Alumno BEIFI',
                             'SS':'Alumno en Servicio Social'
                             }"
                             name="tipo_alumno" /> 
+                            
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                              <h2 class="letritas">Actividades por registrar en este módulo</h2>
@@ -177,7 +175,8 @@
                     <!--PUBLICACIONES FORM-->
                     <s:div  id="PUBLICACIONES_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:set name="username" value="%{#session.username}" />
-                        <s:form action="valida_publicacion" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_2'}"/>
+                        <s:form action="valida_publicacion" method="post" enctype="multipart/form-data">
                             <s:textfield name="id_publicacion" label="ID de la Publicacion" cssClass="form-control" />
                             <s:textfield name="nombre_publicacion" label="Nombre de publicación" cssClass="form-control" />
                             <s:select label="Seleccione el tipo de publicacion que realizo" cssClass="form-control"
@@ -190,6 +189,9 @@
                             '5':'Con arbitraje, Internacional'
                             }"
                             name="id_tipo_pub" /> 
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:hidden name="username" label="Matrícula"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
@@ -243,7 +245,8 @@
                     <!--EVENTOS FORM-->        
                     <s:div  id="EVENTOS_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
                         <s:set name="username" value="%{#session.username}" />
-                        <s:form action="valida_evento" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_3'}"/>
+                        <s:form action="valida_evento" method="post" enctype="multipart/form-data">
                             <s:textfield name="id_evento" label="ID del Evento Académico" cssClass="form-control" />
                             <s:textfield name="id_publicacion" label="Número de Publicación" cssClass="form-control" />
                             <s:select label="Seleccione la dependecia con la que participó" cssClass="form-control"
@@ -254,6 +257,9 @@
                             '8':'Institucional, publicado en extenso'
                             }"
                             name="id_tipo_pub" />   
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:hidden name="username" label="Matrícula"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
@@ -315,11 +321,14 @@
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
                     <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">
-                        <s:set name="actividad24" value="%{'Actividad_2_4'}"/>
+                        <s:set name="activity" value="%{'Actividad_2_4'}"/>
                         <s:set name="username" value="%{#session.username}" />
-                        <s:form action="valida_proyecto" method="post">
+                        <s:form action="valida_proyecto" method="post" enctype="multipart/form-data">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_proyecto" label="Número de Proyecto de Investigación" cssClass="form-control"/>
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                         
@@ -366,8 +375,11 @@
                     <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" enctype="multipart/form-data"
                            style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        <s:set name="actividad25" value="%{'Actividad_2_5'}"/>
-                        <s:form action="valida_inda" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_5'}"/>
+                        <s:form action="valida_inda" method="post" enctype="multipart/form-data">
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
                         
@@ -410,35 +422,72 @@
                             out.print("</table>");
                         %>            
                            
-                    </s:div>    
-
-                    <!--TESIS FORM-->
-                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        <s:set name="actividad211" value="%{'Actividad_2_11'}"/>
-                        <s:form action="valida_tt" method="post">
-                            <s:hidden name="username" label="Matrícula"/>
-                            <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
-                            <s:textfield name="id_alumno" label="Numero de boleta del Alumno" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
+                    </s:div>      
 
                     <!--TT_CURRICULAR FORM-->
                     <s:div id="TT_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
-                        <s:form action="valida_tt" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_11'}"/>
+                        <s:form action="valida_tt" method="post" enctype="multipart/form-data">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_TT" label="Número de Tésis" cssClass="form-control"/>
                             <s:textfield name="id_alumno" label="Numero de boleta del Alumno" cssClass="form-control"/>
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                        
+                            <%
+                            
+                            ResultSet tt=null;
+                            
+                            tt=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_tiene_tt WHERE id_usuario = "+ username +" and validado=0");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de TT o Tesis");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre del Trabajo");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Matricula del Alumno");
+                            out.print("</th>");
+                            
+                            out.print("</tr>");
+                            while (tt.next())
+                            {
+                                ResultSet ToT=lb.executeQuery("select nom_TT from tt where id_TT='"+tt.getString("id_TT")+"'");
+                                while(ToT.next())
+                                {
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print(tt.getString("id_TT"));
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(ToT.getString("nom_TT"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(tt.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                
+                                }
+                            }
+                            out.print("</table>");
+                        %>
+                            
                     </s:div>    
                     
                     <s:div id="PART_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
                         <s:set name="username" value="%{#session.username}" />
-                        <s:set name="actividad21" value="%{'Actividad_2_1'}"/>
-                        <s:form action="valida_partt" method="post">
+                        <s:set name="activity" value="%{'Actividad_2_12'}"/>
+                        <s:form action="valida_partt" method="post" enctype="multipart/form-data">
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_part" label="Número de Participacion" cssClass="form-control"/>
                             <s:select label="Seleccione la dependecia con la que participó" cssClass="form-control"
@@ -449,7 +498,9 @@
                             'DEMS':'DEMS'
                             }"
                             name="u_a" />   
-                            
+                            <s:label for="myFile">Suba su constancia o archivo (máximo 10 MB y formato pdf).</s:label>
+                            <s:file name="myFile" />
+                            <s:hidden name="activity"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                             

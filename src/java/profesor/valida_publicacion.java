@@ -12,13 +12,21 @@ package profesor;
 import static com.opensymphony.xwork2.Action.ERROR;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
+import org.apache.commons.io.FileUtils;
 /**
  *
  * @author le_as
  */
 public class valida_publicacion extends ActionSupport{
      private String id_publicacion,nombre_publicacion,username;
+     private File myFile;
+    private String myFileFileName;
+    private String destPath;
+    private String activity;
+    private String myFileContentType;
 
     public void setId_publicacion(String id_publicacion) {
         this.id_publicacion = id_publicacion;
@@ -60,6 +68,8 @@ public class valida_publicacion extends ActionSupport{
    
     @Override
     public String execute() throws Exception {
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath += getUsername() + "\\" + getActivity() + "\\";
         
         if(id_publicacion.equals(""))
         {
@@ -98,6 +108,22 @@ public class valida_publicacion extends ActionSupport{
                 }
                 else
                 {
+                    /************************************************************************************************/
+                            try{
+                                System.out.println("Src File name: " + myFile);
+                                System.out.println("Dst File name: " + destPath);
+                                
+                                File destFile  = new File(destPath, myFileFileName);
+                                FileUtils.copyFile(myFile, destFile);
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_publicacion SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_publicacion = " + getId_publicacion());
+                                }catch(IOException e){
+                                e.printStackTrace();
+                                lb.closeConnection();
+                                return ERROR;
+                            }
+                            /************************************************************************************************/
                     lb.closeConnection();
                     return SUCCESS;
                 }
@@ -110,5 +136,46 @@ public class valida_publicacion extends ActionSupport{
         lb.closeConnection();
         return ERROR;    
     }
+
+    public File getMyFile() {
+        return myFile;
+    }
+
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
+    }
+
+    public String getDestPath() {
+        return destPath;
+    }
+
+    public void setDestPath(String destPath) {
+        this.destPath = destPath;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+    
 }
 

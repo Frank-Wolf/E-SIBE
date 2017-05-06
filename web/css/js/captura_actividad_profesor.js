@@ -23,7 +23,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("EVENTOS_FORM").style.display = "none";
         document.getElementById("PROYECTO_FORM").style.display = "none";
         document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "none";
         document.getElementById("PART_FORM").style.display="none";
     }
@@ -35,7 +35,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("EVENTOS_FORM").style.display = "none";
         document.getElementById("PROYECTO_FORM").style.display = "none";
         document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "none";
         document.getElementById("PART_FORM").style.display="none";
     } 
@@ -47,7 +47,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("EVENTOS_FORM").style.display = "block";
         document.getElementById("PROYECTO_FORM").style.display = "none";
         document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "none";
         document.getElementById("PART_FORM").style.display="none";
     }
@@ -59,7 +59,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("EVENTOS_FORM").style.display = "none";
         document.getElementById("PROYECTO_FORM").style.display = "block";
         document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "none";
         document.getElementById("PART_FORM").style.display="none";
     }
@@ -76,29 +76,19 @@ function mostrar_formulario(clicked_id)
         document.getElementById("PART_FORM").style.display="none";
     } 
     
-    if(clicked_id === "TESIS")
+    if(clicked_id === "TT")
     {
         document.getElementById("ALUMNOS_FORM").style.display = "none";
         document.getElementById("PUBLICACIONES_FORM").style.display = "none";
         document.getElementById("EVENTOS_FORM").style.display = "none";
         document.getElementById("PROYECTO_FORM").style.display = "none";
         document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "block";
         document.getElementById("PART_FORM").style.display="none";
     }
     
-    if(clicked_id ==="OPCION_CURRICULAR")
-    {
-        document.getElementById("ALUMNOS_FORM").style.display = "none";
-        document.getElementById("PUBLICACIONES_FORM").style.display = "none";
-        document.getElementById("EVENTOS_FORM").style.display = "none";
-        document.getElementById("PROYECTO_FORM").style.display = "none";
-        document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
-        document.getElementById("TT_FORM").style.display = "block";
-        document.getElementById("PART_FORM").style.display="none";
-    } 
+  
     
     if(clicked_id ==="PART")
     {
@@ -107,7 +97,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("EVENTOS_FORM").style.display = "none";
         document.getElementById("PROYECTO_FORM").style.display = "none";
         document.getElementById("INDA_FORM").style.display = "none";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "none";
         document.getElementById("PART_FORM").style.display="block";
     }

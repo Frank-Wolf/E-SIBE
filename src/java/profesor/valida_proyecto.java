@@ -5,8 +5,12 @@
  */
 package profesor;
 
+import static com.opensymphony.xwork2.Action.ERROR;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -17,6 +21,11 @@ public class valida_proyecto extends ActionSupport
     String test;
     private String username, rol_profesor;
     private String id_proyecto;
+    private File myFile;
+    private String myFileFileName;
+    private String destPath;
+    private String activity;
+    private String myFileContentType;
 
     public String getUsername() {
         return username;
@@ -46,6 +55,8 @@ public class valida_proyecto extends ActionSupport
 //<<<<<<< Upstream, based on origin/master
     
     public String execute() throws Exception {
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath += getUsername() + "\\" + getActivity() + "\\";
 //=======
          if(id_proyecto.equals(""))
         {
@@ -68,6 +79,22 @@ public class valida_proyecto extends ActionSupport
             else
             {
                 lb.executeUpdate("update profesor_tiene_proyecto set validado=1 where id_usuario='"+getUsername()+"'and id_proyecto='"+id_proyecto+"'" );
+                /************************************************************************************************/
+                            try{
+                                System.out.println("Src File name: " + myFile);
+                                System.out.println("Dst File name: " + destPath);
+                                
+                                File destFile  = new File(destPath, myFileFileName);
+                                FileUtils.copyFile(myFile, destFile);
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_proyecto = '" + getId_proyecto() + "'");
+                            }catch(IOException e){
+                                e.printStackTrace();
+                                lb.closeConnection();
+                                return ERROR;
+                            }
+                            /************************************************************************************************/
                 lb.closeConnection();
                 return SUCCESS;
             }
@@ -77,6 +104,64 @@ public class valida_proyecto extends ActionSupport
         lb.closeConnection();
         return "error";
         }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public String getRol_profesor() {
+        return rol_profesor;
+    }
+
+    public void setRol_profesor(String rol_profesor) {
+        this.rol_profesor = rol_profesor;
+    }
+
+    public File getMyFile() {
+        return myFile;
+    }
+
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
+    }
+
+    public String getDestPath() {
+        return destPath;
+    }
+
+    public void setDestPath(String destPath) {
+        this.destPath = destPath;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+    
+    
        
             
     } 

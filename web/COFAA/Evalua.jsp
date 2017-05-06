@@ -84,7 +84,8 @@
                             
                             rs=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_proyecto WHERE "
-                                    + "id_usuario = " + user + " AND aceptado_alumno IS NULL");
+                                    + "id_usuario = " + user + " AND aceptado_alumno IS NULL AND "
+                                            + "validado_alumno = 1");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -117,7 +118,8 @@
                     <%
                         ResultSet rd=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_pub WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL");
+                                    + "id_usuario = " + user + " AND aceptado IS NULL AND "
+                                            + "validado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -147,7 +149,7 @@
                     <%
                         ResultSet ra=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_ev WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL");
+                                    + "id_usuario = " + user + " AND aceptado IS NULL AND validado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -175,9 +177,21 @@
                     <div class="col-md-6">
                     <h2 class="h3">2.4 Investigación y/o desarrollo tecnológico satisfactorio</h2>   
                     <%
-                        ResultSet rv=lb.executeQuery("SELECT * "
-                                    + "FROM profesor_tiene_proyecto WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL");
+                        ResultSet rv=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm "
+                                    + "FROM profesor_tiene_proyecto "
+                                + " WHERE id_usuario = " + user 
+                                    + " AND aceptado IS NULL AND "
+                                            + "validado = 1"
+                                            + " GROUP BY id_proyecto"
+                                        + " HAVING COUNT(*) > 1;");
+                                    /*
+                                    SELECT count(*), id_proyecto
+                                    FROM profesor_tiene_proyecto
+                                    WHERE id_usuario = 11014 AND 
+                                    aceptado IS NULL AND
+                                    validado = 1
+                                    GROUP BY id_proyecto
+                                    HAVING COUNT(*) > 1;*/
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -207,7 +221,8 @@
                     <%
                         ResultSet rb=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_obra WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL");
+                                    + "id_usuario = " + user + " AND aceptado IS NULL AND "
+                                            + "validado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -241,7 +256,8 @@
                     <%
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL");
+                                    + "id_usuario = " + user + " AND aceptado IS NULL AND "
+                                            + "aceptado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -271,7 +287,8 @@
                     <%
                         ResultSet rm=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_en_plan WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL ");
+                                    + "id_usuario = " + user + " AND aceptado IS NULL AND "
+                                            + "validado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
