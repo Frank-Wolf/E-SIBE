@@ -94,7 +94,7 @@ public class valida_evento extends ActionSupport{
             return ERROR;
         }
         
-        profesor.LoginBean lb = new profesor.LoginBean();
+        LoginBean lb = new LoginBean();
         lb.getConnection();
         ResultSet obra=lb.executeQuery("select * from evento_academico where id_evento='"+id_evento+"'");
         while(obra.next())

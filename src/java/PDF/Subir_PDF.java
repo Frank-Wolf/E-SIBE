@@ -37,7 +37,7 @@ public class Subir_PDF extends ActionSupport{
      	    	 
      	 File destFile  = new File(destPath, myFileFileName);
     	 FileUtils.copyFile(myFile, destFile);
-         profesor.LoginBean lb = new profesor.LoginBean();
+         LoginBean lb = new LoginBean();
          lb.getConnection();
          int ruta = lb.executeUpdate("update profesor_tiene_obra set ruta_alm='" + destPath + getMyFileFileName() + "' "
                  + "where id_usuario='" + getUsername() + "';");

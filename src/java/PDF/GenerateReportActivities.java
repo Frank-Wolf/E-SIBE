@@ -325,7 +325,7 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_uno.addCell("2.1.1 o 2.1.2");
                     Dos_uno.addCell(rb.getString("tipo_alumno"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alumno"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alumno"));
                     Dos_uno.addCell(anchor);
                     Dos_uno.addCell(rb.getString("puntaje_alumno"));
@@ -382,7 +382,7 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_dos.addCell("2.2");
                     Dos_dos.addCell(rb.getString("id_tipo_pub"));//Add the type of every type pub
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_dos.addCell(anchor);
                     Dos_dos.addCell(rb.getString("puntaje"));
@@ -440,7 +440,7 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_tres.addCell("2.3");
                     Dos_tres.addCell("Evento académico");
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_tres.addCell(anchor);
                     Dos_tres.addCell(rb.getString("puntaje"));
@@ -513,7 +513,7 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_cuatro.addCell("2.4.2");
                     Dos_cuatro.addCell(rb.getString("id_proyecto"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_cuatro.addCell(anchor);
                     Dos_cuatro.addCell(rb.getString("puntaje"));
@@ -572,7 +572,7 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
                     Dos_cinco.addCell(rb.getString("id_obra"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_cinco.addCell(anchor);
                     Dos_cinco.addCell(rb.getString("puntaje"));
@@ -632,7 +632,7 @@ public class GenerateReportActivities {
                 while(rb.next()){
                     Dos_once.addCell("2.11");
                     Dos_once.addCell(rb.getString("id_TT"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_once.addCell(anchor);
                     Dos_once.addCell(rb.getString("puntaje"));
@@ -701,7 +701,7 @@ public class GenerateReportActivities {
                     Dos_doce.addCell(rb.getString("id_part"));
                     Dos_doce.addCell(rb.getString("id_tipo_part"));//Agregar a la parte de abajo el tipo de párticiáción
                     Anchor anchor = new Anchor(rb.getString("ruta_alm"));
-                    anchor.setReference(rb.getString("ruta_alm"));
+                    anchor.setReference("Constancia");
                     Dos_doce.addCell(anchor);
                     Dos_doce.addCell(rb.getString("puntaje"));
                     Dos_doce.addCell(rb.getString("comentarios"));

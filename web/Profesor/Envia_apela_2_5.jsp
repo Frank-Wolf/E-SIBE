@@ -1,14 +1,12 @@
 <%-- 
-    Document   : Evalua_2_1
-    Created on : May 1, 2017, 7:16:26 PM
+    Document   : Envia_apela_2_5
+    Created on : May 7, 2017, 2:49:58 PM
     Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="java.sql.*" %>
-<%@taglib prefix="sj" uri="/struts-jquery-tags" %> 
 <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -23,7 +21,7 @@
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
-        <title>Evaluador COFAA</title>
+        <title>Profesor</title>
     </head>
     <body background="../css/textura.png" class="boding overflow">
         
@@ -44,14 +42,14 @@
                     <div class="container">
                     
                         <div class="navbar-header">
-                            <a class="navbar-brand letritas" >E-SIBE: Administrador COFAA</a>
+                            <a class="navbar-brand letritas" >E-SIBE: Profesor</a>
                         </div>
                         
                         <div id="navbar" class="navbar-collapse collapse ">
 
                             
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Menu_evalua">
+                                <li><a href="Menu_apelaciones_prof">
                                       Regresar</a></li>
                             </ul>
                         </div>
@@ -65,51 +63,43 @@
                         
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-6">
-                        <h2 class="h3">Asigne una puntuación y/o comentarios</h2>
+                        <h2 class="h3">Por favor suba nuevamente la constancia y la carta donde indique 
+                        la razón de la apelación.</h2>
 
                         <%
-                            String user=request.getParameter("id");
+                            String id_actividad=request.getParameter("id");
                             HttpSession sesion = request.getSession();
-                            sesion.setAttribute("id",user);
+                            sesion.setAttribute("id",id_actividad);
                             ResultSet rs=null;
                             lb.getConnection();
-                            rs=lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                            + "id_alumno='"+user+"'");
+                            rs=lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
+                            + "id_obra='"+id_actividad+"'");
                             rs.next();
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             String comentario=rs.getString("comentarios");
                             //Date fecha_evaluar=rs.getDate("fecha_val");
                             //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();
+                            out.println("<p>");
+                            out.println("El evaluador comentó lo siguiente: "
+                                    + comentario);
+                            out.println("</p>");
                         %>
                     </div>
                     
                     <div cssClass="" align ="center">
 
-                        <h2 class="h3">Apelar</h2>
+                        <h2 class="h3">Enviar intento de apelación</h2>
                         
-                        <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set var="comentario"><%=comentario%></s:set>
-                        <s:form action="/Usuario/evalua_2_1">
-                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
-                                      headerKey="-1" headerValue="Seleccione"
-                                      list="# {
-                                      'Aceptado':'Aceptado',
-                                      'No aceptado':'No aceptado'
-                                      }"
-                                      name="aceptado"/>
-                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" value="%{#comentario}" cssClass="form-control" size="100"/>
-                            <s:select label="Asignar puntaje"  cssClass="form-control" 
-                                      headerKey="-1" headerValue="Marque puntaje"
-                                      list="# {
-                                      0:0,
-                                      25:25
-                                      }"
-                                      name="puntaje"
-                                      />
-                            <s:hidden name="id_actividad"/>
-                            <s:submit cssClass="btn" value="Evaluar" />
-                        </s:form> 
+        <s:set var="id_actividad"><%=id_actividad%></s:set>
+        <s:set var="username" value="%{#session.username}"/>
+        <s:form id = "datos" action="/Usuario/upload_file_apela_25" method="post" enctype="multipart/form-data">
+            <s:label for="myFile">Suba su constancia nuevamente y la hoja de apelación (máximo 10 MB y en un mismo archivo pdf):</s:label>
+            <s:file name="myFile" />
+            <s:hidden name="id_actividad"/>
+            <s:hidden name="username"/>
+            <s:submit value="Subir" cssClass="btn"/>
+        </s:form>
                     </div>
                         
                 </div>                 
@@ -131,4 +121,5 @@
     </body>
     
 </html>
+
 

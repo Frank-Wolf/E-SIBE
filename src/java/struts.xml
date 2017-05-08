@@ -251,13 +251,16 @@
         <action name="Actividades_Profesor">
             <result>/Profesor/Actividades.jsp</result>
         </action>
+        <action name="menu_notime2">
+            <result>/Profesor/Profesor_notime.jsp</result>
+        </action>
+        <action name="Menu_apelaciones_prof">
+            <result>/Profesor/Profesor_apelacion.jsp</result>
+        </action>
         <action name="apelacion_prof" class="profesor.try_apelacion">
             <result name="success">/Profesor/Profesor_apelacion.jsp</result>
             <result name="error">/Profesor/Profesor_notime2.jsp</result>
         </action>
-        <action name="fileUploadAction" class="PDF.Subir_PDF" method="display"><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssss-->
-	    <result name="none">/Profesor/test_doc.jsp</result>
-	</action>
         <action name="upload_file" class="PDF.Subir_PDF">
             <interceptor-ref name="exception"/>
             <interceptor-ref name="i18n"/>
@@ -699,7 +702,179 @@
             <result name="success">/COFAA/Evalua_listo21.jsp</result>
             <result name="fail">/error.jsp</result>
         </action>
-        
+        <!--Apelacionessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+        <action name="apela_2_1" class="cofaa.apela_2_1">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="apela_2_2" class="cofaa.apela_2_2">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="apela_2_3" class="cofaa.apela_2_3">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="apela_2_4" class="cofaa.apela_2_4">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="apela_2_5" class="cofaa.apela_2_5">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="apela_2_11" class="cofaa.apela_2_11">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <action name="apela_2_12" class="cofaa.apela_2_12">
+            <result name="success">/COFAA/Apela_listo.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action>
+        <!--Apelacionessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+    </package>
+    
+    <package name="Paquete_apelacion" extends="struts-default" namespace="/Usuario">
+        <action name="upload_file_apela_21" class="profesor.Sube_apela_2_1">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_1.jsp</result>
+        </action>
+        <action name="upload_file_apela_22" class="profesor.Sube_apela_2_2">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_2.jsp</result>
+        </action>
+        <action name="upload_file_apela_23" class="profesor.Sube_apela_2_3">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_1.jsp</result>
+        </action>
+        <action name="upload_file_apela_24" class="profesor.Sube_apela_2_4">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_4.jsp</result>
+        </action>
+        <action name="upload_file_apela_25" class="profesor.Sube_apela_2_5">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_5.jsp</result>
+        </action>
+        <action name="upload_file_apela_211" class="profesor.Sube_apela_2_11">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_11.jsp</result>
+        </action>
+        <action name="upload_file_apela_212" class="profesor.Sube_apela_2_12">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Apelacion_correc.jsp</result>
+            <result name="error">/Profesor/Envia_apela_2_12.jsp</result>
+        </action>
     </package>
 
 </struts>

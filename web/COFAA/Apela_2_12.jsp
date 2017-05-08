@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Evalua_2_1
-    Created on : May 1, 2017, 7:16:26 PM
+    Document   : Apela_2_12
+    Created on : May 8, 2017, 1:18:18 AM
     Author     : PsysacElrick
 --%>
 
@@ -73,11 +73,11 @@
                             sesion.setAttribute("id",user);
                             ResultSet rs=null;
                             lb.getConnection();
-                            rs=lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                            + "id_alumno='"+user+"'");
+                            rs=lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
+                            + "id_part='"+user+"'");
                             rs.next();
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            String comentario=rs.getString("comentarios");
+                            //String comentario=rs.getString("comentarios");
                             //Date fecha_evaluar=rs.getDate("fecha_val");
                             //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();
@@ -86,11 +86,10 @@
                     
                     <div cssClass="" align ="center">
 
-                        <h2 class="h3">Apelar</h2>
+                        <h2 class="h3">Asignar registro</h2>
                         
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set var="comentario"><%=comentario%></s:set>
-                        <s:form action="/Usuario/evalua_2_1">
+                        <s:form action="/Usuario/apela_2_12">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -131,4 +130,5 @@
     </body>
     
 </html>
+
 

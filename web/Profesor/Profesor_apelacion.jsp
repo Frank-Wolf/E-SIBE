@@ -40,275 +40,818 @@
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" class="img-responsive"/>
             </s:div>
         </header> 
-   
+        <!--s:iterator value="%{#session.username}"--> 
+        <!--s:property/-->
+        <!--/s:iterator-->
         <!--Conteneor general-->    
         <s:div cssClass="container-fluid">
             <s:div cssClass="">
-                
-                <!--Barra de Navegacion-->                    
-                <nav class="navbar navbar-default row">
+                <nav class="navbar navbar-default">
         
-                    <div class=" col-lg-12">
+                    <div class="container">
                     
                         <div class="navbar-header">
-                            <a class="navbar-brand" > E-SIBE: Profesor</a>
+                            <a class="navbar-brand letritas" >E-SIBE: Profesor</a>
                         </div>
                         
-                        <!-- Parte derecha de barra de navegacion-->
-                        <div class="container">
-                            <ul class="nav navbar-nav navbar-right">
-                                 <li><a href="Profesor_apela">
+                        <div id="navbar" class="navbar-collapse collapse ">
+                            <ul class="nav navbar-nav">
+                                <li><a href="menu_notime2">
                                         Menú Principal</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-                
-                <div class="row">
-                    <!--Menú de opciones lateral-->
-                    <div class="col-md-3 barra">
-                        <ul class="bl">
-                            
-                            <!--Actividad 2.1: Formación de Recursos Humanos para la Investigación-->
-                            <li class="activado"><a><i class="icono izquierda fa fa-users"></i> 
-                                    Actividad 2.1: Alumnos <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="BEIFI" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.1.1: Alumnos BEIFI</a>
-                                    <li><a id="SERVICIO" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.1.2: Alumnos S.S.</a> 
-                                </ul>
-                            </li>
-                            
-                            <!--Actividad 2.2: Publicaciones-->
-                            <li class="activado"><a><i class="icono izquierda fa fa-newspaper-o" aria-hidden="true"></i>
-                                    Actividad 2.2: Publicaciones <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="BOLETINES" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.2.1: En boletínes </a>
-                                        
-                                        <li><a id="NOARBITRAJE" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.2.2: Sin arbitraje</a>    
-                                            
-                                        <li><a id="ARBITRAJE" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.2.3: Con arbitraje</a>    
-                                </ul>
-                            </li>    
-                            
-                            <!--Actividad 2.3: Eventos Académicos-->
-                            <li class="activado"><a><i class="icono izquierda fa fa-university" aria-hidden="true"></i> 
-                                    Actividad 2.3: Eventos Académicos <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="INST_SINPONENCIA" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.3.1: Publicación Inst. sin Ponencia</a>
-                                            
-                                        <li><a id="CONRESUMEN" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.3.2: Publicación con Resúmen</a>    
-                                            
-                                        <li><a id="EXTENSO"  onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.3.3: Publicación en Extenso</a>   
-                                </ul>
-                            </li>
-                            
-                            <!--Actividad 2.4: Proyecto de Investigación SIP-->
-                            <li><a><i class="icono izquierda fa fa-file-text" aria-hidden="true"></i> 
-                                    Actividad 2.4.2: Proyecto SIP </a></li>
-                            
-                            <!--Actividad 2.5: Registro de propiedad Intelectual-->        
-                            <li><a><i class="icono izquierda fa fa-lock" aria-hidden="true"></i> 
-                                    Actividad 2.5.2.2: Propiedad Intelectual </a></li>
-                            
-                                    
-                            <!--Actividad 2.11: Dirección de Tesis-->        
-                            <li class="activado"><a><i class="icono izquierda fa fa-graduation-cap" aria-hidden="true"></i> 
-                                    Actividad 2.11: Dirección de Tesis <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="TESIS" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.11.1 Dirección de Tesis individual</a>
-                                            
-                                        <li><a id="OPCION_CURRICULAR" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.11.2: Opción Curricular </a>    
-                                </ul>
-                            </li>
-                            <li class="activado"><a><i class="icono izquierda fa fa-pencil" aria-hidden="true"></i>
-                                    Actividad 2.12: Plan de Estudios <i class="icono derecha fa fa-chevron-down" aria-hidden="true"></i></a>
-                                <ul>
-                                    <li><a id="12_1" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.1: Coordinación en 
-                                            la elaboración de un plan de estudios 
-                                            de carrera</a></li>
-                                            
-                                        <li><a id="12_2" onClick="mostrar_formulario(this.id)">
-                                               Actividad 2.12.2: Coordinación en
-                                               la actualización de un plan de estudios 
-                                               de carrera</a></li>    
-                                            
-                                        <li><a id="12_3" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.3: Participación en
-                                            la elaboración de un plan de estudios</a></li>
-                                            
-                                        <li><a id="12_4" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.4: Participación en
-                                            la actualización de un plan de estudios</a></li>
-                                            
-                                        <li><a id="12_5" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.5: Coordinación en
-                                            la elaboración de un programa de estudios</a></li>
-                                            
-                                        <li><a id="12_6" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.6: Coordinación en
-                                            la actualización de un programa de estudios</a></li>    
-                                            
-                                        <li><a id="12_7" onClick="mostrar_formulario(this.id)">
-                                                Actividad 2.12.7: Participación en
-                                            la elaboración de un programa de estudios</a></li>
-                                            
-                                        <li><a id="12_8" onClick="mostrar_formulario(this.id)">
-                                               Actividad 2.12.8: Participación en
-                                               la actualización de un programa de estudios</a></li>
-                                    
-                                </ul>
-                            </li>
-                        </ul>
+                <!--Tabla donde se muestran las actividades aprobadas y su puntaje-->
+                <div class="col-md-6">
+                        <h2 class="h3">Lista de actividades aprobadas</h2>
                     
-                    </div>    
-                    
-                    <h2 class="Titular" align="center"> Selecciona la actividad de la cual quieres hacer apelación </h2>
-                    
-                    <!--FORM BEIFI -->
-                    <s:div id="BEIFI_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Nombre de Alumno BEIFI" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno BEIFI" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Numero de Proyecto SIP" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-                    
-                    <!--SERVICIO FORM-->
-                    <s:div  id="SERVICIO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Nombre de Alumno en Servicio Social" cssClass="form-control" />
-                            <s:textfield name="numero_ss" label="Numero de Registro de Servicio Social" cssClass="form-control" />
-                            <s:textfield name="fecha_ss_fin" label="Fecha de Finalización de Servicio Social" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>  
-
-                    <!--PUBLICACIONES EN BOLETINES FORM-->
-                    <s:div id="BOLETINES_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
+                        <jsp:useBean id="lb" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
+                        <s:set var="username" value="%{#session.username}" />
+                        <h2 class="h3"><b>Actividad 2.1</b></h2>
+                        <jsp:useBean id="username" type="java.lang.String"/>
+                        <%
+                            String id_prof = username;
+                            ResultSet rs=null, rs2=null, rs3=null, rs4=null, rs5=null, rs6=null, rs7=null;
+                            ResultSet rs8=null, rs9=null, rs10=null, rs11=null, rs12=null, rs13=null, rs14=null;
+                            lb.getConnection();
+                            rs=lb.executeQuery("SELECT * "//comentarios, puntaje_alumno, ruta_alumno, id_alumno, id_proyecto
+                                    //tipo_alumno
+                                    + "FROM profesor_tiene_proyecto WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado_alumno = 1");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Tipo de alumno");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Boleta del alumno  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver constancia");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Número del proyecto SIP");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs.getString("tipo_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs.getString("ruta_alumno")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("id_proyecto"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("puntaje_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_1.jsp?id="
+                                        + rs.getString("id_alumno") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                         
+                        <h2 class="h3"><b>Actividad 2.2</b></h2>
+                        <%
+                            rs2=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_tiene_pub WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador de la publicación");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Tipo de publicación  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver constancia");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs2.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs2.getString("id_publicacion"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs2.getString("id_tipo_pub"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs2.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs2.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs2.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_2.jsp?id="
+                                      + rs2.getString("id_publicacion") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
                         
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_publi" label="Nombre del Artículo" cssClass="form-control"/>
-                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control"/>                           
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-                    
-                    <!--PUBLICACIONES SIN ARBITRAJE FORM-->
-                    <s:div  id="SINAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
-                            <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
-                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>         
-                    
-                    <!--PUBLICACIONES CON ARBITRAJE FORM-->
-                    <s:div  id="CONAR_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_publi" label="Nombre de publicación" cssClass="form-control" />
-                            <s:textfield name="numero_ISSN" label="Numero de ISSN" cssClass="form-control" />
-                            <s:textfield name="fecha_pub" label="Fecha de Publicación" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>     
-
-                    <!--EVENTOS SIN PONENCIA FORM-->        
-                    <s:div  id="SIN_PONENCIA_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_ea" label="Nombre de Evento Académico" cssClass="form-control" />
-                            <s:textfield name="fecha_ev" label="Fecha del Evento" cssClass="form-control" />
-                            <s:textfield name="num_pub" label="Número de Publicación" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div> 
-
-                    <!--PUBLICACIONES CON RESUMEN FORM-->
-                    <s:div id="CON_RESUMEN_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">
+                        <h2 class="h3"><b>Actividad 2.3</b></h2>
+                        <%
+                            rs3=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_participa_ev WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador del evento");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Actividad  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs3.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs3.getString("id_evento"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs3.getString("actividad"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs3.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs3.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs3.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_3.jsp?id="
+                                        + rs3.getString("id_evento") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
                         
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_ea" label="Nombre del Evento Académico" cssClass="form-control"/>
-                            <s:textfield name="fecha_ea" label="Fecha del Evento Académico" cssClass="form-control"/>
-                            <s:textfield name="ponencia" label="Titulo de Ponencia" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-                            
-                    <!--PUBLICACIONES EN EXTENSO FORM-->
-                    <s:div  id="EN_EXTENSO_FORM" cssClass="col-lg-9 formulario-oculto cover-inner" align ="center" style="display:none;">
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Nombre de la publicación" cssClass="form-control" />
-                            <s:textfield name="numero_ss" label="Numero de Publicación" cssClass="form-control" />
-                            <s:textfield name="fecha_ss_fin" label="Fecha de Publicación" cssClass="form-control" />
-                            
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>  
+                        <h2 class="h3"><b>Actividad 2.4</b></h2>
+                        <%
+                            rs4=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios, rol_profesor "
+                        + "FROM profesor_tiene_proyecto "
+                        + "WHERE id_usuario = '" + id_prof +"' AND "
+                        + "aceptado = 1 "
+                        + "GROUP BY id_proyecto "
+                        + "HAVING COUNT(*) > 1");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador del proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Rol del profesor  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs4.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs4.getString("id_proyecto"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs4.getString("rol_profesor"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs4.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs4.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs4.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_4.jsp?id="
+                                        + rs4.getString("id_proyecto") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.5</b></h2>
+                        <%
+                            rs5=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_tiene_obra WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador de la obra");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Tipo de obra  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs5.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs5.getString("id_obra"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs5.getString("id_tipo_obra"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs5.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs5.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs5.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_5.jsp?id="
+                                        + rs5.getString("id_obra") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.11</b></h2>
+                        <%
+                            rs6=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_tiene_tt WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1"/*and periodo = (same as professor)*/);
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador del Trabajo Terminal");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Boleta de alumno que se graduó primero  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs6.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs6.getString("id_TT"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs6.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs6.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs6.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs6.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_11.jsp?id="
+                                        + rs6.getString("id_TT") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.12</b></h2>
+                        <%
+                            rs7=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_participa_en_plan WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1"/*and periodo = (same as professor)*/);
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador de participación");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de participación");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs7.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs7.getString("id_part"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs6.getString("id_tipo_part"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs7.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs7.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs7.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_12.jsp?id="
+                                        + rs7.getString("id_part") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                    </div>
+                    
+                    
+                    <!--Tabla en la que se muestran las actividades no aprobadas-->
+                    <div class="col-md-6">
+                        <h2 class="h3">Lista de actividades no aprobadas</h2>
+                    
+                        <h2 class="h3"><b>Actividad 2.1</b></h2>
+                        <%
+                            lb.getConnection();
+                            rs8=lb.executeQuery("SELECT * "//comentarios, puntaje_alumno, ruta_alumno, id_alumno, id_proyecto
+                                    //tipo_alumno
+                                    + "FROM profesor_tiene_proyecto WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado_alumno = 0");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Tipo de alumno");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Boleta del alumno  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver constancia");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Número del proyecto SIP");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs8.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs8.getString("tipo_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs8.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs8.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs8.getString("ruta_alumno")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs8.getString("id_proyecto"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs8.getString("puntaje_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_1.jsp?id="
+                                        + rs8.getString("id_alumno") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                         
+                        <h2 class="h3"><b>Actividad 2.2</b></h2>
+                        <%
+                            rs9=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_tiene_pub WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 0");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador de la publicación");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Tipo de publicación  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver constancia");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs9.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs9.getString("id_publicacion"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs9.getString("id_tipo_pub"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs9.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs9.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs9.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_2.jsp?id="
+                                        + rs9.getString("id_publicacion") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.3</b></h2>
+                        <%
+                            rs10=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_participa_ev WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 0");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador del evento");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Actividad  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs10.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs10.getString("id_evento"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs10.getString("actividad"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs10.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs10.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs10.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_3.jsp?id="
+                                        + rs10.getString("id_evento") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.4</b></h2>
+                        <%
+                            rs11=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios, rol_profesor "
+                        + "FROM profesor_tiene_proyecto "
+                        + "WHERE id_usuario = '" + id_prof +"' AND "
+                        + "aceptado = 0 "
+                        + "GROUP BY id_proyecto "
+                        + "HAVING COUNT(*) > 1");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador del proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Rol del profesor  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs11.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs11.getString("id_proyecto"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs11.getString("rol_profesor"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs11.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs11.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs11.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_4.jsp?id="
+                                        + rs11.getString("id_proyecto") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.5</b></h2>
+                        <%
+                            rs12=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_tiene_obra WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 0");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador de la obra");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Tipo de obra  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs12.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs12.getString("id_obra"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs12.getString("id_tipo_obra"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs12.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs12.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs12.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_5.jsp?id="
+                                        + rs12.getString("id_obra") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.11</b></h2>
+                        <%
+                            rs13=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_tiene_tt WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 0"/*and periodo = (same as professor)*/);
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador del Trabajo Terminal");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("  Boleta de alumno que se graduó primero  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs13.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs13.getString("id_TT"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs13.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs13.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs13.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs13.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_11.jsp?id="
+                                        + rs13.getString("id_TT") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                        %>
+                        
+                        <h2 class="h3"><b>Actividad 2.12</b></h2>
+                        <%
+                            rs14=lb.executeQuery("SELECT * "//
+                                    + "FROM profesor_participa_en_plan WHERE "
+                                    + "id_usuario = " + id_prof + " AND aceptado = 0"/*and periodo = (same as professor)*/);
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print(  "Identificador de participación");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de participación");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "  Comentarios ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Ver archivos subidos");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Puntaje asignado");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Opción");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs14.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs14.getString("id_part"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs14.getString("id_tipo_part"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs14.getString("comentarios"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='file:///"
+                                        +rs14.getString("ruta_alm")+"'>Ver constancia</a>");
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs14.getString("puntaje"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Profesor/Envia_apela_2_12.jsp?id="
+                                        + rs14.getString("id_part") + "'>Apelar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
+                            lb.closeConnection();
+                        %>
+                    </div>
+                    </div>
                 
-                    <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
-                    <s:div id="PROYECTO_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Proyecto de Investigación" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha de Proyecto" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-
-                    <!--PROPIEDAD INTELECTUAL FORM-->
-                    <s:div id="INDA_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Obra" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Tipo de Obra" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha del Registro" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-
-                    <!--TESIS FORM-->
-                    <s:div id="TESIS_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Tésis" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha de Titulación del Alumno" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-
-                    <!--TT_CURRICULAR FORM-->
-                    <s:div id="TT_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
-                        <s:form action="Usuario/Sesion" method="post">
-                            <s:textfield name="nombre_a" label="Número de Trabajo Terminal" cssClass="form-control"/>
-                            <s:textfield name="numero_bol" label="Numero de boleta del Alumno" cssClass="form-control"/>
-                            <s:textfield name="numero_p" label="Fecha de Titulación del Alumno" cssClass="form-control"/>
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
-                        </s:form>
-                    </s:div>    
-                
-                
-                
-                </div><!--Contenido-->    
-                
-               
-            </s:div>  
-        </s:div>
-                
+                </s:div>
+                    </s:div>
                 
         
         

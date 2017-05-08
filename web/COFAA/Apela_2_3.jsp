@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Evalua_2_1
-    Created on : May 1, 2017, 7:16:26 PM
+    Document   : Apela_2_3
+    Created on : May 8, 2017, 1:17:35 AM
     Author     : PsysacElrick
 --%>
 
@@ -73,11 +73,11 @@
                             sesion.setAttribute("id",user);
                             ResultSet rs=null;
                             lb.getConnection();
-                            rs=lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                            + "id_alumno='"+user+"'");
+                            rs=lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
+                            + "id_evento='"+user+"'");
                             rs.next();
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            String comentario=rs.getString("comentarios");
+                            //String comentario=rs.getString("comentarios");
                             //Date fecha_evaluar=rs.getDate("fecha_val");
                             //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();
@@ -89,8 +89,7 @@
                         <h2 class="h3">Apelar</h2>
                         
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set var="comentario"><%=comentario%></s:set>
-                        <s:form action="/Usuario/evalua_2_1">
+                        <s:form action="/Usuario/apela_2_3">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -98,7 +97,7 @@
                                       'No aceptado':'No aceptado'
                                       }"
                                       name="aceptado"/>
-                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" value="%{#comentario}" cssClass="form-control" size="100"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
@@ -107,7 +106,6 @@
                                       }"
                                       name="puntaje"
                                       />
-                            <s:hidden name="id_actividad"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
                     </div>

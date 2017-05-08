@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Evalua_2_1
-    Created on : May 1, 2017, 7:16:26 PM
+    Document   : Apela_2_1
+    Created on : May 8, 2017, 1:17:11 AM
     Author     : PsysacElrick
 --%>
 
@@ -65,7 +65,7 @@
                         
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-6">
-                        <h2 class="h3">Asigne una puntuación y/o comentarios</h2>
+                        <h2 class="h3">Asigne una nueva puntuación y/o comentarios</h2>
 
                         <%
                             String user=request.getParameter("id");
@@ -90,7 +90,7 @@
                         
                         <s:set var="id_actividad"><%=user%></s:set>
                         <s:set var="comentario"><%=comentario%></s:set>
-                        <s:form action="/Usuario/evalua_2_1">
+                        <s:form action="/Usuario/apela_2_1">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -131,4 +131,3 @@
     </body>
     
 </html>
-
