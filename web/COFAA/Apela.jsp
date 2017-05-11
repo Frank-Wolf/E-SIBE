@@ -74,7 +74,7 @@
                         ResultSet rg = lb.executeQuery("SELECT * "
                                     + "FROM usuario WHERE "
                                     + "id_usuario = " + user);
-                        out.print("<h2 class='Titular' align='center'>Lista de actividades del profesor </h2>" );
+                        out.print("<h2 class='Titular' align='center'>Lista de actividades que el profesor quiere apelar </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
                     <div class="col-md-6">
@@ -256,8 +256,7 @@
                     <%
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + user + " AND aceptado = 0 "
-                                            + "aceptado = 1");
+                                    + "id_usuario = " + user + " AND aceptado = 0 ");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");

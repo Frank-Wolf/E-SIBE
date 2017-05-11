@@ -125,12 +125,12 @@ public class valida_evento extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_publicacion SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_publicacion = " + getId_publicacion());
+                                    + "WHERE id_publicacion = '" + getId_publicacion()+"'");
                                 int ruta2 = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_evento = " + getId_publicacion());
+                                    + "WHERE id_evento = '" + id_evento+"'");
                                 }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

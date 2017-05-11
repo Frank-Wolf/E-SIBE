@@ -137,7 +137,7 @@ public class RegistraProyecto extends ActionSupport
                     else
                     {
                         System.out.println("Aqui falla");
-                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,id_rol_profesor,validado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0)");
+                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,rol_profesor,validado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0)");
                         lb.closeConnection();
                         return SUCCESS;
                     }

@@ -115,7 +115,7 @@ public class valida_publicacion extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_publicacion SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_publicacion = " + getId_publicacion());
                                 }catch(IOException e){

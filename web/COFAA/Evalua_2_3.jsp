@@ -106,6 +106,7 @@
                                       }"
                                       name="puntaje"
                                       />
+                            <s:hidden name="id_actividad" label="algo"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
                     </div>

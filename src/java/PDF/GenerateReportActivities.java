@@ -14,11 +14,9 @@ package PDF;
 import java.io.FileOutputStream;
 import java.util.Date;
 
-import com.itextpdf.text.*;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -32,7 +30,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.pdf.PdfContentByte;
 import java.io.IOException;
 import java.sql.ResultSet;  
 
@@ -59,7 +56,7 @@ public class GenerateReportActivities {
              //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
              FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
              lb.getConnection();
-             /*int i = 0;
+             int i = 0;
              ResultSet ra;
              ra = lb.executeQuery("SELECT p.ruta_alm, pr.ruta_alm, t.ruta_alm, ob.ruta_alm, \n" +
                      "ev.ruta_alm, pra.ruta_alumno, pu.ruta_alm\n" +
@@ -67,14 +64,14 @@ public class GenerateReportActivities {
                      "profesor_participa_en_plan p, profesor_tiene_proyecto pr, \n" +
                      "profesor_tiene_tt t, profesor_tiene_obra ob, profesor_participa_ev ev, \n" +
                      "profesor_tiene_proyecto pra, profesor_tiene_pub pu\n" +
-                     "WHERE\n" +
-                     "pu.id_usuario = '" + getUsername() + "' and \n" +
-                     "p.id_usuario = '" + getUsername() + "' and \n" +
-                     "pr.id_usuario = '" + getUsername() + "' and \n" +
-                     "t.id_usuario = '" + getUsername() + "' and \n" +
-                     "ob.id_usuario = '" + getUsername() + "' and \n" +
-                     "ev.id_usuario = '" + getUsername() + "' and\n" +
-                     "pra.id_usuario = '" + getUsername() + "';");
+                     "WHERE \n" +
+                     "pu.id_usuario = " + getUsername() + " and \n" +
+                     "p.id_usuario = " + getUsername() + " and \n" +
+                     "pr.id_usuario = " + getUsername() + " and \n" +
+                     "t.id_usuario = " + getUsername() + " and \n" +
+                     "ob.id_usuario = " + getUsername() + " and \n" +
+                     "ev.id_usuario = " + getUsername() + " and \n" +
+                     "pra.id_usuario = " + getUsername());
              while(ra.next()){
                  i++;
              }
@@ -82,9 +79,9 @@ public class GenerateReportActivities {
              if(i == 0){
                  lb.closeConnection();
                  return "no_registro";
-             }*/
+             }
                  
-
+                System.out.println(i);
                 try 
                 {
                         Document document = new Document();
@@ -323,7 +320,7 @@ public class GenerateReportActivities {
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
                         + "id_usuario = '" + getUsername() +"' AND validado_alumno = 1");
                 while(rb.next()){
-                    Dos_uno.addCell("2.1.1 o 2.1.2");
+                    Dos_uno.addCell(rb.getString("id_alumno"));
                     Dos_uno.addCell(rb.getString("tipo_alumno"));
                     Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alumno"));
@@ -380,7 +377,7 @@ public class GenerateReportActivities {
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
                         + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
-                    Dos_dos.addCell("2.2");
+                    Dos_dos.addCell(rb.getString("id_publicacion"));
                     Dos_dos.addCell(rb.getString("id_tipo_pub"));//Add the type of every type pub
                     Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
@@ -438,7 +435,7 @@ public class GenerateReportActivities {
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
                         + "id_usuario = '" + getUsername() +"' AND validado = 1");
                 while(rb.next()){
-                    Dos_tres.addCell("2.3");
+                    Dos_tres.addCell(rb.getString("id_evento"));
                     Dos_tres.addCell("Evento académico");
                     Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
@@ -497,8 +494,7 @@ public class GenerateReportActivities {
                
                 ResultSet rb = lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios "
                         + "FROM profesor_tiene_proyecto "
-                        + "WHERE id_usuario = '" + getUsername() +"' AND "
-                        + "aceptado = 1 AND "
+                        + "WHERE id_usuario = " + getUsername() +" AND "
                         + "validado = 1 "
                         + "GROUP BY id_proyecto "
                         + "HAVING COUNT(*) > 1");

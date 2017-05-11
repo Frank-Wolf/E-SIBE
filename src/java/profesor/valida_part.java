@@ -88,7 +88,7 @@ public class valida_part extends ActionSupport
                                 FileUtils.copyFile(myFile, destFile);
                                 int ruta = lb.executeUpdate("UPDATE profesor_participa_en_plan SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_usuario = " + username + "AND id_part = '" + getId_part() + "'");
+                                    + "WHERE id_usuario = " + username + " AND id_part = '" + getId_part() + "'");
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

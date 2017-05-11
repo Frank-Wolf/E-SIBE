@@ -732,6 +732,11 @@
             <result name="fail">/error.jsp</result>
         </action>
         <!--Apelacionessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+        <action name="create_pdf_admin" class="PDF.Reporte_Final">
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="fail">/Admins/admin_cofaa.jsp</result>
+        </action>
+        <!--ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg-->
     </package>
     
     <package name="Paquete_apelacion" extends="struts-default" namespace="/Usuario">
