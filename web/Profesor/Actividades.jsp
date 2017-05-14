@@ -265,7 +265,7 @@
                         </s:form>
                         
                         <h2 class="letritas">Actividades por registrar en este módulo</h2>
-                        <h2 class="subtitulos">Tipo de publicacion: Institucional, Sin ponencia - 6, Institucional, con resumen publicado - 7, Institucional, publicado en extenso - 8</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: Institucional( Sin ponencia) - 6, Institucional (con resumen publicado) - 7, Institucional (publicado en extenso) - 8</h2>
                         <%
                             
                             ResultSet rws=null;
