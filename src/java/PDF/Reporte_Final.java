@@ -78,6 +78,8 @@ public class Reporte_Final {
                         addEncabezado(document);
                         addTablaEvaluadoresProfesor(document);
                         addTablaNumProfesor(document);
+                        addTablaEvaluador(document);
+                        addTablaProfesores(document);
                         int a = 0, r = 0;//a approved and r reject
                         a = getnumberA();
                         r = getnumberR();
@@ -164,8 +166,6 @@ public class Reporte_Final {
                         addTabla2_5(document);
                         addTabla2_11(document);
                         addTabla2_12(document);
-                        addTablaEvaluador(document);
-                        
                         System.out.println("Hola12");
                         lb.closeConnection();
                         document.close();
@@ -227,6 +227,13 @@ public class Reporte_Final {
             addEmptyLine(preface, 3);    
             document.add(preface);
             document.add(tabla_num_prof());
+        }
+        
+        private void addTablaProfesores (Document document) throws Exception{
+            Paragraph preface = new Paragraph();
+            addEmptyLine(preface, 3);    
+            document.add(preface);
+            document.add(tabla_profesores_nivel());
         }
         
         private void addTabla2_1(Document document) throws Exception{
@@ -440,20 +447,44 @@ public class Reporte_Final {
                     numberAsString2 = Integer.toString(aux);
                     tabla_num.addCell(numberAsString2);
                 }
-                /*for(int j = 0; j <= i; j++){
-                    ra = lb.executeQuery("SELECT * FROM evaluador_evalua_profesor WHERE "
-                            + "id_usuario_ev = " + evaluador_num[j]);
-                    while(ra.next()){
-                        profesor_num[j][n] = ra.getInt("id_usuario_prof");
-                        n++;
-                    }
-                    n = 0;
-                }*/////Here we get professors
+             return tabla_num;
+         }
+         private PdfPTable tabla_profesores_nivel() throws Exception{
+             PdfPTable tabla_num = new PdfPTable(3);
+             tabla_num.setWidths(new int[]{2,2,2});
+                PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Lista de profesores participantes", encabezadost));
+                PdfPCell profesor = new PdfPCell(new Phrase("Número de empleado"));
+                PdfPCell nivel = new PdfPCell(new Phrase("Nivel de beca (Preliminar)"));
+                PdfPCell periodo = new PdfPCell(new Phrase("Periodo"));
                 
                 
-                    
-                        
+                Titulo_tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
+                Titulo_tabla.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                Titulo_tabla.setBackgroundColor(new BaseColor(153, 0, 76));
+                Titulo_tabla.setColspan(5);
+                Titulo_tabla.setExtraParagraphSpace(15f);
+                tabla_num.addCell(Titulo_tabla);
                 
+                profesor.setHorizontalAlignment(Element.ALIGN_CENTER);
+                profesor.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                tabla_num.addCell(profesor);
+
+                nivel.setHorizontalAlignment(Element.ALIGN_CENTER);
+                nivel.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                tabla_num.addCell(nivel);
+                
+                periodo.setHorizontalAlignment(Element.ALIGN_CENTER);
+                periodo.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                tabla_num.addCell(periodo);
+
+                /*Aqui van las consultas de las Actividades del profesor*/
+                ResultSet rs;
+                rs = lb.executeQuery("SELECT * FROM profesor");
+                while(rs.next()){
+                    tabla_num.addCell(rs.getString("id_usuario"));
+                    tabla_num.addCell(rs.getString("periodo"));
+                    tabla_num.addCell(rs.getString("nivel"));
+                }
              return tabla_num;
          }
          
@@ -1322,6 +1353,4 @@ public class Reporte_Final {
         public void setUsername(String username) {
             this.username = username;
         }
-   
-    
 }

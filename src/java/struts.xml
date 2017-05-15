@@ -733,8 +733,12 @@
         </action>
         <!--Apelacionessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
         <action name="create_pdf_admin" class="PDF.Reporte_Final">
-            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="success">/Admins/Reporte_Success_cofaa.jsp</result>
             <result name="fail">/Admins/admin_cofaa.jsp</result>
+        </action>
+        <action name="update_evaluador_evalua" class="cofaa.registra_evaluacion">
+            <result name="success">/COFAA/registro_correcto.jsp</result>
+            <result name="fail">/COFAA/Apela.jsp</result>
         </action>
         <!--ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg-->
     </package>

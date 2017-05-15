@@ -65,7 +65,8 @@
 
                 
                 
-                <s:div cssClass="cover-container2">    
+                <s:div cssClass="cover-container2"> 
+                    
                     <%
                         String user=request.getParameter("id");
                         HttpSession sesion = request.getSession();
@@ -312,8 +313,14 @@
                             out.print("</table>");
                             lb.closeConnection();
                     %>
-                    </div>
+                    <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="update_evaluador_evalua" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de registro"/>
+                </s:form>
                     
+                    </div>
+                   
                 </s:div>
             </s:div>  
               
