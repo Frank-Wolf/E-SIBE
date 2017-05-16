@@ -6,14 +6,9 @@
 package cofaa;
 
 import admins.LoginBean;
-import static com.opensymphony.xwork2.Action.ERROR;
-import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,15 +16,15 @@ import java.util.Date;
  */
 public class registra_evaluacion extends ActionSupport{
     private String num_profesor;
-    
-    public registra_evaluacion() {
+    LoginBean lb = new LoginBean();
+    public registra_evaluacion() throws Exception {
+        execute();
     }
     //@Override
     public String execute() throws Exception {
-        Date date_curr = new Date();
-        LoginBean lb = new LoginBean();
         lb.getConnection();
-        int rs=lb.executeUpdate("UPDATE evaluador_evalua_profesor SET fecha_ev = '" + date_curr +"' WHERE id_usuario_prof = "
+        int puntaje = get_puntajefinal();
+        int rs=lb.executeUpdate("UPDATE evaluador_evalua_profesor SET puntaje_final = " + puntaje + ", fecha_ev = NOW() WHERE id_usuario_prof = "
                 + getNum_profesor());
         lb.closeConnection();
         if (rs > 0)
@@ -39,6 +34,46 @@ public class registra_evaluacion extends ActionSupport{
       //return ret;
     }
 
+    public int get_puntajefinal() throws SQLException{
+        int aux = 0, suma_total = 0;
+        ResultSet r1, r2, r3, r4, r5, r11, r12;
+        r1 = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r1.next()){
+            aux = r1.getInt("puntaje_alumno");
+            suma_total += aux;
+        }
+        r2 = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r2.next()){
+            aux = r2.getInt("puntaje");
+            suma_total += aux;
+        }
+        r3 = lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r3.next()){
+            aux = r3.getInt("puntaje");
+            suma_total += aux;
+        }
+        r4 = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r4.next()){
+            aux = r4.getInt("puntaje");
+            suma_total += aux;
+        }
+        r5 = lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r5.next()){
+            aux = r5.getInt("puntaje");
+            suma_total += aux;
+        }
+        r11 = lb.executeQuery("SELECT * FROM profesor_tiene_tt WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r11.next()){
+            aux = r11.getInt("puntaje");
+            suma_total += aux;
+        }
+        r12 = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE id_usuario = '" + getNum_profesor() + "'");
+        while(r12.next()){
+            aux = r12.getInt("puntaje");
+            suma_total += aux;
+        }
+        return suma_total;
+    }
     public String getNum_profesor() {
         return num_profesor;
     }

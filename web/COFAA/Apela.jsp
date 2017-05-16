@@ -77,6 +77,13 @@
                         out.print("<h2 class='Titular' align='center'>Lista de actividades que el profesor quiere apelar </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
+                    <div align="center">
+                        <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="/Usuario/update_evaluador_evalua" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de apelación"/>
+                </s:form>
+                    </div>
                     <div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
@@ -256,7 +263,7 @@
                     <%
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + user + " AND aceptado = 0 ");
+                                    + "id_usuario = " + user + " AND aceptado = 0 AND validado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -312,11 +319,6 @@
                             lb.closeConnection();
                     %>
                     </div>
-                <s:set var="num_profesor"><%=user%></s:set>
-                <s:form id="datos" action="update_evaluador_evalua" method="post" style="display:block;">
-                    <s:hidden name="num_profesor"/>
-                    <s:submit value="Registrar puntaje y fecha de registro"/>
-                </s:form>
                 </s:div>
             </s:div>  
               

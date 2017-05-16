@@ -74,7 +74,7 @@
                             ResultSet rs=null;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                            + "id_proyecto='"+user+"'");
+                            + "id_proyecto='" + user + "'");
                             rs.next();
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             String comentario=rs.getString("comentarios");
@@ -102,8 +102,10 @@
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
-                                      50:50,
-                                      100:100
+                                      10:10,
+                                      25:25,
+                                      40:40,
+                                      50:50
                                       }"
                                       name="puntaje"
                                       />

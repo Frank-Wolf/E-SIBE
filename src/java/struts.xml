@@ -740,6 +740,10 @@
             <result name="success">/COFAA/registro_correcto.jsp</result>
             <result name="fail">/COFAA/Apela.jsp</result>
         </action>
+        <action name="update_evaluador_evalua2" class="cofaa.registra_evaluacion">
+            <result name="success">/COFAA/registro_correcto2.jsp</result>
+            <result name="fail">/COFAA/Apela.jsp</result>
+        </action>
         <!--ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg-->
     </package>
     

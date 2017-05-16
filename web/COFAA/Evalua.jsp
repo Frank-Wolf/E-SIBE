@@ -78,6 +78,13 @@
                         out.print("<h2 class='Titular' align='center'>Lista de actividades del profesor </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
+                    <div align="center">
+                        <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="/Usuario/update_evaluador_evalua2" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de evaluación"/>
+                </s:form>
+                    </div>
                     <div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
@@ -258,7 +265,7 @@
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
                                     + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "aceptado = 1");
+                                            + "validado = 1");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");

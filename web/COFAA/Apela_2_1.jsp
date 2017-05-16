@@ -90,6 +90,7 @@
                         
                         <s:set var="id_actividad"><%=user%></s:set>
                         <s:set var="comentario"><%=comentario%></s:set>
+                        
                         <s:form action="/Usuario/apela_2_1">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"

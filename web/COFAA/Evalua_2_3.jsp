@@ -72,10 +72,13 @@
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
                             ResultSet rs=null;
+                            int n = 0;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
                             + "id_evento='"+user+"'");
-                            rs.next();
+                            while(rs.next()){
+                                n++;
+                            }
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             //String comentario=rs.getString("comentarios");
                             //Date fecha_evaluar=rs.getDate("fecha_val");
@@ -87,7 +90,8 @@
                     <div cssClass="" align ="center">
 
                         <h2 class="h3">Asignar registro</h2>
-                        
+                        <s:set var="numero_autores"><%=n%></s:set>
+                        <h2 class="h3">Número de autores para esta obra: <%=n%></h2>
                         <s:set var="id_actividad"><%=user%></s:set>
                         <s:form action="/Usuario/evalua_2_3">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
@@ -102,7 +106,26 @@
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
                                       0:0,
-                                      25:25
+                                      1:1,
+                                      2:2,
+                                      3:3,
+                                      4:4,
+                                      5:5,
+                                      6:6,
+                                      7:7,
+                                      8:8,
+                                      9:9,
+                                      10:10,
+                                      11:11,
+                                      12:12,
+                                      13:13,
+                                      14:14,
+                                      15:15,
+                                      16:16,
+                                      17:17,
+                                      18:18,
+                                      19:19,
+                                      20:20
                                       }"
                                       name="puntaje"
                                       />

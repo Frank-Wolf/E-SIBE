@@ -102,8 +102,10 @@
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
-                                      50:50,
-                                      100:100
+                                      10:10,
+                                      25:25,
+                                      40:40,
+                                      50:50
                                       }"
                                       name="puntaje"
                                       />

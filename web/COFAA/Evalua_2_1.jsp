@@ -86,8 +86,7 @@
                     
                     <div cssClass="" align ="center">
 
-                        <h2 class="h3">Apelar</h2>
-                        
+                        <h2 class="h3">Apelar </h2>
                         <s:set var="id_actividad"><%=user%></s:set>
                         <s:set var="comentario"><%=comentario%></s:set>
                         <s:form action="/Usuario/evalua_2_1">
