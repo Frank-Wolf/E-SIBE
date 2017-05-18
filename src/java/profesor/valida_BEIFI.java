@@ -30,7 +30,8 @@ public class valida_BEIFI extends ActionSupport
     public String execute() throws Exception 
     {
          
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = "C:\\Users\\le_as\\Documents\\Pruebas_pdf\\";
         destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_proyecto.equals("")){
             addFieldError("id_proyecto","Este campo es necesario");
