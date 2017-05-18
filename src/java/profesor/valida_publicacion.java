@@ -98,7 +98,15 @@ public class valida_publicacion extends ActionSupport{
             while(pub_prof.next())
             {   
                 System.out.println("Encontre la publicacion");
-                int re=lb.executeUpdate("update profesor_tiene_pub set validado=1 where id_evento='0' and validado=0 and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+"");
+                /***Asignar periodo****/
+                        int periodo = 0;
+                        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rs.next()){
+                            periodo = rs.getInt("periodo_actual");
+                        }
+                        /***Asignar periodo****/
+                int re=lb.executeUpdate("update profesor_tiene_pub set validado=1, periodo = " + periodo 
+                        + " where id_evento='0' and validado=0 and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+"");
                
                 if(re<1)
                 {
@@ -117,7 +125,7 @@ public class valida_publicacion extends ActionSupport{
                                 FileUtils.copyFile(myFile, destFile);
                                 int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_publicacion = " + getId_publicacion());
+                                    + "WHERE id_publicacion = '" + id_publicacion + "'");
                                 }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

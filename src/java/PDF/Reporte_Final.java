@@ -18,25 +18,19 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
  
 import com.itextpdf.text.pdf.DefaultFontMapper;
-import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 ///imports for graphics end
 
-import java.util.Date;
-import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.Image;
@@ -61,7 +55,7 @@ public class Reporte_Final {
         private static Font encabezadost = new Font(Font.FontFamily.TIMES_ROMAN,12, Font.NORMAL,BaseColor.WHITE);
         private String username;//employee number, in this case, the employee number od the administrator
         LoginBean lb = new LoginBean();
-        public String execute() throws Exception 
+        public  String execute() throws Exception 
         {
             FILE = "C:\\psf\\Home\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
             lb.getConnection();
@@ -84,7 +78,7 @@ public class Reporte_Final {
                         a = getnumberA();
                         r = getnumberR();
                         
-                        
+                        document.newPage();
                         /*Add a graphic*/
                         DefaultPieDataset defaultCategoryDataset = new DefaultPieDataset();
                         defaultCategoryDataset.setValue("Aprobados: " + a, a);
@@ -112,7 +106,7 @@ public class Reporte_Final {
                         pdfContentByte.addTemplate(pdfTemplate, 40, 50); //0, 0 will draw PIE chart on bottom left of page
                         /*Add a graphic end graphic*/
                         
-                        document.newPage();
+                        //document.newPage();
                         
                         /*Add another Graphic*/
                         int ac21 = 0, ac22 = 0, ac23 = 0, ac24 = 0, ac25 = 0, ac211 = 0, ac212 = 0;
@@ -482,8 +476,8 @@ public class Reporte_Final {
                 rs = lb.executeQuery("SELECT * FROM profesor");
                 while(rs.next()){
                     tabla_num.addCell(rs.getString("id_usuario"));
-                    tabla_num.addCell(rs.getString("periodo"));
                     tabla_num.addCell(rs.getString("nivel"));
+                    tabla_num.addCell(rs.getString("periodo"));
                 }
              return tabla_num;
          }
@@ -914,35 +908,46 @@ public class Reporte_Final {
          }
          
          private int getnumberA() throws SQLException{
-             ResultSet ra, rp, re, rpro, rob, rtt, rpar_plan;
-             int a = 0, b = 12, c = 11, d = 0, e = 0, f = 0, g = 0, suma_ap = 0;
+             ResultSet ra, rp, re, rpro, rob, rtt, rpar_plan, rperiodo;
+             int a = 0, b = 12, c = 11, d = 0, e = 0, f = 0, g = 0, suma_ap = 0, periodo = 0;
              //System.out.println(b);
-             ra = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 1"/*AND 
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
+             ra = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 1 "
+                     + "AND periodo = " + periodo/*AND 
              periodo = (same as professor)*/);
              if(ra.next())
                  a = ra.getInt(1);
              
-             rp = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1"/*AND periodo = (same as profesor)*/);
+             rp = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND "
+                     + "periodo = " + periodo/*AND periodo = (same as profesor)*/);
              if(rp.next())
                  b = rp.getInt(1);
              
-             re = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE aceptado = 1");
+             re = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE aceptado = 1 AND periodo = "
+             + periodo);
              if(re.next())
                  c = re.getInt(1);
              //System.out.println(c);
-             rpro = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 1");
+             rpro = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 1 AND periodo = "
+             + periodo);
              if(rpro.next())
                  d = rpro.getInt(1);
              
-             rob = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1");
+             rob = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND periodo = "
+             + periodo);
              if(rob.next())
                  e = rob.getInt(1);
              
-             rtt = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 1");
+             rtt = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 1 AND periodo = "
+             + periodo);
              if(rtt.next())
                  f = rtt.getInt(1);
              
-             rpar_plan = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1");
+             rpar_plan = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND "
+                     + "periodo = " + periodo);
              if(rpar_plan.next())
                  g = rpar_plan.getInt(1);
              suma_ap = a + b + c + d + e + f + g;
@@ -951,35 +956,46 @@ public class Reporte_Final {
             }
         
          private int getnumberR() throws SQLException{
-             ResultSet ra, rp, re, rpro, rob, rtt, rpar_plan;
-             int a = 0, b = 12, c = 11, d = 0, e = 0, f = 0, g = 0, suma_ap = 0;
+             ResultSet ra, rp, re, rpro, rob, rtt, rpar_plan, rperiodo;
+             int a = 0, b = 12, c = 11, d = 0, e = 0, f = 0, g = 0, suma_ap = 0, periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              //System.out.println(b);
-             ra = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 0"/*AND 
+             ra = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 0 "
+                     + "AND periodo = " + periodo/*AND 
              periodo = (same as professor)*/);
              if(ra.next())
                  a = ra.getInt(1);
              
-             rp = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 0"/*AND periodo = (same as profesor)*/);
+             rp = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 0 AND "
+                     + "periodo = " + periodo/*AND periodo = (same as profesor)*/);
              if(rp.next())
                  b = rp.getInt(1);
              
-             re = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE aceptado = 0");
+             re = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE aceptado = 0 "
+                     + "AND periodo = " + periodo);
              if(re.next())
                  c = re.getInt(1);
              //System.out.println(c);
-             rpro = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 0");
+             rpro = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 0 "
+                     + "AND periodo = " + periodo);
              if(rpro.next())
                  d = rpro.getInt(1);
              
-             rob = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 0");
+             rob = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 0 "
+                     + "AND periodo = " + periodo);
              if(rob.next())
                  e = rob.getInt(1);
              
-             rtt = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 0");
+             rtt = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 0 "
+                     + "AND periodo = " + periodo);
              if(rtt.next())
                  f = rtt.getInt(1);
              
-             rpar_plan = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 0");
+             rpar_plan = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 0 "
+                     + "AND periodo = " + periodo);
              if(rpar_plan.next())
                  g = rpar_plan.getInt(1);
              suma_ap = a + b + c + d + e + f + g;
@@ -988,8 +1004,12 @@ public class Reporte_Final {
              
             }
          private int getAccepted_Activities(int eva) throws SQLException{
-             int suma = 0, i = 0, aux = 0;
-             ResultSet rs, r1, r2, r3, r4, r5, r11, r12;
+             int suma = 0, i = 0, aux = 0, periodo = 0;
+             ResultSet rs, r1, r2, r3, r4, r5, r11, r12, rperiodo;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int [] profesor = new int[300];
              rs = lb.executeQuery("SELECT * FROM evaluador_evalua_profesor WHERE id_usuario_ev = " + eva);
              while(rs.next()){
@@ -998,37 +1018,37 @@ public class Reporte_Final {
              }
              for(int j = 0; j <= i; j++){
                  r1 = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE "
-                     + "aceptado_alumno = 1 AND id_usuario = " + profesor[j]);
+                     + "aceptado_alumno = 1 AND id_usuario = " + profesor[j] + " AND periodo = " + periodo);
                  if(r1.next())
                      aux = r1.getInt(1);
                  suma += aux;
                  r2 = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_usuario = "
-                         + profesor[j]);
+                         + profesor[j] + " AND periodo = " + periodo);
                  if(r2.next())
                      aux = r2.getInt(1);
                  suma += aux;
                  r3 = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE aceptado = 1 AND id_usuario = "
-                         + profesor[j]);
+                         + profesor[j] + " AND periodo = " + periodo);
                  if(r3.next())
                      aux = r3.getInt(1);
                  suma += aux;
                  r4 = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 0 AND id_usuario = "
-                         + profesor[j]);
+                         + profesor[j] + " AND periodo = " + periodo);
                  if(r4.next())
                      aux = r4.getInt(1);
                  suma += aux;
                  r5 = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_usuario = "
-                         + profesor[j]);
+                         + profesor[j] + " AND periodo = " + periodo);
                  if(r5.next())
                      aux = r5.getInt(1);
                  suma += aux;
                  r11 = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 1 AND id_usuario = "
-                         + profesor[j]);
+                         + profesor[j] + " AND periodo = " + periodo);
                  if(r11.next())
                      aux = r11.getInt(1);
                  suma += aux;
                  r12 = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_usuario = "
-                         + profesor[j]);
+                         + profesor[j] + " AND periodo = " + periodo);
                  if(r12.next())
                      aux = r12.getInt(1);
                  suma += aux;
@@ -1038,39 +1058,44 @@ public class Reporte_Final {
          }
          private int getNum2_1(int s) throws SQLException{//option1: get number of accepted and no accepted
              //option 2: get number of BEIFI, and third: number of SS
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0, a = 0;
              if(s == 1){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 0 OR "
-                     + "aceptado_alumno = 1" /*AND periodo = same as professor*/);
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE (aceptado_alumno = 0 OR "
+                     + "aceptado_alumno = 1) AND periodo = " + periodo /*AND periodo = same as professor*/);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 2){
                  rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 1 AND "
-                     + "tipo_alumno = 'BEIFI'");
+                     + "tipo_alumno = 'BEIFI' AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
              }
              else if(s == 3){
                  rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 0 AND "
-                     + "tipo_alumno = 'BEIFI'");
+                     + "tipo_alumno = 'BEIFI' AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
              }
              else if(s == 4){
                  rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 1 AND "
-                     + "tipo_alumno = 'SS'");
+                     + "tipo_alumno = 'SS' AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);  
                  return i;
              }
              else if(s == 5){
                  rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado_alumno = 0 AND "
-                     + "tipo_alumno = 'SS'");
+                     + "tipo_alumno = 'SS' AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
@@ -1080,40 +1105,51 @@ public class Reporte_Final {
          
 
          private int getNum2_2(int s) throws SQLException{
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0;
              if(s == 1){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 OR aceptado = 0");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE (aceptado = 1 OR aceptado = 0) AND "
+                         + "periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 2){//boletin
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 1 AND "
+                         + "periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
              }
              else if(s == 3){//Sin arbitraje, Nacional
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 2");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 2 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
              }
              else if(s == 4){//Arbitraje, Nacional
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 3");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 3 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
              }
              else if(s == 5){//Con arbitraje internacional
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 4");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 4 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
              }
              else if(s == 6){//Sin arbitraje internacional
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 5");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 5 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);
                  return i;
@@ -1122,28 +1158,37 @@ public class Reporte_Final {
          }
          
          private int getNum2_3(int s) throws SQLException{
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0;
              if(s == 1){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE aceptado = 0 OR aceptado = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_ev WHERE (aceptado = 0 OR aceptado = 1) "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 2){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 6");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 6 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 3){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 7");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 7 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 4){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 8");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub WHERE aceptado = 1 AND id_tipo_pub = 8 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
@@ -1152,22 +1197,30 @@ public class Reporte_Final {
          }
          
          private int getNum2_4(int s) throws SQLException{
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0;
              if(s == 1){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 0 OR aceptado = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE (aceptado = 0 OR aceptado = 1) "
+                         + "AND periodo = " + periodo);
                 if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 2){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 1"/* AND periodo = 1"*/);
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 1 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 3){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 0"/* AND periodo = 1"*/);
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto WHERE aceptado = 0 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
@@ -1177,82 +1230,100 @@ public class Reporte_Final {
          }
          
          private int getNum2_5(int s) throws SQLException{
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0;
              if(s == 1) {
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 0 OR aceptado = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE (aceptado = 0 OR aceptado = 1) "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 2){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 1 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 3){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 2");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 2 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 4){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 3");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 3 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 5){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 4");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 4 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 6){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 5");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 5 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 7){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 6");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 6 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 8){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 7");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 7 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 9){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 8");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 8 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 10){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 9");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 9 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 11){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 10");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 10 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 12){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 11");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND id_tipo_obra = 11 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
              }
              else if(s == 13){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND aceptado = 12");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra WHERE aceptado = 1 AND aceptado = 12 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
                 return i;
@@ -1261,23 +1332,31 @@ public class Reporte_Final {
          }
          
          private int getNum2_11(int s) throws SQLException{
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0;
              if(s == 1){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 0 OR aceptado = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE (aceptado = 0 OR aceptado = 1) "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              else if(s == 2){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 1 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
              }
              
              else if(s == 3){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 0");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_tt WHERE aceptado = 0 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                  return i;
@@ -1286,58 +1365,72 @@ public class Reporte_Final {
          }
          
          private int getNum2_12(int s) throws SQLException{
-             ResultSet rs;
+             ResultSet rs, rperiodo;
+             int periodo = 0;
+             rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+             while(rperiodo.next()){
+                 periodo = rperiodo.getInt("periodo_actual");
+             }
              int i = 0;
              if(s == 1){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 0 OR aceptado = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE (aceptado = 0 OR aceptado = 1) "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 2){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 1");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 1 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 3){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 2");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 2 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 4){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 3");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 3 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 5){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 4");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 4 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 6){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 5");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 5 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 7){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 6");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 6 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 8){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 7");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 7 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;
              }
              else if(s == 9){
-                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 8");
+                 rs = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND id_tipo_part = 8 "
+                         + "AND periodo = " + periodo);
                  if(rs.next())
                      i = rs.getInt(1);    
                 return i;

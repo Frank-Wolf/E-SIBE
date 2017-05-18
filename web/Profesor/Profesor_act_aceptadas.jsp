@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Profesor
-    Created on : 27/01/2017, 07:11:22 PM
-    Author     : le_as
+    Document   : Profesor_act_aceptadas
+    Created on : May 17, 2017, 6:12:21 PM
+    Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -63,25 +63,24 @@
                         </div>
                     </div>
                 </nav>
-
-                    <!--Tabla en la que se muestran las actividades no aprobadas-->
-                    <div class="col-md-6" align="center">
-                        <h2 class="h3">Lista de actividades no aprobadas</h2>
+                <!--Tabla donde se muestran las actividades aprobadas y su puntaje-->
+                <div class="col-md-6" align="center">
+                        <h2 class="h3">Lista de actividades aprobadas</h2>
+                    
                         <jsp:useBean id="lb" scope="session" 
                                      class="sesion.LoginBean"></jsp:useBean>
                         <s:set var="username" value="%{#session.username}" />
-                        <jsp:useBean id="username" type="java.lang.String"/>
-                    
                         <h2 class="h3"><b>Actividad 2.1</b></h2>
+                        <jsp:useBean id="username" type="java.lang.String"/>
                         <%
                             String id_prof = username;
                             int l = 0;
-                            ResultSet rs8=null, rs9=null, rs10=null, rs11=null, rs12=null, rs13=null, rs14=null;
+                            ResultSet rs=null, rs2=null, rs3=null, rs4=null, rs5=null, rs6=null, rs7=null;
                             lb.getConnection();
-                            rs8=lb.executeQuery("SELECT * "//comentarios, puntaje_alumno, ruta_alumno, id_alumno, id_proyecto
+                            rs=lb.executeQuery("SELECT * "//comentarios, puntaje_alumno, ruta_alumno, id_alumno, id_proyecto
                                     //tipo_alumno
                                     + "FROM profesor_tiene_proyecto WHERE "
-                                    + "id_usuario = " + id_prof + " AND aceptado_alumno = 0 AND validado_alumno=0");
+                                    + "id_usuario = " + id_prof + " AND aceptado_alumno = 1");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -105,38 +104,35 @@
                             out.print("<th>");
                             out.print(  "Opción");
                             out.print("</th>");
-                            out.print("<th>");
-                            out.print(  "Opción");
-                            out.print("</th>");
                             out.print("</tr>");
-                            while (rs8.next())
+                            while (rs.next())
                             {
-                                if(rs8.getString("id_alumno") == "0")
+                                if(rs.getString("id_alumno") == "0")
                                     l = 1;
                                 else{
                                     out.print("<tr>");
                                     out.print("<td>");
-                                    out.print(rs8.getString("tipo_alumno"));
+                                    out.print(rs.getString("tipo_alumno"));
                                     out.print("</td>");
                                     out.print("<td>");
-                                    out.print(rs8.getString("id_alumno"));
+                                    out.print(rs.getString("id_alumno"));
                                     out.print("</td>");
                                     out.print("<td>");
-                                    out.print(rs8.getString("comentarios"));
+                                    out.print(rs.getString("comentarios"));
                                     out.print("</td>");
                                     out.print("<td>");
                                     out.print("<a href='file:///"
-                                        +rs8.getString("ruta_alumno")+"'>Ver constancia</a>");
+                                        +rs.getString("ruta_alumno")+"'>Ver constancia</a>");
                                     out.print("</td>");
                                     out.print("<td>");
-                                    out.print(rs8.getString("id_proyecto"));
+                                    out.print(rs.getString("id_proyecto"));
                                     out.print("</td>");
                                     out.print("<td>");
-                                    out.print(rs8.getString("puntaje_alumno"));
+                                    out.print(rs.getString("puntaje_alumno"));
                                     out.print("</td>");
                                     out.print("<td>");
                                     out.print("<a href='/login/Profesor/Envia_apela_2_1.jsp?id="
-                                        + rs8.getString("id_alumno") + "'>Apelar</a>");
+                                        + rs.getString("id_alumno") + "'>Apelar</a>");
                                     out.print("</td>");
                                 }
                             }
@@ -145,9 +141,9 @@
                          
                         <h2 class="h3"><b>Actividad 2.2</b></h2>
                         <%
-                            rs9=lb.executeQuery("SELECT * "//
+                            rs2=lb.executeQuery("SELECT * "//
                                     + "FROM profesor_tiene_pub WHERE "
-                                    + "id_usuario = " + id_prof + " AND validado = 0 AND aceptado=0");
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -169,28 +165,28 @@
                             out.print(  "Opción");
                             out.print("</th>");
                             out.print("</tr>");
-                            while (rs9.next())
+                            while (rs2.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs9.getString("id_publicacion"));
+                                out.print(rs2.getString("id_publicacion"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs9.getString("id_tipo_pub"));
+                                out.print(rs2.getString("id_tipo_pub"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs9.getString("comentarios"));
+                                out.print(rs2.getString("comentarios"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///"
-                                        +rs9.getString("ruta_alm")+"'>Ver constancia</a>");
+                                        +rs2.getString("ruta_alm")+"'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs9.getString("puntaje"));
+                                out.print(rs2.getString("puntaje"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Profesor/Envia_apela_2_2.jsp?id="
-                                        + rs9.getString("id_publicacion") + "'>Apelar</a>");
+                                      + rs2.getString("id_publicacion") + "'>Apelar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -198,9 +194,9 @@
                         
                         <h2 class="h3"><b>Actividad 2.3</b></h2>
                         <%
-                            rs10=lb.executeQuery("SELECT * "//
+                            rs3=lb.executeQuery("SELECT * "//
                                     + "FROM profesor_participa_ev WHERE "
-                                    + "id_usuario = " + id_prof + " AND validado = 0 AND aceptado=0");
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -222,28 +218,28 @@
                             out.print(  "Opción");
                             out.print("</th>");
                             out.print("</tr>");
-                            while (rs10.next())
+                            while (rs3.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs10.getString("id_evento"));
+                                out.print(rs3.getString("id_evento"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs10.getString("actividad"));
+                                out.print(rs3.getString("actividad"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs10.getString("comentarios"));
+                                out.print(rs3.getString("comentarios"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///"
-                                        +rs10.getString("ruta_alm")+"'>Ver constancia</a>");
+                                        +rs3.getString("ruta_alm")+"'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs10.getString("puntaje"));
+                                out.print(rs3.getString("puntaje"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Profesor/Envia_apela_2_3.jsp?id="
-                                        + rs10.getString("id_evento") + "'>Apelar</a>");
+                                        + rs3.getString("id_evento") + "'>Apelar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -251,10 +247,10 @@
                         
                         <h2 class="h3"><b>Actividad 2.4</b></h2>
                         <%
-                            rs11=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios, rol_profesor "
+                            rs4=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios, rol_profesor "
                         + "FROM profesor_tiene_proyecto "
-                        + "WHERE id_usuario = '" + id_prof +"' "
-                        + "AND validado = 0 AND aceptado=0 "
+                        + "WHERE id_usuario = '" + id_prof +"' AND "
+                        + "aceptado = 1 "
                         + "GROUP BY id_proyecto "
                         + "HAVING COUNT(*) > 1");
                             out.print("<table class='table table-striped'>");
@@ -278,28 +274,28 @@
                             out.print(  "Opción");
                             out.print("</th>");
                             out.print("</tr>");
-                            while (rs11.next())
+                            while (rs4.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs11.getString("id_proyecto"));
+                                out.print(rs4.getString("id_proyecto"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs11.getString("rol_profesor"));
+                                out.print(rs4.getString("rol_profesor"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs11.getString("comentarios"));
+                                out.print(rs4.getString("comentarios"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///"
-                                        +rs11.getString("ruta_alm")+"'>Ver constancia</a>");
+                                        +rs4.getString("ruta_alm")+"'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs11.getString("puntaje"));
+                                out.print(rs4.getString("puntaje"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Profesor/Envia_apela_2_4.jsp?id="
-                                        + rs11.getString("id_proyecto") + "'>Apelar</a>");
+                                        + rs4.getString("id_proyecto") + "'>Apelar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -307,9 +303,9 @@
                         
                         <h2 class="h3"><b>Actividad 2.5</b></h2>
                         <%
-                            rs12=lb.executeQuery("SELECT * "//
+                            rs5=lb.executeQuery("SELECT * "//
                                     + "FROM profesor_tiene_obra WHERE "
-                                    + "id_usuario = " + id_prof + " AND validado = 0 AND aceptado=0");
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1");
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -331,28 +327,28 @@
                             out.print(  "Opción");
                             out.print("</th>");
                             out.print("</tr>");
-                            while (rs12.next())
+                            while (rs5.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs12.getString("id_obra"));
+                                out.print(rs5.getString("id_obra"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs12.getString("id_tipo_obra"));
+                                out.print(rs5.getString("id_tipo_obra"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs12.getString("comentarios"));
+                                out.print(rs5.getString("comentarios"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///"
-                                        +rs12.getString("ruta_alm")+"'>Ver constancia</a>");
+                                        +rs5.getString("ruta_alm")+"'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs12.getString("puntaje"));
+                                out.print(rs5.getString("puntaje"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Profesor/Envia_apela_2_5.jsp?id="
-                                        + rs12.getString("id_obra") + "'>Apelar</a>");
+                                        + rs5.getString("id_obra") + "'>Apelar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -360,9 +356,9 @@
                         
                         <h2 class="h3"><b>Actividad 2.11</b></h2>
                         <%
-                            rs13=lb.executeQuery("SELECT * "//
+                            rs6=lb.executeQuery("SELECT * "//
                                     + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + id_prof + " AND validado = 0 AND aceptado=0"/*and periodo = (same as professor)*/);
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1"/*and periodo = (same as professor)*/);
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -384,28 +380,28 @@
                             out.print(  "Opción");
                             out.print("</th>");
                             out.print("</tr>");
-                            while (rs13.next())
+                            while (rs6.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs13.getString("id_TT"));
+                                out.print(rs6.getString("id_TT"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs13.getString("id_alumno"));
+                                out.print(rs6.getString("id_alumno"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs13.getString("comentarios"));
+                                out.print(rs6.getString("comentarios"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///"
-                                        +rs13.getString("ruta_alm")+"'>Ver constancia</a>");
+                                        +rs6.getString("ruta_alm")+"'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs13.getString("puntaje"));
+                                out.print(rs6.getString("puntaje"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Profesor/Envia_apela_2_11.jsp?id="
-                                        + rs13.getString("id_TT") + "'>Apelar</a>");
+                                        + rs6.getString("id_TT") + "'>Apelar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -413,9 +409,9 @@
                         
                         <h2 class="h3"><b>Actividad 2.12</b></h2>
                         <%
-                            rs14=lb.executeQuery("SELECT * "//
+                            rs7=lb.executeQuery("SELECT * "//
                                     + "FROM profesor_participa_en_plan WHERE "
-                                    + "id_usuario = " + id_prof + " AND validado = 0 AND aceptado=0"/*and periodo = (same as professor)*/);
+                                    + "id_usuario = " + id_prof + " AND aceptado = 1"/*and periodo = (same as professor)*/);
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -437,35 +433,34 @@
                             out.print(  "Opción");
                             out.print("</th>");
                             out.print("</tr>");
-                            while (rs14.next())
+                            while (rs7.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(rs14.getString("id_part"));
+                                out.print(rs7.getString("id_part"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs14.getString("id_tipo_part"));
+                                out.print(rs7.getString("id_tipo_part"));
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs14.getString("comentarios"));
+                                out.print(rs7.getString("comentarios"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///"
-                                        +rs14.getString("ruta_alm")+"'>Ver constancia</a>");
+                                        +rs7.getString("ruta_alm")+"'>Ver constancia</a>");
                                 out.print("</td>");
                                 out.print("<td>");
-                                out.print(rs14.getString("puntaje"));
+                                out.print(rs7.getString("puntaje"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/Profesor/Envia_apela_2_12.jsp?id="
-                                        + rs14.getString("id_part") + "'>Apelar</a>");
+                                        + rs7.getString("id_part") + "'>Apelar</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
                             lb.closeConnection();
                         %>
-                    </div>
-                
+                    </div> 
                 </s:div>
                     </s:div>
                 
@@ -486,3 +481,4 @@
         
     </body>
 </html>
+

@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.IOException; 
 import com.opensymphony.xwork2.ActionSupport;
 import java.beans.PropertyVetoException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -38,9 +39,16 @@ public class Sube_apela_2_2 {
             File destFile  = new File(destPath, myFileFileName);
             FileUtils.copyFile(myFile, destFile);
             //System.out.println(myFileFileName);
+            /***Asignar periodo****/
+                        int periodo = 0;
+                        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rs.next()){
+                            periodo = rs.getInt("periodo_actual");
+                        }
+            /***Asignar periodo****/
             int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                     + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
-                    + "WHERE id_alumno = " + getId_actividad());
+                    + "WHERE id_alumno = " + getId_actividad() + " AND periodo = " + periodo);
             System.out.println(id_actividad);
             lb.closeConnection();
             }catch(IOException e){

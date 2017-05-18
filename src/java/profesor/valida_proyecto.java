@@ -78,7 +78,14 @@ public class valida_proyecto extends ActionSupport
             }
             else
             {
-                lb.executeUpdate("update profesor_tiene_proyecto set validado=1 where id_usuario='"+getUsername()+"'and id_proyecto='"+id_proyecto+"'" );
+                /***Asignar periodo****/
+                        int periodo = 0;
+                        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rs.next()){
+                            periodo = rs.getInt("periodo_actual");
+                        }
+                /***Asignar periodo****/
+                lb.executeUpdate("update profesor_tiene_proyecto set validado=1, periodo = " + periodo + " where id_usuario='"+getUsername()+"'and id_proyecto='"+id_proyecto+"'" );
                 /************************************************************************************************/
                             try{
                                 System.out.println("Src File name: " + myFile);

@@ -42,7 +42,7 @@
                     </div>
                 </nav>      
                 <s:div cssClass="cover-container2">    
-                    <h2 class="titulos">Registre las fechas para el registro de las actividades</h2>   
+                    <h2 class="titulos">Ingrese la información de la obra a registrar</h2>   
                 </s:div>
                 <div class="col-md-9" align="center">
                     <s:form action="registra_obra" method="post">

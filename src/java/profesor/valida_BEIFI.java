@@ -64,8 +64,16 @@ public class valida_BEIFI extends ActionSupport
                     if(id_alumno == ex_prof_proy.getInt("id_alumno"))
                     {
                         System.out.println("Valida alumno");
-                        int acepta=lb.executeUpdate("update profesor_tiene_proyecto set validado_alumno=1 where id_alumno='"+id_alumno+"' and"
-                        + " id_usuario='"+getUsername()+"' and validado_alumno=0 and tipo_alumno='"+tipo_alumno+"' and id_proyecto='"+id_proyecto+"'" );
+                        /***Asignar periodo****/
+                        int periodo = 0;
+                        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rs.next()){
+                            periodo = rs.getInt("periodo_actual");
+                        }
+                        /***Asignar periodo****/
+                        int acepta=lb.executeUpdate("UPDATE profesor_tiene_proyecto SET validado_alumno=1, periodo = " + periodo + 
+                                " WHERE id_alumno='"+id_alumno+"' AND id_usuario='"+getUsername()+"' AND validado_alumno=0 "
+                                        + "AND tipo_alumno='"+tipo_alumno+"' AND id_proyecto='"+id_proyecto+"'" );
                         if(acepta>0)
                         {
                             /************************************************************************************************/

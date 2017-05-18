@@ -33,6 +33,7 @@ public class RegistraEvaluaciones extends ActionSupport {
    public String execute() throws Exception{
        LoginBean lb = new LoginBean();
        ResultSet rs, rp, re;//rs --> verification date   rp-->get number of prof re-->get number of evaluator
+       int periodo = 0;
        lb.getConnection();
        rs = lb.executeQuery("SELECT fecha_inicio, fecha_fin FROM fecha_evaluaciones");
        
@@ -44,17 +45,18 @@ public class RegistraEvaluaciones extends ActionSupport {
                + "(" + n + ", str_to_date('" + getDate1() + "', '%d-%m-%Y'), str_to_date('" + getDate2() + "', '%d-%m-%Y'), '" + username + "')");
        if(ra > 0){
            //llamar a la función que asignará los profesores a los evaluadores
-           rp = lb.executeQuery("SELECT * FROM profesor");
+           re = lb.executeQuery("SELECT * FROM evaluador");
+           while(re.next()){
+               evaluadores[e] = re.getString("id_usuario");
+               periodo = re.getInt("periodo_actual");
+               e++;
+           }
+           rp = lb.executeQuery("SELECT * FROM profesor WHERE periodo = " + periodo);
            while(rp.next()){
                profesores[p] = rp.getString("id_usuario");
                p++;
            }
-           System.out.println("");
-           re = lb.executeQuery("SELECT * FROM evaluador");
-           while(re.next()){
-               evaluadores[e] = re.getString("id_usuario");
-               e++;
-           }
+           //System.out.println("");
            d = p / e;//get the division between professors and evaluators
            r = p % e;//get residue of the division
            for(int i = 0; i < e; i++){
@@ -68,8 +70,8 @@ public class RegistraEvaluaciones extends ActionSupport {
            if(r != 0){
                for(int i = 0; i < r; i++){
                    int ri2 = lb.executeUpdate("INSERT INTO evaluador_evalua_profesor(id_usuario_ev, "
-                           + "id_usuario_prof, puntaje_final) VALUES"
-                           + "('" + evaluadores[i] + "', '" + profesores[ps] + "', 0)");
+                           + "id_usuario_prof, puntaje_final, periodo) VALUES"
+                           + "('" + evaluadores[i] + "', '" + profesores[ps] + "', 0, " + periodo + ")");
                    ps++;
                 }
            }

@@ -70,10 +70,15 @@
                         String user=request.getParameter("id");
                         HttpSession sesion = request.getSession();
                         sesion.setAttribute("id",user);
+                        int periodo = 0;
                         lb.getConnection();
                         ResultSet rg = lb.executeQuery("SELECT * "
                                     + "FROM usuario WHERE "
                                     + "id_usuario = " + user);
+                        ResultSet rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rperiodo.next()){
+                            periodo = rperiodo.getInt("periodo_actual");
+                        }
                         out.print("<h2 class='Titular' align='center'>Lista de actividades que el profesor quiere apelar </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
@@ -92,7 +97,7 @@
                             rs=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_proyecto WHERE "
                                     + "id_usuario = " + user + " AND aceptado_alumno = 0 AND "
-                                            + "validado_alumno = 1");
+                                            + "validado_alumno = 1 AND periodo = " + periodo);
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -126,7 +131,7 @@
                         ResultSet rd=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_pub WHERE "
                                     + "id_usuario = " + user + " AND aceptado = 0 AND "
-                                            + "validado = 1");
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -156,7 +161,8 @@
                     <%
                         ResultSet ra=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_ev WHERE "
-                                    + "id_usuario = " + user + " AND aceptado =  0 AND validado = 1");
+                                    + "id_usuario = " + user + " AND aceptado = 0 AND validado = 1 "
+                                            + "AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -188,7 +194,7 @@
                                     + "FROM profesor_tiene_proyecto "
                                 + " WHERE id_usuario = " + user 
                                     + " AND aceptado = 0 AND "
-                                            + "validado = 1"
+                                            + "validado = 1 AND periodo = " + periodo
                                             + " GROUP BY id_proyecto"
                                         + " HAVING COUNT(*) > 1;");
                                     /*
@@ -229,7 +235,7 @@
                         ResultSet rb=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_obra WHERE "
                                     + "id_usuario = " + user + " AND aceptado = 0 AND "
-                                            + "validado = 1");
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -263,7 +269,8 @@
                     <%
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
-                                    + "id_usuario = " + user + " AND aceptado = 0 AND validado = 1");
+                                    + "id_usuario = " + user + " AND aceptado = 0 AND validado = 1 "
+                                            + "AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -294,7 +301,7 @@
                         ResultSet rm=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_en_plan WHERE "
                                     + "id_usuario = " + user + " AND aceptado = 0 AND "
-                                            + "validado = 1");
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");

@@ -123,9 +123,11 @@
                             %>
                         </div>    
                     </div>
+                        <div align="center">
                             <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
                       <s:submit value="Generar reporte de periodo de beca por exclusividad"/>
                   </s:form> 
+                        </div>
                             
                         </div>
                     </div> 
@@ -184,7 +186,7 @@
                             //lb.closeConnection();
                         %>
                         
-                        <h2>Fechas de evaluaciones de actividades</h2>
+                        <h2>Fechas de apelaciones de actividades rechazadas</h2>
                         <%
                             rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
                             out.print("<table  class='table table-striped table-condensed'>");
@@ -216,7 +218,7 @@
 
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>

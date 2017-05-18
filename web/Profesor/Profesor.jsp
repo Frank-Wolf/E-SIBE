@@ -143,7 +143,7 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                                                 + "</a>");
                                 out.print("</p>");
                                 %>
-                                <s:form id="datos" action="create_pdf_apela" method="post" style="display:block;" >
+                                <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >
                                     <s:hidden name="username" label="Matrícula"/>
                                     <s:submit value="Generar reporte de actividades"/>
                                 </s:form>

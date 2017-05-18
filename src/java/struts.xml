@@ -147,6 +147,7 @@
         <action name="Borrar_COFAA" class="admins.Borrarusuario_cofaa">
             <result name="borrar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="borrar_fallo">Admins/borrar_fallo.jsp</result>
+            <result name="Al_menos_uno">/Admins/al_menos_uno.jsp</result>
         </action>
         
         <!--opción para que el profesor apele-->
@@ -261,6 +262,10 @@
             <result name="success">/Profesor/Profesor_apelacion.jsp</result>
             <result name="error">/Profesor/Profesor_notime2.jsp</result>
         </action>
+        <action name="actividad_aceptada" class="profesor.try_apelacion">
+            <result name="success">/Profesor/Profesor_act_aceptadas.jsp</result>
+            <result name="error">/Profesor/Profesor_notime2.jsp</result>
+        </action>
         <action name="upload_file" class="PDF.Subir_PDF">
             <interceptor-ref name="exception"/>
             <interceptor-ref name="i18n"/>
@@ -282,12 +287,12 @@
             <result name="input">/Profesor/test_doc.jsp</result>
         </action><!--Test to upload filesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
         <action name="create_pdf_reporte" class="PDF.GenerateReportActivities"><!--Regresa a menu de profesor con tiempo de registro de actividades-->
-            <result name="success">/Profesor/Profesor.jsp</result>
+            <result name="success">/Profesor/Reporte_exito1.jsp</result>
             <result name="no_registro">/Profesor/No_Registro.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
         <action name="create_pdf_apela" class="PDF.GenerateReportActivities"><!--Regresa a menu de profesor en tiempo de apelaciones-->
-            <result name="success">/Profesor/Profesor_notime.jsp</result>
+            <result name="success">/Profesor/Reporte_exito2.jsp</result>
             <result name="no_registro">/Profesor/No_registro2.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
@@ -350,7 +355,10 @@
             <result name="success">/Rep_ua/Rep_ua.jsp</result>
             <result name="error">/Rep_ua/Boletin.jsp</result>
         </action>
-        
+        <action name="registra_pub_bol2" class="dependencias.Registra_pubBol">
+            <result name="success">/SIP/SIP.jsp</result>
+            <result name="error">/SIP/publicacion_ar.jsp</result>
+        </action>
     </package>
     <!--tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt-->
     <!--Paquete para los profesores que validad actividades-->

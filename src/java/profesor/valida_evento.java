@@ -108,8 +108,17 @@ public class valida_evento extends ActionSupport{
                 while(pub.next())
                 {   
                     System.out.println("Encontre la publicacion");
-                    int re=lb.executeUpdate("update profesor_tiene_pub set validado=1 where id_evento='"+id_evento+"' and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+" and validado=0");
-                    int r=lb.executeUpdate("update profesor_participa_ev set validado=1 where id_evento='"+id_evento+"' and id_usuario="+username+" and validado=0");
+                    /***Asignar periodo****/
+                    int periodo = 0;
+                    ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                    while(rs.next()){
+                        periodo = rs.getInt("periodo_actual");
+                        }
+                        /***Asignar periodo****/
+                    int re=lb.executeUpdate("update profesor_tiene_pub set validado=1, periodo = " + periodo
+                            + " where id_evento='"+id_evento+"' and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+" and validado=0");
+                    int r=lb.executeUpdate("update profesor_participa_ev set validado=1, periodo = " + periodo
+                            + " where id_evento='"+id_evento+"' and id_usuario="+username+" and validado=0");
                     if(re<1)
                     {
                         addFieldError("id_evento","Esta evento ya fue registrada");

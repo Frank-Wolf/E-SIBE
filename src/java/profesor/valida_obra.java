@@ -43,7 +43,15 @@ public class valida_obra extends ActionSupport{
             ResultSet rela=lb.executeQuery("select * from profesor_tiene_obra where id_obra='"+id_obra+"' and id_usuario='"+username+"'");
             while(rela.next())
             {
-                int r=lb.executeUpdate("update profesor_tiene_obra set validado=1 where id_obra='"+id_obra+"' and id_usuario='"+username+"' and validado=0");
+                /***Asignar periodo****/
+                        int periodo = 0;
+                        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rs.next()){
+                            periodo = rs.getInt("periodo_actual");
+                        }
+                        /***Asignar periodo****/
+                int r=lb.executeUpdate("update profesor_tiene_obra set validado=1, periodo = " + periodo + " where id_obra='"+id_obra+"' "
+                        + "and id_usuario='"+username+"' and validado=0");
                 if(r<1)
                 {
                     addFieldError("id_obra","Esta obra ya fue registrada");
