@@ -536,6 +536,7 @@
         </action>
         <action name="Modifica_fechaeval" class="admins.modifica_feeval">
             <result name="success">/Admins/Evaluaciones.jsp</result>
+            <result name="denied">/Admins/existe_eva.jsp</result>
             <result name="fail">/Admins/borrar_fallo.jsp</result>
         </action>
         <!--Periodo de fechas cofaa Actividades-->
