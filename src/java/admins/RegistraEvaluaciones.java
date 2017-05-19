@@ -36,12 +36,12 @@ public class RegistraEvaluaciones extends ActionSupport {
        LoginBean lb = new LoginBean();
        int l = 0;
        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-       Date date1 = formatter.parse(getDate1());
-       Date date2 = formatter.parse(getDate2());
+       Date dte1 = formatter.parse(date1);
+       Date dte2 = formatter.parse(getDate2());
        /*Verify if the activity date exist*/
        ResultSet rveri = lb.executeQuery("SELECT * FROM fecha_actividades");
        while(rveri.next()){
-           if(date1.after(rveri.getDate("fecha_inicio")) || date2.before(rveri.getDate("fecha_fin"))){
+           if(dte1.after(rveri.getDate("fecha_inicio")) || dte2.before(rveri.getDate("fecha_fin"))){
                 lb.closeConnection();
                 return "denied";
             }
