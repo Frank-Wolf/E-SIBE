@@ -94,7 +94,7 @@ public class valida_evento extends ActionSupport{
             return ERROR;
         }
         
-        profesor.LoginBean lb = new profesor.LoginBean();
+        LoginBean lb = new LoginBean();
         lb.getConnection();
         ResultSet obra=lb.executeQuery("select * from evento_academico where id_evento='"+id_evento+"'");
         while(obra.next())
@@ -108,8 +108,17 @@ public class valida_evento extends ActionSupport{
                 while(pub.next())
                 {   
                     System.out.println("Encontre la publicacion");
-                    int re=lb.executeUpdate("update profesor_tiene_pub set validado=1 where id_evento='"+id_evento+"' and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+" and validado=0");
-                    int r=lb.executeUpdate("update profesor_participa_ev set validado=1 where id_evento='"+id_evento+"' and id_usuario="+username+" and validado=0");
+                    /***Asignar periodo****/
+                    int periodo = 0;
+                    ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                    while(rs.next()){
+                        periodo = rs.getInt("periodo_actual");
+                        }
+                        /***Asignar periodo****/
+                    int re=lb.executeUpdate("update profesor_tiene_pub set validado=1, periodo = " + periodo
+                            + " where id_evento='"+id_evento+"' and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+" and validado=0");
+                    int r=lb.executeUpdate("update profesor_participa_ev set validado=1, periodo = " + periodo
+                            + " where id_evento='"+id_evento+"' and id_usuario="+username+" and validado=0");
                     if(re<1)
                     {
                         addFieldError("id_evento","Esta evento ya fue registrada");
@@ -125,12 +134,12 @@ public class valida_evento extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_publicacion SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_publicacion = " + getId_publicacion());
+                                    + "WHERE id_publicacion = '" + getId_publicacion()+"'");
                                 int ruta2 = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_evento = " + getId_publicacion());
+                                    + "WHERE id_evento = '" + id_evento+"'");
                                 }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

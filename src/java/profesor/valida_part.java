@@ -78,7 +78,15 @@ public class valida_part extends ActionSupport
                 ResultSet profd=lb.executeQuery("select * from profesor_participa_en_plan where id_usuario="+username+" and id_part='"+id_part+"' and validado=0");
                 while(profd.next())
                 {
-                    lb.executeUpdate("update profesor_participa_en_plan set validado=1 where id_usuario="+username+" and id_part='"+id_part+"'");
+                    /***Asignar periodo****/
+                        int periodo = 0;
+                        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rs.next()){
+                            periodo = rs.getInt("periodo_actual");
+                        }
+                        /***Asignar periodo****/
+                    lb.executeUpdate("update profesor_participa_en_plan set validado=1, periodo = " + periodo + 
+                            " where id_usuario="+username+" and id_part='"+id_part+"'");
                     /************************************************************************************************/
                             try{
                                 System.out.println("Src File name: " + myFile);
@@ -88,7 +96,7 @@ public class valida_part extends ActionSupport
                                 FileUtils.copyFile(myFile, destFile);
                                 int ruta = lb.executeUpdate("UPDATE profesor_participa_en_plan SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_usuario = " + username + "AND id_part = '" + getId_part() + "'");
+                                    + "WHERE id_usuario = " + username + " AND id_part = '" + getId_part() + "'");
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

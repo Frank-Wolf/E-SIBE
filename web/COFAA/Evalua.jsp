@@ -65,18 +65,31 @@
 
                 
                 
-                <s:div cssClass="cover-container2">    
+                <s:div cssClass="cover-container2"> 
+                    
                     <%
                         String user=request.getParameter("id");
                         HttpSession sesion = request.getSession();
                         sesion.setAttribute("id",user);
                         lb.getConnection();
+                        int periodo = 0;
                         ResultSet rg = lb.executeQuery("SELECT * "
                                     + "FROM usuario WHERE "
                                     + "id_usuario = " + user);
+                        ResultSet rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+                        while(rperiodo.next()){
+                            periodo = rperiodo.getInt("periodo_actual");
+                        }
                         out.print("<h2 class='Titular' align='center'>Lista de actividades del profesor </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
+                    <div align="center">
+                        <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="/Usuario/update_evaluador_evalua2" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de evaluación"/>
+                </s:form>
+                    </div>
                     <div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
@@ -84,8 +97,9 @@
                             
                             rs=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_proyecto WHERE "
-                                    + "id_usuario = " + user + " AND aceptado_alumno IS NULL AND "
-                                            + "validado_alumno = 1");
+                                    + "id_usuario = " + user + " AND "
+                                            + "validado_alumno = 1 AND aceptado_alumno IS NULL AND "
+                                            + "periodo = " + periodo);
                             out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -119,7 +133,7 @@
                         ResultSet rd=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_pub WHERE "
                                     + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "validado = 1");
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -149,7 +163,8 @@
                     <%
                         ResultSet ra=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_ev WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL AND validado = 1");
+                                    + "id_usuario = " + user + " AND validado = 1 AND aceptado IS NULL "
+                                            + "AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -177,13 +192,13 @@
                     <div class="col-md-6">
                     <h2 class="h3">2.4 Investigación y/o desarrollo tecnológico satisfactorio</h2>   
                     <%
-                        ResultSet rv=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm "
+                        ResultSet rv=lb.executeQuery("SELECT id_proyecto, ruta_alm "
                                     + "FROM profesor_tiene_proyecto "
                                 + " WHERE id_usuario = " + user 
                                     + " AND aceptado IS NULL AND "
-                                            + "validado = 1"
-                                            + " GROUP BY id_proyecto"
-                                        + " HAVING COUNT(*) > 1;");
+                                            + "validado = 1 AND periodo = " + periodo);
+                                            /*+ " GROUP BY id_proyecto"
+                                        + " HAVING COUNT(*) > 1;");*/
                                     /*
                                     SELECT count(*), id_proyecto
                                     FROM profesor_tiene_proyecto
@@ -221,8 +236,8 @@
                     <%
                         ResultSet rb=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_obra WHERE "
-                                    + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "validado = 1");
+                                    + "id_usuario = " + user + " AND aceptado IS NULL  AND "
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -257,7 +272,7 @@
                         ResultSet rn=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_tt WHERE "
                                     + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "aceptado = 1");
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -288,7 +303,7 @@
                         ResultSet rm=lb.executeQuery("SELECT * "
                                     + "FROM profesor_participa_en_plan WHERE "
                                     + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "validado = 1");
+                                            + "validado = 1 AND periodo = " + periodo);
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -312,8 +327,14 @@
                             out.print("</table>");
                             lb.closeConnection();
                     %>
-                    </div>
+                    <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="update_evaluador_evalua" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de registro"/>
+                </s:form>
                     
+                    </div>
+                   
                 </s:div>
             </s:div>  
               

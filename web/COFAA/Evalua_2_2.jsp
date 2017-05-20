@@ -72,10 +72,13 @@
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
                             ResultSet rs=null;
+                            int n = 0;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
                             + "id_publicacion='"+user+"'");
-                            //rs.next();
+                            while(rs.next()){
+                                n++;
+                            }
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             //String comentario=rs.getString("comentarios");
                             //Date fecha_evaluar=rs.getDate("fecha_val");
@@ -87,8 +90,8 @@
                     <div cssClass="" align ="center">
 
                         <h2 class="h3">Asignar registro</h2>
-                        
                         <s:set var="id_actividad"><%=user%></s:set>
+                        <s:set name="username" value="%{#session.username}" />
                         <s:form action="/Usuario/evalua_2_2">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
@@ -102,7 +105,17 @@
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
                                       0:0,
-                                      25:25
+                                      100:100,
+                                      110:110,
+                                      120:120,
+                                      130:130,
+                                      140:140,
+                                      150:150,
+                                      160:160,
+                                      170:170,
+                                      180:180,
+                                      190:190,
+                                      200:200
                                       }"
                                       name="puntaje"
                                       />

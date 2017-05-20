@@ -12,27 +12,20 @@ package PDF;
  * @author PsysacElrick
  */
 import java.io.FileOutputStream;
-import java.util.Date;
 
-import com.itextpdf.text.*;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.pdf.PdfContentByte;
 import java.io.IOException;
 import java.sql.ResultSet;  
 
@@ -67,24 +60,25 @@ public class GenerateReportActivities {
                      "profesor_participa_en_plan p, profesor_tiene_proyecto pr, \n" +
                      "profesor_tiene_tt t, profesor_tiene_obra ob, profesor_participa_ev ev, \n" +
                      "profesor_tiene_proyecto pra, profesor_tiene_pub pu\n" +
-                     "WHERE\n" +
-                     "pu.id_usuario = '" + getUsername() + "' and \n" +
-                     "p.id_usuario = '" + getUsername() + "' and \n" +
-                     "pr.id_usuario = '" + getUsername() + "' and \n" +
-                     "t.id_usuario = '" + getUsername() + "' and \n" +
-                     "ob.id_usuario = '" + getUsername() + "' and \n" +
-                     "ev.id_usuario = '" + getUsername() + "' and\n" +
-                     "pra.id_usuario = '" + getUsername() + "';");
+                     "WHERE \n" +
+                     "pu.id_usuario = " + getUsername() + " and \n" +
+                     "p.id_usuario = " + getUsername() + " and \n" +
+                     "pr.id_usuario = " + getUsername() + " and \n" +
+                     "t.id_usuario = " + getUsername() + " and \n" +
+                     "ob.id_usuario = " + getUsername() + " and \n" +
+                     "ev.id_usuario = " + getUsername() + " and \n" +
+                     "pra.id_usuario = " + getUsername());
              while(ra.next()){
                  i++;
              }
              //lb.closeConnection();
              if(i == 0){
                  lb.closeConnection();
+                 System.out.println("Aquiiiiiii");
                  return "no_registro";
              }*/
                  
-
+                //System.out.println(i);
                 try 
                 {
                         Document document = new Document();
@@ -257,23 +251,35 @@ public class GenerateReportActivities {
                 Datos_prof.addCell(Nivel);
 
                 /*Aqui van las consultas de los datos del profesor*/
-                //LoginBean lb = new LoginBean();
-                ResultSet rp = lb.executeQuery("SELECT * FROM usuario WHERE id_usuario = '" + getUsername() + "'"), rn, rt;
+                ResultSet rn, rt;
+                String nom_usuario = null, id_usuario = null, u_a = null, puntaje_final = null, periodo = null;
+                //Datos_prof.addCell("Hola");
+                ResultSet rp = lb.executeQuery("SELECT * FROM usuario WHERE id_usuario = " + username);
                 while(rp.next()){
-                    Datos_prof.addCell(rp.getString("nom_usuario"));
+                    nom_usuario = rp.getString("nom_usuario");
+                    id_usuario = rp.getString("id_usuario");
+                    u_a = rp.getString("u_a");
+                    /*Datos_prof.addCell(rp.getString("nom_usuario"" Hola") +" Hola");
+                    System.out.println(rp.getString("nom_usuario"));
                     Datos_prof.addCell(rp.getString("id_usuario"));
-                    Datos_prof.addCell(rp.getString("u_a"));
-                    //Datos_prof.addCell("50");
-                    //Datos_prof.addCell("I");
+                    Datos_prof.addCell(rp.getString("u_a"));*/
                 }
+                System.out.println(getUsername());
                 rn = lb.executeQuery("SELECT * FROM evaluador_evalua_profesor WHERE id_usuario_prof = '" + getUsername() + "'");
                 while(rn.next()){
-                    Datos_prof.addCell(rn.getString("puntaje_final"));
+                    puntaje_final = rn.getString("puntaje_final");
+                    //Datos_prof.addCell(rn.getString("puntaje_final"));
                 }
                 rt = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = '" + getUsername() + "'");
                 while(rt.next()){
-                    Datos_prof.addCell(rt.getString("periodo"));
+                    periodo = rt.getString("periodo");
+                    //Datos_prof.addCell(rt.getString("periodo"));
                 }
+                Datos_prof.addCell(nom_usuario);
+                Datos_prof.addCell(id_usuario);
+                Datos_prof.addCell(u_a);
+                Datos_prof.addCell(puntaje_final);
+                Datos_prof.addCell(periodo);
                 return Datos_prof;
         }
 
@@ -319,17 +325,28 @@ public class GenerateReportActivities {
                 Dos_uno.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-               
+                /**Get actual period***/
+               int periodo = 0;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
+                String id_al = null, tipo_alumno = null, puntaje = null, comen = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado_alumno = 1");
+                        + "id_usuario = '" + getUsername() +"' AND validado_alumno = 1 AND "
+                                + "periodo = " + periodo);
                 while(rb.next()){
-                    Dos_uno.addCell("2.1.1 o 2.1.2");
-                    Dos_uno.addCell(rb.getString("tipo_alumno"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alumno"));
+                    id_al = rb.getString("id_alumno");
+                    Dos_uno.addCell(id_al);
+                    tipo_alumno = rb.getString("tipo_alumno");
+                    Dos_uno.addCell(tipo_alumno);
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alumno"));
                     Dos_uno.addCell(anchor);
-                    Dos_uno.addCell(rb.getString("puntaje_alumno"));
-                    Dos_uno.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje_alumno");
+                    Dos_uno.addCell(puntaje);
+                    comen = rb.getString("comentarios");
+                    Dos_uno.addCell(comen);
                 }
                 
                 return Dos_uno;
@@ -377,16 +394,28 @@ public class GenerateReportActivities {
                 Dos_dos.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
+                int periodo = 0;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
+                String id_pub = null, id_tipo = null, puntaje = null, coment = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND (id_tipo_pub = 1 "
+                                + "OR id_tipo_pub = 2 OR id_tipo_pub = 3 OR id_tipo_pub = 4 OR id_tipo_pub = 5) AND "
+                                + "periodo = " + periodo);
                 while(rb.next()){
-                    Dos_dos.addCell("2.2");
-                    Dos_dos.addCell(rb.getString("id_tipo_pub"));//Add the type of every type pub
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    id_pub = rb.getString("id_publicacion");
+                    Dos_dos.addCell(id_pub);
+                    id_tipo = rb.getString("id_tipo_pub");
+                    Dos_dos.addCell(id_tipo);//Add the type of every type pub
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_dos.addCell(anchor);
-                    Dos_dos.addCell(rb.getString("puntaje"));
-                    Dos_dos.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje");
+                    Dos_dos.addCell(puntaje);
+                    coment = rb.getString("comentarios");
+                    Dos_dos.addCell(coment);
                 }
                 
                 return Dos_dos;
@@ -434,17 +463,26 @@ public class GenerateReportActivities {
                 Dos_tres.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-               
+                /**Get actual period***/
+               int periodo = 0;
+               String id_evento = null, even = null, puntaje = null, comentarios = null;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
                 while(rb.next()){
-                    Dos_tres.addCell("2.3");
+                    id_evento = rb.getString("id_evento");
+                    Dos_tres.addCell(id_evento);
                     Dos_tres.addCell("Evento académico");
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_tres.addCell(anchor);
-                    Dos_tres.addCell(rb.getString("puntaje"));
-                    Dos_tres.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje");
+                    Dos_tres.addCell(puntaje);
+                    comentarios = rb.getString("comentarios");
+                    Dos_tres.addCell(comentarios);
                 }
                 
                 
@@ -494,14 +532,18 @@ public class GenerateReportActivities {
                 Dos_cuatro.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-               
+               int periodo = 0;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
+                String id_pr = null, puntaje = null, comenta = null;
                 ResultSet rb = lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios "
                         + "FROM profesor_tiene_proyecto "
-                        + "WHERE id_usuario = '" + getUsername() +"' AND "
-                        + "aceptado = 1 AND "
-                        + "validado = 1 "
-                        + "GROUP BY id_proyecto "
-                        + "HAVING COUNT(*) > 1");
+                        + "WHERE id_usuario = " + getUsername() +" AND "
+                        + "validado = 1 AND periodo = " + periodo
+                        + " GROUP BY id_proyecto "
+                        + "HAVING COUNT(*) > 0");
                 /*
                    SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios 
                    FROM profesor_tiene_proyecto
@@ -512,12 +554,15 @@ public class GenerateReportActivities {
                    HAVING COUNT(*) > 1; */
                 while(rb.next()){
                     Dos_cuatro.addCell("2.4.2");
-                    Dos_cuatro.addCell(rb.getString("id_proyecto"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    id_pr = rb.getString("id_proyecto");
+                    Dos_cuatro.addCell(id_pr);
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_cuatro.addCell(anchor);
-                    Dos_cuatro.addCell(rb.getString("puntaje"));
-                    Dos_cuatro.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje");
+                    Dos_cuatro.addCell(puntaje);
+                    comenta = rb.getString("comentarios");
+                    Dos_cuatro.addCell(comenta);
                 }
                 
                 
@@ -566,17 +611,25 @@ public class GenerateReportActivities {
                 Dos_cinco.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-               
+               int periodo = 0;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
+                String id_obra = null, puntaje = null, comenta = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
-                    Dos_cinco.addCell(rb.getString("id_obra"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    id_obra = rb.getString("id_obra");
+                    Dos_cinco.addCell(id_obra);
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_cinco.addCell(anchor);
-                    Dos_cinco.addCell(rb.getString("puntaje"));
-                    Dos_cinco.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje");
+                    Dos_cinco.addCell(puntaje);
+                    comenta = rb.getString("comentarios");
+                    Dos_cinco.addCell(comenta);
                 }
                 
                 
@@ -625,18 +678,25 @@ public class GenerateReportActivities {
                 Dos_once.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-               
-                
+               int periodo = 0;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
+                String id_tt = null, puntaje = null, comenta = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_tt WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1");
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
                 while(rb.next()){
                     Dos_once.addCell("2.11");
-                    Dos_once.addCell(rb.getString("id_TT"));
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    id_tt = rb.getString("id_TT");
+                    Dos_once.addCell(id_tt);
+                    Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_once.addCell(anchor);
-                    Dos_once.addCell(rb.getString("puntaje"));
-                    Dos_once.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje");
+                    Dos_once.addCell(puntaje);
+                    comenta = rb.getString("comentarios");
+                    Dos_once.addCell(comenta);
                 }
                 
                 
@@ -693,31 +753,32 @@ public class GenerateReportActivities {
                 Dos_doce.addCell(Observaciones);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-               
+               int periodo = 0;
+                ResultSet rperiodo = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + getUsername());
+                if(rperiodo.next())
+                    periodo = rperiodo.getInt("periodo");
+                /**Get actual period***/
+                String id_part = null, id_tipo = null, puntaje = null, comenta = null;
                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 " /*AND periodo = que el que tiene registrado el profesor*/);
+                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo /*AND periodo = que el que tiene registrado el profesor*/);
                 while(rb.next()){
                     //Dos_doce.addCell("2.12");
-                    Dos_doce.addCell(rb.getString("id_part"));
-                    Dos_doce.addCell(rb.getString("id_tipo_part"));//Agregar a la parte de abajo el tipo de párticiáción
+                    id_part = rb.getString("id_part");
+                    Dos_doce.addCell(id_part);
+                    id_tipo = rb.getString("id_tipo_part");
+                    Dos_doce.addCell(id_tipo);//Agregar a la parte de abajo el tipo de párticiáción
                     Anchor anchor = new Anchor(rb.getString("ruta_alm"));
-                    anchor.setReference(rb.getString("ruta_alm"));
+                    anchor.setReference("Constancia");
                     Dos_doce.addCell(anchor);
-                    Dos_doce.addCell(rb.getString("puntaje"));
-                    Dos_doce.addCell(rb.getString("comentarios"));
+                    puntaje = rb.getString("puntaje");
+                    Dos_doce.addCell(puntaje);
+                    comenta = rb.getString("comentarios");
+                    Dos_doce.addCell(comenta);
                 } 
                 
                 return Dos_doce;
         }
         
-        
-        private void createList(Section subCatPart) {
-                List list = new List(true, false, 10);
-                list.add(new ListItem("First point"));
-                list.add(new ListItem("Second point"));
-                list.add(new ListItem("Third point"));
-                subCatPart.add(list);
-        }
 
         private void addEmptyLine(Paragraph paragraph, int number) {
                 for (int i = 0; i < number; i++) {

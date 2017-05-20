@@ -32,7 +32,7 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
     </script>
     </head>
     
-    <body background="../css/textura.png" class="container-fluid boding overflow">
+    <body background="../css/textura.png" class="container-fluid boding">
         
         <!--header-->
         <header class="headering rela">
@@ -127,7 +127,7 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
 
                              }
                              out.print("</table>");
-                             lb.closeConnection();
+                             //lb.closeConnection();
                             %>
                         </div>    
                     </div>
@@ -143,11 +143,91 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                                                 + "</a>");
                                 out.print("</p>");
                                 %>
-                                <s:form id="datos" action="create_pdf_apela" method="post" style="display:block;" >
+                                <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >
                                     <s:hidden name="username" label="Matrícula"/>
                                     <s:submit value="Generar reporte de actividades"/>
                                 </s:form>
                     </div>
+                                <h2>Fechas de registro de actividades</h2>
+                        <%
+                            ResultSet rf1, rf2, rf3;
+                            rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
+                            out.print("<table  class='table table-striped table-condensed'>");
+                            while(rf1.next()){
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de inicio");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf1.getString("fecha_inicio"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de termino");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf1.getString("fecha_fin"));    
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            
+                            //lb.closeConnection();
+                        %>
+                        <h2>Fechas de evaluaciones de actividades</h2>
+                        <%
+                            rf2=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
+                            out.print("<table  class='table table-striped table-condensed'>");
+                            while(rf2.next()){
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de inicio");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf2.getString("fecha_inicio"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de termino");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf2.getString("fecha_fin"));    
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            
+                            //lb.closeConnection();
+                        %>
+                        
+                        <h2>Fechas de evaluaciones de actividades</h2>
+                        <%
+                            rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
+                            out.print("<table  class='table table-striped table-condensed'>");
+                            while(rf3.next()){
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de inicio");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf3.getString("fecha_inicio"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de termino");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf3.getString("fecha_fin"));    
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            
+                            lb.closeConnection();
+                        %>
                 
             </s:div>
         </s:div>  
@@ -155,7 +235,7 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
         
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>

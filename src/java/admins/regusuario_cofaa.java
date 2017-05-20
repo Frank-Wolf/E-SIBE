@@ -11,6 +11,7 @@ package admins;
  */
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import java.sql.ResultSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,10 +84,18 @@ public class regusuario_cofaa extends ActionSupport{
       }
         LoginBean lb = new LoginBean();
         lb.getConnection();
-        
+        int aux = 0, periodo = 0;
+        ResultSet rs = lb.executeQuery("SELECT * FROM evaluador");
+        while(rs.next()){
+            periodo = rs.getInt("periodo_actual");
+            if(periodo > aux)
+                aux = periodo;
+            else
+                aux = aux;
+        }
         int val=lb.executeUpdate("INSERT INTO usuario(id_usuario,id_type_usuario,nom_usuario,email, password,u_a,token) "
                 + "VALUES ('"+getMatricula()+"', "+getIdTypeUsuario()+", '"+getUser()+"','"+getEmail()+"' , '"+getPassword()+"', '"+getU_a()+"',1);");
-        int val2=lb.executeUpdate("INSERT INTO evaluador (id_usuario) VALUES ('" + getMatricula() + " ')");
+        int val2=lb.executeUpdate("INSERT INTO evaluador (id_usuario, periodo_actual) VALUES ('" + getMatricula() + "', " + periodo + ")");
         lb.closeConnection();
         if (val > 0) 
             return "test";

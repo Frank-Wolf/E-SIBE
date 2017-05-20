@@ -133,7 +133,7 @@
                         </s:form>
                              <h2 class="letritas">Actividades por registrar en este módulo</h2>
                             <%
-                            
+                            int l = 0;
                             ResultSet alumnos=null;
                             lb.getConnection();
                             alumnos=lb.executeQuery("SELECT id_proyecto, id_alumno, tipo_alumno "
@@ -154,18 +154,21 @@
                             out.print("</tr>");
                             while (alumnos.next())
                             {
-                                out.print("<tr>");
-                                out.print("<th>");
-                                out.print(alumnos.getString("id_proyecto"));
-                                out.print("</th>");
-                                out.print("<td>");
-                                out.print(alumnos.getString("id_alumno"));
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print(alumnos.getString("tipo_alumno"));
-                                out.print("</td>");
-                                out.print("</tr>");
-
+                                if(alumnos.getInt("id_alumno") == 0)
+                                    l++;
+                                else{
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(alumnos.getString("id_proyecto"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(alumnos.getString("id_alumno"));
+                                    out.print("</td>");
+                                    out.print("<td>");
+                                    out.print(alumnos.getString("tipo_alumno"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
                             }
                             out.print("</table>");
                             
@@ -236,7 +239,7 @@
                         </s:form>
                     
                         <h2 class="letritas">Actividades por registrar en este módulo</h2>
-                        <h2 class="subtitulos">Tipo de publicacion: En boletin - 1, Nacional sin arbitraje - 2, Internacional sin arbitraje - 3, Nacional con arbitraje - 4, Nacional sin Arbitraje - 5</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: 1.- En boletin, 2.- Nacional sin arbitraje, 3.- Internacional sin arbitraje, 4.- Nacional con arbitraje, 5.- Nacional sin Arbitraje</h2>
                         <%
                             
                             ResultSet rs=null;
@@ -249,7 +252,7 @@
                                      + "table-responsive '>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("Numero de Publicacion");
+                            out.print("ID de Publicacion");
                             out.print("</th>");
                             out.print("<th>");
                             out.print("Nombre de Publicacion");
@@ -304,7 +307,7 @@
                         </s:form>
                         
                         <h2 class="letritas">Actividades por registrar en este módulo</h2>
-                        <h2 class="subtitulos">Tipo de publicacion: Institucional, Sin ponencia - 6, Institucional, con resumen publicado - 7, Institucional, publicado en extenso - 8</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: 6 .-Institucional( Sin ponencia), 7.-Institucional (con resumen publicado), 8.-Institucional (publicado en extenso)</h2>
                         <%
                             
                             ResultSet rws=null;
@@ -545,10 +548,10 @@
                             
                         <h2 class="letritas">Actividades por registrar en este módulo</h2>
                         <h2 class="subtitulos" align="center">Tipo de participacion:</h2>
-                        <h2 class="subtitulos">Coordinacion en la elaboracion de un plan de estudios - 1, Coordinacion en la actualización de un plan de estudios - 2</h2>   
-                        <h2 class="subtitulos">Participacion en la elaboracion de un plan de estudios - 3, Participacion en la actualizacion de un plan de estudios - 4</h2>   
-                        <h2 class="subtitulos">Coordinacion en la elaboracion de un programa de estudios - 5, Coordinacion en la actualización de un programa de estudios - 6</h2>
-                        <h2 class="subtitulos">Participacion en la elaboracion de un programa de estudios - 7, Participacion en la actualizacion de un programa de estudios - 8</h2>   
+                        <h2 class="subtitulos">1.- Coordinacion en la elaboracion de un plan de estudios , 2.- Coordinacion en la actualización de un plan de estudios</h2>   
+                        <h2 class="subtitulos">3.- Participacion en la elaboracion de un plan de estudios, 4.- Participacion en la actualizacion de un plan de estudios</h2>   
+                        <h2 class="subtitulos">5.- Coordinacion en la elaboracion de un programa de estudios, 6.- Coordinacion en la actualización de un programa de estudios</h2>
+                        <h2 class="subtitulos">7.- Participacion en la elaboracion de un programa de estudios, 8.- Participacion en la actualizacion de un programa de estudios</h2>   
                          <%
                             
                             ResultSet participacion=null;

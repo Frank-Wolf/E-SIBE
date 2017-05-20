@@ -39,8 +39,8 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="ver_registros">Ver registros</a></li>
-                                <li><a href="apelaciones_cofaa">Modificaciones recientes</a></li>
+                                <li><a href="ver_registros">Ver registros </a></li>
+                                <li><a href="apelaciones_cofaa">Actividades a apelar</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">

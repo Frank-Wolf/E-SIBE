@@ -36,7 +36,7 @@
                <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Representante de Unidad Académica</a>
+                            <a class="navbar-brand" >E-SIBE: Usuario SIP</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
@@ -67,7 +67,7 @@
 
     
                     <s:set name="id_evento" value="%{0}"/>            
-                    <s:form action="registra_pub_bol" method="post">
+                    <s:form action="registra_pub_bol2" method="post">
                         <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control"/>
                         <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control"/>
                         <s:textfield name="Nom_Public" label="Nombre de la publicacion" cssClass="form-control"/>
@@ -87,7 +87,7 @@
                         <s:textfield name="annio" label="Año" cssClass="form-control" />
                         <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" cssClass="form-control" style="width =80%"/>
                         <s:hidden name="id_evento" />
-                        <s:submit cssClass="btn" name="Registrar TT" value="Registrar Usuario"/>
+                        <s:submit cssClass="btn" name="Registrar TT" value="Registrar Publicación"/>
                     </s:form>  
                 </div>
                          </div>
