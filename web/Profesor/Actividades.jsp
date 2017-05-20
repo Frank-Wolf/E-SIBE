@@ -169,7 +169,46 @@
                             }
                             out.print("</table>");
                             
-                        %>    
+                        %> 
+                        <h2>Actividades Ya validadas</h2>
+                         <%
+                            
+                            ResultSet alumnos2=null;
+                            lb.getConnection();
+                            alumnos2=lb.executeQuery("SELECT id_proyecto, id_alumno, tipo_alumno "
+                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado_alumno=1");
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Matricula del Alumno");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de alumno");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (alumnos2.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print(alumnos2.getString("id_proyecto"));
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(alumnos2.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(alumnos2.getString("tipo_alumno"));
+                                out.print("</td>");
+                                out.print("</tr>");
+
+                            }
+                            out.print("</table>");
+                            
+                        %> 
                     </s:div>    
                                 
                     <!--PUBLICACIONES FORM-->
