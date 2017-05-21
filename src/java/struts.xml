@@ -549,10 +549,12 @@
             <result name="success">/Admins/Apelaciones.jsp</result>
             <result name="existe_evalu">/Admins/Existe_FeApe.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
+            <result name="denied">/Admins/traslape_FeApel.jsp</result>
         </action>
         <action name="Registra_evaluaciones" class="admins.RegistraEvaluaciones" >
             <result name="success">/Admins/Evaluaciones.jsp</result>
             <result name="existe_evalu">/Admins/Existe_FeEval.jsp</result>
+            <result name="denied">/Admins/traslape_feEval.jsp</result>
             <result name="error">/Admins/borrar_fallo.jsp</result>
         </action> 
         <!--acciones para eliminar las fechas Fin-->
