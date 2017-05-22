@@ -1,15 +1,12 @@
 <%-- 
-    Document   : Evalua_2_1
-    Created on : May 1, 2017, 7:16:26 PM
+    Document   : usuarios_cofaa_modifica
+    Created on : May 21, 2017, 5:19:21 PM
     Author     : PsysacElrick
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="java.sql.*" %>
-<%@taglib prefix="sj" uri="/struts-jquery-tags" %> 
-<jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +20,7 @@
               rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
-        <title>Evaluador COFAA</title>
+        <title>Administrador COFAA</title>
     </head>
     <body background="../css/textura.png" class="boding overflow">
         
@@ -48,11 +45,15 @@
                         </div>
                         
                         <div id="navbar" class="navbar-collapse collapse ">
-
+                            <ul class="nav navbar-nav">
+                                <li><a href="Menu_COFAA">
+                                        Menú Principal</a>
+                                </li>
+                            </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Menu_evalua">
-                                      Regresar</a></li>
+                                <li><a href="Cerrar_sesion">
+                                      Cerrar Sesion</a></li>
                             </ul>
                         </div>
                     </div>
@@ -64,50 +65,51 @@
                         
                         
                     <!-- Tabla donde se muestran los usuarios Activos-->    
-                    <div class="col-md-6">
-                        <h2 class="h3">Asigne una puntuación y/o comentarios</h2>
-
+                    <div class="col-md-6" align="center">
+                        <h2 class="h3">Lista de Profesores Evaluadores activos</h2>
+                    
+                        <jsp:useBean id="lb" scope="session" 
+                                     class="sesion.LoginBean"></jsp:useBean>
                         <%
-                            String user=request.getParameter("id");
-                            HttpSession sesion = request.getSession();
-                            sesion.setAttribute("id",user);
                             ResultSet rs=null;
                             lb.getConnection();
-                            rs=lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                            + "id_alumno='"+user+"'");
-                            rs.next();
-                            //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            String comentario=rs.getString("comentarios");
-                            //Date fecha_evaluar=rs.getDate("fecha_val");
-                            //int puntaje=rs.getInt("puntaje_alumno");
+                            int i = 0;
+                            rs=lb.executeQuery("SELECT nom_usuario, "
+                                    + "id_usuario, u_a FROM usuario WHERE "
+                                    + "id_type_usuario = 6");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  No. de Empleado  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Nombre de Usuario  ");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print(  "Unidad Académica  ");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs.next())
+                            {
+                                i++;
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rs.getString("id_usuario"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("nom_usuario"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rs.getString("u_a"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("<a href='/login/Admins/modifica_cofaa2.jsp?id="
+                                        +rs.getString("id_usuario")+"'>Modificar</a>");
+                                out.print("</td>");
+                            }
+                            out.print("</table>");
                             lb.closeConnection();
                         %>
-                    </div>
-                    
-                    <div cssClass="" align ="center">
-
-                        <h2 class="h3">Apelar </h2>
-                        <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set var="comentario"><%=comentario%></s:set>
-                        <s:form action="/Usuario/evalua_2_1">
-                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
-                                      headerKey="-1" headerValue="Seleccione"
-                                      list="# {
-                                      'Aceptado':'Aceptado',
-                                      'No aceptado':'No aceptado'
-                                      }"
-                                      name="aceptado"/>
-                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" value="%{#comentario}" cssClass="form-control" size="100"/>
-                            <s:select label="Asignar puntaje"  cssClass="form-control" 
-                                      headerKey="-1" headerValue="Marque puntaje"
-                                      list="# {
-                                      25:25
-                                      }"
-                                      name="puntaje"
-                                      />
-                            <s:hidden name="id_actividad"/>
-                            <s:submit cssClass="btn" value="Evaluar" />
-                        </s:form> 
                     </div>
                         
                 </div>                 

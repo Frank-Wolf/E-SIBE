@@ -1,6 +1,6 @@
 <%-- 
-    Document   : no_evaluadores_permitido
-    Created on : Apr 24, 2017, 10:59:26 PM
+    Document   : traslape_FeApel
+    Created on : May 21, 2017, 12:25:17 PM
     Author     : PsysacElrick
 --%>
 
@@ -9,14 +9,15 @@
     <head>
         <script type="text/javascript">
 window.onload = function(){//window.addEventListener('load',function(){...}); (for Netscape) and window.attachEvent('onload',function(){...}); (for IE and Opera) also work
-    alert("Es recomendable que no se modifiquen a los evaluadores actuales, pues es temporada de de evaluaciones.");
+    alert("La fecha de apelaciones ingresada se traslapa con la fecha de evaluaciones. \n\
+            Pruebe ingresando otra fecha.");
 };
 </script>
     </head>
 
 <body> 
 
-<jsp:include page="/Admins/usuarios_cofaa_modifica.jsp"></jsp:include>
+<jsp:include page="/Admins/Apelaciones.jsp"></jsp:include>
 
 </body>
 </html>

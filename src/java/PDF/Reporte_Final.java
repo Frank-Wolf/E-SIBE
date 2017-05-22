@@ -160,7 +160,7 @@ public class Reporte_Final {
                         addTabla2_5(document);
                         addTabla2_11(document);
                         addTabla2_12(document);
-                        System.out.println("Hola12");
+                        //System.out.println("Hola12");
                         lb.closeConnection();
                         document.close();
                 } 
@@ -292,6 +292,7 @@ public class Reporte_Final {
          private PdfPTable tablaEvaluador_profe() throws Exception{
              PdfPTable tabla_evaluador = new PdfPTable(5);
              tabla_evaluador.setWidths(new int[]{2,2,3,2,3});
+             int anio = 0, anio_fin = 0;
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Tabla de evaluadores con los "
                         + "profesores asignados",encabezadost));
                 PdfPCell evaluador = new PdfPCell(new Phrase("Número de empleado de evaluador"));
@@ -336,7 +337,23 @@ public class Reporte_Final {
                     tabla_evaluador.addCell(rb.getString("id_usuario_prof"));//Add the type of every type pub
                     tabla_evaluador.addCell(rb.getString("puntaje_final"));
                     tabla_evaluador.addCell(rb.getString("fecha_ev"));
-                    tabla_evaluador.addCell(rb.getString("periodo"));
+                    if(rb.getInt("periodo") == 1){
+                        anio = 2017;
+                        anio_fin = 2018;
+                    }
+                    else if(rb.getInt("periodo") == 2){
+                        anio = 2018;
+                        anio_fin = 2019;
+                    }
+                    else if(rb.getInt("periodo") == 3){
+                        anio = 2019;
+                        anio_fin = 2020;
+                    }
+                    else if(rb.getInt("periodo") == 4){
+                        anio = 2020;
+                        anio_fin = 2021;
+                    }
+                    tabla_evaluador.addCell(anio + " - " + anio_fin);
                 }
                 
              
@@ -430,8 +447,6 @@ public class Reporte_Final {
                     }
                     else{
                         System.out.println("Ya existe");
-                        /*evaluador_num[i] = rs.getInt("id_usuario_ev");
-                        i++;*/
                     }
                 }//We get evaluators
                 for(int e = 0; e < i; e++){
@@ -445,6 +460,7 @@ public class Reporte_Final {
          }
          private PdfPTable tabla_profesores_nivel() throws Exception{
              PdfPTable tabla_num = new PdfPTable(3);
+             int anio = 0, anio_fin = 0;
              tabla_num.setWidths(new int[]{2,2,2});
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Lista de profesores participantes", encabezadost));
                 PdfPCell profesor = new PdfPCell(new Phrase("Número de empleado"));
@@ -477,7 +493,23 @@ public class Reporte_Final {
                 while(rs.next()){
                     tabla_num.addCell(rs.getString("id_usuario"));
                     tabla_num.addCell(rs.getString("nivel"));
-                    tabla_num.addCell(rs.getString("periodo"));
+                    if(rs.getInt("periodo") == 1){
+                        anio = 2017;
+                        anio_fin = 2018;
+                    }
+                    else if(rs.getInt("periodo") == 2){
+                        anio = 2018;
+                        anio_fin = 2019;
+                    }
+                    else if(rs.getInt("periodo") == 3){
+                        anio = 2019;
+                        anio_fin = 2020;
+                    }
+                    else if(rs.getInt("periodo") == 4){
+                        anio = 2020;
+                        anio_fin = 2021;
+                    }
+                    tabla_num.addCell(anio + " - " + anio_fin);
                 }
              return tabla_num;
          }

@@ -11,6 +11,8 @@ package admins;
  */
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class RegistraApelaciones extends ActionSupport {
@@ -31,6 +33,24 @@ public class RegistraApelaciones extends ActionSupport {
    public String execute() throws Exception{
       LoginBean lb = new LoginBean();
        lb.getConnection();
+       int l = 0;
+       /*Verify if the activity date exist*/
+       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+       Date dte1 = formatter.parse(getDate1());
+       Date dte2 = formatter.parse(getDate2());
+       
+       ResultSet rveri = lb.executeQuery("SELECT * FROM fecha_evaluaciones");
+       while(rveri.next()){
+           if((dte1.after(rveri.getDate("fecha_inicio")) && dte1.before(rveri.getDate("fecha_fin"))) ||
+                   (dte1.after(rveri.getDate("fecha_inicio")) && dte1.before(rveri.getDate("fecha_fin")))){
+                lb.closeConnection();
+                return "denied";
+            }
+            else{
+                l = 0;
+            }
+       }    
+       /*Verify if the activity date exist END*/
        ResultSet rs = lb.executeQuery("SELECT fecha_inicio, fecha_fin FROM fecha_apelaciones");
        while(rs.next()) {
            lb.closeConnection();

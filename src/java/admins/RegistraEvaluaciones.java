@@ -12,7 +12,6 @@ package admins;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.ResultSet;
 import java.util.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class RegistraEvaluaciones extends ActionSupport {
@@ -35,24 +34,26 @@ public class RegistraEvaluaciones extends ActionSupport {
    public String execute() throws Exception{
        LoginBean lb = new LoginBean();
        int l = 0;
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-       Date dte1 = formatter.parse(date1);
-       Date dte2 = formatter.parse(getDate2());
+       lb.getConnection();
        /*Verify if the activity date exist*/
+       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+       Date dte1 = formatter.parse(getDate1());
+       Date dte2 = formatter.parse(getDate2());
+       
        ResultSet rveri = lb.executeQuery("SELECT * FROM fecha_actividades");
        while(rveri.next()){
-           if(dte1.after(rveri.getDate("fecha_inicio")) || dte2.before(rveri.getDate("fecha_fin"))){
+           if((dte1.after(rveri.getDate("fecha_inicio")) && dte1.before(rveri.getDate("fecha_fin"))) ||
+                   (dte1.after(rveri.getDate("fecha_inicio")) && dte1.before(rveri.getDate("fecha_fin")))){
                 lb.closeConnection();
                 return "denied";
             }
             else{
                 l = 0;
-       }
+            }
        }    
        /*Verify if the activity date exist END*/
        ResultSet rs, rp, re;//rs --> verification date   rp-->get number of prof re-->get number of evaluator
        int periodo = 0;
-       lb.getConnection();
        rs = lb.executeQuery("SELECT fecha_inicio, fecha_fin FROM fecha_evaluaciones");
        
        while(rs.next()) {
