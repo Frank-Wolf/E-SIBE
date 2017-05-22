@@ -111,7 +111,7 @@
                         <s:set var="numero_autores"><%=n%></s:set>
                         <h2 class="h3">Número de autores para esta obra: <%=n%></h2><!--imprimir el número de participantes-->
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:form action="/Usuario/apela_2_5">
+                        <s:form action="/Usuario/apela_2_5" id="form1">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -131,7 +131,7 @@
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
                         
-                        <s:form action="/Usuario/apela_2_5">
+                        <s:form action="/Usuario/apela_2_5" id="form2">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -151,7 +151,7 @@
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form>
                         
-                        <s:form action="/Usuario/apela_2_5">
+                        <s:form action="/Usuario/apela_2_5" id="form3">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {

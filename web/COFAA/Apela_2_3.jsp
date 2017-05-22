@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="java.sql.*" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %> 
 <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"></jsp:useBean>
@@ -24,8 +23,48 @@
         
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Evaluador COFAA</title>
+        <script type="text/javascript">
+                function show_form(x) {
+                if(x == 1 || x == 2 || x == 3) {
+                    document.getElementById("form1").style.visibility="visible";  
+                    document.getElementById("form2").style.visibility="hidden"; 
+                    document.getElementById("form3").style.visibility="hidden";
+                }
+
+                else if(x == 4) {
+                    document.getElementById("form1").style.visibility="hidden";  
+                    document.getElementById("form2").style.visibility="visible"; 
+                    document.getElementById("form3").style.visibility="hidden"; 
+                }
+
+                else if(x == 5)  {
+                    document.getElementById("form1").style.visibility="hidden";  
+                    document.getElementById("form2").style.visibility="hidden"; 
+                    document.getElementById("form3").style.visibility="visible";; 
+                }
+            }
+        </script>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    
+    <%
+                            String user=request.getParameter("id");
+                            HttpSession sesion = request.getSession();
+                            sesion.setAttribute("id",user);
+                            ResultSet rs=null;
+                            int n = 0;
+                            lb.getConnection();
+                            rs=lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
+                            + "id_evento='"+user+"'");
+                            while(rs.next()){
+                                n++;
+                            }
+                            //boolean aceptado = rs.getBoolean("aceptado_alumno");
+                            //String comentario=rs.getString("comentarios");
+                            //Date fecha_evaluar=rs.getDate("fecha_val");
+                            //int puntaje=rs.getInt("puntaje_alumno");
+                            lb.closeConnection();
+                        %>
+    <body background="../css/textura.png" class="boding overflow" onload="show_form('<%=n%>')">
         
         <!--header-->
         <header class="headering">
@@ -66,34 +105,15 @@
                     <!-- Tabla donde se muestran los usuarios Activos-->    
                     <div class="col-md-6">
                         <h2 class="h3">Asigne una puntuación y/o comentarios</h2>
-
-                        <%
-                            String user=request.getParameter("id");
-                            HttpSession sesion = request.getSession();
-                            sesion.setAttribute("id",user);
-                            ResultSet rs=null;
-                            int n = 0;
-                            lb.getConnection();
-                            rs=lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
-                            + "id_evento='"+user+"'");
-                            while(rs.next()){
-                                n++;
-                            }
-                            //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            //String comentario=rs.getString("comentarios");
-                            //Date fecha_evaluar=rs.getDate("fecha_val");
-                            //int puntaje=rs.getInt("puntaje_alumno");
-                            lb.closeConnection();
-                        %>
                     </div>
                     
                     <div cssClass="" align ="center">
 
                         <h2 class="h3">Apelar</h2>
                         <s:set var="numero_autores"><%=n%></s:set>
-                        <h2 class="h3">Número de autores para esta obra: <%=n%></h2>
+                        <h2 class="h3">Número de participantes para esta publicación: <%=n%></h2>
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:form action="/Usuario/apela_2_3">
+                        <s:form action="/Usuario/apela_2_3" id="form1">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -105,26 +125,8 @@
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
-                                      0:0,
-                                      1:1,
-                                      2:2,
-                                      3:3,
-                                      4:4,
-                                      5:5,
-                                      6:6,
-                                      7:7,
                                       8:8,
-                                      9:9,
                                       10:10,
-                                      11:11,
-                                      12:12,
-                                      13:13,
-                                      14:14,
-                                      15:15,
-                                      16:16,
-                                      17:17,
-                                      18:18,
-                                      19:19,
                                       20:20
                                       }"
                                       name="puntaje"
@@ -132,6 +134,50 @@
                             <s:hidden name="id_actividad"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
+                        
+                        <s:form action="/Usuario/apela_2_3" id="form2">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      2:2,
+                                      3:3,
+                                      5:5
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form>
+                        
+                        <s:form action="/Usuario/apela_2_3" id="form3">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      1:1,
+                                      2:2,
+                                      4:4
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form>
                     </div>
                         
                 </div>                 
