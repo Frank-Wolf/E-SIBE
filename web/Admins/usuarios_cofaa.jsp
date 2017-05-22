@@ -6,8 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="com.opensymphony.xwork2.ActionContext" %>
-<%@ page import="com.opensymphony.xwork2.util.ValueStack" %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -76,7 +74,6 @@
                             ResultSet rs=null;
                             lb.getConnection();
                             int i = 0;
-                            ValueStack stack = ActionContext.getContext().getValueStack();
                             rs=lb.executeQuery("SELECT nom_usuario, "
                                     + "id_usuario, u_a FROM usuario WHERE "
                                     + "id_type_usuario = 6");
@@ -116,8 +113,6 @@
                             }
                             out.print("</table>");
                             lb.closeConnection();
-                            stack.getContext().put("varName", i);
-                            stack.setValue("#attr['varName']", i, false);
                         %>
                     </div>
                     

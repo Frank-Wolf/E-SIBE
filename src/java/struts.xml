@@ -159,7 +159,10 @@
         <action name="Modifica_COFAA" class="admins.modifica_cofaa" >
             <result name="modificar_exitoso">/Admins/usuarios_cofaa.jsp</result>
             <result name="modificar_fallo">borrar_fallo.jsp</result>
-            <result name="test">/Admins/modifica_cofaa.jsp</result>
+        </action> 
+        <action name="Modifica_COFAA2" class="admins.modifica_cofaa2" >
+            <result name="modificar_exitoso">/Admins/usuarios_cofaa_modifica.jsp</result>
+            <result name="modificar_fallo">borrar_fallo.jsp</result>
         </action> 
         <!--Registra CATT-->
         <action name="Registra_CATT" class="admins.regusuario_sip">
