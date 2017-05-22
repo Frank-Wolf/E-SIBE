@@ -160,7 +160,7 @@ public class Reporte_Final {
                         addTabla2_5(document);
                         addTabla2_11(document);
                         addTabla2_12(document);
-                        System.out.println("Hola12");
+                        //System.out.println("Hola12");
                         lb.closeConnection();
                         document.close();
                 } 
@@ -447,8 +447,6 @@ public class Reporte_Final {
                     }
                     else{
                         System.out.println("Ya existe");
-                        /*evaluador_num[i] = rs.getInt("id_usuario_ev");
-                        i++;*/
                     }
                 }//We get evaluators
                 for(int e = 0; e < i; e++){
