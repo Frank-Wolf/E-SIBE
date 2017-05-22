@@ -46,12 +46,10 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
         
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
-            <s:div cssClass="site-wrapper-inner">
-                
+            <s:div cssClass="site-wrapper-inner"> 
                 <!--Barra de Navegacion-->
                 <nav class="navbar navbar-default">
                     <div class="container">
-                        
                         <div class="navbar-header">
                             <a class="navbar-brand" > E-SIBE: Profesor</a>
                         </div>
@@ -60,95 +58,93 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#">Inicio</a></li>
                                 <li><a href="Actividades_Profesor">
-                                        Validación de Actividades</a>
-                                </li>
+                                        Validación de Actividades</a></li>
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="Cerrar_sesion">
                                       Cerrar Sesion</a></li>
                             </ul>
-                          </div>
+                        </div>
                     </div>
                 </nav>
                 
-                
-                    
                 <div class="cover-container2 ">    
                     <div class="container">
                         <div class="row ">
-                    <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
-                         col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
-                         col-sm-offset-2 ">
+                            <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
+                                col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
+                                col-sm-offset-2 ">
 
-                        <h2 class="titulos">Bienvenido Profesor</h2>
+                                <h2 class="titulos">Bienvenido Profesor</h2>
                         
-                        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
-                        <s:set var="username" value="%{#session.username}" />
-                        <jsp:useBean id="username" type="java.lang.String"/>
-                            <%
-                            String mystring = username;
-                             ResultSet rs=null;
-                             lb.getConnection();
-                             rs=lb.executeQuery("SELECT nom_usuario, u_a, id_usuario "
-                                     + "FROM usuario WHERE id_usuario = " 
-                                     + mystring);
-                             out.print("<table  class=' table "
-                                     + "table-container table-striped "
-                                     + "table-responsive '>");
-                             while (rs.next()){
-                                 out.print("<tr>");
-                                 out.print("<th>");
-                                 out.print("Nombre de profesor");
-                                 out.print("</th>");
-                                 out.print("<td>");
-                                 out.print(rs.getString("nom_usuario"));
-                                 out.print("</td>");
-
-                                 out.print("</tr>");
-                                 out.print("<tr>");
-                                 out.print("<th>");
-                                 out.print("No. de Empleado");
-                                 out.print("</th>");
-                                 out.print("<td>");
-                                 out.print(rs.getString("id_usuario"));
-                                 out.print("</td>");
-                                 
-                                 out.print("</tr>");
-                                 out.print("<tr>");
-                                 out.print("<th>");
-                                 out.print("Unidad Académica");
-                                 out.print("</th>");
-                                 out.print("<td>");
-                                 out.print(rs.getString("u_a"));    
-                                 out.print("</td>");
-                    
-                                 out.print("</tr>");
-
-                             }
-                             out.print("</table>");
-                             //lb.closeConnection();
-                            %>
-                        </div>    
-                    </div>
-                    
-                            
-                        </div>
-                        </div>
-                        <div align="center">
+                                <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+                                <s:set var="username" value="%{#session.username}" />
+                                <jsp:useBean id="username" type="java.lang.String"/>
                                 <%
-                                out.print("<p>");
-                                out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
-                                        username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
-                                                + "</a>");
-                                out.print("</p>");
+                                    String mystring = username;
+                                    ResultSet rs=null;
+                                    lb.getConnection();
+                                    rs=lb.executeQuery("SELECT nom_usuario, u_a, id_usuario "
+                                            + "FROM usuario WHERE id_usuario = " 
+                                            + mystring);
+                                    out.print("<table  class=' table "
+                                            + "table-container table-striped "
+                                            + "table-responsive '>");
+                                    while (rs.next()){
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("Nombre de profesor");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rs.getString("nom_usuario"));
+                                        out.print("</td>");
+
+                                        out.print("</tr>");
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("No. de Empleado");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rs.getString("id_usuario"));
+                                        out.print("</td>");
+
+                                        out.print("</tr>");
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("Unidad Académica");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rs.getString("u_a"));    
+                                        out.print("</td>");
+
+                                        out.print("</tr>");
+
+                                    }
+                                    out.print("</table>");
+                                    //lb.closeConnection();
                                 %>
-                                <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >
-                                    <s:hidden name="username" label="Matrícula"/>
-                                    <s:submit value="Generar reporte de actividades"/>
-                                </s:form>
+                            </div>    
+                        </div>        
                     </div>
-                                <h2>Fechas de registro de actividades</h2>
+                </div>
+                <div align="center">
+                    <%
+                    out.print("<p>");
+                    out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
+                            username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
+                                    + "</a>");
+                    out.print("</p>");
+                    %>
+                    <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >
+                        <s:hidden name="username" label="Matrícula"/>
+                        <s:submit value="Generar reporte de actividades"/>
+                    </s:form>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Fechas de registro de actividades</h2>
+                        <br>
                         <%
                             ResultSet rf1, rf2, rf3;
                             rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
@@ -175,6 +171,8 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                             
                             //lb.closeConnection();
                         %>
+                    </div>
+                    <div class="col-md-4">         
                         <h2>Fechas de evaluaciones de actividades</h2>
                         <%
                             rf2=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
@@ -201,8 +199,10 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                             
                             //lb.closeConnection();
                         %>
-                        
-                        <h2>Fechas de evaluaciones de actividades</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Fechas de apelaciones</h2>
+                        <br>
                         <%
                             rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
                             out.print("<table  class='table table-striped table-condensed'>");
@@ -228,11 +228,10 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                             
                             lb.closeConnection();
                         %>
-                
+                    </div>
+                </div>    
             </s:div>
         </s:div>  
-         
-        
         
         <!--footer-->
         <footer class="footer">

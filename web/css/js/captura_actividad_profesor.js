@@ -71,7 +71,7 @@ function mostrar_formulario(clicked_id)
         document.getElementById("EVENTOS_FORM").style.display = "none";
         document.getElementById("PROYECTO_FORM").style.display = "none";
         document.getElementById("INDA_FORM").style.display = "block";
-        document.getElementById("TESIS_FORM").style.display = "none";
+        
         document.getElementById("TT_FORM").style.display = "none";
         document.getElementById("PART_FORM").style.display="none";
     } 

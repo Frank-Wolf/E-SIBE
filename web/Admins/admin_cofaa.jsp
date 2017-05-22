@@ -44,7 +44,7 @@
                 
                                     
                 <nav class="navbar navbar-default">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="navbar-header">
                             <a class="navbar-brand" >E-SIBE: Administrador COFAA</a>
                         </div>
@@ -54,6 +54,7 @@
                                 <li><a href="Reg_Acti">Registro de actividades</a></li>
                                 <li><a href="Apelaciones">Apelaciones</a></li>
                                 <li><a href="Evaluaciones">Evaluaciones</a></li>
+                                <li><a href="Reportes">Reportes</a></li>
                             </ul>
                             
                             <ul class="nav navbar-nav navbar-right">
@@ -125,67 +126,73 @@
                     </div>
                         <div align="center">
                             <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
-                      <s:submit value="Generar reporte de periodo de beca por exclusividad"/>
+                      <s:submit value="Generar reporte de periodo de beca por exclusividad" cssClass="btn"/>
                   </s:form> 
                         </div>
                             
                         </div>
                     </div> 
                     <!-- Tabla donde se muestran los usuarios Activos-->    
-                    <h2>Fechas de registro de actividades</h2>
-                        <%
-                            ResultSet rf1, rf2, rf3;
-                            rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
-                            out.print("<table  class='table table-striped table-condensed'>");
-                            while(rf1.next()){
-                                out.print("<tr>");
-                                out.print("<th>");
-                                out.print("Fecha de inicio");
-                                out.print("</th>");
-                                out.print("<td>");
-                                out.print(rf1.getString("fecha_inicio"));
-                                out.print("</td>");
-                                out.print("</tr>");
-                                out.print("<tr>");
-                                out.print("<th>");
-                                out.print("Fecha de termino");
-                                out.print("</th>");
-                                out.print("<td>");
-                                out.print(rf1.getString("fecha_fin"));    
-                                out.print("</td>");
-                                out.print("</tr>");
-                            }
-                            out.print("</table>");
-                            
-                            //lb.closeConnection();
-                        %>
-                        <h2>Fechas de evaluaciones de actividades</h2>
-                        <%
-                            rf2=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
-                            out.print("<table  class='table table-striped table-condensed'>");
-                            while(rf2.next()){
-                                out.print("<tr>");
-                                out.print("<th>");
-                                out.print("Fecha de inicio");
-                                out.print("</th>");
-                                out.print("<td>");
-                                out.print(rf2.getString("fecha_inicio"));
-                                out.print("</td>");
-                                out.print("</tr>");
-                                out.print("<tr>");
-                                out.print("<th>");
-                                out.print("Fecha de termino");
-                                out.print("</th>");
-                                out.print("<td>");
-                                out.print(rf2.getString("fecha_fin"));    
-                                out.print("</td>");
-                                out.print("</tr>");
-                            }
-                            out.print("</table>");
-                            
-                            //lb.closeConnection();
-                        %>
-                        
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>Fechas de registro de actividades</h2>
+                                <%
+                                    ResultSet rf1, rf2, rf3;
+                                    rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
+                                    out.print("<table  class='table table-striped table-condensed'>");
+                                    while(rf1.next()){
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("Fecha de inicio");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rf1.getString("fecha_inicio"));
+                                        out.print("</td>");
+                                        out.print("</tr>");
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("Fecha de termino");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rf1.getString("fecha_fin"));    
+                                        out.print("</td>");
+                                        out.print("</tr>");
+                                    }
+                                    out.print("</table>");
+
+                                    //lb.closeConnection();
+                                %>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Fechas de evaluaciones de actividades</h2>
+                            <%
+                                rf2=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
+                                out.print("<table  class='table table-striped table-condensed'>");
+                                while(rf2.next()){
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print("Fecha de inicio");
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(rf2.getString("fecha_inicio"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print("Fecha de termino");
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(rf2.getString("fecha_fin"));    
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                                out.print("</table>");
+
+                                //lb.closeConnection();
+                            %>
+                        </div>
+                        <div class="col-md-3">
                         <h2>Fechas de apelaciones de actividades rechazadas</h2>
                         <%
                             rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
@@ -212,7 +219,8 @@
                             
                             lb.closeConnection();
                         %>
-                  
+                        </div>
+                    </div>
             </s:div>  
         </s:div>        
 

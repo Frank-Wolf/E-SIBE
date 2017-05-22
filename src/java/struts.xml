@@ -627,6 +627,18 @@
             <result>/INDAUTOR/INDAUTOR.jsp</result>
         </action>
         
+        <action name="Reportes">
+            <result>/Admins/Reportes.jsp</result>
+        </action>
+        
+        <action name="Reportes_Evaluadores">
+            <result>/Admins/Reportes_Evaluadores.jsp</result>
+        </action>
+        
+        <action name="Reportes_Actividades">
+            <result>/Admins/Reportes_Actividades.jsp</result>
+        </action>
+        
         <action name="reg_obra">
             <result>/INDAUTOR/registra_obra.jsp</result>
         </action>

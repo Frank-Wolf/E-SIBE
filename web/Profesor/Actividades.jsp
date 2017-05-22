@@ -132,6 +132,8 @@
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
                              <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                         
+                         
                             <%
                             int l = 0;
                             ResultSet alumnos=null;
@@ -173,7 +175,8 @@
                             out.print("</table>");
                             
                         %> 
-                        <h2>Actividades Ya validadas</h2>
+                        <br>
+                        <h2 class="letritas">Actividades Ya validadas</h2>
                          <%
                             
                             ResultSet alumnos2=null;
@@ -241,7 +244,6 @@
                         <h2 class="letritas">Actividades por registrar en este módulo</h2>
                         <h2 class="subtitulos">Tipo de publicacion: 1.- En boletin, 2.- Nacional sin arbitraje, 3.- Internacional sin arbitraje, 4.- Nacional con arbitraje, 5.- Nacional sin Arbitraje</h2>
                         <%
-                            
                             ResultSet rs=null;
                             
                             rs=lb.executeQuery("SELECT id_publicacion, id_tipo_pub "
@@ -282,6 +284,49 @@
                             out.print("</table>");
                             
                         %>          
+                        <h2 class="letritas">Actividades Ya validadas</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: 1.- En boletin, 2.- Nacional sin arbitraje, 3.- Internacional sin arbitraje, 4.- Nacional con arbitraje, 5.- Nacional sin Arbitraje</h2>
+                        <%
+                            ResultSet rs1=null;
+                            
+                            rs1=lb.executeQuery("SELECT id_publicacion, id_tipo_pub "
+                                     + "FROM profesor_tiene_pub WHERE id_usuario = "+ username +" and validado=1 and id_evento='0'");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("ID de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de Publicacion");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rs1.next())
+                            {
+                                ResultSet publica1=lb.executeQuery("select Nom_Public from publicacion where id_publicacion='"+rs.getString("id_publicacion")+"' and id_tipo_pub='"+rs.getString("id_tipo_pub")+"'");
+                                while(publica1.next())
+                                {
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(rs1.getString("id_publicacion"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(publica1.getString("Nom_Public"));
+                                    out.print("</td>");
+                                    out.print("<td>");
+                                    out.print(rs1.getString("id_tipo_pub"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            
+                        %>          
                     </s:div>     
 
                     <!--EVENTOS FORM-->        
@@ -291,7 +336,7 @@
                         <s:form action="valida_evento" method="post" enctype="multipart/form-data">
                             <s:textfield name="id_evento" label="ID del Evento Académico" cssClass="form-control" />
                             <s:textfield name="id_publicacion" label="Número de Publicación" cssClass="form-control" />
-                            <s:select label="Seleccione la dependecia con la que participó" cssClass="form-control"
+                            <s:select label="Seleccione el tipo de publicación que realizó" cssClass="form-control"
                             headerKey="-1" headerValue="Tipo de publicacion"
                             list="# {
                             '6':'Institucional, sin ponencia publicada',
@@ -357,7 +402,57 @@
                             out.print("</table>");
                             
                         %>    
+                        <h2 class="letritas">Actividades Ya registradas</h2>
+                        <h2 class="subtitulos">Tipo de publicacion: 6 .-Institucional( Sin ponencia), 7.-Institucional (con resumen publicado), 8.-Institucional (publicado en extenso)</h2>
+                        <%
                             
+                            ResultSet rws1=null;
+                            
+                            rws1=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_tiene_pub WHERE id_usuario = "+ username +" and validado=1 and id_evento<>'0'");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("ID del Evento");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Numero de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de Publicacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de Publicacion");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (rws1.next())
+                            {
+                                ResultSet ev2=lb.executeQuery("select Nom_Public from publicacion where id_publicacion='"+rws1.getString("id_publicacion")+"' and id_tipo_pub='"+rws1.getString("id_tipo_pub")+"'");
+                                while(ev2.next())
+                                {
+                                    
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(rws1.getString("id_evento"));
+                                    out.print("</th>");
+                                    out.print("<th>");
+                                    out.print(rws1.getString("id_publicacion"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(ev2.getString("Nom_Public"));
+                                    out.print("</td>");
+                                    out.print("<td>");
+                                    out.print(rws1.getString("id_tipo_pub"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            
+                        %>        
                     </s:div> 
 
                     <!--PROYECTO DE INVESTIGACIÖN SIP FORM-->
@@ -410,7 +505,46 @@
                             }
                             out.print("</table>");
                             
+                        %>
+                       
+                        <h2 class="letritas">Actividades por registrar en este módulo</h2>
+                        <%
+                            
+                            ResultSet proyecto1=null;
+                            
+                            proyecto1=lb.executeQuery("SELECT id_proyecto "
+                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado=1 and id_alumno=0");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de Proyecto");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (proyecto1.next())
+                            {
+                                ResultSet pr1=lb.executeQuery("select * from proyecto where id_proyecto='"+proyecto1.getString("id_proyecto")+"'");
+                                while(pr1.next())
+                                {
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(proyecto1.getString("id_proyecto"));
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(pr1.getString("nom_proyecto"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            
                         %> 
+                        
                     </s:div>    
 
                     <!--PROPIEDAD INTELECTUAL FORM-->
@@ -427,6 +561,7 @@
                         
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
+                        <h2 class="letritas"> Actividades por validar en este módulo</h2>    
                         <%
                             
                             ResultSet obra=null;
@@ -463,7 +598,43 @@
                             }
                             out.print("</table>");
                         %>            
-                           
+                        <h2 class="letritas"> Actividades por validar en este módulo</h2>    
+                        <%
+                            
+                            ResultSet obra1=null;
+                            
+                            obra1=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=1");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Obra");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre de obra");
+                            out.print("</th>");
+                            
+                            out.print("</tr>");
+                            while (obra1.next())
+                            {
+                                ResultSet ob1=lb.executeQuery("select nom_obra from obra where id_obra='"+obra1.getString("id_obra")+"'");
+                                while(ob1.next())
+                                {
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print(obra1.getString("id_obra"));
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(ob1.getString("nom_obra"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                        %>       
                     </s:div>      
 
                     <!--TT_CURRICULAR FORM-->
@@ -479,7 +650,7 @@
                             <s:hidden name="activity"/>
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>
-                        
+                            <h2 class="letritas"> Actividades por validar en este módulo</h2>
                             <%
                             
                             ResultSet tt=null;
@@ -523,7 +694,50 @@
                             }
                             out.print("</table>");
                         %>
+                        <h2 class="letritas"> Actividades validadas </h2>
+                            <%
                             
+                            ResultSet tt1=null;
+                            
+                            tt1=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_tiene_tt WHERE id_usuario = "+ username +" and validado=1");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de TT o Tesis");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Nombre del Trabajo");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Matricula del Alumno");
+                            out.print("</th>");
+                            
+                            out.print("</tr>");
+                            while (tt1.next())
+                            {
+                                ResultSet ToT1=lb.executeQuery("select nom_TT from tt where id_TT='"+tt1.getString("id_TT")+"'");
+                                while(ToT1.next())
+                                {
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print(tt1.getString("id_TT"));
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(ToT1.getString("nom_TT"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(tt1.getString("id_alumno"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                
+                                }
+                            }
+                            out.print("</table>");
+                        %>    
                     </s:div>    
                     
                     <s:div id="PART_FORM"  cssClass="col-lg-9 cover-inner" align="center" style="display:none;">    
@@ -602,8 +816,59 @@
                             }
                             out.print("</table>");
                             lb.closeConnection();
+                        %>
+                         <h2 class="letritas">Actividades ya validadas</h2>
+                        <%
+                            
+                            ResultSet participacion1=null;
+                            
+                            participacion1=lb.executeQuery("SELECT * "
+                                     + "FROM profesor_participa_en_plan WHERE id_usuario = "+ username +" and validado=0");
+                            
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero Participacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Asignatura");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Unidad Academica con la que colaboro");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de participacion");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            while (participacion1.next())
+                            {
+                                ResultSet part1=lb.executeQuery("select asignatura, u_a from part_plan_est where id_part='"+participacion1.getString("id_part")+"'");
+                                while(part1.next())
+                                {
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print(participacion1.getString("id_part"));
+                                    out.print("</th>");
+
+                                    out.print("<td>");
+                                    out.print(part1.getString("asignatura"));
+                                    out.print("</td>");
+
+                                    out.print("<td>");
+                                    out.print(part1.getString("u_a"));
+                                    out.print("</td>");
+
+                                    out.print("<td>");
+                                    out.print(participacion1.getString("id_tipo_part"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                            out.print("</table>");
+                            lb.closeConnection();
                         %>   
-                        
                     </s:div>    
                 
                 
