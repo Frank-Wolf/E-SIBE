@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="java.sql.*" %>
+<s:set var="username" value="%{#session.username}" />
+<jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,22 +59,131 @@
                           </div>
                     </div>
                 </nav>
-                
-REPORTES
-                
                  <div class="cover-container2 ">    
                     <div class="container">
-                        
-                        <div align="center">
-                            <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
-                                <s:submit value="Generar reporte de periodo de beca por exclusividad" cssClass="btn"/>
-                            </s:form> 
-                        </div>
+                        <!-- Tabla donde se muestran los usuarios Activos-->
                             
                     </div> 
                 </div> 
                     <!-- Tabla donde se muestran los usuarios Activos-->    
-                    
+                    <jsp:useBean id="consulta" scope="session" class="PDF.Reporte_Final"/>
+                        <s:set var="username" value="%{#session.username}" />
+                    <jsp:useBean id="username" type="java.lang.String"/>
+                    <%
+                        //consulta = ;
+                        lb.getConnection();
+                        //int periodo = 0;;
+                        ResultSet ra = lb.executeQuery("SELECT * FROM evaluador_evalua_profesor");
+                        out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  Tabla de evaluadores con los profesores asignados  ");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print("Número de empleado de evaluador");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Número de empleado del profesor");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Puntaje total asignado");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Fecha de evaluación");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Periodo correspondiente");
+                            out.print("</td>");
+                            out.print("</tr>");
+                            while (ra.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(ra.getString("id_usuario_ev"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(ra.getString("id_usuario_prof"));//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(ra.getString("puntaje_final"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(ra.getString("fecha_ev"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("2017 - 2018");
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            
+                            ResultSet rb = lb.executeQuery("SELECT * FROM profesor");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  Lista de profesores participantes ");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print("Número de empleado");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Nivel beca (preliminar)");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Periodo");
+                            out.print("</td>");
+                            out.print("</tr>");
+                            while (rb.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rb.getString("id_usuario"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rb.getString("nivel"));//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("2017 - 2018");
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            ResultSet rs = lb.executeQuery("SELECT * FROM profesor");
+                            out.print("<table class='table table-striped'>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("  Actividades aceptadas por evaluador ");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            out.print("<tr>");
+                            out.print("<td>");
+                            out.print("Número de empleado del evaluador");
+                            out.print("</td>");
+                            out.print("<td>");
+                            out.print("Número de actividades aceptadas");
+                            out.print("</td>");
+                            out.print("</tr>");
+                            while (rb.next())
+                            {
+                                out.print("<tr>");
+                                out.print("<td>");
+                                out.print(rb.getString("id_usuario"));
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print(rb.getString("nivel"));//Aquí poner la ruta de los alumnos
+                                out.print("</td>");
+                                out.print("<td>");
+                                out.print("2017 - 2018");
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            lb.closeConnection();
+                    %>
             </s:div>  
         </s:div>        
 
