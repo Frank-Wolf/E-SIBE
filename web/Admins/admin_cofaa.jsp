@@ -52,8 +52,9 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="Admin_usuarios">Administrar usuarios COFAA</a></li>
                                 <li><a href="Reg_Acti">Registro de actividades</a></li>
-                                <li><a href="Apelaciones">Apelaciones</a></li>
                                 <li><a href="Evaluaciones">Evaluaciones</a></li>
+                                <li><a href="Apelaciones">Apelaciones</a></li>
+                                
                                 <li><a href="Reportes">Reportes</a></li>
                             </ul>
                             
