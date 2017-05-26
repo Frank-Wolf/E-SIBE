@@ -40,7 +40,7 @@
                 else if(x == 5)  {
                     document.getElementById("form1").style.visibility="hidden";  
                     document.getElementById("form2").style.visibility="hidden"; 
-                    document.getElementById("form3").style.visibility="visible";; 
+                    document.getElementById("form3").style.visibility="visible"; 
                 }
             }
         </script>

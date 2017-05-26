@@ -129,7 +129,11 @@
                         </div>
                     </div> 
                     <!-- Tabla donde se muestran los usuarios Activos-->    
-                    
+                    <div align="center">
+                            <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
+                                <s:submit value="Generar reporte de periodo de beca por exclusividad" cssClass="btn"/>
+                            </s:form> 
+                        </div>
                     <div class="row">
                         <div class="col-md-4">
                             <h2>Fechas de registro de actividades</h2>
