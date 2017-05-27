@@ -1,76 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-
-Copyright (c) 2006, 2016 Oracle and/or its affiliates. All rights reserved.
-
-Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-Other names may be trademarks of their respective owners.
-
-The contents of this file are subject to the terms of either the GNU
-General Public License Version 2 only ("GPL") or the Common
-Development and Distribution License("CDDL") (collectively, the
-"License"). You may not use this file except in compliance with the
-License. You can obtain a copy of the License at
-http://www.netbeans.org/cddl-gplv2.html
-or nbbuild/licenses/CDDL-GPL-2-CP. See the License for the
-specific language governing permissions and limitations under the
-License.  When distributing the software, include this License Header
-Notice in each file and include the License file at
-nbbuild/licenses/CDDL-GPL-2-CP.  Oracle designates this
-particular file as subject to the "Classpath" exception as provided
-by Oracle in the GPL Version 2 section of the License file that
-accompanied this code. If applicable, add the following below the
-License Header, with the fields enclosed by brackets [] replaced by
-your own identifying information:
-"Portions Copyrighted [year] [name of copyright owner]"
-
-If you wish your version of this file to be governed by only the CDDL
-or only the GPL Version 2, indicate your decision by adding
-"[Contributor] elects to include this software in this distribution
-under the [CDDL or GPL Version 2] license." If you do not indicate a
-single choice of license, a recipient has the option to distribute
-your version of this file under either the CDDL, the GPL Version 2 or
-to extend the choice of license to its licensees as provided above.
-However, if you add GPL Version 2 code and therefore, elected the GPL
-Version 2 license, then the option applies only if the new code is
-made subject to such option by the copyright holder.
-
-Contributor(s):
--->
 <project default="-deploy-ant" basedir=".">
-    <target name="-init" if="deploy.ant.enabled">
-        <property file="${deploy.ant.properties.file}"/>
-        <tempfile property="temp.module.folder" prefix="tomcat" destdir="${java.io.tmpdir}"/>
-        <unwar src="${deploy.ant.archive}" dest="${temp.module.folder}">
-            <patternset includes="META-INF/context.xml"/>
-        </unwar>
-        <xmlproperty file="${temp.module.folder}/META-INF/context.xml"/>
-        <delete dir="${temp.module.folder}"/>
+
+    <!-- Google App Engine Properties -->
+    <property name="appengine.location" value="C:\Program Files\appengine-java-sdk-1.9.53"/>
+    <property name="appengine.http.port" value="8080"/>
+    <property name="appengine.debug.port" value="8765"/>
+    <property name="appengine.manager.uri" value="deployer:appengine:localhost:8080/-1198750328"/>
+    
+    <property name="deploy.ant.enabled" value="false"/>
+    <property name="jvmargs" value=""/>
+    
+    <property name="appengine.jpa2" value="true"/>
+    
+
+    <!-- Import Google App Engine Macros -->
+    <import file="${appengine.location}/config/user/ant-macros.xml" />
+
+    <!-- Copy Google App Engine Runtime JARs -->
+    <target unless="${appengine.jpa2}" name="copyjars" description="Copies the App Engine JARs to the WAR." depends="init, dist">
+        <copy todir="${build.web.dir}/WEB-INF/lib" flatten="true">
+            <fileset dir="${appengine.location}/lib/user">
+                <include name="**/*.jar" />
+            </fileset>
+        </copy>
     </target>
-    <target name="-check-credentials" if="deploy.ant.enabled" depends="-init">
-        <fail message="Tomcat password has to be passed as tomcat.password property.">
-            <condition>
-                <not>
-                    <isset property="tomcat.password"/>
-                </not>
-            </condition>
-        </fail>
+
+    <target if="${appengine.jpa2}" name="copyjars-v2" description="Copies the App Engine JARs to the WAR." depends="init, dist">
+        <copy todir="${build.web.dir}/WEB-INF/lib" flatten="true">
+            <fileset dir="${appengine.location}/lib/user">
+                <include name="**/appengine-api-1.0-sdk*.jar" />
+            </fileset>
+            <fileset dir="${appengine.location}/lib/opt/user">
+                <include name="appengine-api-labs/v1/*.jar" />
+                <include name="jsr107/v1/*.jar" />
+                <include name="datanucleus/v2/*.jar" />
+            </fileset>
+        </copy>
     </target>
-    <target name="-deploy-ant" if="deploy.ant.enabled" depends="-init,-check-credentials">
-        <echo message="Deploying ${deploy.ant.archive} to ${Context(path)}"/>
-        <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"
-                 classpath="${tomcat.home}/server/lib/catalina-ant.jar"/>
-        <deploy url="${tomcat.url}/manager" username="${tomcat.username}"
-                password="${tomcat.password}" path="${Context(path)}"
-                war="${deploy.ant.archive}"/>
-        <property name="deploy.ant.client.url" value="${tomcat.url}${Context(path)}"/>
+
+    <!-- Data Nucleus JPA Enhancer -->
+    <target unless="${appengine.jpa2}" name="datanucleusenhance" description="Performs JDO enhancement on compiled data classes." depends="copyjars">
+        <enhance_war war="${build.web.dir}" />
     </target>
-    <target name="-undeploy-ant" if="deploy.ant.enabled" depends="-init,-check-credentials">
-        <echo message="Undeploying ${Context(path)}"/>
-        <taskdef name="undeploy"  classname="org.apache.catalina.ant.UndeployTask"
-                classpath="${tomcat.home}/server/lib/catalina-ant.jar"/>
-        <undeploy url="${tomcat.url}/manager" username="${tomcat.username}" 
-                  password="${tomcat.password}" path="${Context(path)}"/>
+    
+    <target if="${appengine.jpa2}" name="datanucleusenhance-v2" depends="copyjars-v2"
+            description="Performs enhancement on compiled data classes.">
+        <enhance_war war="${build.web.dir}">
+            <args>
+                <arg value="-enhancerVersion"/>
+                <arg value="v2"/>
+            </args>
+        </enhance_war>
+    </target>
+
+    <!-- Start Google App Engine Development Server -->
+    <target name="runserver" depends="datanucleusenhance,datanucleusenhance-v2"
+            description="Starts the development server.">
+        <dev_appserver war="${build.web.dir}" port="${appengine.http.port}" >
+            <options>
+                <arg line="${jvmargs}"/>
+            </options>
+        </dev_appserver>
+    </target>
+
+    <!-- Start Google App Engine Development Server In Debug Mode -->
+    <target name="runserver-debug" depends="datanucleusenhance,datanucleusenhance-v2"
+            description="Starts the development server.">
+        <dev_appserver war="${build.web.dir}" port="${appengine.http.port}" >
+            <options>
+                <arg value="--jvm_flag=-Xdebug"/>
+                <arg value="--jvm_flag=-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=${appengine.debug.port}"/>
+                <arg line="${jvmargs}"/>
+            </options>
+        </dev_appserver>
+    </target>
+
+    <!-- Start Google App Engine Development Server In Profile Mode -->
+    <target name="runserver-profile" depends="datanucleusenhance,datanucleusenhance-v2"
+            description="Starts the development server.">
+        <dev_appserver war="${build.web.dir}" port="${appengine.http.port}" >            
+            <options>
+                <arg line="${jvmargs}"/>
+            </options>
+        </dev_appserver>
+    </target>
+
+    <target name="-deploy-ant" if="${deploy.ant.enabled}">
+        <fail message="Undeploy is not supported for the current target server"/>
+    </target>
+
+    <target name="-undeploy-ant" if="${deploy.ant.enabled}">
+        <fail message="Undeploy is not supported for the current target server"/>
     </target>
 </project>
