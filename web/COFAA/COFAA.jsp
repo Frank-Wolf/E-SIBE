@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.sql.*" %>
+<jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+<s:set var="username" value="%{#session.username}" />
+<jsp:useBean id="username" type="java.lang.String"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,7 +64,96 @@
                     
                     <h2 class="titulos">Bienvenido Profesor Evaluador</h2>
                     
-                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>Fechas de registro de actividades</h2>
+                            
+                                <%
+                                    ResultSet rs=null;
+                                    lb.getConnection();
+                                    ResultSet rf1, rf2, rf3;
+                                    rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
+                                    out.print("<table  class='table table-striped table-condensed'>");
+                                    while(rf1.next()){
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("Fecha de inicio");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rf1.getString("fecha_inicio"));
+                                        out.print("</td>");
+                                        out.print("</tr>");
+                                        out.print("<tr>");
+                                        out.print("<th>");
+                                        out.print("Fecha de termino");
+                                        out.print("</th>");
+                                        out.print("<td>");
+                                        out.print(rf1.getString("fecha_fin"));    
+                                        out.print("</td>");
+                                        out.print("</tr>");
+                                    }
+                                    out.print("</table>");
+
+                                    //lb.closeConnection();
+                                %>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Fechas de evaluaciones de actividades</h2>
+                            <%
+                                rf2=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
+                                out.print("<table  class='table table-striped table-condensed'>");
+                                while(rf2.next()){
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print("Fecha de inicio");
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(rf2.getString("fecha_inicio"));
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                    out.print("<tr>");
+                                    out.print("<th>");
+                                    out.print("Fecha de termino");
+                                    out.print("</th>");
+                                    out.print("<td>");
+                                    out.print(rf2.getString("fecha_fin"));    
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                                out.print("</table>");
+
+                                //lb.closeConnection();
+                            %>
+                        </div>
+                        <div class="col-md-3">
+                        <h2>Fechas de apelaciones de actividades rechazadas</h2>
+                        <%
+                            rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
+                            out.print("<table  class='table table-striped table-condensed'>");
+                            while(rf3.next()){
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de inicio");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf3.getString("fecha_inicio"));
+                                out.print("</td>");
+                                out.print("</tr>");
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Fecha de termino");
+                                out.print("</th>");
+                                out.print("<td>");
+                                out.print(rf3.getString("fecha_fin"));    
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                            out.print("</table>");
+                            
+                            lb.closeConnection();
+                        %>
+                        </div>
+                    </div>
                 </s:div>
             </s:div>  
               

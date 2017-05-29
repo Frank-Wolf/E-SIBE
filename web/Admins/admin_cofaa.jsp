@@ -52,9 +52,9 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="Admin_usuarios">Administrar usuarios COFAA</a></li>
                                 <li><a href="Reg_Acti">Registro de actividades</a></li>
-                                
                                 <li><a href="Evaluaciones">Evaluaciones</a></li>
                                 <li><a href="Apelaciones">Apelaciones</a></li>
+                                
                                 <li><a href="Reportes">Reportes</a></li>
                             </ul>
                             
@@ -125,16 +125,15 @@
                             %>
                         </div>    
                     </div>
-                        <div align="center">
-                            <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
-                      <s:submit value="Generar reporte de periodo de beca por exclusividad" cssClass="btn"/>
-                  </s:form> 
-                        </div>
                             
                         </div>
                     </div> 
                     <!-- Tabla donde se muestran los usuarios Activos-->    
-                    
+                    <div align="center">
+                            <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
+                                <s:submit value="Generar reporte de periodo de beca por exclusividad" cssClass="btn"/>
+                            </s:form> 
+                        </div>
                     <div class="row">
                         <div class="col-md-4">
                             <h2>Fechas de registro de actividades</h2><br/>

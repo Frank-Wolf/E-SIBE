@@ -364,6 +364,7 @@ public class Reporte_Final {
          private PdfPTable tabla_num_prof() throws Exception{
              PdfPTable tabla_num = new PdfPTable(2);
              tabla_num.setWidths(new int[]{2,2});
+             String periodo = "";
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Número total de evaluadores y profesores "
                         + "participantes", encabezadost));
                 PdfPCell evaluador = new PdfPCell(new Phrase("Número de evaluadores"));
@@ -391,12 +392,13 @@ public class Reporte_Final {
                 String numberAsString;// = Integer.toString(number);
                 while(re.next()){
                     i++;
+                    periodo = re.getString("periodo_actual");
                 }
                 //System.out.println(i);
                 numberAsString = Integer.toString(i);
                 tabla_num.addCell(numberAsString);
                 i = 0;
-                rp = lb.executeQuery("SELECT * FROM profesor");
+                rp = lb.executeQuery("SELECT * FROM profesor WHERE periodo = " + periodo);
                 while(rp.next()){
                    i++;
                 }
