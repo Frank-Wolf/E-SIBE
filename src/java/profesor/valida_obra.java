@@ -28,18 +28,24 @@ public class valida_obra extends ActionSupport{
            
    
     public String execute() throws Exception {
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
+        destPath += getUsername() + "\\" + getActivity() + "\\";
+        
         
         if(id_obra.equals(""))
         {
             addFieldError("id_obra","Este campo no puede ser vacio");
             return ERROR;
         }    
-    
+        
+        System.out.println("Empiezo");
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
         ResultSet obra=lb.executeQuery("select * from obra where id_obra='"+id_obra+"'");
         while(obra.next())
         {
+            System.out.println("Busco obra");
             ResultSet rela=lb.executeQuery("select * from profesor_tiene_obra where id_obra='"+id_obra+"' and id_usuario='"+username+"'");
             while(rela.next())
             {
@@ -52,6 +58,7 @@ public class valida_obra extends ActionSupport{
                         /***Asignar periodo****/
                 int r=lb.executeUpdate("update profesor_tiene_obra set validado=1, periodo = " + periodo + " where id_obra='"+id_obra+"' "
                         + "and id_usuario='"+username+"' and validado=0");
+                System.out.println("Lito");
                 if(r<1)
                 {
                     addFieldError("id_obra","Esta obra ya fue registrada");
@@ -67,9 +74,10 @@ public class valida_obra extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\Users\\\\le_as\\\\Documents\\\\Pruebas\\\\"
+                                //int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_obra = " + getId_obra());
+                                    + "WHERE id_obra = '" + getId_obra()+"'");
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

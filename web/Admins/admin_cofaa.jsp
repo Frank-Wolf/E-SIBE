@@ -52,8 +52,9 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="Admin_usuarios">Administrar usuarios COFAA</a></li>
                                 <li><a href="Reg_Acti">Registro de actividades</a></li>
-                                <li><a href="Apelaciones">Apelaciones</a></li>
+                                
                                 <li><a href="Evaluaciones">Evaluaciones</a></li>
+                                <li><a href="Apelaciones">Apelaciones</a></li>
                                 <li><a href="Reportes">Reportes</a></li>
                             </ul>
                             
@@ -136,7 +137,7 @@
                     
                     <div class="row">
                         <div class="col-md-4">
-                            <h2>Fechas de registro de actividades</h2>
+                            <h2>Fechas de registro de actividades</h2><br/>
                                 <%
                                     ResultSet rf1, rf2, rf3;
                                     rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
@@ -193,7 +194,7 @@
                             %>
                         </div>
                         <div class="col-md-3">
-                        <h2>Fechas de apelaciones de actividades rechazadas</h2>
+                        <h2>Fechas de apelaciones</h2> <br/>
                         <%
                             rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
                             out.print("<table  class='table table-striped table-condensed'>");
