@@ -68,7 +68,8 @@ public class valida_publicacion extends ActionSupport{
    
     @Override
     public String execute() throws Exception {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
         if(id_publicacion.equals(""))
@@ -96,7 +97,7 @@ public class valida_publicacion extends ActionSupport{
         {
             ResultSet pub_prof=lb.executeQuery("select * from profesor_tiene_pub where validado=0 and id_evento='0' and id_usuario="+username+" and id_publicacion='"+id_publicacion+"' and id_tipo_pub="+id_tipo_pub+"");
             while(pub_prof.next())
-            {   
+            {    
                 System.out.println("Encontre la publicacion");
                 /***Asignar periodo****/
                         int periodo = 0;

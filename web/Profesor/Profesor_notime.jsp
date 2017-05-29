@@ -38,15 +38,10 @@
                 </div>
             </s:div>
         </header>
-       
-       
-           
-        
+
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
             <s:div cssClass="site-wrapper-inner">
-                
-                                    
                 <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
@@ -66,9 +61,10 @@
                                 <li><a href="Cerrar_sesion">
                                       Cerrar Sesion</a></li>
                             </ul>
-                          </div>
+                        </div>
                     </div>
                 </nav>
+                
                 <h2 class="titulos">Bienvenido Profesor</h2>
                 <s:div cssClass="cover-container2" align="center"> 
                     <div class="container row">
@@ -118,10 +114,12 @@
                                     <s:hidden name="username" label="Matrícula"/>
                                     <s:submit value="Generar reporte de actividades"/>
                                 </s:form>
+                        </div>
                     </div>
-             
-           
-                    <h2>Fechas de registro de actividades</h2>
+           <div class="row">
+                    <div class="col-md-4">
+                        <h2>Fechas de registro de actividades</h2>
+                        <br>
                         <%
                             ResultSet rf1, rf2, rf3;
                             rf1=lb.executeQuery("SELECT * FROM fecha_actividades");
@@ -146,6 +144,8 @@
                             }
                             out.print("</table>");
                         %>
+                    </div>
+                    <div class="col-md-4">         
                         <h2>Fechas de evaluaciones de actividades</h2>
                         <%
                             rf2=lb.executeQuery("SELECT * FROM fecha_evaluaciones");
@@ -170,8 +170,10 @@
                             }
                             out.print("</table>");
                         %>
-                        
-                        <h2>Fechas de evaluaciones de actividades</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Fechas de apelaciones</h2>
+                        <br>
                         <%
                             rf3=lb.executeQuery("SELECT * FROM fecha_apelaciones");
                             out.print("<table  class='table table-striped table-condensed'>");
@@ -197,9 +199,10 @@
                             
                             lb.closeConnection();
                         %>
+                    </div>
+                </div>
                 </s:div>
-            </s:div>
-                        
+            </s:div>         
         </s:div>        
         
                         

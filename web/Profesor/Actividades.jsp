@@ -33,7 +33,7 @@
         
     </head>
     
-    <body background="../css/textura.png" class="container-fluid" style="overflow: scroll">
+    <body background="../css/textura.png" class="container-fluid" style="overflow-y:auto; overflow-x:hidden;">
         <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
         <s:set var="username" value="%{#session.username}" />
         <jsp:useBean id="username" type="java.lang.String"/>
@@ -506,7 +506,7 @@
                             out.print("</table>");
                             
                         %>
-                       
+                       <br/><br/>
                         <h2 class="letritas">Actividades por registrar en este módulo</h2>
                         <%
                             
@@ -559,16 +559,13 @@
                             <s:hidden name="username" label="Matrícula"/>
                             <s:textfield name="id_obra" label="Número de Obra" cssClass="form-control"/>
                         
-                            <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
+                            <s:submit cssClass="btn" value  = "Ingresar"><span></span></s:submit>
                         </s:form>
                         <h2 class="letritas"> Actividades por validar en este módulo</h2>    
                         <%
-                            
-                            ResultSet obra=null;
-                            
+                            ResultSet obra=null;  
                             obra=lb.executeQuery("SELECT * "
                                      + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=0");
-                            
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
                                      + "table-responsive '>");
@@ -579,7 +576,6 @@
                             out.print("<th>");
                             out.print("Nombre de obra");
                             out.print("</th>");
-                            
                             out.print("</tr>");
                             while (obra.next())
                             {
@@ -597,8 +593,8 @@
                                 }
                             }
                             out.print("</table>");
-                        %>            
-                        <h2 class="letritas"> Actividades por validar en este módulo</h2>    
+                        %>           <br/><br/> 
+                        <h2 class="letritas"> Actividades por validadas</h2>    
                         <%
                             
                             ResultSet obra1=null;
@@ -693,7 +689,7 @@
                                 }
                             }
                             out.print("</table>");
-                        %>
+                        %><br/><br/>
                         <h2 class="letritas"> Actividades validadas </h2>
                             <%
                             
@@ -815,15 +811,16 @@
                                 }
                             }
                             out.print("</table>");
-                            lb.closeConnection();
+                            
                         %>
-                         <h2 class="letritas">Actividades ya validadas</h2>
+                        <br/><br/>
+                         <h2 class="">Actividades ya validadas</h2>
                         <%
                             
                             ResultSet participacion1=null;
                             
                             participacion1=lb.executeQuery("SELECT * "
-                                     + "FROM profesor_participa_en_plan WHERE id_usuario = "+ username +" and validado=0");
+                                     + "FROM profesor_participa_en_plan WHERE id_usuario = "+ username +" and validado=1");
                             
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
@@ -868,10 +865,12 @@
                             }
                             out.print("</table>");
                             lb.closeConnection();
-                        %>   
+                        %>
+                        <br />
+                        <br />
+                        <br />
                     </s:div>    
-                
-                
+                         
                 </div><!--Contenido-->    
                 
                
@@ -883,7 +882,7 @@
         
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer" style="position:fixed;">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>

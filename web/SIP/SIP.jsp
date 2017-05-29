@@ -63,7 +63,7 @@
                          col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
                          col-sm-offset-2 ">
 
-                        <h2 class="titulos">Bienvenido Administrador SIP</h2>
+                        <h2 class="titulos">Bienvenido Usuario SIP</h2>
                         
                         <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
                         <s:set var="username" value="%{#session.username}" />
