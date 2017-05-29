@@ -145,8 +145,6 @@
                                 out.print("</tr>");
                             }
                             out.print("</table>");
-                            
-                            //lb.closeConnection();
                         %>
                         <h2>Fechas de evaluaciones de actividades</h2>
                         <%
@@ -171,8 +169,6 @@
                                 out.print("</tr>");
                             }
                             out.print("</table>");
-                            
-                            //lb.closeConnection();
                         %>
                         
                         <h2>Fechas de evaluaciones de actividades</h2>
