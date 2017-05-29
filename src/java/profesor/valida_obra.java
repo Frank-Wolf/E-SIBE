@@ -28,7 +28,8 @@ public class valida_obra extends ActionSupport{
            
    
     public String execute() throws Exception {
-        
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_obra.equals(""))
         {
             addFieldError("id_obra","Este campo no puede ser vacio");
