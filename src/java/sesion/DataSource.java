@@ -23,7 +23,7 @@ public class DataSource { //accesible a traves de paquete
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         //ds.setUsername("root");/*original*/
         //ds.setPassword("root");
-        ds.setUsername("bfe1cf218d8990");/*original*/
+        ds.setUsername("bfe1cf218d8990");
         ds.setPassword("7056c8ee");
         ds.setUrl("jdbc:mysql://us-cdbr-azure-southcentral-f.cloudapp.net:3306/esibe_2017");
      // settings

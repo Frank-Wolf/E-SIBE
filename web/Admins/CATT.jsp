@@ -116,8 +116,8 @@
                         <s:set name="counter" value="#varName"/> <!-- prints 0 -->
                         <s:form action="Registra_CATT">
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
-                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="Matricula" cssClass="form-control" maxlength="8" type="number"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control" maxlength="15" minlength="7"/>
                             <s:textfield name="email" label="Correo electronico" cssClass="form-control"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             
