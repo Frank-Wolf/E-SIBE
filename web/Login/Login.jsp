@@ -35,7 +35,7 @@
                     <div>
                     <s:div cssClass="" align ="center">
                         <s:form id="datos" action="/Usuario/Sesion" method="post"  >
-                            <s:textfield name="usuario" label="No. de Empleado" cssClass="form-control" style="width: 100%;"/>
+                            <s:textfield name="usuario" label="No. de Empleado" cssClass="form-control" style="width: 100%;" maxlength="8" type="number"/>
                             <s:password  name="pass" label="Contraseña" cssClass="form-control" style="width: 100%;" />
                             <s:submit cssClass="btn" value= "Ingresar"><span></span></s:submit>
                         </s:form>

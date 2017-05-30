@@ -18,13 +18,14 @@ import org.apache.commons.dbcp.BasicDataSource;
 public class DataSource { //accesible a traves de paquete
     private static DataSource datasource; //static significa que es una variable a nivel de clase
     private BasicDataSource ds;
-
     private DataSource() throws IOException, SQLException, PropertyVetoException {
         ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUsername("root");
-        ds.setPassword("root");
-        ds.setUrl("jdbc:mysql://localhost:3306/esibe");
+        //ds.setUsername("root");/*original*/
+        //ds.setPassword("root");
+        ds.setUsername("bfe1cf218d8990");
+        ds.setPassword("7056c8ee");
+        ds.setUrl("jdbc:mysql://us-cdbr-azure-southcentral-f.cloudapp.net:3306/esibe_2017");
      // settings
         ds.setMinIdle(5);
         ds.setMaxIdle(20);

@@ -118,9 +118,9 @@
                         <s:set name="idTypeUsuario" value="%{7}" />
                         <s:form id="datos3" action="/Usuario/Registra_SIP">
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="Matricula" cssClass="form-control" maxlength="8" type="number"/>
                             <s:textfield name='email' label="Correo electrónico" cssClass="form-control"/>
-                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control" maxlength="15" minlength="7"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>
                             <s:hidden name="counter" label="Número de usuarios registrados"/>

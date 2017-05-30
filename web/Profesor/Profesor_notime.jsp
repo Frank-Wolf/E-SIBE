@@ -143,8 +143,6 @@
                                 out.print("</tr>");
                             }
                             out.print("</table>");
-                            
-                            //lb.closeConnection();
                         %>
                     </div>
                     <div class="col-md-4">         
@@ -171,8 +169,6 @@
                                 out.print("</tr>");
                             }
                             out.print("</table>");
-                            
-                            //lb.closeConnection();
                         %>
                     </div>
                     <div class="col-md-4">

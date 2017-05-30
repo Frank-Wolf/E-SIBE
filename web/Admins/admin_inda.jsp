@@ -116,8 +116,8 @@
                         <s:set name="idTypeUsuario" value="%{8}" />
                         <s:form id="datos3" action="/Usuario/Registra_INDA">
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control"/>
-                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control" maxlength="8" type="number"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control" maxlength="15" minlength="7"/>
                             <s:textfield name='email' label="Correo electrónico" cssClass="form-control"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>

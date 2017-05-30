@@ -61,10 +61,10 @@
                         <s:textfield name="usuario" value="%{#id_user}" label="Nombre" cssClass="form-control"/>
                         <br>
                         <s:set var="id_prof"><%=id_prof%></s:set>
-                        <s:textfield name="matricula" value="%{#id_prof}" label="No: Empleado" cssClass="form-control"/>
+                        <s:textfield name="matricula" value="%{#id_prof}" label="No: Empleado" cssClass="form-control" maxlength="8" type="number"/>
                         <br>
                         <s:set var="id_password"><%=id_password%></s:set>
-                        <s:textfield name="password" value="%{#id_password}" label="Contraseña" cssClass="form-control"/>
+                        <s:textfield name="password" value="%{#id_password}" label="Contraseña" cssClass="form-control" maxlength="15" minlength="7"/>
                         <br>
                         <s:set var="user"><%=user%></s:set>
                         <s:hidden name="id" value="%{#user}"/>

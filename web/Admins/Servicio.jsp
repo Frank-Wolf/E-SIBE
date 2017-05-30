@@ -118,9 +118,9 @@
                         <s:set name="idTypeUsuario" value="%{10}" />
                         <s:form id="datos3" action="Registra_SS" >
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="Matricula" cssClass="form-control"/>
+                            <s:textfield name="matricula" label="Matricula" cssClass="form-control" maxlength="8" type="number"/>
                             <s:textfield name="email" label="Correo Electronico" cssClass="form-control"/>
-                            <s:textfield name="password" label="Contraseña" cssClass="form-control"/>
+                            <s:textfield name="password" label="Contraseña" cssClass="form-control" maxlength="15" minlength="7"/>
                             <s:hidden name="u_a" label="Dependencia"/>
                             <s:hidden name="periodo" label="Periodo"/>
                             <s:hidden name="idTypeUsuario" label="Tipo de usuario"/>

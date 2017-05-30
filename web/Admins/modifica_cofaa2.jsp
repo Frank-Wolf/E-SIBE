@@ -66,7 +66,7 @@
                         <s:set var="user"><%=user%></s:set>
                         <s:set var="email"><%=correo%></s:set>
                         <s:hidden name="id" value="%{#user}"/>
-                        <s:textfield label="Número de empleado" name="matricula" value="%{#user}" cssClass="form-control"/>
+                        <s:textfield label="Número de empleado" name="matricula" value="%{#user}" cssClass="form-control" maxlength="8" type="number"/>
                         <s:set var="id_prof"><%=id_prof%></s:set>
                         <br>
                         <s:textfield label="Correo electrónico" name="email" value="%{#email}" cssClass="form-control"/>
@@ -106,7 +106,7 @@
                         
                         <br>
                         <s:set var="id_password"><%=id_password%></s:set>
-                        <s:textfield label="Contraseña" name="password" value="%{#id_password}" cssClass="form-control" />
+                        <s:textfield label="Contraseña" name="password" value="%{#id_password}" cssClass="form-control" maxlength="15" minlength="7"/>
                         <br>
                         <s:submit cssClass="btn" value="Cambiar"/>
                     </s:form>
