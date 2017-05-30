@@ -35,16 +35,33 @@ public class valida_BEIFI extends ActionSupport
         destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_proyecto.equals("")){
             addFieldError("id_proyecto","Este campo es necesario");
-            
+        
         }
         
         if(id_alumno==0){
             addFieldError("id_alumno","Este campo es necesario");
             return ERROR;
         }
+        int periodox=0, numero = 0;
+        String limit="limit";
         
         profesor.LoginBean lb = new profesor.LoginBean();
+        
         lb.getConnection();
+        
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        
+        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo='"+periodox+"'");
+        if(cuenta.next())
+        {
+            numero = cuenta.getInt(1);
+            lb.closeConnection();
+            return limit;
+        }
         
         System.out.println(username);
         System.out.println(id_alumno);

@@ -252,9 +252,13 @@ public class Eventos extends ActionSupport{
                         return ERROR;
                     }
 
-                    addFieldError("id_publicacion","Esta publicacion ya fue registrada como evidencia de otra actividad");
+                    lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,ruta_alm,validado,fecha_val,puntaje,periodo)"
+                    + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
+                    
+                    lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
+                            + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
                     lb.closeConnection();
-                    return ERROR;
+                    return SUCCESS;
                 }
                 lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,ruta_alm,validado,fecha_val,puntaje,periodo)"
                     + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");

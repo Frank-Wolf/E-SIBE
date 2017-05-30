@@ -50,8 +50,9 @@ public class GenerateReportActivities {
         public String execute() throws Exception 
         {
              //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
-             FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
-             lb.getConnection();
+             //FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+             FILE = "C:\\Users\\le_as\\Documents\\Pruebas\\"  + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";
+            lb.getConnection();
              /*int i = 0;
              ResultSet ra;
              ra = lb.executeQuery("SELECT p.ruta_alm, pr.ruta_alm, t.ruta_alm, ob.ruta_alm, \n" +
@@ -118,16 +119,16 @@ public class GenerateReportActivities {
 
          private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
-            
-            cofaa.scalePercent(65);
-            IPN.scalePercent(55);
-            cofaa.setAbsolutePosition(480, 750);
-            IPN.setAbsolutePosition(35,740);
-            
-            document.add(cofaa);
-            document.add(IPN);
+//            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+//            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
+//            
+//            cofaa.scalePercent(65);
+//            IPN.scalePercent(55);
+//            cofaa.setAbsolutePosition(480, 750);
+//            IPN.setAbsolutePosition(35,740);
+//            
+//            document.add(cofaa);
+//            document.add(IPN);
         }
         
         private void addEncabezado(Document document) throws DocumentException 
@@ -618,13 +619,14 @@ public class GenerateReportActivities {
                 /**Get actual period***/
                 String id_obra = null, puntaje = null, comenta = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
+                        + "id_usuario = '" + getUsername() +"' AND (validado = 1 OR validado=0 ) AND periodo = " + periodo);
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
                     id_obra = rb.getString("id_obra");
                     Dos_cinco.addCell(id_obra);
                     Anchor anchor = new Anchor("Constancia");
-                    anchor.setReference(rb.getString("ruta_alm"));
+                    
+                    anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     Dos_cinco.addCell(anchor);
                     puntaje = rb.getString("puntaje");
                     Dos_cinco.addCell(puntaje);

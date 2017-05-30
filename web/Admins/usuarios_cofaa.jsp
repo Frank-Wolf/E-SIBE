@@ -22,7 +22,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Administrador COFAA</title>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding ">
         
         <!--header-->
         <header class="headering">
@@ -173,7 +173,7 @@
 
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer ">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>

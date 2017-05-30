@@ -254,8 +254,8 @@
                                 out.print("<a href='file:///" + rb.getString("ruta_alm") + "'>Ver constancia</a>");
                                 //out.print("<div class='box'><iframe src='file:///" + rb.getString("ruta_alm") + "' "
                                 //        + "width = '500px' height = '500px'></iframe></div>");
-                                out.print("<div class='box'><iframe src='http://en.wikipedia.org/' "
-                                        + "width = '100px' height = '100px'></iframe></div>");
+                                //out.print("<div class='box'><iframe src='http://en.wikipedia.org/' "
+                                       // + "width = '100px' height = '100px'></iframe></div>");
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/COFAA/Evalua_2_5.jsp?id="

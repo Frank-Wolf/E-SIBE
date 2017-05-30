@@ -57,7 +57,8 @@ public class Reporte_Final {
         LoginBean lb = new LoginBean();
         public  String execute() throws Exception 
         {
-            FILE = "C:\\psf\\Home\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
+            //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
+            FILE = "C:\\Users\\le_as\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
             lb.getConnection();
             
             try 
@@ -182,16 +183,16 @@ public class Reporte_Final {
         }
         private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
-            
-            cofaa.scalePercent(65);
-            IPN.scalePercent(55);
-            cofaa.setAbsolutePosition(480, 750);
-            IPN.setAbsolutePosition(35,740);
-            
-            document.add(cofaa);
-            document.add(IPN);
+//            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+//            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
+//            
+//            cofaa.scalePercent(65);
+//            IPN.scalePercent(55);
+//            cofaa.setAbsolutePosition(480, 750);
+//            IPN.setAbsolutePosition(35,740);
+//            
+//            document.add(cofaa);
+//            document.add(IPN);
         }
         
         private void addEncabezado(Document document) throws DocumentException 

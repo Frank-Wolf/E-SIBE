@@ -51,10 +51,10 @@
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#">Inicio</a></li>
                                 <li><a href="apelacion_prof">
-                                        Apelación de alguna actividad</a>
+                                        Apelar Actividad Rechazada</a>
                                 </li>
                                 <li><a href="actividad_aceptada">
-                                        Ver actividades evaluadas y aceptadas</a>
+                                        Actividades Aceptadas</a>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -102,10 +102,14 @@
                                  out.print("</table>");
                                 %>       
                         </div>
+                        
                        <div align="center">
                                 <%
                                 out.print("<p>");
-                                out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
+                                //out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
+                                //        username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
+                                //                + "</a>");
+                                out.print("<a href='file:///C:\\Users\\le_as\\Documents\\Pruebas\\" + 
                                         username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
                                                 + "</a>");
                                 out.print("</p>");
