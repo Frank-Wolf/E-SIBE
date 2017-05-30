@@ -58,6 +58,7 @@ public class Reporte_Final {
         public  String execute() throws Exception 
         {
             FILE = "C:\\psf\\Home\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
+            //FILE = "D:\\home\\site\\wwwroot\\Usuarios\\";
             lb.getConnection();
             
             try 
@@ -182,8 +183,11 @@ public class Reporte_Final {
         }
         private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
+            /*Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");*/
+            
+            Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
+            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);

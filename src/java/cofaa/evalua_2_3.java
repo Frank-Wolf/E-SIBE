@@ -33,6 +33,7 @@ public class evalua_2_3 extends ActionSupport{
             int val=lb.executeUpdate("UPDATE profesor_participa_ev SET aceptado = " + i + 
                 ", comentarios = '" + getComentario() + "', puntaje = " + puntajebueno 
                         + " WHERE id_evento='"+ getId_actividad() +"'");
+            //int val_2 = lb.executeUpdate("UPDATE profesor_tiene_pub");
             lb.closeConnection();
             if (val > 0) 
                 return "success";

@@ -51,17 +51,14 @@
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
                             ResultSet rs=null;
-                            int n = 0;
+                            int n = 0, tipo_obra = 0;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
                             + "id_obra='"+user+"'");
                             while(rs.next()){
                             n++;
                             }
-                            //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            //String comentario=rs.getString("comentarios");
-                            //Date fecha_evaluar=rs.getDate("fecha_val");
-                            //int puntaje=rs.getInt("puntaje_alumno");
+
                             lb.closeConnection();
     %>
     <body background="../css/textura.png" class="boding overflow" onload="show_form('<%=n%>')">

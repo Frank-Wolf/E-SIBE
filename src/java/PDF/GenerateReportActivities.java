@@ -51,6 +51,8 @@ public class GenerateReportActivities {
         {
              //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
              FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+             //FILE = "D:\\home\\site\\wwwroot\\Usuarios\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path of server
+             //FILE = ""
              lb.getConnection();
              /*int i = 0;
              ResultSet ra;
@@ -118,8 +120,11 @@ public class GenerateReportActivities {
 
          private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
+            /*Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");*/
+            
+            Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
+            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);
@@ -259,10 +264,6 @@ public class GenerateReportActivities {
                     nom_usuario = rp.getString("nom_usuario");
                     id_usuario = rp.getString("id_usuario");
                     u_a = rp.getString("u_a");
-                    /*Datos_prof.addCell(rp.getString("nom_usuario"" Hola") +" Hola");
-                    System.out.println(rp.getString("nom_usuario"));
-                    Datos_prof.addCell(rp.getString("id_usuario"));
-                    Datos_prof.addCell(rp.getString("u_a"));*/
                 }
                 System.out.println(getUsername());
                 rn = lb.executeQuery("SELECT * FROM evaluador_evalua_profesor WHERE id_usuario_prof = '" + getUsername() + "'");
@@ -285,10 +286,11 @@ public class GenerateReportActivities {
 
         private PdfPTable dospuntouno() throws Exception 
         {
-                PdfPTable Dos_uno = new PdfPTable(5);  
-                Dos_uno.setWidths(new int[]{2,2,3,2,3});
+                PdfPTable Dos_uno = new PdfPTable(6);  
+                Dos_uno.setWidths(new int[]{2,2,3,2,2,2});
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.1"
                         + " - Formación de Recursos Humanos para la Investigación",encabezadost));
+                PdfPCell Nom_Proyecto = new PdfPCell(new Phrase("Número de proyecto SIP"));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
@@ -303,6 +305,10 @@ public class GenerateReportActivities {
                 Titulo_tabla.setColspan(5);
                 Titulo_tabla.setExtraParagraphSpace(15f);
                 Dos_uno.addCell(Titulo_tabla);
+                
+                Nom_Proyecto.setHorizontalAlignment(Element.ALIGN_CENTER);
+                Nom_Proyecto.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                Dos_uno.addCell(Nom_Proyecto);
                 
                 Num_Actividad.setHorizontalAlignment(Element.ALIGN_CENTER);
                 Num_Actividad.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -331,11 +337,13 @@ public class GenerateReportActivities {
                 if(rperiodo.next())
                     periodo = rperiodo.getInt("periodo");
                 /**Get actual period***/
-                String id_al = null, tipo_alumno = null, puntaje = null, comen = null;
+                String id_al = null, tipo_alumno = null, puntaje = null, comen = null, nom_proyecto = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
                         + "id_usuario = '" + getUsername() +"' AND validado_alumno = 1 AND "
                                 + "periodo = " + periodo);
                 while(rb.next()){
+                    nom_proyecto = rb.getString("id_proyecto");
+                    Dos_uno.addCell(nom_proyecto);
                     id_al = rb.getString("id_alumno");
                     Dos_uno.addCell(id_al);
                     tipo_alumno = rb.getString("tipo_alumno");
@@ -410,7 +418,7 @@ public class GenerateReportActivities {
                     id_tipo = rb.getString("id_tipo_pub");
                     Dos_dos.addCell(id_tipo);//Add the type of every type pub
                     Anchor anchor = new Anchor("Constancia");
-                    anchor.setReference(rb.getString("ruta_alm"));
+                    anchor.setReference("file:///" + rb.getString("ruta_alm"));
                     Dos_dos.addCell(anchor);
                     puntaje = rb.getString("puntaje");
                     Dos_dos.addCell(puntaje);
@@ -428,10 +436,11 @@ public class GenerateReportActivities {
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Actividad 2.3"
                         + " - Eventos Académicos",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
-                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
+                
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
+                PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Nombre del evento"));
                 PdfPCell celda=new PdfPCell();
                 
                 
@@ -484,9 +493,6 @@ public class GenerateReportActivities {
                     comentarios = rb.getString("comentarios");
                     Dos_tres.addCell(comentarios);
                 }
-                
-                
-                
                 return Dos_tres;
         }
         

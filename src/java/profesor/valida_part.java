@@ -52,6 +52,7 @@ public class valida_part extends ActionSupport
     public String execute() throws Exception 
     {
         destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_part.equals(""))
         {
@@ -97,6 +98,9 @@ public class valida_part extends ActionSupport
                                 int ruta = lb.executeUpdate("UPDATE profesor_participa_en_plan SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_usuario = " + username + " AND id_part = '" + getId_part() + "'");
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_participa_en_plan SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_usuario = " + username + " AND id_part = '" + getId_part() + "'");*/
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

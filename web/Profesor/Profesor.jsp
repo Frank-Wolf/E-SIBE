@@ -134,6 +134,9 @@ window.onload = function(){//window.addEventListener('load',function(){...}); (f
                     out.print("<a href='file:///C:\\psf\\Home\\Documents\\" + 
                             username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
                                     + "</a>");
+                    /*out.print("<a href='file:///D:\\home\\site\\wwwroot\\Usuarios\\" + 
+                            username + "\\Reporte_de_Actividades_E-SIBE_" + username + ".pdf'>Ver Reporte de actividades"
+                                    + "</a>");*/
                     out.print("</p>");
                     %>
                     <s:form id="datos" action="create_pdf_reporte" method="post" style="display:block;" >

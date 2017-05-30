@@ -30,8 +30,9 @@ public class valida_BEIFI extends ActionSupport
     public String execute() throws Exception 
     {
          
-        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        destPath = "C:\\Users\\le_as\\Documents\\Pruebas_pdf\\";
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\Users\\le_as\\Documents\\Pruebas_pdf\\";
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//server route
         destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_proyecto.equals("")){
             addFieldError("id_proyecto","Este campo es necesario");
@@ -79,14 +80,17 @@ public class valida_BEIFI extends ActionSupport
                         {
                             /************************************************************************************************/
                             try{
-                                System.out.println("Src File name: " + myFile);
-                                System.out.println("Dst File name: " + destPath);
+                                /*System.out.println("Src File name: " + myFile);
+                                System.out.println("Dst File name: " + destPath);*/
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
                                 int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_alumno = " + getId_alumno());
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_alumno = " + getId_alumno());*/
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

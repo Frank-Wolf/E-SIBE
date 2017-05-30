@@ -56,6 +56,7 @@ public class valida_proyecto extends ActionSupport
     
     public String execute() throws Exception {
         destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
 //=======
          if(id_proyecto.equals(""))
@@ -96,6 +97,9 @@ public class valida_proyecto extends ActionSupport
                                 int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_proyecto = '" + getId_proyecto() + "'");
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_proyecto = '" + getId_proyecto() + "'");*/
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

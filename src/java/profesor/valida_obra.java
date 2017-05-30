@@ -28,8 +28,9 @@ public class valida_obra extends ActionSupport{
            
    
     public String execute() throws Exception {
-        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
         
@@ -74,10 +75,13 @@ public class valida_obra extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\Users\\\\le_as\\\\Documents\\\\Pruebas\\\\"
-                                //int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                //int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\Users\\\\le_as\\\\Documents\\\\Pruebas\\\\"
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_obra = '" + getId_obra()+"'");
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"//updatefor server
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_obra = '" + getId_obra()+"'");*/
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

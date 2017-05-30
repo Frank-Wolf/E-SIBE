@@ -24,7 +24,7 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Evaluador COFAA</title>
         <script type="text/javascript">
-                function show_form(x) {
+                function show_form(x, y) {
                 if(x == 1 || x == 2 || x == 3) {
                     document.getElementById("form1").style.visibility="visible";  
                     document.getElementById("form2").style.visibility="hidden"; 
@@ -50,20 +50,17 @@
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
                             ResultSet rs=null;
-                            int n = 0;
+                            int n = 0, tipo_pub = 0;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
                             + "id_evento='"+user+"'");
                             while(rs.next()){
                                 n++;
+                                tipo_pub = rs.getInt("id_tipo_pub");
                             }
-                            //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            //String comentario=rs.getString("comentarios");
-                            //Date fecha_evaluar=rs.getDate("fecha_val");
-                            //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();
                         %>
-    <body background="../css/textura.png" class="boding overflow" onload="show_form('<%=n%>')">
+    <body background="../css/textura.png" class="boding overflow" onload="show_form('<%=n%>', '<%=tipo_pub%>')">
         
         <!--header-->
         <header class="headering">

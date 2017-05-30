@@ -68,8 +68,10 @@ public class valida_publicacion extends ActionSupport{
    
     @Override
     public String execute() throws Exception {
-        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
+        //destPath = ".\\Usuarios\\";
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//server route
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
         if(id_publicacion.equals(""))
@@ -124,9 +126,13 @@ public class valida_publicacion extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
+                                //"D:\\home\\site\\wwwroot\\Usuarios"
                                 int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_publicacion = '" + id_publicacion + "'");
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"//update for server
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_publicacion = '" + id_publicacion + "'");*/
                                 }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

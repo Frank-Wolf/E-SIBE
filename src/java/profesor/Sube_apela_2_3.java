@@ -30,6 +30,7 @@ public class Sube_apela_2_3 {
             //thus, we can get the complete address of the saved file
    {
         destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
         destPath += getUsername() + "\\Apelacion\\";
         try{
             System.out.println("Src File name: " + myFile);
@@ -49,6 +50,9 @@ public class Sube_apela_2_3 {
             int ruta = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                     + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
                     + "WHERE id_evento = '" + getId_actividad() + "' AND periodo = " + periodo);
+            /*int ruta = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                    + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
+                    + "WHERE id_evento = '" + getId_actividad() + "' AND periodo = " + periodo);*/
             System.out.println(id_actividad);
             lb.closeConnection();
             }catch(IOException e){
