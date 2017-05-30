@@ -256,8 +256,8 @@ public class Eventos extends ActionSupport{
                     lb.closeConnection();
                     return ERROR;
                 }
-                lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,aceptado,ruta_alm,validado,fecha_val,puntaje,periodo)"
-                    + " values("+id_usuario+",'"+id_evento+"','Ponencia','',0,'',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
+                lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,ruta_alm,validado,fecha_val,puntaje,periodo)"
+                    + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
             
                 lb.executeUpdate("insert into publicacion (id_publicacion,id_tipo_pub,ISSN,ISBN,Nom_Public,"
                         + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero) values"
@@ -289,8 +289,8 @@ public class Eventos extends ActionSupport{
                     + "values ('"+id_evento+"','"+nom_evento+"','"+sede+"',str_to_date('"+fecha_inicio+"','%d-%m-%Y'),"
                     + "str_to_date('"+fecha_fin+"','%d-%m-%Y'),1)");
             
-            lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,aceptado,ruta_alm,validado,fecha_val,puntaje,periodo)"
-                    + " values("+id_usuario+",'"+id_evento+"','Ponencia','',0,'',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
+            lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,ruta_alm,validado,fecha_val,puntaje,periodo)"
+                    + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
             
             lb.executeUpdate("insert into publicacion (id_publicacion,id_tipo_pub,ISSN,ISBN,Nom_Public,"
                     + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero) values"

@@ -39,8 +39,8 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="Reg_TT">Registrar Tratabjo Terminal</a></li>
-                                <li><a href="#">Registrar datos de Tesis</a></li>
+                                <li><a href="Reg_TT">Registrar Dirección de Trabajo Terminal</a></li>
+                                
                                 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
