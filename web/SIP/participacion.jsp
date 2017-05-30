@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,7 +23,10 @@
        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding">
+        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+        <s:set var="username" value="%{#session.username}" />
+        <jsp:useBean id="username" type="java.lang.String"/>
         <header class="headering">
             <s:div cssClass="container-fluid">            
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
@@ -40,9 +44,7 @@
                             <a class="navbar-brand" >E-SIBE: Usuario SIP</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Proyecto_sip">Proyecto SIP</a></li>
-                            </ul>
+                            
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="SIP_Principal">
                                       Menu Principal</a></li>
@@ -52,9 +54,9 @@
                 </nav>
 
                 <s:div cssClass="cover-container2">    
-                    
-                    <h2 class="titulos">Bienvenido Usuario SIP</h2>
-                       <div class="col-md-9" align="center">
+                    <div class="row">
+                       <div class="col-md-12" align="center">
+                       <h2 class="titulos">Registrar Participación</h2>
                         <s:set name="u_a" value="%{'SIP'}" />
                         <s:form action="registra_part_sip" method="post">
                             <s:hidden name="u_a" label="dependencia"/>
@@ -74,15 +76,75 @@
                             '8':'Participacion en la actualizacion de un programa de estudios'
                             }"
                             name="id_tipo_part_plan" />   
-                            <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
+                            <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control" />
                             
                             <s:submit value="Registrar Proyecto" cssClass="btn" />
-                        </s:form> 
-                                                
+                        </s:form>                        
+                        </div>
+                    </div>
+                        <br/>
                         
-                    
-                </div>
-                    
+                        <br/>
+                        <div class="row">
+                        <div class="col-md-12" style="margin-left: 10px; ">
+                            <h2 class="titulos">Participaciones Registradas</h2>
+                            <%
+                            lb.getConnection();
+                            ResultSet participacion=lb.executeQuery("select * FROM part_plan_est where u_a = 'SIP';");
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Participacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Asignatura");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Tipo de Participacion");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("No. Empleado del Prof.");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            
+                                
+                                while(participacion.next())
+                                {
+                                    ResultSet profe_part=lb.executeQuery("select id_usuario from profesor_participa_en_plan where id_part='"+participacion.getString("id_part")+"'");
+                                    while (profe_part.next())
+                                    {
+                                        ResultSet nom_part=lb.executeQuery("select nombre_part from tipo_part_plan where id_tipo_part="+participacion.getString("id_tipo_part")+"");
+                                        while(nom_part.next())
+                                        {
+                                        out.print("<tr>");
+                                        out.print("<td>");
+                                        out.print(participacion.getString("id_part"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(participacion.getString("asignatura"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(nom_part.getString("nombre_part"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(profe_part.getString("id_usuario"));
+                                        out.print("</td>");
+                                        
+                                        out.print("</tr>");
+                                        }
+                                    }
+                                }
+                            
+                            out.print("</table>");
+                            lb.closeConnection();
+                        %>   
+                        <br/>
+                        <br/>
+                            
+                        </div>
+                    </div>
                 </s:div>
             </s:div>  
               

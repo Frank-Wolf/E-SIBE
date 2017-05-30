@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,7 +23,10 @@
        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding">
+        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+        <s:set var="username" value="%{#session.username}" />
+        <jsp:useBean id="username" type="java.lang.String"/>
         <header class="headering">
             <s:div cssClass="container-fluid">            
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
@@ -52,9 +56,11 @@
                 </nav>
 
                 <s:div cssClass="cover-container2">    
-                    
+                    <div class="row">
+                        <div class="col-md-6" >
+                            <br/>
                     <h2 class="titulos">Bienvenido Usuario SIP</h2>
-                       <div class="col-md-9" align="center">
+                       
                         <s:set name="id_alumno" value="%{0}" />
                         <s:form action="registra_proyecto" method="post">
                             <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
@@ -72,13 +78,61 @@
                             <s:submit value="Registrar Proyecto" cssClass="btn" />
                         </s:form> 
                                                 
-                        
-                    
-                </div>
-                    
+                       </div>
+                        <div class="col-md-6">
+                            <h2 class="titulos" align="center">Proyectos Registrados</h2>
+                            <br/>
+                               
+                            <%
+                                lb.getConnection();
+                                ResultSet beifi=lb.executeQuery("select * from profesor_tiene_proyecto ;");
+                                out.print("<table  class=' table "
+                                         + "table-container table-striped "
+                                         + "table-responsive '>");
+                                out.print("<tr>");
+                                out.print("<th>");
+                                out.print("Numero de Proyecto");
+                                out.print("</th>");
+                                out.print("<th>");
+                                out.print("Nombre de Proyecto");
+                                out.print("</th>");
+                                out.print("<th>");
+                                out.print("No. Empleado del Prof.");
+                                out.print("</th>");
+                                out.print("<th>");
+                                while(beifi.next())
+                                {
+                                    ResultSet proyecto=lb.executeQuery("select nom_proyecto from proyecto where id_proyecto='"+beifi.getString("id_proyecto")+"'");
+                                    while (proyecto.next())
+                                    {
+                                        ResultSet alumno=lb.executeQuery("select nom_alumno from alumno where id_alumno="+beifi.getInt("id_alumno")+"");
+                                        while(alumno.next())
+                                        {
+                                        out.print("<tr>");
+                                        out.print("<td>");
+                                        out.print(beifi.getString("id_proyecto"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(proyecto.getString("nom_proyecto"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(beifi.getString("id_usuario"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print("</tr>");
+                                        }
+                                    }
+                                }
+                            
+                                out.print("</table>");
+                                lb.closeConnection();
+                            %>   
+                            <br/>
+                            <br/>  
+                        </div>
+                    </div>
                 </s:div>
             </s:div>  
-              
         </s:div>        
         
         

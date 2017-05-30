@@ -34,7 +34,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="Reg_SS">Alumno en Servicio</a></li>
+                                <li><a href="Reg_SS"> Registrar Alumno en Servicio</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">

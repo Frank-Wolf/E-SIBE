@@ -178,7 +178,6 @@
                         <br>
                         <h2 class="letritas">Actividades Ya validadas</h2>
                          <%
-                            
                             ResultSet alumnos2=null;
                             lb.getConnection();
                             alumnos2=lb.executeQuery("SELECT id_proyecto, id_alumno, tipo_alumno "
@@ -308,7 +307,7 @@
                             out.print("</tr>");
                             while (rs1.next())
                             {
-                                ResultSet publica1=lb.executeQuery("select Nom_Public from publicacion where id_publicacion='"+rs.getString("id_publicacion")+"' and id_tipo_pub='"+rs.getString("id_tipo_pub")+"'");
+                                ResultSet publica1=lb.executeQuery("select Nom_Public from publicacion where id_publicacion='"+rs1.getString("id_publicacion")+"' and id_tipo_pub='"+rs1.getString("id_tipo_pub")+"'");
                                 while(publica1.next())
                                 {
                                     out.print("<tr>");

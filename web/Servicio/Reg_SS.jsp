@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +22,10 @@
        
         <link rel="icon" href="<s:url value="/icono.ico"/>"/>
     </head>
-    <body background="../css/textura.png" class="boding overflow">
+    <body background="../css/textura.png" class="boding">
+        <jsp:useBean id="lb" scope="session" class="sesion.LoginBean"/>
+        <s:set var="username" value="%{#session.username}" />
+        <jsp:useBean id="username" type="java.lang.String"/>
         <header class="headering">
             <s:div cssClass="container-fluid">            
                 <img src="<s:url value="/banner_IPN.png"/>" alt="IPN" />
@@ -52,22 +56,84 @@
 
                 <s:div cssClass="cover-container2">    
                     
-                    <h2 class="titulos">Bienvenido Usuario SIP - Registre Alumno de servicio en Proyecto SIP</h2>
-                       <div class="col-md-9" align="center">
-                        
-                        <s:form action="registra_SS" method="post">
-                            <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
-                            <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                            <s:textfield name="rol_profesor" label="Rol del profesor en el proyecto" cssClass="form-control"/>
-                            <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
-                            <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
-                            <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
-                            <s:submit value="Registrar Proyecto" cssClass="btn" />
-                        </s:form> 
-                                                
-                        
-                    
-                </div>
+                    <div class="row">
+                        <div class="col-md-5" align="center">
+                            <h2 class="titulos">Registre Alumno de servicio en Proyecto SIP</h2>
+                            <s:form action="registra_SS" method="post">
+                                <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
+                                <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
+                                <s:textfield name="rol_profesor" label="Rol del profesor en el proyecto" cssClass="form-control"/>
+                                <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
+                                <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
+                                <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
+                                <s:submit value="Registrar Proyecto" cssClass="btn" />
+                            </s:form> 
+                        </div>
+                        <div class="col-md-5" style="margin-left: 100px">
+                            <h2 class="titulos">Alumnos Registrados</h2>
+                            <br/>
+                            <br/>
+                        <%
+                            lb.getConnection();
+                            ResultSet beifi=lb.executeQuery("select * from profesor_tiene_proyecto where tipo_alumno='SS';");
+                            out.print("<table  class=' table "
+                                     + "table-container table-striped "
+                                     + "table-responsive '>");
+                            out.print("<tr>");
+                            out.print("<th>");
+                            out.print("Numero de Proyecto");
+                            out.print("</th>");
+                             out.print("<th>");
+                            out.print("Nombre de Proyecto");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("No. Empleado del Prof.");
+                            out.print("</th>");
+                            out.print("<th>");
+                            out.print("Numero de Boleta de Alumno");
+                            out.print("</th>");
+                             out.print("<th>");
+                            out.print("Numero de Alumno");
+                            out.print("</th>");
+                            out.print("</tr>");
+                            
+                                
+                                while(beifi.next())
+                                {
+                                    ResultSet proyecto=lb.executeQuery("select nom_proyecto from proyecto where id_proyecto='"+beifi.getString("id_proyecto")+"'");
+                                    while (proyecto.next())
+                                    {
+                                        ResultSet alumno=lb.executeQuery("select nom_alumno from alumno where id_alumno="+beifi.getInt("id_alumno")+"");
+                                        while(alumno.next())
+                                        {
+                                        out.print("<tr>");
+                                        out.print("<td>");
+                                        out.print(beifi.getString("id_proyecto"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(proyecto.getString("nom_proyecto"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(beifi.getString("id_usuario"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(beifi.getString("id_alumno"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(alumno.getString("nom_alumno"));
+                                        out.print("</td>");
+                                        out.print("</tr>");
+                                        }
+                                    }
+                                }
+                            
+                            out.print("</table>");
+                            lb.closeConnection();
+                        %>   
+                        <br/>
+                        <br/>
+                        </div>
+                    </div>
                     
                 </s:div>
             </s:div>  
@@ -77,7 +143,7 @@
                     
         
        <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
