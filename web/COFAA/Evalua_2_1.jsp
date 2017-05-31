@@ -51,7 +51,7 @@
 
                             
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Menu_evalua">
+                                <li><a href="/Usuario/Menu_evalua">
                                       Regresar</a></li>
                             </ul>
                         </div>
@@ -86,7 +86,6 @@
                     
                     <div cssClass="" align ="center">
 
-                        <h2 class="h3">Apelar </h2>
                         <s:set var="id_actividad"><%=user%></s:set>
                         <s:set var="comentario"><%=comentario%></s:set>
                         <s:form action="/Usuario/evalua_2_1">

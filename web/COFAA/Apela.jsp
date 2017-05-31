@@ -82,13 +82,6 @@
                         out.print("<h2 class='Titular' align='center'>Lista de actividades que el profesor quiere apelar </h2>" );
                         //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
-                    <div align="center">
-                        <s:set var="num_profesor"><%=user%></s:set>
-                <s:form id="datos" action="/Usuario/update_evaluador_evalua" method="post" style="display:block;">
-                    <s:hidden name="num_profesor"/>
-                    <s:submit value="Registrar puntaje y fecha de apelación"/>
-                </s:form>
-                    </div>
                     <div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
@@ -160,27 +153,28 @@
                     <h2 class="h3">2.3 Trabajos de investigación presentados en congresos, reuniones y eventos académicos</h2>   
                     <%
                         ResultSet ra=lb.executeQuery("SELECT * "
-                                    + "FROM profesor_participa_ev WHERE "
-                                    + "id_usuario = " + user + " AND aceptado = 0 AND validado = 1 "
-                                            + "AND periodo = " + periodo);
+                                    + "FROM profesor_tiene_pub WHERE "
+                                    + "id_usuario = " + user + " AND validado = 1 AND aceptado = 0 "
+                                            + "AND periodo = " + periodo + " AND (id_tipo_pub = 6 OR "
+                                                    + "id_tipo_pub = 7 OR id_tipo_pub = 8)");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("  ID de evento  ");
+                            out.print("  ID de la publicacion en el evento  ");
                             out.print("</th>");
                             out.print("</tr>");
                             while (ra.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(ra.getString("id_evento"));
+                                out.print(ra.getString("id_publicacion"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///" + ra.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/COFAA/Apela_2_3.jsp?id="
-                                        +  ra.getString("id_evento") + "'>Asigna puntaje y/o comentarios</a>");
+                                        +  ra.getString("id_publicacion") + "&id2=" + user + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -326,6 +320,13 @@
                             lb.closeConnection();
                     %>
                     </div>
+                    <div align="center">
+                        <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="/Usuario/update_evaluador_evalua" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de apelación"/>
+                </s:form>
+                    </div>
                 </s:div>
             </s:div>  
               
@@ -333,7 +334,7 @@
         
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>

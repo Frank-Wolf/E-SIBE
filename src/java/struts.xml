@@ -17,6 +17,7 @@
             <!-->Página principal de profesor<-->
             <result name="profesor">/Profesor/Profesor.jsp</result>
             <result name="profesor_noac">/Profesor/Profesor_notime.jsp</result>
+            <result name="no_periodo">/Profesor/Profesor_noperiodo.jsp</result>
             <!-->Páginas de los administradores<-->
             <result name="admin_sip">/Admins/admin_sip.jsp</result>
             <result name="admin_inda">/Admins/admin_inda.jsp</result>

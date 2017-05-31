@@ -51,7 +51,7 @@
 
                             
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Menu_evalua">
+                                <li><a href="/Usuario/Menu_evalua">
                                       Regresar</a></li>
                             </ul>
                         </div>

@@ -120,11 +120,11 @@ public class GenerateReportActivities {
 
          private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            /*Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");*/
+            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
             
-            Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
-            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");
+            /*Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
+            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");*/
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);
@@ -257,7 +257,7 @@ public class GenerateReportActivities {
 
                 /*Aqui van las consultas de los datos del profesor*/
                 ResultSet rn, rt;
-                String nom_usuario = null, id_usuario = null, u_a = null, puntaje_final = null, periodo = null;
+                String nom_usuario = null, id_usuario = null, u_a = null, puntaje_final = null, nivel = null;
                 //Datos_prof.addCell("Hola");
                 ResultSet rp = lb.executeQuery("SELECT * FROM usuario WHERE id_usuario = " + username);
                 while(rp.next()){
@@ -273,14 +273,13 @@ public class GenerateReportActivities {
                 }
                 rt = lb.executeQuery("SELECT * FROM profesor WHERE id_usuario = '" + getUsername() + "'");
                 while(rt.next()){
-                    periodo = rt.getString("periodo");
-                    //Datos_prof.addCell(rt.getString("periodo"));
+                    nivel = rt.getString("nivel");
                 }
                 Datos_prof.addCell(nom_usuario);
                 Datos_prof.addCell(id_usuario);
                 Datos_prof.addCell(u_a);
                 Datos_prof.addCell(puntaje_final);
-                Datos_prof.addCell(periodo);
+                Datos_prof.addCell(nivel);
                 return Datos_prof;
         }
 
@@ -296,13 +295,13 @@ public class GenerateReportActivities {
                 PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
-                PdfPCell celda=new PdfPCell();
+                //PdfPCell celda=new PdfPCell();
                 
                 
                 Titulo_tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
                 Titulo_tabla.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 Titulo_tabla.setBackgroundColor(new BaseColor(153, 0, 76));
-                Titulo_tabla.setColspan(5);
+                Titulo_tabla.setColspan(6);
                 Titulo_tabla.setExtraParagraphSpace(15f);
                 Dos_uno.addCell(Titulo_tabla);
                 

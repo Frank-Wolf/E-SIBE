@@ -71,15 +71,12 @@ public class Reporte_Final {
                         addMetaData(document);
                         addImagenes(document);
                         addEncabezado(document);
-                        addTablaEvaluadoresProfesor(document);
-                        addTablaNumProfesor(document);
-                        addTablaEvaluador(document);
-                        addTablaProfesores(document);
+                        
                         int a = 0, r = 0;//a approved and r reject
                         a = getnumberA();
                         r = getnumberR();
                         
-                        document.newPage();
+                        //document.newPage();
                         /*Add a graphic*/
                         DefaultPieDataset defaultCategoryDataset = new DefaultPieDataset();
                         defaultCategoryDataset.setValue("Aprobados: " + a, a);
@@ -92,7 +89,7 @@ public class Reporte_Final {
                         
                         PdfContentByte pdfContentByte = writer.getDirectContent();
                         int width = 400; //width of PieChart
-                        int height = 200; //height of pieChart
+                        int height = 150; //height of pieChart
                         PdfTemplate pdfTemplate = pdfContentByte.createTemplate(width, height);
                         //document.newPage();
                         //create graphics
@@ -104,7 +101,7 @@ public class Reporte_Final {
                         jFreeChart.draw(graphics2d, rectangle2d);
  
                         graphics2d.dispose();
-                        pdfContentByte.addTemplate(pdfTemplate, 40, 50); //0, 0 will draw PIE chart on bottom left of page
+                        pdfContentByte.addTemplate(pdfTemplate, 40, 200); //0, 0 will draw PIE chart on bottom left of page
                         /*Add a graphic end graphic*/
                         
                         //document.newPage();
@@ -150,10 +147,16 @@ public class Reporte_Final {
                         jFreeChart2.draw(graphics2d2, rectangle2d2);
  
                         graphics2d2.dispose();
-                        pdfContentByte2.addTemplate(pdfTemplate2, 0, 300); //0, 0 will draw BAR chart on bottom left of page
+                        pdfContentByte2.addTemplate(pdfTemplate2, 0, 400); //0, 0 will draw BAR chart on bottom left of page
                         
                         /*Add another Graphic end*/
                         document.newPage();
+                        
+                        
+                        addTablaEvaluadoresProfesor(document);
+                        addTablaNumProfesor(document);
+                        addTablaEvaluador(document);
+                        addTablaProfesores(document);
                         addTabla2_1(document);
                         addTabla2_2(document);
                         addTabla2_3(document);
@@ -161,6 +164,7 @@ public class Reporte_Final {
                         addTabla2_5(document);
                         addTabla2_11(document);
                         addTabla2_12(document);
+                        addTablaAcota1(document);
                         //System.out.println("Hola12");
                         lb.closeConnection();
                         document.close();
@@ -183,11 +187,11 @@ public class Reporte_Final {
         }
         private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            /*Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");*/
+            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
             
-            Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
-            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");
+            /*Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
+            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");*/
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);
@@ -275,6 +279,13 @@ public class Reporte_Final {
             addEmptyLine(preface, 3);    
             document.add(preface);
             document.add(tabla_plan_estu());
+        }
+        
+        private void addTablaAcota1(Document document) throws Exception{
+            Paragraph preface = new Paragraph();
+            addEmptyLine(preface, 3);    
+            document.add(preface);
+            document.add(tabla_acota1());
         }
         
         private void addTablaEvaluador(Document document) throws Exception
@@ -468,7 +479,7 @@ public class Reporte_Final {
              PdfPTable tabla_num = new PdfPTable(3);
              int anio = 0, anio_fin = 0;
              tabla_num.setWidths(new int[]{2,2,2});
-                PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Lista de profesores participantes", encabezadost));
+                PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Lista de profesores participantes para este periodo", encabezadost));
                 PdfPCell profesor = new PdfPCell(new Phrase("Número de empleado"));
                 PdfPCell nivel = new PdfPCell(new Phrase("Nivel de beca (Preliminar)"));
                 PdfPCell periodo = new PdfPCell(new Phrase("Periodo"));
@@ -494,8 +505,13 @@ public class Reporte_Final {
                 tabla_num.addCell(periodo);
 
                 /*Aqui van las consultas de las Actividades del profesor*/
-                ResultSet rs;
-                rs = lb.executeQuery("SELECT * FROM profesor");
+                ResultSet rs, rperiodo;
+                int periodo_actual = 0;
+                rperiodo = lb.executeQuery("SELECT * FROM evaluador");
+                while(rperiodo.next()){
+                    periodo_actual = rperiodo.getInt("periodo_actual");
+                }
+                rs = lb.executeQuery("SELECT * FROM profesor WHERE periodo = " + periodo_actual);
                 while(rs.next()){
                     tabla_num.addCell(rs.getString("id_usuario"));
                     tabla_num.addCell(rs.getString("nivel"));
@@ -944,6 +960,52 @@ public class Reporte_Final {
                 tabla_num.addCell(numberAsString);
              return tabla_num;
          }
+         private PdfPTable tabla_acota1() throws Exception{
+             PdfPTable tabla_num = new PdfPTable(2);
+             int a = 0, b = 0, c = 0, d = 0, e, f, g, h;
+             String numberAsString;
+             tabla_num.setWidths(new int[]{1,5});
+                PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Acotaciones de Participaciones", encabezadost));
+                PdfPCell abre = new PdfPCell(new Phrase("Abreviatura"));
+                PdfPCell signi = new PdfPCell(new Phrase("Significado"));
+                
+                
+                Titulo_tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
+                Titulo_tabla.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                Titulo_tabla.setBackgroundColor(new BaseColor(153, 0, 76));
+                Titulo_tabla.setColspan(8);
+                Titulo_tabla.setExtraParagraphSpace(15f);
+                tabla_num.addCell(Titulo_tabla);
+                
+                abre.setHorizontalAlignment(Element.ALIGN_CENTER);
+                abre.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                tabla_num.addCell(abre);
+
+                signi.setHorizontalAlignment(Element.ALIGN_CENTER);
+                signi.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                tabla_num.addCell(signi);
+
+                /*Aqui van las consultas de las Actividades del profesor*/
+                tabla_num.addCell("Coord 1");
+                tabla_num.addCell("Coordinación en la elaboración de un plan de estudios");
+                tabla_num.addCell("Coor 2");
+                tabla_num.addCell("Coordinación en la actualización de un plan de estudios");
+                tabla_num.addCell("Parti 1");
+                tabla_num.addCell("Participación en la elaboración de un plan de estudios");
+                tabla_num.addCell("Parti 2");
+                tabla_num.addCell("Participación en la actualización de un plan de estudios");
+                tabla_num.addCell("Coor 1 1");
+                tabla_num.addCell("Coordinación en la elaboración de un programa de estudios");
+                tabla_num.addCell("Coor 1 2");
+                tabla_num.addCell("Coordinación en la actualización de un programa de estudios");
+                tabla_num.addCell("Parti 1 1");
+                tabla_num.addCell("Participación en la elaboración de un programa de estudios");
+                tabla_num.addCell("Parti 1 2");
+                tabla_num.addCell("Participación en la actualización de un programa de estudios");
+                
+                
+             return tabla_num;
+         }
          
          private int getnumberA() throws SQLException{
              ResultSet ra, rp, re, rpro, rob, rtt, rpar_plan, rperiodo;
@@ -1357,6 +1419,7 @@ public class Reporte_Final {
                          + "AND periodo = " + periodo);
                  if(rs.next())
                     i = rs.getInt(1);    
+                System.out.println(i + " aqui se ve");
                 return i;
              }
              else if(s == 13){
@@ -1484,4 +1547,6 @@ public class Reporte_Final {
         public void setUsername(String username) {
             this.username = username;
         }
+
+        
 }

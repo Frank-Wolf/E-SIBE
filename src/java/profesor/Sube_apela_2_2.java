@@ -49,7 +49,7 @@ public class Sube_apela_2_2 {
             /***Asignar periodo****/
             int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                     + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
-                    + "WHERE id_alumno = " + getId_actividad() + " AND periodo = " + periodo);
+                    + "WHERE id_publicacion = '" + getId_actividad() + "' AND periodo = " + periodo);
             /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
                     + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
                     + "WHERE id_alumno = " + getId_actividad() + " AND periodo = " + periodo);*/

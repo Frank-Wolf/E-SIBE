@@ -70,13 +70,17 @@
                             String id_actividad=request.getParameter("id");
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",id_actividad);
+                            String comentario = null;
                             ResultSet rs=null;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
                             + "id_part='"+id_actividad+"'");
-                            rs.next();
+                            if(rs.next()){
+                            comentario=rs.getString("comentarios");
+                            }
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
-                            String comentario=rs.getString("comentarios");
+                            
+                            
                             //Date fecha_evaluar=rs.getDate("fecha_val");
                             //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();

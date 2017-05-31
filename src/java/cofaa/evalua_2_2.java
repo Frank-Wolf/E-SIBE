@@ -17,6 +17,15 @@ public class evalua_2_2 extends ActionSupport{
     private String comentario;
     private String puntaje;
     private String id_actividad;
+    private String id_prof;
+
+    public String getId_prof() {
+        return id_prof;
+    }
+
+    public void setId_prof(String id_prof) {
+        this.id_prof = id_prof;
+    }
     //private String accept = "Aceptado";
     int i;
     int puntajebueno;
@@ -32,7 +41,7 @@ public class evalua_2_2 extends ActionSupport{
             lb.getConnection();
             int val=lb.executeUpdate("UPDATE profesor_tiene_pub SET aceptado = " + i + 
                 ", comentarios = '" + getComentario() + "', puntaje = " + puntajebueno 
-                        + " WHERE id_publicacion='"+ getId_actividad() +"'");
+                        + " WHERE id_publicacion='"+ getId_actividad() +"' AND id_usuario = " + getId_prof());
             lb.closeConnection();
             if (val > 0) 
                 return "success";
@@ -46,7 +55,7 @@ public class evalua_2_2 extends ActionSupport{
             lb.getConnection();
             int val=lb.executeUpdate("UPDATE profesor_tiene_pub SET aceptado = " + i + 
                 ", comentarios = '" + getComentario() + "', validado = 0, puntaje = 0"
-                        + " WHERE id_publicacion='"+ getId_actividad() +"'");
+                        + " WHERE id_publicacion='"+ getId_actividad() +"' AND id_usuario = " + getId_prof());
             lb.closeConnection();
             if (val > 0) 
                 return "success";

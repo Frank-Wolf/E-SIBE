@@ -24,23 +24,112 @@
         <link rel="icon" href="<s:url value="../icono.ico"/>"/>
         <title>Evaluador COFAA</title>
         <script type="text/javascript">
-                function show_form(x) {
+                function show_form(x, y) {
                 if(x == 1 || x == 2 || x == 3) {
-                    document.getElementById("form1").style.visibility="visible";  
-                    document.getElementById("form2").style.visibility="hidden"; 
-                    document.getElementById("form3").style.visibility="hidden";
+                    if(y == 6){
+                        document.getElementById("form1_1").style.display="block";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    }
+                    else if(y == 7){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="block";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    }
+                    else if(y == 8){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="block";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    }
                 }
 
                 else if(x == 4) {
-                    document.getElementById("form1").style.visibility="hidden";  
-                    document.getElementById("form2").style.visibility="visible"; 
-                    document.getElementById("form3").style.visibility="hidden"; 
+                    if(y == 6){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="block"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    }
+                    else if(y == 7){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="block"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    } 
+                    else if(y == 8){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="block"; 
+                        document.getElementById("form3_3").style.display="none";
+                    }
                 }
-
                 else if(x == 5)  {
-                    document.getElementById("form1").style.visibility="hidden";  
-                    document.getElementById("form2").style.visibility="hidden"; 
-                    document.getElementById("form3").style.visibility="visible"; 
+                    if(y == 6){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="block";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    }
+                    else if(y == 7){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="block";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
+                    } 
+                    else if(y == 8){
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="block";
+                    }
                 }
             }
         </script>
@@ -50,13 +139,17 @@
                             String user=request.getParameter("id");
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
+                            String user2=request.getParameter("id2");//user2 = id_prof
+                            HttpSession sesion2 = request.getSession();
+                            sesion.setAttribute("id",user);
                             ResultSet rs=null;
-                            int n = 0;
+                            int n = 0, tipo_pub = 0;
                             lb.getConnection();
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
-                            + "id_evento='"+user+"'");
+                            + "id_publicacion='"+user+"'");
                             while(rs.next()){
                                 n++;
+                                tipo_pub = rs.getInt("id_tipo_pub");
                             }
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             //String comentario=rs.getString("comentarios");
@@ -64,7 +157,7 @@
                             //int puntaje=rs.getInt("puntaje_alumno");
                             lb.closeConnection();
                         %>
-    <body background="../css/textura.png" class="boding overflow" onload="show_form('<%=n%>')">
+    <body background="../css/textura.png" class="boding overflow" onload="show_form('<%=n%>' , '<%=tipo_pub%>')">
         
         <!--header-->
         <header class="headering">
@@ -113,7 +206,8 @@
                         <s:set var="numero_autores"><%=n%></s:set>
                         <h2 class="h3">Número de participantes para esta publicación: <%=n%></h2>
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:form action="/Usuario/apela_2_3" id="form1">
+                        <s:set var="id_prof"><%=user2%></s:set>
+                        <s:form action="/Usuario/apela_2_3" id="form1_1"  style="margin-top:-10px;">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -125,17 +219,137 @@
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
-                                      8:8,
-                                      10:10,
+                                      8:8
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form> 
+                        <s:form action="/Usuario/apela_2_3" id="form1_2"  style="margin-top:-10px;">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      2:2
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form> 
+                        <s:form action="/Usuario/apela_2_3" id="form1_3"  style="margin-top:-10px;">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      1:1
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form> 
+                        <!--First form with the correct score-->
+                        <s:form action="/Usuario/apela_2_3" id="form2_1">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      10:10
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form> 
+                        <s:form action="/Usuario/apela_2_3" id="form2_2">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      3:3
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form> 
+                        <s:form action="/Usuario/apela_2_3" id="form2_3">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
+                                      2:2
+                                      }"
+                                      name="puntaje"
+                                      />
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
+                            <s:submit cssClass="btn" value="Evaluar" />
+                        </s:form> 
+                        <!--Second form with the correct score-->
+                        <s:form action="/Usuario/apela_2_3" id="form3_1">
+                            <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
+                                      headerKey="-1" headerValue="Seleccione"
+                                      list="# {
+                                      'Aceptado':'Aceptado',
+                                      'No aceptado':'No aceptado'
+                                      }"
+                                      name="aceptado"/>
+                            <s:textfield name="comentario" label="Comentarios (máximo 400 letras)" cssClass="form-control" size="100"/>
+                            <s:select label="Asignar puntaje"  cssClass="form-control" 
+                                      headerKey="-1" headerValue="Marque puntaje"
+                                      list="# {
                                       20:20
                                       }"
                                       name="puntaje"
                                       />
-                            <s:hidden name="id_actividad"/>
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
-                        
-                        <s:form action="/Usuario/apela_2_3" id="form2">
+                        <s:form action="/Usuario/apela_2_3" id="form3_2">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -147,17 +361,15 @@
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
-                                      2:2,
-                                      3:3,
                                       5:5
                                       }"
                                       name="puntaje"
                                       />
-                            <s:hidden name="id_actividad"/>
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form>
-                        
-                        <s:form action="/Usuario/apela_2_3" id="form3">
+                        <s:form action="/Usuario/apela_2_3" id="form3_3">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
                                       list="# {
@@ -169,13 +381,12 @@
                             <s:select label="Asignar puntaje"  cssClass="form-control" 
                                       headerKey="-1" headerValue="Marque puntaje"
                                       list="# {
-                                      1:1,
-                                      2:2,
                                       4:4
                                       }"
                                       name="puntaje"
                                       />
-                            <s:hidden name="id_actividad"/>
+                            <s:hidden name="id_actividad" label="algo"/>
+                            <s:hidden name="id_prof" label="hola"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form>
                     </div>

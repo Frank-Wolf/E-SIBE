@@ -29,8 +29,8 @@ public class Sube_apela_2_12 {
             //we need to receive the username (employee number) and the name of the table
             //thus, we can get the complete address of the saved file
    {
-        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
+        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
         destPath += getUsername() + "\\Apelacion\\";
         try{
             System.out.println("Src File name: " + myFile);

@@ -98,6 +98,7 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 //Connection conn = null;
                 //String ret;
                 Date date_ini = null, date_fin = null, date_curr = new Date();
+                int periodo = 0, periodo_prof = 0;
                 ln.getConnection();
                 ResultSet rs = ln.executeQuery("SELECT * FROM fecha_actividades");
                 while(rs.next()){
@@ -105,7 +106,7 @@ public class Login_Action extends ActionSupport implements SessionAware{
                         date_fin=rs.getDate("fecha_fin"); 
                     }
                 ret = "profesor_noac";
-                ln.closeConnection();
+                //ln.closeConnection();
                 if(date_ini == null)
                     return ret;
                 if(date_curr.after(date_ini) && date_curr.before(date_fin))
@@ -113,7 +114,23 @@ public class Login_Action extends ActionSupport implements SessionAware{
                 else if(date_curr.before(date_ini) || date_curr.after(date_fin))
                     ret = "profesor_noac";
                 //System.out.println(date_curr);
-                return ret;
+                /*Get the period to decide if the professor go to some specific interface*/
+                ResultSet rperiodo = ln.executeQuery("SELECT * FROM evaluador");
+                while(rperiodo.next()){
+                    periodo = rperiodo.getInt("periodo_actual");//Get actual period
+                }
+                ResultSet perio_prof = ln.executeQuery("SELECT * FROM profesor WHERE id_usuario = " + usuario);
+                while(perio_prof.next()){
+                    periodo_prof = perio_prof.getInt("periodo");
+                }
+                ln.closeConnection();
+                if(periodo == periodo_prof)
+                    return ret;
+                else{
+                    ret = "no_periodo";
+                    return ret;
+                }
+                /*Get the period to decide if the professor go to some specific interfaceEND*/
             }
             /////////////////////////////aquí termina el proceso del profesor
             

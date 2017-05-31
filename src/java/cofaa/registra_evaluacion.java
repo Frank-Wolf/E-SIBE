@@ -23,7 +23,22 @@ public class registra_evaluacion extends ActionSupport{
     //@Override
     public String execute() throws Exception {
         lb.getConnection();
-        int puntaje = get_puntajefinal();
+        int puntaje = get_puntajefinal(); 
+        String nivel = "";
+        /*Assign level of the help*/
+        if(puntaje >= 400 && puntaje < 600)
+            nivel = "1";
+        else if(puntaje >= 600 && puntaje < 800)
+            nivel = "2";
+        else if(puntaje >= 800 && puntaje < 1200)
+            nivel = "3";
+        else if(puntaje >= 1200)
+            nivel = "4";
+        else
+            nivel = "1";
+        /*Assign level of the helpEND*/
+        System.out.println(getNum_profesor());
+        int rn = lb.executeUpdate("UPDATE profesor SET nivel = '" + nivel + "' WHERE id_usuario = " + getNum_profesor());
         int rs=lb.executeUpdate("UPDATE evaluador_evalua_profesor SET puntaje_final = " + puntaje + ", fecha_ev = NOW() WHERE id_usuario_prof = "
                 + getNum_profesor());
         lb.closeConnection();

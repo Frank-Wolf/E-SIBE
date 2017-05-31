@@ -81,8 +81,8 @@ public class RegistraEvaluaciones extends ActionSupport {
            for(int i = 0; i < e; i++){
                for(int j = 0; j < d; j++){
                    int ri = lb.executeUpdate("INSERT INTO evaluador_evalua_profesor(id_usuario_ev, "
-                           + "id_usuario_prof, puntaje_final) VALUES"
-                           + "('" + evaluadores[i] + "', '" + profesores[ps] + "', 0)");
+                           + "id_usuario_prof, puntaje_final, periodo) VALUES"
+                           + "('" + evaluadores[i] + "', '" + profesores[ps] + "', 0, " + periodo + ")");
                    ps++;
                }
            }

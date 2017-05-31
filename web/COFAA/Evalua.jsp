@@ -73,23 +73,12 @@
                         sesion.setAttribute("id",user);
                         lb.getConnection();
                         int periodo = 0;
-                        ResultSet rg = lb.executeQuery("SELECT * "
-                                    + "FROM usuario WHERE "
-                                    + "id_usuario = " + user);
                         ResultSet rperiodo = lb.executeQuery("SELECT * FROM evaluador");
                         while(rperiodo.next()){
                             periodo = rperiodo.getInt("periodo_actual");
                         }
                         out.print("<h2 class='Titular' align='center'>Lista de actividades del profesor </h2>" );
-                        //out.print(rg.getString("nom_usuario") + "</h2>");
                     %>
-                    <div align="center">
-                        <s:set var="num_profesor"><%=user%></s:set>
-                <s:form id="datos" action="/Usuario/update_evaluador_evalua2" method="post" style="display:block;">
-                    <s:hidden name="num_profesor"/>
-                    <s:submit value="Registrar puntaje y fecha de evaluación"/>
-                </s:form>
-                    </div>
                     <div class="col-md-6">
                         <h2 class="h3">2.1 Formación de recursos humanos para la investigación</h2>
                         <%
@@ -133,7 +122,8 @@
                         ResultSet rd=lb.executeQuery("SELECT * "
                                     + "FROM profesor_tiene_pub WHERE "
                                     + "id_usuario = " + user + " AND aceptado IS NULL AND "
-                                            + "validado = 1 AND periodo = " + periodo);
+                                            + "validado = 1 AND periodo = " + periodo + " AND (id_tipo_pub = 1 OR "
+                                                    + "id_tipo_pub = 2 OR id_tipo_pub = 3 OR id_tipo_pub = 4 OR id_tipo_pub = 5)");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
@@ -162,27 +152,28 @@
                     <h2 class="h3">2.3 Trabajos de investigación presentados en congresos, reuniones y eventos académicos</h2>   
                     <%
                         ResultSet ra=lb.executeQuery("SELECT * "
-                                    + "FROM profesor_participa_ev WHERE "
+                                    + "FROM profesor_tiene_pub WHERE "
                                     + "id_usuario = " + user + " AND validado = 1 AND aceptado IS NULL "
-                                            + "AND periodo = " + periodo);
+                                            + "AND periodo = " + periodo + " AND (id_tipo_pub = 6 OR "
+                                                    + "id_tipo_pub = 7 OR id_tipo_pub = 8)");
                         out.print("<table class='table table-striped'>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("  ID de evento  ");
+                            out.print("  ID de la publicacion en el evento  ");
                             out.print("</th>");
                             out.print("</tr>");
                             while (ra.next())
                             {
                                 out.print("<tr>");
                                 out.print("<td>");
-                                out.print(ra.getString("id_evento"));
+                                out.print(ra.getString("id_publicacion"));
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='file:///" + ra.getString("ruta_alm") + "'>Ver constancia</a>");//Aquí poner la ruta de los alumnos
                                 out.print("</td>");
                                 out.print("<td>");
                                 out.print("<a href='/login/COFAA/Evalua_2_3.jsp?id="
-                                        +  ra.getString("id_evento") + "'>Asigna puntaje y/o comentarios</a>");
+                                        +  ra.getString("id_publicacion") + "&id2=" + user + "'>Asigna puntaje y/o comentarios</a>");
                                 out.print("</td>");
                             }
                             out.print("</table>");
@@ -327,12 +318,14 @@
                             out.print("</table>");
                             lb.closeConnection();
                     %>
-                    <s:set var="num_profesor"><%=user%></s:set>
-                <s:form id="datos" action="update_evaluador_evalua" method="post" style="display:block;">
-                    <s:hidden name="num_profesor"/>
-                    <s:submit value="Registrar puntaje y fecha de registro"/>
-                </s:form>
                     
+                    </div>
+                    <div align="center">
+                        <s:set var="num_profesor"><%=user%></s:set>
+                <s:form id="datos" action="/Usuario/update_evaluador_evalua2" method="post" style="display:block;">
+                    <s:hidden name="num_profesor"/>
+                    <s:submit value="Registrar puntaje y fecha de evaluación"/>
+                </s:form>
                     </div>
                    
                 </s:div>
@@ -342,7 +335,7 @@
         
         
         <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
