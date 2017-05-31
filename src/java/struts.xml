@@ -389,6 +389,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -398,28 +399,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
-            </interceptor-ref>
-            <interceptor-ref name="params">
-                <param name="excludeParams">dojo\..*,^struts\..*</param>
-            </interceptor-ref>
-            <interceptor-ref name="validation">
-                <param name="excludeMethods">input,back,cancel,browse</param>
-            </interceptor-ref>
-            <interceptor-ref name="workflow">
-                <param name="excludeMethods">input,back,cancel,browse</param>
-            </interceptor-ref>
-            <result name="success">/Profesor/Actividad_exito.jsp</result>
-            <result name="error">/Profesor/Actividades.jsp</result>
-        </action>
-        
-        <action name="valida_tt" class="profesor.valida_tt">
-            <interceptor-ref name="exception"/>
-            <interceptor-ref name="i18n"/>
-            <interceptor-ref name="fileUpload">
-                <param name="maximumSize">10485760</param>
-                <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -435,13 +415,34 @@
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
+        <action name="valida_tt" class="profesor.valida_tt">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">10485760</param>
+                <param name="saveDir">/tmp</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="error">/Profesor/Actividades.jsp</result>
+        </action>
+        
         <action name="valida_evento" class="profesor.valida_evento">
             <interceptor-ref name="exception"/>
             <interceptor-ref name="i18n"/>
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -462,7 +463,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -474,6 +475,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -505,7 +507,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -517,6 +519,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
     </package>

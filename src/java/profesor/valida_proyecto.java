@@ -55,7 +55,8 @@ public class valida_proyecto extends ActionSupport
 //<<<<<<< Upstream, based on origin/master
     
     public String execute() throws Exception {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = "C:\\Users\\le_as\\Documents\\Pruebas_pdf\\";
         destPath += getUsername() + "\\" + getActivity() + "\\";
 //=======
          if(id_proyecto.equals(""))
@@ -63,9 +64,27 @@ public class valida_proyecto extends ActionSupport
             addFieldError("id_proyecto","Este campo es necesario");
             return ERROR;
         }
+        int periodox=0, numero = 0;
+        String limit="limit";
         
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
+        
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        
+        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo="+periodox+" and validado=1 ");
+        if(cuenta.next())
+        {
+            System.out.println(cuenta.getInt(1));
+            if(cuenta.getInt(1)==1){
+            lb.closeConnection();
+            return limit;}
+            
+        }
         
         ResultSet pr=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_proyecto='"+id_proyecto+"'");
         while(pr.next())

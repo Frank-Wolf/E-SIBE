@@ -54,15 +54,26 @@ public class valida_BEIFI extends ActionSupport
         {
             periodox=rperiodo.getInt("periodo_actual");
         }
+        if(tipo_alumno.equals("BEIFI")){
+        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo="+periodox+" and validado_alumno=1 and tipo_alumno='BEIFI'");
         
-        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo='"+periodox+"'");
         if(cuenta.next())
         {
-            numero = cuenta.getInt(1);
+            System.out.println(cuenta.getInt(1));
+            if(cuenta.getInt(1)==1){
             lb.closeConnection();
-            return limit;
+            return limit;}
+            
+        }}
+        if(tipo_alumno.equals("SS")){
+        ResultSet servicio=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo="+periodox+" and validado_alumno=1 and tipo_alumno='SS'");
+        if(servicio.next())
+        {System.out.println(servicio.getInt(1));
+            if(servicio.getInt(1)==4){
+            lb.closeConnection();
+            return limit;}
         }
-        
+        }
         System.out.println(username);
         System.out.println(id_alumno);
         ResultSet ex_prof_proy=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_alumno="+id_alumno+"");  //verifica que el profesor está asociado con el proyecto
