@@ -51,7 +51,8 @@ public class valida_part extends ActionSupport
     }
     public String execute() throws Exception 
     {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
         destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_part.equals(""))
         {
@@ -64,10 +65,144 @@ public class valida_part extends ActionSupport
             addFieldError("u_a","Este campo es necesario");
             return ERROR;
         }
-
-        
+        int periodox=0, numero = 0;
+        String limit="limit";
+        int idss=0;
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
+        
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        ResultSet ids=lb.executeQuery("SELECT * FROM profesor_participa_en_plan where id_usuario="+username+" and id_part='"+id_part+"'");
+        while(ids.next())
+        {
+            idss=ids.getInt("id_tipo_part");
+        }
+        
+        if(idss==1)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==2)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==3)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==4)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==5)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==6)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==7)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        if(idss==8)
+        {
+            ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan where id_usuario="+username+" and id_tipo_part="+idss+" and periodo="+periodox+" and validado=1 ");
+            if(cuenta.next())
+            {
+                System.out.println(periodox);
+                System.out.println(cuenta.getInt(1));
+                if(cuenta.getInt(1)==2)
+                {
+                    lb.closeConnection();
+                    return limit;
+                }
+
+            }
+        }
+        
         
         ResultSet val=lb.executeQuery("select * from part_plan_est where id_part ='"+id_part+"' and u_a='"+u_a+"'");
         while(val.next())
