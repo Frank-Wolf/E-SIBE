@@ -1,6 +1,6 @@
 <%-- 
-    Document   : participacion
-    Created on : 24/04/2017, 01:09:30 PM
+    Document   : Part_reportes
+    Created on : 7/06/2017, 01:47:34 AM
     Author     : le_as
 --%>
 
@@ -99,7 +99,7 @@
                                      + "table-responsive '>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("Numero de Participacion");
+                            out.print("No. Participacion");
                             out.print("</th>");
                             out.print("<th>");
                             out.print("Asignatura");
@@ -110,15 +110,18 @@
                             out.print("<th>");
                             out.print("No. Empleado del Prof.");
                             out.print("</th>");
+                            out.print("<th>");
+                            out.print("Rechazar");
+                            out.print("</th>");
                             out.print("</tr>");
                             
                                 
                                 while(participacion.next())
                                 {
-                                    ResultSet profe_part=lb.executeQuery("select id_usuario from profesor_participa_en_plan where id_part='"+participacion.getString("id_part")+"' and registrado=1");
+                                    ResultSet profe_part=lb.executeQuery("select * from profesor_participa_en_plan where id_part='"+participacion.getString("id_part")+"' and registrado=0");
                                     while (profe_part.next())
                                     {
-                                        ResultSet nom_part=lb.executeQuery("select nombre_part from tipo_part_plan where id_tipo_part="+participacion.getString("id_tipo_part")+"");
+                                        ResultSet nom_part=lb.executeQuery("select * from tipo_part_plan where id_tipo_part="+participacion.getString("id_tipo_part")+"");
                                         while(nom_part.next())
                                         {
                                         out.print("<tr>");
@@ -134,7 +137,10 @@
                                         out.print("<td>");
                                         out.print(profe_part.getString("id_usuario"));
                                         out.print("</td>");
-                                        
+                                        out.print("<td>");
+                                        out.print("<a href='Borrar_PART?id_part="
+                                        +profe_part.getString("id_part")+"&id_usuario="+profe_part.getString("id_usuario")+" &asignatura="+participacion.getString("asignatura")+"'>Borrar</a>");;
+                                        out.print("</td>");
                                         out.print("</tr>");
                                         }
                                     }
@@ -166,4 +172,5 @@
         <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
+
 

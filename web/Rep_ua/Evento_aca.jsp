@@ -44,6 +44,8 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">          
+                                <li><a href="EVENTO_REP">
+                                      Participaciones en Eventos Reportadas por los profesores</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Menu_RUA">
@@ -66,6 +68,7 @@
                             <s:set name="annio" value="%{' - '}"/>
                             <s:set name="numero" value="%{' - '}"/>
                             <s:set name="sede" value="%{'ESCOM'}"/>
+                            <s:set name="registrado" value="%{1}"/>
                             <s:form action="registra_evento" method="post">
                                 <s:textfield name="id_evento" label="Id de Participacion en el Evento" cssClass="form-control"/>
                                 <s:textfield name="nom_evento" label="Nombre del evento Academico" cssClass="form-control"/>
@@ -73,6 +76,7 @@
                                 <sj:datepicker name="fecha_fin" label="Fecha de Cierre " displayFormat="dd-mm-yy" style="width: 89%;"/>
                                 <s:textfield name="id_publicacion" label="Numero de Publicación" cssClass="form-control"/>
                                 <s:textfield name="Nom_Public" label="Nombre de la Publicación" cssClass="form-control"/>
+                                <s:textfield name="num_autores" label="Imserte el numero de autores" cssClass="form-control"/>
                                 <s:select label="Seleccione el tipo de Actividad" cssClass="form-control"
                                     headerKey="-1" headerValue="Tipo de publicacion"
                                     list="# {
@@ -92,6 +96,7 @@
                                 <s:hidden name="annio" label="Año" cssClass="form-control" />
                                 <s:hidden name="numero" label="Año" cssClass="form-control" />
                                 <s:hidden name="sede" label="Año" cssClass="form-control" />
+                                <s:hidden name="registrado"/>
                                 <s:submit cssClass="btn" name="Registrar"/>
                             </s:form>  
                         </div>
@@ -126,7 +131,7 @@
                                 out.print("</tr>");
                                 while(beifi.next())
                                 {
-                                    ResultSet proyecto=lb.executeQuery("select * from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"'");
+                                    ResultSet proyecto=lb.executeQuery("select * from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"' AND registrado=1");
                                     while (proyecto.next())
                                     {
                                         ResultSet evento=lb.executeQuery("select * from evento_academico where id_evento='"+beifi.getString("id_evento")+"'");

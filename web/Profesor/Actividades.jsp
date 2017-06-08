@@ -59,6 +59,12 @@
                         
                         <!-- Parte derecha de barra de navegacion-->
                         <div class="container">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Inicio</a></li>
+                                <li><a href="No_registradas">
+                                        Reportar Actividad</a></li>
+                            </ul>
+
                             <ul class="nav navbar-nav navbar-right">
                                  <li><a href="Menu">
                                         Menú Principal</a>
@@ -139,7 +145,7 @@
                             ResultSet alumnos=null;
                             lb.getConnection();
                             alumnos=lb.executeQuery("SELECT id_proyecto, id_alumno, tipo_alumno "
-                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado_alumno=0");
+                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado_alumno=0 and registrado_alumno=1");
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
                                      + "table-responsive '>");
@@ -357,7 +363,7 @@
                             ResultSet rws=null;
                             
                             rws=lb.executeQuery("SELECT * "
-                                     + "FROM profesor_tiene_pub WHERE id_usuario = "+ username +" and validado=0 and id_evento<>'0'");
+                                     + "FROM profesor_tiene_pub WHERE id_usuario = "+ username +" and validado=0 and id_evento<>'0' and registrado=1");
                             
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
@@ -474,7 +480,7 @@
                             ResultSet proyecto=null;
                             
                             proyecto=lb.executeQuery("SELECT id_proyecto "
-                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado=0 and id_alumno=0");
+                                     + "FROM profesor_tiene_proyecto WHERE id_usuario = "+ username +" and validado=0 and id_alumno=0 and registrado=1");
                             
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
@@ -564,7 +570,7 @@
                         <%
                             ResultSet obra=null;  
                             obra=lb.executeQuery("SELECT * "
-                                     + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=0");
+                                     + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=0 and registrado=1");
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
                                      + "table-responsive '>");
@@ -695,7 +701,7 @@
                             ResultSet tt1=null;
                             
                             tt1=lb.executeQuery("SELECT * "
-                                     + "FROM profesor_tiene_tt WHERE id_usuario = "+ username +" and validado=1");
+                                     + "FROM profesor_tiene_tt WHERE id_usuario = "+ username +" and validado=1 and registrado=1");
                             
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
@@ -766,7 +772,7 @@
                             ResultSet participacion=null;
                             
                             participacion=lb.executeQuery("SELECT * "
-                                     + "FROM profesor_participa_en_plan WHERE id_usuario = "+ username +" and validado=0");
+                                     + "FROM profesor_participa_en_plan WHERE id_usuario = "+ username +" and validado=0 and registrado=1");
                             
                             out.print("<table  class=' table "
                                      + "table-container table-striped "

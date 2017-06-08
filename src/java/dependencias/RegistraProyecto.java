@@ -18,7 +18,15 @@ import java.io.IOException;
 public class RegistraProyecto extends ActionSupport
 {   
     private String id_proyecto,nom_proyecto,actividad;
-    private int id_usuario,id_alumno;
+    private int id_usuario,id_alumno,registrado;
+
+    public int getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(int registrado) {
+        this.registrado = registrado;
+    }
 
     public String getActividad() {
         return actividad;
@@ -112,6 +120,19 @@ public class RegistraProyecto extends ActionSupport
         
         LoginBean lb = new LoginBean();
         lb.getConnection();
+        
+        
+        ResultSet actualiza= lb.executeQuery("select * from profesor_tiene_proyecto where id_proyecto='"+id_proyecto+"' and id_usuario="+id_usuario+" and registrado=0");
+        while(actualiza.next())
+        {
+            lb.executeUpdate("update profesor_tiene_proyecto set registrado=1 ");
+            lb.closeConnection();
+            return SUCCESS;
+            
+        }
+      
+        
+        
         ResultSet pr=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
         
         System.out.println(id_usuario);
@@ -137,7 +158,7 @@ public class RegistraProyecto extends ActionSupport
                     else
                     {
                         System.out.println("Aqui falla");
-                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,rol_profesor,validado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0)");
+                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,rol_profesor,validado,registrado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0,"+registrado+")");
                         lb.closeConnection();
                         return SUCCESS;
                     }
@@ -148,7 +169,7 @@ public class RegistraProyecto extends ActionSupport
             }
 
             lb.executeUpdate("insert into proyecto(id_proyecto,nom_proyecto,fecha_reg) values('"+id_proyecto+"','"+nom_proyecto+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
-            lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,rol_profesor,validado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0)");
+            lb.executeUpdate("insert into profesor_tiene_proyecto (id_usuario,id_proyecto,id_alumno,rol_profesor,validado,registrado) values("+id_usuario+",'"+id_proyecto+"',0,'"+rol+"',0,"+registrado+")");
             lb.closeConnection();
             return SUCCESS;
         }

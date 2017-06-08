@@ -42,6 +42,8 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
+                                <li><a href="PUB_REP_SIN">
+                                      Publicaciones Reportadas por los Docentes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Menu_RUA">
@@ -58,7 +60,8 @@
                             <h2 class="titulos" align="center">Registrar Publicación Sin Arbitraje</h2>
                             <br/>
                             <br/>
-                            <s:set name="id_evento" value="%{0}"/>            
+                            <s:set name="id_evento" value="%{0}"/>   
+                            <s:set name="registrado" value="%{1}"/>
                             <s:form action="registra_pub_bol" method="post">
                                 <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control"/>
                                 <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control"/>
@@ -71,6 +74,7 @@
                                     '3':'Sin Arbitraje, Internacional'
                                     }"
                                     name="id_tipo_pub" />
+                                <s:textfield name="num_autores" label="Numero de Autores" cssClass="form-control"/>
                                 <s:textfield name="numero" label="Numero de la revista" cssClass="form-control"/>
                                 <s:textfield name="ISSN" label="ISSN" cssClass="form-control" />
                                 <s:textfield name="ISBN" label="ISBN" cssClass="form-control" />
@@ -78,6 +82,7 @@
                                 <s:textfield name="annio" label="Año" cssClass="form-control" />
                                 <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" cssClass="form-control" style="width =80%"/>
                                 <s:hidden name="id_evento" />
+                                <s:hidden name="registrado"/>
                                 <s:submit cssClass="btn" name="Registrar TT" value="Registrar Publicación"/>
                             </s:form>  
                         </div>
@@ -124,7 +129,7 @@
                                 out.print("</tr>");
                                 while(beifi.next())
                                 {
-                                    ResultSet proyecto=lb.executeQuery("select id_usuario from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"'");
+                                    ResultSet proyecto=lb.executeQuery("select id_usuario from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"' AND registrado=1");
                                     while (proyecto.next())
                                     {
                                         out.print("<tr>");

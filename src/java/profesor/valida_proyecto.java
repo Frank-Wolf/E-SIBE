@@ -86,7 +86,7 @@ public class valida_proyecto extends ActionSupport
             
         }
         
-        ResultSet pr=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_proyecto='"+id_proyecto+"'");
+        ResultSet pr=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_proyecto='"+id_proyecto+"' and registrado=1");
         while(pr.next())
         {   
             if(pr.getInt("validado")==1)

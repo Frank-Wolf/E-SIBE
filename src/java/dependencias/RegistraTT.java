@@ -12,6 +12,8 @@ import java.sql.*;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -20,7 +22,15 @@ import java.util.Random;
 public class RegistraTT extends ActionSupport
 {   
     private String id_TT,nom_alumno,nom_TT;
-    private int id_alumno,id_usuario;
+    private int id_alumno,id_usuario,registrado;
+
+    public int getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(int registrado) {
+        this.registrado = registrado;
+    }
     private String fecha_reg;
 
     public String getFecha_reg() {
@@ -71,11 +81,22 @@ public class RegistraTT extends ActionSupport
         this.id_usuario = id_usuario;
     }
 
+   private static Pattern pswNamePtrn = Pattern.compile("T{2}([0-9]){4}(-)([A-B]){1}([0-9]){3}");
   
+   public static String validatePassword(String ID_TT){//
+         
+        Matcher mtch = pswNamePtrn.matcher(ID_TT);
+        if(mtch.matches()){
+            return SUCCESS;
+        }
+        else
+            return "test";
+    }
     
    public String execute() throws IOException, SQLException, PropertyVetoException 
    {
         String ret = SUCCESS;
+        String cadena;
         
         if(id_alumno==0)
         {
@@ -113,10 +134,25 @@ public class RegistraTT extends ActionSupport
             return ERROR;
         }
         
+        cadena= validatePassword(id_TT);
+        if(cadena.equals("test"))
+        {
+            addFieldError("id_TT","No coincide con la Regla, asegurate de que sea TT[4 digitos]-[A/B][3 dígitos]");
+            return ERROR;
+        }
         
         
         LoginBean lb = new LoginBean();
         lb.getConnection();
+        
+        
+        ResultSet actualiza=lb.executeQuery("SELECT * from profesor_tiene_tt where id_usuario="+id_usuario+" and id_tt='"+id_TT+"' and registrado=0");
+        while(actualiza.next())
+        {
+            lb.executeUpdate("update profesor_tiene_tt set registrado=1 ");
+            lb.closeConnection();
+            return SUCCESS;
+        }
 
         ResultSet prof=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
         while(prof.next())
@@ -135,8 +171,8 @@ public class RegistraTT extends ActionSupport
 
                             lb.executeUpdate("insert into tt (id_TT,nom_TT,fecha_pro) values('"+id_TT+"','"+nom_TT+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
 
-                            lb.executeUpdate("insert into profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val)"
-                                    + " values('"+id_usuario+"','"+id_TT+"',"+id_alumno+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                            lb.executeUpdate("insert into profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val,registrado)"
+                                    + " values('"+id_usuario+"','"+id_TT+"',"+id_alumno+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'),"+registrado+")");
 
 
                             lb.closeConnection();
@@ -148,8 +184,8 @@ public class RegistraTT extends ActionSupport
 
                     lb.executeUpdate("insert into tt (id_TT,nom_TT,fecha_pro) values('"+id_TT+"','"+nom_TT+"',str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
 
-                    lb.executeUpdate("insert into profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val)"
-                        + " values('"+id_usuario+"','"+id_TT+"',"+id_alumno+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                    lb.executeUpdate("insert into profesor_tiene_tt(id_usuario,id_TT,id_alumno,validado,fecha_val,registrado)"
+                        + " values('"+id_usuario+"','"+id_TT+"',"+id_alumno+",0,str_to_date('"+fecha_reg+"','%d-%m-%Y'),"+registrado+")");
 
 
                     lb.closeConnection();

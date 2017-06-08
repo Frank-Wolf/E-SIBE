@@ -44,7 +44,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="BEIFI_REPORTES">Alumnos  BEIFI reportados por Docentes</a></li>
+                                <li><a>Alumnos  BEIFI reportados por Docentes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="SIP_Principal">
@@ -60,7 +60,7 @@
                         <h2 class="titulos">Registre Alumno BEIFI</h2>
                        
                            <s:set name="tipo_alumno" value="%{'BEIFI'}"/>
-                           <s:set name="registrado" value="%{1}"/>
+                           
                             <s:form action="registra_BEIFI" method="post">
                                 <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" maxlength="8" pattern="([0-9]{8})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="No. de Empleado del Autor" type="number"/>
                                 <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control" maxlength="8" pattern="([0-9]{8})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="[4 dígitos-año][4 dígitos-consecutivo]" type="number"/>                                                      
@@ -75,7 +75,6 @@
                                 <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control" placeholder="Nombre del Alumno a Registrar"/>
                                 <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control" placeholder="Fecha del Registro"/>
                                 <s:hidden name="tipo_alumno"/>
-                                <s:hidden name="registrado"/>
                                 <s:submit value="Registrar Proyecto" cssClass="btn" />
                             </s:form> 
                         </div>
@@ -84,13 +83,13 @@
                                
                         <%
                             lb.getConnection();
-                            ResultSet beifi=lb.executeQuery("select * from profesor_tiene_proyecto where tipo_alumno='BEIFI' and registrado_alumno=1;");
+                            ResultSet beifi=lb.executeQuery("select * from profesor_tiene_proyecto where tipo_alumno='BEIFI' and registrado_alumno=0;");
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
                                      + "table-responsive '>");
                             out.print("<tr>");
                             out.print("<th>");
-                            out.print("Numero de Proyecto");
+                            out.print("No. Proyecto");
                             out.print("</th>");
                              out.print("<th>");
                             out.print("Nombre de Proyecto");
@@ -99,10 +98,13 @@
                             out.print("No. Empleado del Prof.");
                             out.print("</th>");
                             out.print("<th>");
-                            out.print("Numero de Boleta de Alumno");
+                            out.print("Matricula del Alumno");
                             out.print("</th>");
                              out.print("<th>");
                             out.print("Nombre de Alumno");
+                            out.print("</th>");
+                             out.print("<th>");
+                            out.print("Rechazar");
                             out.print("</th>");
                             out.print("</tr>");
                             
@@ -130,6 +132,10 @@
                                         out.print("</td>");
                                         out.print("<td>");
                                         out.print(alumno.getString("nom_alumno"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print("<a href='Borrar_ALUMNOB?id_proyecto="
+                                        +beifi.getString("id_proyecto")+"&id_usuario="+beifi.getString("id_usuario")+"&id_alumno="+beifi.getString("id_alumno")+"'>Borrar</a>");;
                                         out.print("</td>");
                                         out.print("</tr>");
                                         }

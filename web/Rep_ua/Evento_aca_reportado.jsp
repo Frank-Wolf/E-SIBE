@@ -35,15 +35,15 @@
         <!--Conteneor general-->    
         <s:div cssClass="contenedor-general">
             <s:div cssClass="site-wrapper-inner">
-               <nav class="navbar navbar-default">
+                
+                                    
+                <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" >E-SIBE: Representante de Unidad Académica</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav"> 
-                                 <li><a href="PUB_REP_BOL">
-                                      Publicaciones en Boletín reportadas por docentes</a></li>
+                            <ul class="nav navbar-nav">          
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Menu_RUA">
@@ -53,35 +53,47 @@
                     </div>
                 </nav>
                 <s:div cssClass="cover-container2">    
-                     <div class="row ">
+                    <div class="row ">
                         <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
                          col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
                          col-sm-offset-2 ">
-                        <h2 class="titulos" align="center">Registrar Publicación en Boletín</h2>
-                        <br/>
-                        <br/>
-                            <s:set name="id_evento" value="%{0}"/>            
-                            <s:set name="id_tipo_pub" value="%{1}"/>
-                            <s:set name="ISSN" value="%{0}"/>
-                            <s:set name="ISBN" value="%{0}"/>
-                            <s:set name="regitrado" value="%{1}"/>
-                            <s:form action="registra_pub_bol" method="post">
-                                <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control"/>
-                                <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control"/>
-                                <s:textfield name="Nom_Public" label="Nombre de la publicacion" cssClass="form-control"/>
+                            <s:set name="Nacional" value="%{1}"/>
+                            <s:set name="compulsado" value="%{1}"/>
+                            <s:set name="ISBN" value="%{' - '}"/>
+                            <s:set name="ISSN" value="%{' - '}"/>
+                            <s:set name="Nombre_Rev" value="%{' - '}"/>
+                            <s:set name="volumen" value="%{' - '}"/>
+                            <s:set name="annio" value="%{' - '}"/>
+                            <s:set name="numero" value="%{' - '}"/>
+                            <s:set name="sede" value="%{'ESCOM'}"/>
+                            <s:form action="registra_evento" method="post">
+                                <s:textfield name="id_evento" label="Id de Participacion en el Evento" cssClass="form-control"/>
+                                <s:textfield name="nom_evento" label="Nombre del evento Academico" cssClass="form-control"/>
+                                <sj:datepicker name="fecha_inicio" label="Fecha de Inicio" displayFormat="dd-mm-yy" style="width: 89%;"/>
+                                <sj:datepicker name="fecha_fin" label="Fecha de Cierre " displayFormat="dd-mm-yy" style="width: 89%;"/>
+                                <s:textfield name="id_publicacion" label="Numero de Publicación" cssClass="form-control"/>
+                                <s:textfield name="Nom_Public" label="Nombre de la Publicación" cssClass="form-control"/>
+                                <s:select label="Seleccione el tipo de Actividad" cssClass="form-control"
+                                    headerKey="-1" headerValue="Tipo de publicacion"
+                                    list="# {
+                                    '6':'Institucional, sin ponencia publicada',
+                                    '7':'Institucional, con resumen publicado',
+                                    '8':'Institucional, publicado en extenso'
+                                    }"
+                                    name="id_tipo_pub" />
+                                <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" style="width: 89%;" />
                                 <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" />
-                                <s:textfield name="num_autores" label="Numero de Autores" cssClass="form-control" />
-                                <s:textfield name="numero" label="Numero de la revista" cssClass="form-control"/>
-                                <s:textfield name="volumen" label="Volumen" cssClass="form-control"/>
-                                <s:textfield name="annio" label="Año" cssClass="form-control" />
-                                <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" cssClass="form-control" style="width:83%"/>
-                                <s:hidden name="id_evento" />
-                                <s:hidden name="id_tipo_pub" />
-                                <s:hidden name="ISSN" />
-                                <s:hidden name="registrado"/>
-                                <s:hidden name="ISBN" />
-                                 <s:submit cssClass="btn" name="Registrar TT" value="Registrar Usuario"/>
-                            </s:form> 
+                                <s:hidden name="Nacional" cssClass="form-control"/>
+                                <s:hidden name="compulsado" cssClass="form-control"/>
+                                <s:hidden name="ISSN" label="ISSN" cssClass="form-control" />
+                                <s:hidden name="ISBN" label="ISBN" cssClass="form-control" />
+                                <s:hidden name="Nombre_Rev" label="ISBN" cssClass="form-control" />
+                                <s:hidden name="volumen" label="Volumen" cssClass="form-control"/>
+                                <s:hidden name="annio" label="Año" cssClass="form-control" />
+                                <s:hidden name="numero" label="Año" cssClass="form-control" />
+                                <s:hidden name="sede" label="Año" cssClass="form-control" />
+                                <s:submit cssClass="btn" name="Registrar"/>
+                            </s:form>  
                         </div>
                     </div>
                     <div class="row">
@@ -91,64 +103,60 @@
 
                             <%
                                 lb.getConnection();
-                                ResultSet beifi=lb.executeQuery("select * from publicacion where id_tipo_pub=1");
+                                ResultSet beifi=lb.executeQuery("select * from publicacion where id_tipo_pub=6 OR id_tipo_pub=7 OR id_tipo_pub=8");
                                 out.print("<table  class=' table "
                                          + "table-container table-striped "
                                          + "table-responsive '>");
                                 out.print("<tr>");
                                 out.print("<th>");
-                                out.print("Numero de Publicacion");
-                                out.print("</th>");
-                                
-                                out.print("<th>");
-                                out.print("Nombre de la Revista");
+                                out.print("ID del Evento");
                                 out.print("</th>");
                                 out.print("<th>");
-                                out.print("Nombre de la Publicación");
+                                out.print("Nombre del Evento");
                                 out.print("</th>");
                                 out.print("<th>");
-                                out.print("Volumen");
+                                out.print("Numero de Publicación");
                                 out.print("</th>");
                                 out.print("<th>");
-                                out.print("Año");
-                                out.print("</th>");
-                                out.print("<th>");
-                                out.print("Número");
+                                out.print("Título de la Ponencia");
                                 out.print("</th>");
                                 out.print("<th>");
                                 out.print("No. Empleado - ID Autor");
                                 out.print("</th>");
+                                out.print("<th>");
+                                out.print("Rechazar");
+                                out.print("</th>");
                                 out.print("</tr>");
                                 while(beifi.next())
                                 {
-                                    ResultSet proyecto=lb.executeQuery("select id_usuario from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"' AND registrado=1");
+                                    ResultSet proyecto=lb.executeQuery("select * from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"' AND registrado=0");
                                     while (proyecto.next())
                                     {
-                                        out.print("<tr>");
+                                        ResultSet evento=lb.executeQuery("select * from evento_academico where id_evento='"+beifi.getString("id_evento")+"'");
+                                        while(evento.next())
+                                        {
+                                            out.print("<tr>");
                                         out.print("<td>");
-                                        out.print(beifi.getString("id_publicacion"));
+                                        out.print(proyecto.getString("id_evento"));
                                         out.print("</td>");
-                                        
                                         out.print("<td>");
-                                        out.print(beifi.getString("Nombre_Rev"));
+                                        out.print(evento.getString("nom_evento"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(proyecto.getString("id_publicacion"));
                                         out.print("</td>");
                                         out.print("<td>");
                                         out.print(beifi.getString("Nom_Public"));
                                         out.print("</td>");
                                         out.print("<td>");
-                                        out.print(beifi.getString("volumen"));
-                                        out.print("</td>");
-                                        out.print("<td>");
-                                        out.print(beifi.getString("annio"));
-                                        out.print("</td>");
-                                        out.print("<td>");
-                                        out.print(beifi.getString("numero"));
-                                        out.print("</td>");
-                                        out.print("<td>");
                                         out.print(proyecto.getString("id_usuario"));
                                         out.print("</td>");
                                         out.print("<td>");
+                                        out.print("<a href='Borrar_EVENTO23?id_publicacion="
+                                        +proyecto.getString("id_publicacion")+"&id_usuario="+proyecto.getString("id_usuario")+"&id_evento="+beifi.getString("id_evento")+"'>Borrar</a>");;
+                                        out.print("</td>");
                                         out.print("</tr>");
+                                        }
                                     }
                                 }
 
@@ -158,13 +166,12 @@
                             <br/>
                             <br/>  
                         </div>
-                    </div>
+                    </div>        
                 </s:div>
             </s:div>
         </s:div>
-        
          <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer ">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>

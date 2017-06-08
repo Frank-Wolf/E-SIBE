@@ -17,7 +17,23 @@ import java.util.Random;
  */
 public class Eventos extends ActionSupport{
     private String id_publicacion,id_evento,ISBN,ISSN,Nombre_Rev,Nom_Public,fecha_publicacion,volumen,annio,numero, fecha_inicio,fecha_fin,sede,nom_evento;
-    private int id_tipo_pub,id_usuario,compulsado;
+    private int id_tipo_pub,id_usuario,compulsado,registrado,num_autores;
+
+    public int getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(int registrado) {
+        this.registrado = registrado;
+    }
+
+    public int getNum_autores() {
+        return num_autores;
+    }
+
+    public void setNum_autores(int num_autores) {
+        this.num_autores = num_autores;
+    }
 
     public String getFecha_inicio() {
         return fecha_inicio;
@@ -211,6 +227,17 @@ public class Eventos extends ActionSupport{
         
         LoginBean lb = new LoginBean();
         lb.getConnection();
+        
+        ResultSet actualiza= lb.executeQuery("select * from profesor_tiene_pub where id_publicacion='"+id_publicacion+"' and id_usuario="+id_usuario+" and id_evento='"+id_evento+"' and registrado=0");
+        while(actualiza.next())
+        {
+            lb.executeUpdate("update profesor_tiene_pub set registrado=1 where id_publicacion='"+id_publicacion+"' and id_usuario="+id_usuario+" and id_evento='"+id_evento+"'");
+            lb.closeConnection();
+            return SUCCESS;
+            
+        }
+        
+        
         ResultSet vprof=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
         while(vprof.next())
         {
@@ -232,12 +259,12 @@ public class Eventos extends ActionSupport{
                         }
                     }
                     lb.executeUpdate("insert into publicacion (id_publicacion,id_tipo_pub,ISSN,ISBN,Nom_Public,"
-                            + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero) values"
+                            + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero_num_autores) values"
                             + "('"+id_publicacion+"',"+id_tipo_pub+",'"+ISSN+"','"+ISBN+"','"+Nom_Public+"','"+Nombre_Rev+"'"
-                            + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"')");
+                            + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"',"+num_autores+")");
 
-                        lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
-                                + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
+                        lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val,registrado)"
+                                + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),"+registrado+")");
                         lb.closeConnection();
                         return SUCCESS;
                 }
@@ -255,8 +282,8 @@ public class Eventos extends ActionSupport{
                     lb.executeUpdate("insert into profesor_participa_ev (id_usuario,id_evento,actividad,comentarios,ruta_alm,validado,fecha_val,puntaje,periodo)"
                     + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
                     
-                    lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
-                            + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
+                    lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val,num_autores)"
+                            + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),"+num_autores+")");
                     lb.closeConnection();
                     return SUCCESS;
                 }
@@ -264,12 +291,12 @@ public class Eventos extends ActionSupport{
                     + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
             
                 lb.executeUpdate("insert into publicacion (id_publicacion,id_tipo_pub,ISSN,ISBN,Nom_Public,"
-                        + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero) values"
+                        + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero,num_autores) values"
                         + "('"+id_publicacion+"',"+id_tipo_pub+",'"+ISSN+"','"+ISBN+"','"+Nom_Public+"','"+Nombre_Rev+"'"
-                        + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"')");
+                        + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"'),"+num_autores+"");
 
-                lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
-                            + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
+                lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val,registrado)"
+                            + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),"+registrado+")");
                     lb.closeConnection();
                     return SUCCESS;
                 
@@ -297,12 +324,12 @@ public class Eventos extends ActionSupport{
                     + " values("+id_usuario+",'"+id_evento+"','Ponencia','','',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,0)");
             
             lb.executeUpdate("insert into publicacion (id_publicacion,id_tipo_pub,ISSN,ISBN,Nom_Public,"
-                    + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero) values"
+                    + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero,num_autores) values"
                     + "('"+id_publicacion+"',"+id_tipo_pub+",'"+ISSN+"','"+ISBN+"','"+Nom_Public+"','"+Nombre_Rev+"'"
-                    + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"')");
+                    + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"',"+num_autores+")");
         
-            lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
-                        + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
+            lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val,registrado)"
+                        + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),"+registrado+")");
                 lb.closeConnection();
                 return SUCCESS;
             

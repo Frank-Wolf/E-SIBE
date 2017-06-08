@@ -312,6 +312,83 @@
             <result>/Admins/Servicio.jsp</result>
         </action>
     </package> 
+    
+    <!--Paquete de registro de actividaes olvidadas por dependencias-->
+    <package name="registrar_actividades_profesor" extends="struts-default" namespace="/Usuario">
+        <action name="registra_proyecto_profesor" class="dependencias.RegistraProyecto">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        <action name="Borrar_PROYECTO" class="dependencias.Borrar_reporte">
+            <result name="borrar_exitoso">/SIP/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/SIP/Borrado_reporte_fal.jsp</result>
+        </action>
+        
+        <action name="registra_AlumnoB_profesor" class="dependencias.RegistraBEIFI">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        <action name="Borrar_ALUMNOB" class="dependencias.Borrar_reporte_alumnos">
+            <result name="borrar_exitoso">/SIP/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/SIP/Borrado_reporte_fal.jsp</result>
+        </action>
+        
+        <action name="registra_AlumnoS_profesor" class="dependencias.RegistraSS">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        <action name="Borrar_ALUMNOS" class="dependencias.Borrar_reporte_alumnos">
+            <result name="borrar_exitoso">/Rep_ua/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/Rep_ua/Borrado_reporte_fal.jsp</result>
+        </action>
+        
+        <action name="registra_part_sip_profesor" class="dependencias.RegistraParticipacion_sip">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        <action name="Borrar_PART" class="dependencias.Borrar_PART">
+            <result name="borrar_exitoso">/SIP/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/SIP/Borrado_reporte_fal.jsp</result>
+        </action>
+        <action name="registra_pub_bol_profesor" class="dependencias.Registra_pubBol">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        
+        <action name="Borrar_PUB" class="dependencias.Borrar_Publicacion">
+            <result name="borrar_exitoso">/SIP/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/SIP/Borrado_reporte_fal.jsp</result>
+        </action>
+        <action name="Borrar_ALUMNOS" class="dependencias.Borrar_reporte_alumnos">
+            <result name="borrar_exitoso">/Servicio/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/Servicio/Borrado_reporte_fal.jsp</result>
+        </action>
+        <action name="registra_obra_profesor" class="dependencias.RegistraObra">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        <action name="Borrar_OBRA" class="dependencias.Borrar_Obra">
+            <result name="borrar_exitoso">/INDAUTOR/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/INDAUTOR/Borrado_reporte_fal.jsp</result>
+        </action>
+        <action name="registra_evento_profesor" class="dependencias.Eventos">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        <action name="Borrar_EVENTO23" class="dependencias.Borrar_Evento">
+            <result name="borrar_exitoso">/Rep_ua/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/Rep_ua/Borrado_reporte_fal.jsp</result>
+        </action>
+        <action name="Borrar_TT" class="dependencias.Borrar_TT">
+            <result name="borrar_exitoso">/CATT/Borrado_reporte_ex.jsp</result>
+            <result name="borrar_fallo">/CATT/Borrado_reporte_fal.jsp</result>
+        </action>
+        
+
+            
+    </package>
+    <!--FIN Paquete de registro de actividaes olvidadas por dependencias-->
+    
     <!--Paquete para las dependencias que registran actividades-->
     <package name="registrar_actividades" extends="struts-default" namespace="/Usuario">
         <action name="registra_BEIFI" class="dependencias.RegistraBEIFI">
@@ -367,6 +444,12 @@
             <result name="success">/SIP/Actividad_exitosa.jsp</result>
             <result name="error">/SIP/publicacion_ar.jsp</result>
         </action>
+        
+        <action name="registra_tt_prof" class="dependencias.RegistraTT">
+            <result name="success">/Profesor/Reporte_exitoso.jsp</result>
+            <result name="error">/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
+        
     </package>
     <!--tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt-->
     <!--Paquete para los profesores que validad actividades-->
@@ -637,7 +720,9 @@
         <action name="SIP_Principal">
             <result>/SIP/SIP.jsp</result>
         </action>
-        
+        <action name="No_registradas">
+            <result>/Profesor/Actividades_no_registradas.jsp</result>
+        </action>
         <action name="Menu_INDA">
             <result>/INDAUTOR/INDAUTOR.jsp</result>
         </action>
@@ -656,6 +741,9 @@
         
         <action name="reg_obra">
             <result>/INDAUTOR/registra_obra.jsp</result>
+        </action>
+        <action name="OBRA_REPORTES">
+            <result>/INDAUTOR/OBRA_REPORTES.jsp</result>
         </action>
         
         <action name="part_sip">
@@ -681,8 +769,40 @@
         <action name="BEIFI">
             <result>/SIP/BEIFI.jsp</result>
         </action>
+        <action name="Proyecto_REPORTES">
+            <result>/SIP/Proyectos_reportados.jsp</result>
+        </action>
+        <action name="BEIFI_REPORTES">
+            <result>/SIP/BEIFI_reportados.jsp</result>
+        </action>
+        <action name="PARTSIP_REPORTES">
+            <result>/SIP/Part_reportes.jsp</result>
+        </action>
+        
+        <action name="PUB_REPORTES">
+            <result>/SIP/Publicaciones_reportados.jsp</result>
+        </action>
+        <action name="PUB_REP_BOL">
+            <result>/Rep_ua/Publicaciones_Bol_reportados.jsp</result>
+        </action>    
+        <action name="PUB_REP_SIN">
+            <result>/Rep_ua/Publicaciones_Sin_reportados.jsp</result>
+        </action>   
+        <action name="EVENTO_REP">
+            <result>/Rep_ua/Evento_aca_reportado.jsp</result>
+        </action>     
+        
+        <action name="TT_report">
+            <result>/CATT/TT_report.jsp</result>
+        </action>
+        
+        <action name="SERV_REPORTES">
+            <result>/Servicio/Servicio_reportados.jsp</result>
+        </action>
         
     </package> 
+    
+    
     <package name="Paquete_sip" extends="struts-default" namespace="/Usuario">
         <action name="Proyecto_sip">
             <result>/SIP/proyecto_sip.jsp</result>

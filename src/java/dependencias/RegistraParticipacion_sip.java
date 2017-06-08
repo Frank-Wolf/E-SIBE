@@ -21,6 +21,15 @@ import java.util.Random;
 public class RegistraParticipacion_sip extends ActionSupport
 {   
     private String id_participacion,Asignatura, fecha_reg,u_a;
+    private int registrado;
+
+    public int getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(int registrado) {
+        this.registrado = registrado;
+    }
 
     public String getU_a() {
         return u_a;
@@ -116,7 +125,19 @@ public class RegistraParticipacion_sip extends ActionSupport
    
         LoginBean lb = new LoginBean();
         lb.getConnection();
-   
+        ResultSet pd= lb.executeQuery("select * from part_plan_est where u_a='"+u_a+"' and id_part='"+id_participacion+"' and asignatura='"+Asignatura+"'");
+        while(pd.next())
+        {
+            ResultSet actualiza= lb.executeQuery("select * from profesor_participa_en_plan where id_part='"+id_participacion+"' and id_usuario="+id_usuario+" and registrado=0");
+            while(actualiza.next())
+            {
+                lb.executeUpdate("update profesor_participa_en_plan set registrado=1 ");
+                lb.closeConnection();
+                return SUCCESS;
+
+            }
+        }
+        
         ResultSet prof=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
         while(prof.next())
         {
@@ -133,9 +154,9 @@ public class RegistraParticipacion_sip extends ActionSupport
                     return ERROR;
                 }
                 
-                int nuevo_part=lb.executeUpdate("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val)"
+                int nuevo_part=lb.executeUpdate("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val,registrado)"
                               + " VALUES ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,"
-                              + "str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                              + "str_to_date('"+fecha_reg+"','%d-%m-%Y'),"+registrado+")");
                 lb.closeConnection();
                 return SUCCESS; 
             }
@@ -143,9 +164,9 @@ public class RegistraParticipacion_sip extends ActionSupport
                         + "('"+getId_participacion()+"','"+getId_tipo_part_plan()+"',str_to_date('"+fecha_reg+"', '%d-%m-%Y'),"
                         + "'"+getAsignatura()+"','"+u_a+"')");
             
-            int nuevo_part=lb.executeUpdate("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val)"
+            int nuevo_part=lb.executeUpdate("INSERT INTO profesor_participa_en_plan(id_usuario,id_part,id_tipo_part,validado,fecha_val,registrado)"
                               + " VALUES ('"+getId_usuario()+"','"+getId_participacion()+"','"+getId_tipo_part_plan()+"',0,"
-                              + "str_to_date('"+fecha_reg+"','%d-%m-%Y'))");
+                              + "str_to_date('"+fecha_reg+"','%d-%m-%Y'),"+registrado+")");
             
             lb.closeConnection();
             return SUCCESS;

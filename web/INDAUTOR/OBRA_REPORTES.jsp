@@ -1,3 +1,9 @@
+<%-- 
+    Document   : OBRA_REPORTES
+    Created on : 7/06/2017, 03:34:37 AM
+    Author     : le_as
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>  
@@ -54,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-6" >
                         <h2 align="center">Registrar Obra de INDAUTOR</h2>   
-                        <s:set name="registrado" value="%{1}"/>
+                        <s:set name="registrado" value="%{0}"/>
                         <s:form action="registra_obra" method="post">
                             <s:textfield name="id_obra" label="Id de la obra" cssClass="form-control"/>
                             <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" />
@@ -86,7 +92,7 @@
                         <h2 align="center" >Obras Registradas</h2>
                         <%
                             lb.getConnection();
-                            ResultSet ob=lb.executeQuery("select * from profesor_tiene_obra where registrado=1");
+                            ResultSet ob=lb.executeQuery("select * from profesor_tiene_obra where registrado=0");
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
                                      + "table-responsive '>");
@@ -117,6 +123,10 @@
                                 out.print("<td>");
                                 out.print(d.getString("num_autores"));
                                 out.print("</td>");
+                                out.print("<td>");
+                                        out.print("<a href='Borrar_OBRA?id_obra="
+                                        +ob.getString("id_obra")+"&id_usuario="+ob.getString("id_usuario")+"'>Borrar</a>");
+                                        out.print("</td>");
                                 out.print("</tr>");
                                 }
                                 }
