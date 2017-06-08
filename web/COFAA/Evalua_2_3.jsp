@@ -140,7 +140,7 @@
                             sesion.setAttribute("id",user);//id_publicacion
                             String user2=request.getParameter("id2");//user2 = id_prof
                             HttpSession sesion2 = request.getSession();
-                            sesion.setAttribute("id",user);
+                            sesion2.setAttribute("id",user2);
                             ResultSet rs=null;
                             int n = 0, tipo_pub = 0;
                             lb.getConnection();

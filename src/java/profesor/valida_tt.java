@@ -29,8 +29,8 @@ public class valida_tt extends ActionSupport{
 
     public String execute() throws Exception {
         
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
         if(id_TT.equals(""))
@@ -77,12 +77,12 @@ public class valida_tt extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_tt SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_usuario = " + username + " AND id_alumno = " + getId_alumno() );
-                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_tt SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_tt SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_usuario = " + username + " AND id_alumno = " + getId_alumno() );*/
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_tt SET ruta_alm = '\\\\Usuarios\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_usuario = " + username + " AND id_alumno = " + getId_alumno() );
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

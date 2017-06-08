@@ -316,51 +316,56 @@
     <!--Paquete para las dependencias que registran actividades-->
     <package name="registrar_actividades" extends="struts-default" namespace="/Usuario">
         <action name="registra_BEIFI" class="dependencias.RegistraBEIFI">
-            <result name="success">/SIP/SIP.jsp</result>
+            <result name="success">/SIP/Actividad_exitosa.jsp</result>
             <result name="error">/SIP/BEIFI.jsp</result>
         </action>
         
         <action name="registra_evento" class="dependencias.Eventos">
-            <result name="success">/Rep_ua/Rep_ua.jsp</result>
+            <result name="success">/Rep_ua/Actividad_exitosa.jsp</result>
             <result name="error">/Rep_ua/Evento_aca.jsp</result>
         </action>
         
         <action name="registra_SS" class="dependencias.RegistraSS">
-            <result name="success">/Servicio/Servicio.jsp</result>
+            <result name="success">/Servicio/Actividad_exitosa.jsp</result>
             <result name="error">/Servicio/Reg_SS.jsp</result>
         </action>
         
         <action name="registra_obra" class="dependencias.RegistraObra">
-            <result name="success">/INDAUTOR/INDAUTOR.jsp</result>
+            <result name="success">/INDAUTOR/Obra_exitosa.jsp</result>
             <result name="error">/INDAUTOR/registra_obra.jsp</result>
         </action>
         
         <action name="registra_proyecto" class="dependencias.RegistraProyecto">
-            <result name="success">/SIP/SIP.jsp</result>
+            <result name="success">/SIP/Actividad_exitosa.jsp</result>
             <result name="error">/SIP/proyecto_sip.jsp</result>
         </action>
         
         <action name="registra_TT" class="dependencias.RegistraTT">
-            <result name="success">/CATT/CATT.jsp</result>
+            <result name="success">/CATT/Actividad_exitosa.jsp</result>
             <result name="error">/CATT/Reg_TT.jsp</result>    
         </action>
         
         <action name="registra_part_sip" class="dependencias.RegistraParticipacion_sip">
-            <result name="success">/SIP/SIP.jsp</result>
+            <result name="success">/SIP/Actividad_exitosa.jsp</result>
             <result name="error">/SIP/participacion.jsp</result>
         </action>
         
         <action name="registra_part_DES" class="dependencias.RegistraParticipacion_sip">
-            <result name="success">/DESyDEMS/DES.jsp</result>
+            <result name="success">/DESyDEMS/Actividad_exitosa_1.jsp</result>
             <result name="error">/DESyDEMS/Part_DES.jsp</result>
         </action>
         
+        <action name="registra_part_DEMS" class="dependencias.RegistraParticipacion_sip">
+            <result name="success">/DESyDEMS/Actividad_exitosa.jsp</result>
+            <result name="error">/DESyDEMS/Part_DEMS.jsp</result>
+        </action>
+        
         <action name="registra_pub_bol" class="dependencias.Registra_pubBol">
-            <result name="success">/Rep_ua/Rep_ua.jsp</result>
+            <result name="success">/Rep_ua/Actividad_exitosa.jsp</result>
             <result name="error">/Rep_ua/Boletin.jsp</result>
         </action>
         <action name="registra_pub_bol2" class="dependencias.Registra_pubBol">
-            <result name="success">/SIP/SIP.jsp</result>
+            <result name="success">/SIP/Actividad_exitosa.jsp</result>
             <result name="error">/SIP/publicacion_ar.jsp</result>
         </action>
     </package>
@@ -385,6 +390,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -394,7 +400,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -406,6 +412,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -415,7 +422,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -436,7 +443,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -457,7 +464,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -469,6 +476,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -478,7 +486,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -490,6 +498,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="test">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
         
@@ -499,7 +508,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -511,6 +520,7 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
             <result name="success">/Profesor/Actividad_exito.jsp</result>
+            <result name="limit">/Profesor/limite.jsp</result>
             <result name="error">/Profesor/Actividades.jsp</result>
         </action>
     </package>
@@ -772,6 +782,10 @@
             <result name="fail">/COFAA/Apela.jsp</result>
         </action>
         <!--ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg-->
+        <!--action name="firma_prueba" class="PDF.digital_sign">
+            <result name="success">/Admins/admin_cofaa.jsp</result>
+            <result name="fail">/error.jsp</result>
+        </action-->
     </package>
     
     <package name="Paquete_apelacion" extends="struts-default" namespace="/Usuario">
@@ -861,7 +875,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="maximumSize">10485760</param>
                 <param name="saveDir">/tmp</param>
-                <param name="allowedTypes">application/pdf</param>
+                <param name="allowedTypes">application/pdf,application/kswps</param>
             </interceptor-ref>
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>

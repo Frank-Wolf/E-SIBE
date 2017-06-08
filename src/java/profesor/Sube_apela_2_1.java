@@ -29,8 +29,8 @@ public class Sube_apela_2_1 {
             //we need to receive the username (employee number) and the name of the table
             //thus, we can get the complete address of the saved file
    {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//server route
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//server route
         destPath += getUsername() + "\\Apelacion\\";
         try{
             System.out.println("Src File name: " + myFile);
@@ -47,12 +47,12 @@ public class Sube_apela_2_1 {
                             periodo = rs.getInt("periodo_actual");
                         }
             /***Asignar periodo****/
-            int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                    + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado_alumno = 1, aceptado_alumno = 0 "
-                    + "WHERE id_alumno = " + getId_actividad() + " AND periodo = " + periodo);
-            /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+            /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                     + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado_alumno = 1, aceptado_alumno = 0 "
                     + "WHERE id_alumno = " + getId_actividad() + " AND periodo = " + periodo);*/
+            int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = '\\\\Usuarios\\\\"
+                    + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado_alumno = 1, aceptado_alumno = 0 "
+                    + "WHERE id_alumno = " + getId_actividad() + " AND periodo = " + periodo);
             System.out.println(id_actividad);
             lb.closeConnection();
             }catch(IOException e){

@@ -29,8 +29,8 @@ public class Sube_apela_2_4 {
             //we need to receive the username (employee number) and the name of the table
             //thus, we can get the complete address of the saved file
    {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//route for server
         destPath += getUsername() + "\\Apelacion\\";
         try{
             System.out.println("Src File name: " + myFile);
@@ -47,12 +47,12 @@ public class Sube_apela_2_4 {
                             periodo = rs.getInt("periodo_actual");
                         }
             /***Asignar periodo****/
-            int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                    + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
-                    + "WHERE id_proyecto = '" + getId_actividad() + "' AND periodo = " + periodo);
-            /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+            /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                     + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
                     + "WHERE id_proyecto = '" + getId_actividad() + "' AND periodo = " + periodo);*/
+            int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = '\\\\Usuarios\\\\"
+                    + getUsername() + "\\\\Apelacion\\\\" + getMyFileFileName() + "', validado = 1, aceptado = 0 "
+                    + "WHERE id_proyecto = '" + getId_actividad() + "' AND periodo = " + periodo);
             System.out.println(id_actividad);
             lb.closeConnection();
             }catch(IOException e){

@@ -55,18 +55,35 @@ public class valida_proyecto extends ActionSupport
 //<<<<<<< Upstream, based on origin/master
     
     public String execute() throws Exception {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
-//=======
          if(id_proyecto.equals(""))
         {
             addFieldError("id_proyecto","Este campo es necesario");
             return ERROR;
         }
+        int periodox=0, numero = 0;
+        String limit="limit";
         
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
+        
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        
+        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo="+periodox+" and validado=1 ");
+        if(cuenta.next())
+        {
+            System.out.println(cuenta.getInt(1));
+            if(cuenta.getInt(1)==1){
+            lb.closeConnection();
+            return limit;}
+            
+        }
         
         ResultSet pr=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_proyecto='"+id_proyecto+"'");
         while(pr.next())
@@ -94,12 +111,12 @@ public class valida_proyecto extends ActionSupport
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_proyecto = '" + getId_proyecto() + "'");
-                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_proyecto = '" + getId_proyecto() + "'");*/
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alm = '\\\\Usuarios\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_proyecto = '" + getId_proyecto() + "'");
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

@@ -51,7 +51,7 @@ public class GenerateReportActivities {
         {
              //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
              FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
-             //FILE = "D:\\home\\site\\wwwroot\\Usuarios\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path of server
+             //FILE = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path of server
              //FILE = ""
              lb.getConnection();
              /*int i = 0;
@@ -87,7 +87,7 @@ public class GenerateReportActivities {
                         PdfWriter.getInstance(document, new FileOutputStream(FILE));
                         document.open();
                         addMetaData(document);
-                        addImagenes(document);
+                        //addImagenes(document);
                         addEncabezado(document);
                         addResumenProf(document);
                         addPunto1(document);
@@ -106,6 +106,9 @@ public class GenerateReportActivities {
                         return "error";
                 }
                 lb.closeConnection();
+                digital_sign a = new digital_sign();//here we call the fuction to sign the file
+                String execute = a.digital_sign(getUsername());
+                System.out.println(execute);
                 return "success";
         }
 
@@ -118,13 +121,13 @@ public class GenerateReportActivities {
             document.addCreator("E-SIBE");
         }
 
-         private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
+         /*private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
-            Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
-            Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
+            //Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
+            //Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
             
-            /*Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
-            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");*/
+            Image cofaa= Image.getInstance(".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\ipn.png");//images for the server
+            Image IPN= Image.getInstance(".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\cofaa.png");
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);
@@ -133,7 +136,7 @@ public class GenerateReportActivities {
             
             document.add(cofaa);
             document.add(IPN);
-        }
+        }*/
         
         private void addEncabezado(Document document) throws DocumentException 
         {
@@ -292,7 +295,7 @@ public class GenerateReportActivities {
                 PdfPCell Nom_Proyecto = new PdfPCell(new Phrase("Número de proyecto SIP"));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad"));
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
                 //PdfPCell celda=new PdfPCell();
@@ -338,7 +341,7 @@ public class GenerateReportActivities {
                 /**Get actual period***/
                 String id_al = null, tipo_alumno = null, puntaje = null, comen = null, nom_proyecto = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_proyecto WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado_alumno = 1 AND "
+                        + "id_usuario = " + getUsername() + " AND (validado_alumno = 1 OR validado_alumno = 0) AND "
                                 + "periodo = " + periodo);
                 while(rb.next()){
                     nom_proyecto = rb.getString("id_proyecto");
@@ -348,6 +351,7 @@ public class GenerateReportActivities {
                     tipo_alumno = rb.getString("tipo_alumno");
                     Dos_uno.addCell(tipo_alumno);
                     Anchor anchor = new Anchor("Constancia");
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     anchor.setReference(rb.getString("ruta_alumno"));
                     Dos_uno.addCell(anchor);
                     puntaje = rb.getString("puntaje_alumno");
@@ -367,7 +371,7 @@ public class GenerateReportActivities {
                         + " - Publicaciones Científicas y/o de Divulgación",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Tipo de Actividad* (Consultar parte de abajo)"));
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
                 PdfPCell celda=new PdfPCell();
@@ -408,7 +412,7 @@ public class GenerateReportActivities {
                 /**Get actual period***/
                 String id_pub = null, id_tipo = null, puntaje = null, coment = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND (id_tipo_pub = 1 "
+                        + "id_usuario = '" + getUsername() +"' AND (validado = 1 OR validado = 0) AND (id_tipo_pub = 1 "
                                 + "OR id_tipo_pub = 2 OR id_tipo_pub = 3 OR id_tipo_pub = 4 OR id_tipo_pub = 5) AND "
                                 + "periodo = " + periodo);
                 while(rb.next()){
@@ -417,7 +421,8 @@ public class GenerateReportActivities {
                     id_tipo = rb.getString("id_tipo_pub");
                     Dos_dos.addCell(id_tipo);//Add the type of every type pub
                     Anchor anchor = new Anchor("Constancia");
-                    anchor.setReference("file:///" + rb.getString("ruta_alm"));
+                    anchor.setReference(rb.getString("ruta_alm"));
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     Dos_dos.addCell(anchor);
                     puntaje = rb.getString("puntaje");
                     Dos_dos.addCell(puntaje);
@@ -436,7 +441,7 @@ public class GenerateReportActivities {
                         + " - Eventos Académicos",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Nombre del evento"));
@@ -478,14 +483,16 @@ public class GenerateReportActivities {
                 if(rperiodo.next())
                     periodo = rperiodo.getInt("periodo");
                 /**Get actual period***/
-                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_ev WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
+                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
+                        + "id_usuario = '" + getUsername() +"' AND (validado = 1 OR validado = 0) AND periodo = " + periodo + " AND "
+                                + "(id_tipo_pub = 6 OR id_tipo_pub = 7 OR id_tipo_pub = 8)");
                 while(rb.next()){
                     id_evento = rb.getString("id_evento");
                     Dos_tres.addCell(id_evento);
                     Dos_tres.addCell("Evento académico");
                     Anchor anchor = new Anchor("Constancia");
                     anchor.setReference(rb.getString("ruta_alm"));
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     Dos_tres.addCell(anchor);
                     puntaje = rb.getString("puntaje");
                     Dos_tres.addCell(puntaje);
@@ -503,7 +510,7 @@ public class GenerateReportActivities {
                         + " - Investigación y/o Desarrollo Satisfactorio",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("ID del proyecto SIP"));
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
                 PdfPCell celda=new PdfPCell();
@@ -546,7 +553,7 @@ public class GenerateReportActivities {
                 ResultSet rb = lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios "
                         + "FROM profesor_tiene_proyecto "
                         + "WHERE id_usuario = " + getUsername() +" AND "
-                        + "validado = 1 AND periodo = " + periodo
+                        + "(validado = 1 OR validado = 0) AND periodo = " + periodo
                         + " GROUP BY id_proyecto "
                         + "HAVING COUNT(*) > 0");
                 /*
@@ -562,6 +569,7 @@ public class GenerateReportActivities {
                     id_pr = rb.getString("id_proyecto");
                     Dos_cuatro.addCell(id_pr);
                     Anchor anchor = new Anchor("Constancia");
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_cuatro.addCell(anchor);
                     puntaje = rb.getString("puntaje");
@@ -582,7 +590,7 @@ public class GenerateReportActivities {
                         + " - Derechos de Autor",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Identificador de obra"));
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
                 PdfPCell celda=new PdfPCell();
@@ -623,12 +631,14 @@ public class GenerateReportActivities {
                 /**Get actual period***/
                 String id_obra = null, puntaje = null, comenta = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_obra WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
+                        + "id_usuario = '" + getUsername() +"' AND (validado = 1 OR validado=0 ) AND periodo = " + periodo);
                 while(rb.next()){
                     Dos_cinco.addCell("2.5");
                     id_obra = rb.getString("id_obra");
                     Dos_cinco.addCell(id_obra);
                     Anchor anchor = new Anchor("Constancia");
+                    
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_cinco.addCell(anchor);
                     puntaje = rb.getString("puntaje");
@@ -649,7 +659,7 @@ public class GenerateReportActivities {
                         + " - Direcciones y Codirecciones",encabezadost));
                 PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Identificador de TT o tesis"));
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
                 PdfPCell celda=new PdfPCell();
@@ -690,12 +700,13 @@ public class GenerateReportActivities {
                 /**Get actual period***/
                 String id_tt = null, puntaje = null, comenta = null;
                 ResultSet rb = lb.executeQuery("SELECT * FROM profesor_tiene_tt WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo);
+                        + "id_usuario = '" + getUsername() +"' AND (validado = 1 OR validado = 0) AND periodo = " + periodo);
                 while(rb.next()){
                     Dos_once.addCell("2.11");
                     id_tt = rb.getString("id_TT");
                     Dos_once.addCell(id_tt);
                     Anchor anchor = new Anchor("Constancia");
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     anchor.setReference(rb.getString("ruta_alm"));
                     Dos_once.addCell(anchor);
                     puntaje = rb.getString("puntaje");
@@ -719,7 +730,7 @@ public class GenerateReportActivities {
                 //PdfPCell Num_Actividad = new PdfPCell(new Phrase("Número de Actividad"));
                 PdfPCell Tipo_Actividad = new PdfPCell(new Phrase("Identificador de Plan de estudios"));
                 PdfPCell Tipo_parti = new PdfPCell(new Phrase("Tipo de participación** (Ver parte de abajo)"));
-                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Ver archivo"));
+                PdfPCell Ruta_alm = new PdfPCell(new Phrase("Evidencia"));
                 PdfPCell Puntos = new PdfPCell(new Phrase("Puntos obtenidos"));
                 PdfPCell Observaciones = new PdfPCell(new Phrase("Observaciones"));
              
@@ -765,14 +776,16 @@ public class GenerateReportActivities {
                 /**Get actual period***/
                 String id_part = null, id_tipo = null, puntaje = null, comenta = null;
                ResultSet rb = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE "
-                        + "id_usuario = '" + getUsername() +"' AND validado = 1 AND periodo = " + periodo /*AND periodo = que el que tiene registrado el profesor*/);
+                        + "id_usuario = '" + getUsername() +"' AND (validado = 1 OR validado = 0) AND periodo = " + periodo /*AND periodo = que el que tiene registrado el profesor*/);
                 while(rb.next()){
                     //Dos_doce.addCell("2.12");
                     id_part = rb.getString("id_part");
                     Dos_doce.addCell(id_part);
                     id_tipo = rb.getString("id_tipo_part");
                     Dos_doce.addCell(id_tipo);//Agregar a la parte de abajo el tipo de párticiáción
-                    Anchor anchor = new Anchor(rb.getString("ruta_alm"));
+                    Anchor anchor = new Anchor("Constancia");
+                    //anchor.setReference("file:///"+rb.getString("ruta_alm"));
+                    anchor.setReference("file:///"+rb.getString("ruta_alm"));
                     anchor.setReference("Constancia");
                     Dos_doce.addCell(anchor);
                     puntaje = rb.getString("puntaje");

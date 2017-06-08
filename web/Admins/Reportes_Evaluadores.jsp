@@ -152,36 +152,6 @@
                                 out.print("</tr>");
                             }
                             out.print("</table>");
-                            ResultSet rs = lb.executeQuery("SELECT * FROM profesor");
-                            out.print("<table class='table table-striped'>");
-                            out.print("<tr>");
-                            out.print("<th>");
-                            out.print("  Actividades aceptadas por evaluador ");
-                            out.print("</th>");
-                            out.print("</tr>");
-                            out.print("<tr>");
-                            out.print("<td>");
-                            out.print("Número de empleado del evaluador");
-                            out.print("</td>");
-                            out.print("<td>");
-                            out.print("Número de actividades aceptadas");
-                            out.print("</td>");
-                            out.print("</tr>");
-                            while (rb.next())
-                            {
-                                out.print("<tr>");
-                                out.print("<td>");
-                                out.print(rb.getString("id_usuario"));
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print(rb.getString("nivel"));//Aquí poner la ruta de los alumnos
-                                out.print("</td>");
-                                out.print("<td>");
-                                out.print("2017 - 2018");
-                                out.print("</td>");
-                                out.print("</tr>");
-                            }
-                            out.print("</table>");
                             lb.closeConnection();
                     %>
             </s:div>  

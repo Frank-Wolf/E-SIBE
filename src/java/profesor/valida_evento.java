@@ -67,8 +67,8 @@ public class valida_evento extends ActionSupport{
    
     @Override
     public String execute() throws Exception {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
         if(id_publicacion.equals(""))
@@ -135,18 +135,18 @@ public class valida_evento extends ActionSupport{
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_publicacion = '" + getId_publicacion()+"'");
                                 int ruta2 = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_evento = '" + id_evento+"'");
-                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"//updates for server
+                                    + "WHERE id_evento = '" + id_evento+"'");*/
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = '\\\\Usuarios\\\\"//updates for server
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_publicacion = '" + getId_publicacion()+"'");
-                                int ruta2 = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                int ruta2 = lb.executeUpdate("UPDATE profesor_participa_ev SET ruta_alm = '\\\\Usuarios\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_evento = '" + id_evento+"'");*/
+                                    + "WHERE id_evento = '" + id_evento+"'");
                                 }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

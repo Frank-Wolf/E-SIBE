@@ -71,8 +71,8 @@
                             <s:form id="datos" action="create_pdf_admin" method="post" style="display:block;">
                                 <s:submit value="Generar reporte de periodo de beca por exclusividad" cssClass="btn"/>
                             </s:form> 
+                            <a href="\Usuarios\Reporte_de_resultados_E-SIBE.pdf">Ver reporte final</a>
                         </div>
-                            
                     </div> 
                 </div> 
                     <!-- Tabla donde se muestran los usuarios Activos-->    

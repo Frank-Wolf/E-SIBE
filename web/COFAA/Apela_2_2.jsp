@@ -27,21 +27,21 @@
         <script type="text/javascript">
                 function show_form(x) {
                 if(x == 1 || x == 2 || x == 3) {
-                    document.getElementById("form1").style.visibility="visible";  
-                    document.getElementById("form2").style.visibility="hidden"; 
-                    document.getElementById("form3").style.visibility="hidden";
+                    document.getElementById("form1").style.display="block";  
+                    document.getElementById("form2").style.display="none" 
+                    document.getElementById("form3").style.display="none"
                 }
 
                 else if(x == 4) {
-                    document.getElementById("form1").style.visibility="hidden";  
-                    document.getElementById("form2").style.visibility="visible"; 
-                    document.getElementById("form3").style.visibility="hidden"; 
+                    document.getElementById("form1").style.display="none"  
+                    document.getElementById("form2").style.display="block"; 
+                    document.getElementById("form3").style.display="none" 
                 }
 
                 else if(x == 5)  {
-                    document.getElementById("form1").style.visibility="hidden";  
-                    document.getElementById("form2").style.visibility="hidden"; 
-                    document.getElementById("form3").style.visibility="visible"; 
+                    document.getElementById("form1").style.display="none"  
+                    document.getElementById("form2").style.display="none" 
+                    document.getElementById("form3").style.display="block"; 
                 }
             }
         </script>
@@ -50,6 +50,9 @@
                             String user=request.getParameter("id");
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
+                            String user2=request.getParameter("id2");
+                            HttpSession sesion2 = request.getSession();
+                            sesion2.setAttribute("id",user2);
                             ResultSet rs=null;
                             int n = 0;
                             lb.getConnection();
@@ -111,9 +114,8 @@
 
                         <h2 class="h3">Apelar</h2>
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set name="username" value="%{#session.username}" />
-                        <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set name="username" value="%{#session.username}" />
+                        <s:set var="id_prof"><%=user2%></s:set>
+                        <h2 class="h3">Número de participantes para esta publicación: <%=n%></h2>
                         <s:form action="/Usuario/apela_2_2" id="form1">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"
@@ -133,6 +135,7 @@
                                       name="puntaje"
                                       />
                             <s:hidden name="id_actividad"/>
+                            <s:hidden name="id_prof" label="hola"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
                         
@@ -155,6 +158,7 @@
                                       name="puntaje"
                                       />
                             <s:hidden name="id_actividad"/>
+                            <s:hidden name="id_prof" label="hola"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form> 
                         
@@ -177,6 +181,7 @@
                                       name="puntaje"
                                       />
                             <s:hidden name="id_actividad"/>
+                            <s:hidden name="id_prof" label="hola"/>
                             <s:submit cssClass="btn" value="Evaluar" />
                         </s:form>
                     </div>

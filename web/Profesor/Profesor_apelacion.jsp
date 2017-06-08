@@ -32,7 +32,7 @@
         
     </head>
     
-    <body background="../css/textura.png" class="container-fluid" style="overflow-y: scroll">
+    <body background="../css/textura.png" class="container-fluid" >
         
         <!--header-->
         <header class="headering rela">
@@ -65,7 +65,7 @@
                 </nav>
 
                     <!--Tabla en la que se muestran las actividades no aprobadas-->
-                    <div class="col-md-6" align="center">
+                    <div class="col-md-12" align="center">
                         <h2 class="h3">Lista de actividades no aprobadas</h2>
                         <jsp:useBean id="lb" scope="session" 
                                      class="sesion.LoginBean"></jsp:useBean>
@@ -142,7 +142,7 @@
                             }
                             out.print("</table>");
                         %>
-                         
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.2</b></h2>
                         <%
                             rs9=lb.executeQuery("SELECT * "//
@@ -195,7 +195,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.3</b></h2>
                         <%
                             rs10=lb.executeQuery("SELECT * "//
@@ -248,7 +248,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.4</b></h2>
                         <%
                             rs11=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios, rol_profesor "
@@ -304,7 +304,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.5</b></h2>
                         <%
                             rs12=lb.executeQuery("SELECT * "//
@@ -357,7 +357,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.11</b></h2>
                         <%
                             rs13=lb.executeQuery("SELECT * "//
@@ -410,7 +410,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.12</b></h2>
                         <%
                             rs14=lb.executeQuery("SELECT * "//
@@ -465,7 +465,7 @@
                             lb.closeConnection();
                         %>
                     </div>
-                
+                <br/><br/>
                 </s:div>
                     </s:div>
                 

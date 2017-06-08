@@ -273,7 +273,7 @@
                         ResultSet rplan = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 1 AND periodo = " + periodo);
                         if(rplan.next())
                             a = rplan.getInt(1);
-                        ResultSet rplan2 = lb.executeQuery("SELECT * FROM profesor_participa_en_plan WHERE aceptado = 0 AND periodo = " + periodo);
+                        ResultSet rplan2 = lb.executeQuery("SELECT COUNT(*) FROM profesor_participa_en_plan WHERE aceptado = 0 AND periodo = " + periodo);
                         if(rplan2.next())
                             r = rplan2.getInt(1);
                         out.print("<table class='table table-striped'>");

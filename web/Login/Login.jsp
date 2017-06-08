@@ -45,8 +45,11 @@
                     
                     
                 </s:div>
+                    <div align="center">
+                        <a href="\Usuarios\Aviso_privacidad.pdf">Aviso de Privacidad</a>
+                    </div>
             </s:div>  
-
+                    
 
         <!--footer-->
        

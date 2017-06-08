@@ -30,23 +30,51 @@ public class valida_BEIFI extends ActionSupport
     public String execute() throws Exception 
     {
          
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
         //destPath = "C:\\Users\\le_as\\Documents\\Pruebas_pdf\\";
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//server route
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//server route
         destPath += getUsername() + "\\" + getActivity() + "\\";
         if(id_proyecto.equals("")){
             addFieldError("id_proyecto","Este campo es necesario");
-            
+        
         }
         
         if(id_alumno==0){
             addFieldError("id_alumno","Este campo es necesario");
             return ERROR;
         }
+        int periodox=0, numero = 0;
+        String limit="limit";
         
         profesor.LoginBean lb = new profesor.LoginBean();
+        
         lb.getConnection();
         
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        if(tipo_alumno.equals("BEIFI")){
+        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo="+periodox+" and validado_alumno=1 and tipo_alumno='BEIFI'");
+        
+        if(cuenta.next())
+        {
+            System.out.println(cuenta.getInt(1));
+            if(cuenta.getInt(1)==1){
+            lb.closeConnection();
+            return limit;}
+            
+        }}
+        if(tipo_alumno.equals("SS")){
+        ResultSet servicio=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_proyecto where id_usuario="+username+" and periodo="+periodox+" and validado_alumno=1 and tipo_alumno='SS'");
+        if(servicio.next())
+        {System.out.println(servicio.getInt(1));
+            if(servicio.getInt(1)==4){
+            lb.closeConnection();
+            return limit;}
+        }
+        }
         System.out.println(username);
         System.out.println(id_alumno);
         ResultSet ex_prof_proy=lb.executeQuery("select * from profesor_tiene_proyecto where id_usuario="+username+" and id_alumno="+id_alumno+"");  //verifica que el profesor está asociado con el proyecto
@@ -85,12 +113,12 @@ public class valida_BEIFI extends ActionSupport
                                 
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_alumno = " + getId_alumno());
-                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_alumno = " + getId_alumno());*/
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_proyecto SET ruta_alumno = '\\\\Usuarios\\\\"
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_alumno = " + getId_alumno());
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

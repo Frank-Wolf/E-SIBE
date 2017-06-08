@@ -69,8 +69,8 @@ public class valida_publicacion extends ActionSupport{
     @Override
     public String execute() throws Exception {
         //destPath = ".\\Usuarios\\";
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//server route
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//server route
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
         //destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
@@ -92,8 +92,49 @@ public class valida_publicacion extends ActionSupport{
             return ERROR;
         }
         
+        int periodox=0, numero = 0;
+        String limit="limit";
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
+        
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        if(id_tipo_pub==1){
+        ResultSet boletin=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub where id_usuario="+username+"  and periodo="+periodox+"  and id_evento='0' and validado=1 and id_tipo_pub=1");
+        
+        if(boletin.next())
+        {
+            System.out.println(boletin.getInt(1));
+            if(boletin.getInt(1)==4){
+            lb.closeConnection();
+            return limit;}
+            
+        }}
+        if(id_tipo_pub==2 || id_tipo_pub==3){
+        ResultSet sinar=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub where id_usuario="+username+" and id_evento='0' and periodo="+periodox+" and validado=1 and (id_tipo_pub=2 or id_tipo_pub=3)");
+        if(sinar.next())
+        {System.out.println(sinar.getInt(1));
+            if(sinar.getInt(1)==6){
+            lb.closeConnection();
+            return limit;}
+        }
+        }
+        if(id_tipo_pub==4 || id_tipo_pub==5){
+        ResultSet conar=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_pub where id_usuario="+username+" and id_evento='0' and periodo="+periodox+" and validado=1 and (id_tipo_pub=4 or id_tipo_pub=5)");
+        if(conar.next())
+        {System.out.println(conar.getInt(1));
+            if(conar.getInt(1)==6){
+            lb.closeConnection();
+            return limit;}
+        }
+        }
+        
+        
+        
+        
         ResultSet pub= lb.executeQuery("select * from publicacion where id_publicacion='"+id_publicacion+"' and nom_public='"+nombre_publicacion+"'");
         while(pub.next())
         {
@@ -127,12 +168,12 @@ public class valida_publicacion extends ActionSupport{
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
                                 //"D:\\home\\site\\wwwroot\\Usuarios"
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_publicacion = '" + id_publicacion + "'");
-                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"//update for server
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_publicacion = '" + id_publicacion + "'");*/
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_pub SET ruta_alm = '\\\\Usuarios\\\\"//update for server
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_publicacion = '" + id_publicacion + "'");
                                 }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

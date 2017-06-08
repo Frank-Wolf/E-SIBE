@@ -28,110 +28,110 @@
                 function show_form(x, y) {
                 if(x == 1 || x == 2 || x == 3) {
                     if(y == 1){
-                        document.getElementById("form1_1").style.visibility="block";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="block";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     else if(y == 2 || y == 3){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="block";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="block";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     else if(y== 4 || y == 5){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="block";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="block";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     
                 }
                 else if(x == 4) {
                     if(y == 1){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="block"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none"; 
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="block"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none"; 
                     }
                     else if(y == 2 || y == 3){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="block"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="block"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     else if(y == 4 || y == 5){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="block"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="block"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     
                 }
 
                 else if(x == 5)  {
                     if(y == 1){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="block";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="block";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     else if(y == 2 || y == 3){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="block";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="none";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="block";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="none";
                     }
                     else if(y == 4 || y == 5){
-                        document.getElementById("form1_1").style.visibility="none";  
-                        document.getElementById("form1_2").style.visibility="none"; 
-                        document.getElementById("form1_3").style.visibility="none";
-                        document.getElementById("form2_1").style.visibility="none";  
-                        document.getElementById("form2_2").style.visibility="none"; 
-                        document.getElementById("form2_3").style.visibility="none";
-                        document.getElementById("form3_1").style.visibility="none";  
-                        document.getElementById("form3_2").style.visibility="none"; 
-                        document.getElementById("form3_3").style.visibility="block";
+                        document.getElementById("form1_1").style.display="none";  
+                        document.getElementById("form1_2").style.display="none"; 
+                        document.getElementById("form1_3").style.display="none";
+                        document.getElementById("form2_1").style.display="none";  
+                        document.getElementById("form2_2").style.display="none"; 
+                        document.getElementById("form2_3").style.display="none";
+                        document.getElementById("form3_1").style.display="none";  
+                        document.getElementById("form3_2").style.display="none"; 
+                        document.getElementById("form3_3").style.display="block";
                     }
                      
                 }
@@ -142,6 +142,9 @@
                             String user=request.getParameter("id");
                             HttpSession sesion = request.getSession();
                             sesion.setAttribute("id",user);
+                            String user2=request.getParameter("id2");
+                            HttpSession sesion2 = request.getSession();
+                            sesion2.setAttribute("id",user2);
                             ResultSet rs=null;
                             int n = 0, tipo_pub = 0;
                             lb.getConnection();
@@ -201,7 +204,8 @@
 
                         <h2 class="h3">Asignar registro</h2>
                         <s:set var="id_actividad"><%=user%></s:set>
-                        <s:set name="id_prof" value="%{#session.username}" />
+                        <s:set var="id_prof"><%=user2%></s:set>
+                         <h2 class="h3">Número de participantes para esta publicación: <%=n%></h2>
                         <s:form action="/Usuario/evalua_2_2" id="form1_1">
                             <s:select label="Seleccione si es aceptado o no" cssClass="form-control"
                                       headerKey="-1" headerValue="Seleccione"

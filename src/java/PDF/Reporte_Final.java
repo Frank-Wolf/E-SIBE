@@ -17,7 +17,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
  
-import com.itextpdf.text.pdf.DefaultFontMapper;
+//import com.itextpdf.text.pdf.DefaultFontMapper;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -57,8 +57,10 @@ public class Reporte_Final {
         LoginBean lb = new LoginBean();
         public  String execute() throws Exception 
         {
-            FILE = "C:\\psf\\Home\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
-            //FILE = "D:\\home\\site\\wwwroot\\Usuarios\\";
+            //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_resultados_E-SIBE.pdf";//Path where the file will be saved
+            //FILE = ".\\Usuarios\\Reporte_de_resultados_E-SIBE.pdf";
+            FILE = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\Reporte_de_resultados_E-SIBE.pdf";
+            //.\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\Reporte_de_resultados_E-SIBE.pdf
             lb.getConnection();
             
             try 
@@ -69,7 +71,7 @@ public class Reporte_Final {
                         PdfWriter writer = PdfWriter.getInstance(document, fos);
                         document.open();
                         addMetaData(document);
-                        addImagenes(document);
+                        //addImagenes(document);
                         addEncabezado(document);
                         
                         int a = 0, r = 0;//a approved and r reject
@@ -78,7 +80,7 @@ public class Reporte_Final {
                         
                         //document.newPage();
                         /*Add a graphic*/
-                        DefaultPieDataset defaultCategoryDataset = new DefaultPieDataset();
+                        /*DefaultPieDataset defaultCategoryDataset = new DefaultPieDataset();
                         defaultCategoryDataset.setValue("Aprobados: " + a, a);
                         defaultCategoryDataset.setValue("No aprobados: "+ r, r);
                         
@@ -102,11 +104,11 @@ public class Reporte_Final {
  
                         graphics2d.dispose();
                         pdfContentByte.addTemplate(pdfTemplate, 40, 200); //0, 0 will draw PIE chart on bottom left of page
-                        /*Add a graphic end graphic*/
+                        //Add a graphic end graphic
                         
                         //document.newPage();
                         
-                        /*Add another Graphic*/
+                        //Add another Graphic
                         int ac21 = 0, ac22 = 0, ac23 = 0, ac24 = 0, ac25 = 0, ac211 = 0, ac212 = 0;
                         ac21 = getNum2_1(1);
                         ac22 = getNum2_2(1);
@@ -149,8 +151,8 @@ public class Reporte_Final {
                         graphics2d2.dispose();
                         pdfContentByte2.addTemplate(pdfTemplate2, 0, 400); //0, 0 will draw BAR chart on bottom left of page
                         
-                        /*Add another Graphic end*/
-                        document.newPage();
+                        //Add another Graphic end
+                        document.newPage();*/
                         
                         
                         addTablaEvaluadoresProfesor(document);
@@ -185,13 +187,13 @@ public class Reporte_Final {
             document.addAuthor("Comisión de Operación y Fomento de Actividades Académicas del IPN");
             document.addCreator("E-SIBE");
         }
-        private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
+        /*private static void addImagenes(Document document) throws BadElementException, IOException, DocumentException
         {
             Image cofaa= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\ipn.png");
             Image IPN= Image.getInstance("C:\\psf\\Home\\Documents\\11111\\AlumnosBEIFI\\cofaa.png");
             
-            /*Image cofaa= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\ipn.png");//images for the server
-            Image IPN= Image.getInstance("D:\\home\\site\\wwwroot\\Usuarios\\cofaa.png");*/
+            //Image cofaa= Image.getInstance("\\Usuarios\\ipn.png");//images for the server
+            Image IPN= Image.getInstance("\\Usuarios\\cofaa.png");
             
             cofaa.scalePercent(65);
             IPN.scalePercent(55);
@@ -200,7 +202,7 @@ public class Reporte_Final {
             
             document.add(cofaa);
             document.add(IPN);
-        }
+        }*/
         
         private void addEncabezado(Document document) throws DocumentException 
         {
@@ -652,7 +654,7 @@ public class Reporte_Final {
              tabla_num.setWidths(new int[]{2,2, 2});
                 PdfPCell Titulo_tabla = new PdfPCell(new Phrase("Eventos aceptados", encabezadost));
                 PdfPCell sin_ponencia = new PdfPCell(new Phrase("Institucional sin ponencia publicada"));
-                PdfPCell resumen_pub = new PdfPCell(new Phrase("Instotucional con resumen publicado"));
+                PdfPCell resumen_pub = new PdfPCell(new Phrase("Institucional con resumen publicado"));
                 PdfPCell pub_exten = new PdfPCell(new Phrase("Institucional publicado en extenso"));
                 
                 

@@ -28,9 +28,9 @@ public class valida_obra extends ActionSupport{
            
    
     public String execute() throws Exception {
-        destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
+        //destPath = "C:\\psf\\Home\\Documents\\";//\\psf\Home\Documents\Prueba
         //destPath = "C:\\Users\\le_as\\Documents\\Pruebas\\";
-        //destPath = "D:\\home\\site\\wwwroot\\Usuarios\\";//route for server
+        destPath = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\";//route for server
         destPath += getUsername() + "\\" + getActivity() + "\\";
         
         
@@ -39,10 +39,31 @@ public class valida_obra extends ActionSupport{
             addFieldError("id_obra","Este campo no puede ser vacio");
             return ERROR;
         }    
+        int periodox=0, numero = 0;
+        String limit="limit";
         
         System.out.println("Empiezo");
         profesor.LoginBean lb = new profesor.LoginBean();
         lb.getConnection();
+        ResultSet rperiodo= lb.executeQuery("SELECT * FROM evaluador");
+        while(rperiodo.next())
+        {
+            periodox=rperiodo.getInt("periodo_actual");
+        }
+        
+        ResultSet cuenta=lb.executeQuery("SELECT COUNT(*) FROM profesor_tiene_obra where id_usuario="+username+" and periodo="+periodox+" and validado=1 ");
+        if(cuenta.next())
+        {
+            System.out.println(periodox);
+            System.out.println(cuenta.getInt(1));
+            if(cuenta.getInt(1)==4)
+            {
+                lb.closeConnection();
+                return limit;
+            }
+            
+        }
+        
         ResultSet obra=lb.executeQuery("select * from obra where id_obra='"+id_obra+"'");
         while(obra.next())
         {
@@ -76,12 +97,12 @@ public class valida_obra extends ActionSupport{
                                 File destFile  = new File(destPath, myFileFileName);
                                 FileUtils.copyFile(myFile, destFile);
                                 //int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\Users\\\\le_as\\\\Documents\\\\Pruebas\\\\"
-                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
-                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
-                                    + "WHERE id_obra = '" + getId_obra()+"'");
-                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'D:\\\\home\\\\site\\\\wwwroot\\\\Usuarios\\\\"//updatefor server
+                                /*int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = 'C:\\\\psf\\\\Home\\\\Documents\\\\"
                                         + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
                                     + "WHERE id_obra = '" + getId_obra()+"'");*/
+                                int ruta = lb.executeUpdate("UPDATE profesor_tiene_obra SET ruta_alm = '\\\\Usuarios\\\\"//updatefor server
+                                        + getUsername() + "\\\\" + getActivity() + "\\\\" + getMyFileFileName() + "' "
+                                    + "WHERE id_obra = '" + getId_obra()+"'");
                             }catch(IOException e){
                                 e.printStackTrace();
                                 lb.closeConnection();

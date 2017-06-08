@@ -64,7 +64,7 @@
                     </div>
                 </nav>
                 <!--Tabla donde se muestran las actividades aprobadas y su puntaje-->
-                <div class="col-md-6" align="center">
+                <div class="col-md-12" align="center">
                         <h2 class="h3">Lista de actividades aprobadas</h2>
                     
                         <jsp:useBean id="lb" scope="session" 
@@ -142,7 +142,9 @@
                             }
                             out.print("</table>");
                         %>
-                         
+                        <br/>
+                        <br/>
+                        <br/>
                         <h2 class="h3"><b>Actividad 2.2</b></h2>
                         <%
                             rs2=lb.executeQuery("SELECT * "//
@@ -197,7 +199,9 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/>
+                        <br/>
+                        <br/>
                         <h2 class="h3"><b>Actividad 2.3</b></h2>
                         <%
                             rs3=lb.executeQuery("SELECT * "//
@@ -250,7 +254,8 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/>
+                        <br/><br/>
                         <h2 class="h3"><b>Actividad 2.4</b></h2>
                         <%
                             rs4=lb.executeQuery("SELECT count(*), id_proyecto, ruta_alm, puntaje, comentarios, rol_profesor "
@@ -306,7 +311,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.5</b></h2>
                         <%
                             rs5=lb.executeQuery("SELECT * "//
@@ -359,7 +364,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.11</b></h2>
                         <%
                             rs6=lb.executeQuery("SELECT * "//
@@ -412,7 +417,7 @@
                             }
                             out.print("</table>");
                         %>
-                        
+                        <br/><br/><br/>
                         <h2 class="h3"><b>Actividad 2.12</b></h2>
                         <%
                             rs7=lb.executeQuery("SELECT * "//
