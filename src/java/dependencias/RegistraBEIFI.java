@@ -17,7 +17,15 @@ public class RegistraBEIFI extends ActionSupport
 {   
 
     private String id_proyecto,nom_alumno,rol_profesor, tipo_alumno;
+    private int registrado;
 
+    public int getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(int registrado) {
+        this.registrado = registrado;
+    }
     public String getTipo_alumno() {
         return tipo_alumno;
     }
@@ -118,8 +126,17 @@ public class RegistraBEIFI extends ActionSupport
        
         LoginBean lb = new LoginBean();
         lb.getConnection();
+//        
+        ResultSet actualiza= lb.executeQuery("select * from profesor_tiene_proyecto where id_proyecto='"+id_proyecto+"' and id_usuario="+id_usuario+" and registrado_alumno=0");
+        while(actualiza.next())
+        {
+            lb.executeUpdate("update profesor_tiene_proyecto set registrado_alumno=1  where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
+            lb.closeConnection();
+            return SUCCESS;
+            
+        }
         
-        ResultSet comp=lb.executeQuery("select id_usuario, id_proyecto, id_alumno from profesor_tiene_proyecto where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"' and id_alumno="+id_alumno+"");
+        ResultSet comp=lb.executeQuery("select id_usuario, id_proyecto, id_alumno from profesor_tiene_proyecto where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"' and id_alumno="+id_alumno+" and registrado_alumno=1");
         while(comp.next())
         {
             addFieldError("id_proyecto","Este registro ya fue realizado");
@@ -142,28 +159,28 @@ public class RegistraBEIFI extends ActionSupport
                         ResultSet alumn=lb.executeQuery("select id_alumno from alumno where id_alumno="+id_alumno+"");
                         while(alumn.next())
                         {
-                            lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, "
+                            lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0,registrado_alumno="+registrado+", "
                                     + "tipo_alumno='BEIFI' where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
                                 lb.closeConnection();
                                 return SUCCESS;
                         }
                         lb.executeUpdate("insert into alumno(id_alumno,nom_alumno,recibido) values("+id_alumno+",'"+nom_alumno+"',0)");
-                        lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, tipo_alumno='BEIFI' "
-                            + "where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
+                        lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, tipo_alumno='BEIFI', registrado_alumno="+registrado+" "
+                                + "where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
                         lb.closeConnection();
                         return SUCCESS;
                     }
                     ResultSet alu=lb.executeQuery("select id_alumno from alumno where id_alumno="+id_alumno+"");
                     while(alu.next())
                     {
-                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno)"
-                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','BEIFI')");
+                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno,registrado_alumno)"
+                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','BEIFI',1)");
                         lb.closeConnection();
                         return SUCCESS;
                     }
                     lb.executeUpdate("insert into alumno(id_alumno,nom_alumno,recibido) values("+id_alumno+",'"+nom_alumno+"',0)");
-                    lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno)"
-                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','BEIFI')");
+                    lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno_registrado_alumno)"
+                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','BEIFI',"+registrado+")");
                     lb.closeConnection();
                         return SUCCESS;
                 }

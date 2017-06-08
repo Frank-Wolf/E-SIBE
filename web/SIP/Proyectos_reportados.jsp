@@ -1,9 +1,8 @@
 <%-- 
-    Document   : SIP
-    Created on : Feb 8, 2017, 8:07:49 AM
-    Author     : PsysacElrick
+    Document   : Proyectos_reportados
+    Created on : 6/06/2017, 09:02:36 PM
+    Author     : le_as
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="sj" uri="/struts-jquery-tags" %>
@@ -45,8 +44,8 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <!--<li><a href="Proyecto_sip">Proyecto SIP</a></li>-->
-                                <li><a href="Proyecto_REPORTES">Proyectos Reportados por Docentes</a></li>
+                                <li><a href="Proyecto_sip">Atras</a></li>
+                                
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="SIP_Principal">
@@ -89,7 +88,7 @@
                                
                             <%
                                 lb.getConnection();
-                                ResultSet beifi=lb.executeQuery("select * from profesor_tiene_proyecto where registrado=1 ;");
+                                ResultSet beifi=lb.executeQuery("select * from profesor_tiene_proyecto where registrado=0 ;");
                                 out.print("<table  class=' table "
                                          + "table-container table-striped "
                                          + "table-responsive '>");
@@ -104,14 +103,15 @@
                                 out.print("No. Empleado del Prof.");
                                 out.print("</th>");
                                 out.print("<th>");
+                                out.print("Rechazar");
+                                out.print("</th>");
+                                out.print("<th>");
                                 while(beifi.next())
                                 {
                                     ResultSet proyecto=lb.executeQuery("select nom_proyecto from proyecto where id_proyecto='"+beifi.getString("id_proyecto")+"'");
                                     while (proyecto.next())
                                     {
-                                        ResultSet alumno=lb.executeQuery("select nom_alumno from alumno where id_alumno="+beifi.getInt("id_alumno")+"");
-                                        while(alumno.next())
-                                        {
+                                        
                                         out.print("<tr>");
                                         out.print("<td>");
                                         out.print(beifi.getString("id_proyecto"));
@@ -123,8 +123,11 @@
                                         out.print(beifi.getString("id_usuario"));
                                         out.print("</td>");
                                         out.print("<td>");
+                                        out.print("<a href='Borrar_PROYECTO?id_proyecto="
+                                        +beifi.getString("id_proyecto")+"&id_usuario="+beifi.getString("id_usuario")+"'>Borrar</a>");
+                                        out.print("</td");
                                         out.print("</tr>");
-                                        }
+                                        
                                     }
                                 }
                             
@@ -152,4 +155,3 @@
         <script src="/css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
-

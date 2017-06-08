@@ -7,10 +7,13 @@ package dependencias;
 import static com.opensymphony.xwork2.Action.ERROR;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+
 import java.sql.*;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -18,7 +21,23 @@ import java.util.Random;
  */
 public class Registra_pubBol extends ActionSupport{
     private String id_publicacion,id_evento,ISBN,ISSN,Nombre_Rev,Nom_Public,fecha_publicacion,volumen,annio,numero,nom_usuario;
-    private int id_tipo_pub,id_usuario;
+    private int id_tipo_pub,id_usuario,registrado,num_autores;
+
+    public int getNum_autores() {
+        return num_autores;
+    }
+
+    public void setNum_autores(int num_autores) {
+        this.num_autores = num_autores;
+    }
+
+    public int getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(int registrado) {
+        this.registrado = registrado;
+    }
     public String getNom_usuario() {
         return nom_usuario;
     }
@@ -124,6 +143,29 @@ public class Registra_pubBol extends ActionSupport{
         this.id_tipo_pub = id_tipo_pub;
     }
     
+    private static Pattern pswNamePtrn = Pattern.compile("(SIP/DI/POPI-)([0-9]){4}(/)([0-9]){2}");
+    private static Pattern ISSNPtrn = Pattern.compile("([0-9]){4}(-)([0-9]){4}");
+    
+    public static String validateISSN(String ID_OBRA){//
+         
+        Matcher mtch = pswNamePtrn.matcher(ID_OBRA);
+        if(mtch.matches()){
+            return SUCCESS;
+        }
+        else
+            return "test";
+    }
+  
+   public static String validatePassword(String ID_OBRA){//
+         
+        Matcher mtch = pswNamePtrn.matcher(ID_OBRA);
+        if(mtch.matches()){
+            return SUCCESS;
+        }
+        else
+            return "test";
+    }
+    
     public String execute() throws IOException, SQLException, PropertyVetoException
     {
     
@@ -180,16 +222,43 @@ public class Registra_pubBol extends ActionSupport{
             addFieldError("numero","Este campo es necesario");
             return ERROR;
         }
-
+        String cadena="";
+        String SSN="";
+        //SSN= validateISSN(ISSN);
+        cadena= validatePassword(id_publicacion);
+        
+//        if(SSN.equals("test"))
+//        {
+//            addFieldError("ISSN","El formato del ISSN debe ser [4 dígitos]-[4 dígitos]");
+//            return ERROR;
+//        }
+        
+        if(cadena.equals("test"))
+        {
+            addFieldError("id_publicacion","No coincide con la Regla, asegurate de que sea [2 digitos autores: 01, 02,...]-[año 4 dígitos]-[12 dígitos consecutivos]-[2 dígitos]");
+            return ERROR;
+        }
+        
+        
         LoginBean lb = new LoginBean();
         lb.getConnection();
+        
+        ResultSet actualiza= lb.executeQuery("select * from profesor_tiene_pub where id_publicacion='"+id_publicacion+"' and id_usuario="+id_usuario+" and registrado=0");
+        while(actualiza.next())
+        {
+            lb.executeUpdate("update profesor_tiene_pub set registrado=1 where id_publicacion='"+id_publicacion+"' and id_usuario="+id_usuario+"");
+            lb.closeConnection();
+            return SUCCESS;
+            
+        }
+        
         ResultSet vprof=lb.executeQuery("select * from profesor where id_usuario="+id_usuario+"");
         while(vprof.next())
         {
             System.out.println("ya encontro el profesor");
             ResultSet publi=lb.executeQuery("select * from publicacion where id_publicacion='"+id_publicacion+"'"
                     + " and id_tipo_pub='"+id_tipo_pub+"' and annio='"+annio+"' and volumen='"+volumen+"' and"
-                    + " Nombre_Rev='"+Nombre_Rev+"' and ISSN='"+ISSN+"' and ISBN='"+ISBN+"' and Nom_Public='"+Nom_Public+"'");
+                    + " Nombre_Rev='"+Nombre_Rev+"' and ISSN='"+ISSN+"' and ISBN='"+ISBN+"' and Nom_Public='"+Nom_Public+"' and num_autores="+num_autores+"");
             while(publi.next())
             {
                 System.out.println("Ya encuentro el publicacio");
@@ -201,19 +270,19 @@ public class Registra_pubBol extends ActionSupport{
                     lb.closeConnection();
                     return ERROR;
                 }
-                lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
-                        + "values("+id_usuario+","+id_publicacion+","+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
+                lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val,registrado)"
+                        + "values("+id_usuario+","+id_publicacion+","+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),"+registrado+")");
                 lb.closeConnection();
                 return SUCCESS;
             }
             
             lb.executeUpdate("insert into publicacion (id_publicacion,id_tipo_pub,ISSN,ISBN,Nom_Public,"
-                    + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero) values"
+                    + "Nombre_Rev,id_evento,fecha_publicacion,compulsado,volumen,annio,numero,num_autores) values"
                     + "('"+id_publicacion+"',"+id_tipo_pub+",'"+ISSN+"','"+ISBN+"','"+Nom_Public+"','"+Nombre_Rev+"'"
-                    + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"')");
+                    + ",'"+id_evento+"',str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),0,'"+volumen+"','"+annio+"','"+numero+"',"+num_autores+")");
         
-            lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val)"
-                        + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'))");
+            lb.executeUpdate("insert into profesor_tiene_pub(id_usuario,id_publicacion,id_tipo_pub,id_evento,validado,fecha_val,registrado)"
+                        + "values("+id_usuario+",'"+id_publicacion+"',"+id_tipo_pub+", '"+id_evento+"',0,str_to_date('"+fecha_publicacion+"','%d-%m-%Y'),"+registrado+")");
                 lb.closeConnection();
                 return SUCCESS;
         }

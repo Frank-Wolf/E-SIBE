@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Reg_TT
-    Created on : 22/04/2017, 10:02:51 PM
+    Document   : Publicaciones_reportados
+    Created on : 7/06/2017, 08:00:22 AM
     Author     : le_as
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
@@ -38,60 +38,61 @@
                <nav class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" >E-SIBE: Representante de Unidad Académica</a>
+                            <a class="navbar-brand" >E-SIBE: Usuario SIP</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav"> 
-                                 <li><a href="PUB_REP_BOL">
-                                      Publicaciones en Boletín reportadas por docentes</a></li>
-                            </ul>
+                            
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Menu_RUA">
                                       Menu Principal</a></li>
                             </ul>
                           </div>
                     </div>
-                </nav>
+                </nav>                
                 <s:div cssClass="cover-container2">    
-                     <div class="row ">
+                    <div class="row " align="center">
                         <div class=" col-xs-12 col-sm-8 col-md-8 col-lg-8 
                          col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
                          col-sm-offset-2 ">
-                        <h2 class="titulos" align="center">Registrar Publicación en Boletín</h2>
-                        <br/>
-                        <br/>
-                            <s:set name="id_evento" value="%{0}"/>            
-                            <s:set name="id_tipo_pub" value="%{1}"/>
-                            <s:set name="ISSN" value="%{0}"/>
-                            <s:set name="ISBN" value="%{0}"/>
-                            <s:set name="regitrado" value="%{1}"/>
+
+                            <h2 class="titulos" >Publicaciones Sin Arbitraje Reportadas</h2>
+                            <br/>
+                            <br/>
+                            <s:set name="id_evento" value="%{0}"/>       
+                            <s:set name="registrado" value="%{1}"/>
                             <s:form action="registra_pub_bol" method="post">
                                 <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control"/>
                                 <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control"/>
                                 <s:textfield name="Nom_Public" label="Nombre de la publicacion" cssClass="form-control"/>
                                 <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" />
-                                <s:textfield name="num_autores" label="Numero de Autores" cssClass="form-control" />
+                                <s:select label="Seleccione una dependencia" cssClass="form-control"
+                                    headerKey="-1" headerValue="Tipo de publicacion"
+                                    list="# {
+                                    '2':'Sin Arbitraje, nacional',
+                                    '3':'Sin Arbitraje, Internacional'
+                                    }"
+                                    name="id_tipo_pub" />
+                                <s:textfield name="num_autores" label="Numero de Autores" cssClass="form-control"/>
                                 <s:textfield name="numero" label="Numero de la revista" cssClass="form-control"/>
+                                <s:textfield name="ISSN" label="ISSN" cssClass="form-control" />
+                                <s:textfield name="ISBN" label="ISBN" cssClass="form-control" />
                                 <s:textfield name="volumen" label="Volumen" cssClass="form-control"/>
                                 <s:textfield name="annio" label="Año" cssClass="form-control" />
-                                <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" cssClass="form-control" style="width:83%"/>
+                                <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy"  style="width: 89%"/>
                                 <s:hidden name="id_evento" />
-                                <s:hidden name="id_tipo_pub" />
-                                <s:hidden name="ISSN" />
-                                <s:hidden name="registrado"/>
-                                <s:hidden name="ISBN" />
-                                 <s:submit cssClass="btn" name="Registrar TT" value="Registrar Usuario"/>
-                            </s:form> 
+                                <s:hidden name="registrado" />
+                                <s:submit cssClass="btn" name="Registrar TT" value="Registrar Publicación"/>
+                            </s:form>  
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="titulos" align="center">Publicaciones Registradas</h2>
+                            <h2 class="titulos" align="center">Publicaciones Sin Arbitraje Reportadas por los Docentes</h2>
                             <br/>
 
                             <%
                                 lb.getConnection();
-                                ResultSet beifi=lb.executeQuery("select * from publicacion where id_tipo_pub=1");
+                                ResultSet beifi=lb.executeQuery("select * from publicacion where id_tipo_pub=2 OR id_tipo_pub=3 ;");
                                 out.print("<table  class=' table "
                                          + "table-container table-striped "
                                          + "table-responsive '>");
@@ -99,7 +100,12 @@
                                 out.print("<th>");
                                 out.print("Numero de Publicacion");
                                 out.print("</th>");
-                                
+                                out.print("<th>");
+                                out.print("ISSN");
+                                out.print("</th>");
+                                out.print("<th>");
+                                out.print("ISBN");
+                                out.print("</th>");
                                 out.print("<th>");
                                 out.print("Nombre de la Revista");
                                 out.print("</th>");
@@ -118,17 +124,25 @@
                                 out.print("<th>");
                                 out.print("No. Empleado - ID Autor");
                                 out.print("</th>");
+                                out.print("<th>");
+                                out.print("Rechazar");
+                                out.print("</th>");
                                 out.print("</tr>");
                                 while(beifi.next())
                                 {
-                                    ResultSet proyecto=lb.executeQuery("select id_usuario from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"' AND registrado=1");
+                                    ResultSet proyecto=lb.executeQuery("select id_usuario from profesor_tiene_pub where id_publicacion='"+beifi.getString("id_publicacion")+"' AND registrado=0");
                                     while (proyecto.next())
                                     {
                                         out.print("<tr>");
                                         out.print("<td>");
                                         out.print(beifi.getString("id_publicacion"));
                                         out.print("</td>");
-                                        
+                                        out.print("<td>");
+                                        out.print(beifi.getString("ISSN"));
+                                        out.print("</td>");
+                                        out.print("<td>");
+                                        out.print(beifi.getString("ISBN"));
+                                        out.print("</td>");
                                         out.print("<td>");
                                         out.print(beifi.getString("Nombre_Rev"));
                                         out.print("</td>");
@@ -148,6 +162,9 @@
                                         out.print(proyecto.getString("id_usuario"));
                                         out.print("</td>");
                                         out.print("<td>");
+                                        out.print("<a href='Borrar_PUB?id_publicacion="
+                                        +beifi.getString("id_publicacion")+"&id_usuario="+proyecto.getString("id_usuario")+"'>Borrar</a>");;
+                                        out.print("</td>");
                                         out.print("</tr>");
                                     }
                                 }
@@ -164,7 +181,7 @@
         </s:div>
         
          <!--footer-->
-        <footer class="footer abso">
+        <footer class="footer">
             <p class="subtitulos"> Tresguerras No.27 Esq. Tolsá Col. Centro, C.P. 06040.</p>
             <p class="subtitulos"> Delegación Cuauhtémoc, Ciudad de México.Tel. 57296000 Ext. 65007</p>
         </footer>
@@ -172,3 +189,4 @@
         <script src="css/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>
+

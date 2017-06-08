@@ -44,7 +44,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a>Alumno de Servicio Social</a></li>
+                                <li><a href="SERV_REPORTES">Alumno de Servicio Social reportado por los Docentes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Servicio_Principal">
@@ -59,13 +59,23 @@
                     <div class="row">
                         <div class="col-md-5" align="center">
                             <h2 class="titulos">Registre Alumno de servicio en Proyecto SIP</h2>
+                            <s:set name="tipo_alumno" value="%{'SS'}"/>
+                            <s:set name="registrado" value="%{1}"/>
                             <s:form action="registra_SS" method="post">
                                 <s:textfield name="id_usuario" label="No. Empleado del Profesor" cssClass="form-control" />
                                 <s:textfield name="id_proyecto" label="Id del Proyecto" cssClass="form-control"/>                           
-                                <s:textfield name="rol_profesor" label="Rol del profesor en el proyecto" cssClass="form-control"/>
+                                <s:select label="Seleccione el Rol de Profesor" cssClass="form-control"
+                                headerKey="-1" headerValue="Rol de Profesor"
+                                list="# {
+                                'Coordinador':'Coordinador',
+                                'Colaborador':'Colaborador'
+                                }"
+                                name="rol_profesor" /> 
                                 <s:textfield name="id_alumno" label="Matricula del Alumno" cssClass="form-control"/>
                                 <s:textfield name="nom_alumno" label="Nombre del Alumno" cssClass="form-control"/>
                                 <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control"/>
+                                <s:hidden name="tipo_alumno"/>
+                                <s:hidden name="registrado"/>
                                 <s:submit value="Registrar Proyecto" cssClass="btn" />
                             </s:form> 
                         </div>

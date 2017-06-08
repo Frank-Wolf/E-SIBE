@@ -44,6 +44,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
+                                <li><a href="TT_report">TT reportados por los docentes</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="Cerrar_sesion">
@@ -62,14 +63,16 @@
                          col-lg-offset-2 col-md-offset-2 col-xs-offset-0 
                          col-sm-offset-2 ">
                             <h2 class="Titulos" align="center">Registrar Dirección de Trabajo Terminal</h2>
+                            <s:set name="registrado" value="%{1}"/>
                             <s:form action="registra_TT" method="post">
-                                <s:textfield name="id_alumno" label="Matricula del Alumno graduado" cssClass="form-control"/>
-                                <s:textfield name="nom_alumno" label="Nombre del Alumno graduado" cssClass="form-control"/>
-                                <s:textfield name="id_TT" label="numero del TT" cssClass="form-control"/>
-                                <s:textfield name="nom_TT" label="Título del TT" cssClass="form-control"/>
-                                <s:textfield name="id_usuario" label="No. Empleado del Director" cssClass="form-control" />
-                                <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control" style="width =80%"/>
-                                 <s:submit cssClass="btn" name="Registrar TT" value="Registrar Usuario"/>
+                                <s:textfield name="id_alumno" label="Matricula del Alumno graduado" placeholder="Numero de 10 dígitos" cssClass="form-control"  maxlength="10" pattern="([0-9]{10})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number"/>
+                                <s:textfield name="nom_alumno" label="Nombre del Alumno graduado" placeholder="Nombre Completo del Alumno" cssClass="form-control"/>
+                                <s:textfield name="id_TT" label="numero del TT" cssClass="form-control" placeholder="TT20##-[A/B]###"/>
+                                <s:textfield name="nom_TT" label="Título del TT" cssClass="form-control" placeholder="Nombre del Trabajo Terminal"/>
+                                <s:textfield name="id_usuario" label="No. Empleado del Director" cssClass="form-control" placeholder="Numero de 8 dígitos" maxlength="8" pattern="([0-9]{8})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number"/>
+                                <sj:datepicker name="fecha_reg" label="Fecha de Registro" displayFormat="dd-mm-yy" cssClass="form-control" style="width =80%" placeholder="Fecha de Registro de la evidencia"/>
+                                <s:hidden name="registrado"/>
+                                <s:submit cssClass="btn" name="Registrar TT" value="Registrar Usuario"/>
                             </s:form> 
                         </div>
                     </div>
@@ -80,7 +83,7 @@
                                
                         <%
                             lb.getConnection();
-                            ResultSet beifi=lb.executeQuery("select * from profesor_tiene_tt;");
+                            ResultSet beifi=lb.executeQuery("select * from profesor_tiene_tt where registrado=1;");
                             out.print("<table  class=' table "
                                      + "table-container table-striped "
                                      + "table-responsive '>");

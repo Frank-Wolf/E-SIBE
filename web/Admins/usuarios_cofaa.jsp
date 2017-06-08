@@ -126,7 +126,7 @@
                         <s:set name="idTypeUsuario" value="%{6}" />
                         <s:form name="form1" id="datos3" action="Registra_COFAA">
                             <s:textfield name="user" label="Nombre de usuario" cssClass="form-control"/>
-                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control" maxlength="8" type="number"/>
+                            <s:textfield name="matricula" label="No. de Empleado" cssClass="form-control" maxlength="8" pattern="([0-9]{8})" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                             <s:textfield name="password" label="Contraseña" cssClass="form-control" maxlength="15" minlength="7"/>
                             <s:textfield name='email' label="Correo electrónico" cssClass="form-control"/>
                             <s:select label="Seleccione una dependencia" cssClass="form-control"

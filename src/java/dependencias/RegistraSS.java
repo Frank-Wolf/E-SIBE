@@ -16,7 +16,15 @@ import java.util.Random;
 public class RegistraSS extends ActionSupport
 {   
 
-    private String id_proyecto,nom_alumno,rol_profesor, tipo_alumno;
+    private String id_proyecto,nom_alumno,rol_profesor, tipo_alumno, registrado_alumno;
+
+    public String getRegistrado_alumno() {
+        return registrado_alumno;
+    }
+
+    public void setRegistrado_alumno(String registrado_alumno) {
+        this.registrado_alumno = registrado_alumno;
+    }
 
     public String getTipo_alumno() {
         return tipo_alumno;
@@ -142,13 +150,13 @@ public class RegistraSS extends ActionSupport
                         ResultSet alumn=lb.executeQuery("select id_alumno from alumno where id_alumno="+id_alumno+"");
                         while(alumn.next())
                         {
-                            lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, "
-                                    + "tipo_alumno='BEIFI' where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
+                            lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, registrado_alumno="+registrado_alumno+", "
+                                    + "tipo_alumno='"+tipo_alumno+"' where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
                                 lb.closeConnection();
                                 return SUCCESS;
                         }
                         lb.executeUpdate("insert into alumno(id_alumno,nom_alumno,recibido) values("+id_alumno+",'"+nom_alumno+"',0)");
-                        lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, tipo_alumno='SS' "
+                        lb.executeUpdate("update profesor_tiene_proyecto set id_alumno ="+id_alumno+", validado_alumno=0, registrado_alumno="+registrado_alumno+",tipo_alumno='"+tipo_alumno+"' "
                             + "where id_usuario="+id_usuario+" and id_proyecto='"+id_proyecto+"'");
                         lb.closeConnection();
                         return SUCCESS;
@@ -156,14 +164,14 @@ public class RegistraSS extends ActionSupport
                     ResultSet alu=lb.executeQuery("select id_alumno from alumno where id_alumno="+id_alumno+"");
                     while(alu.next())
                     {
-                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno)"
-                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','SS')");
+                        lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno,registrado_alumno)"
+                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"',"+tipo_alumno+","+registrado_alumno+")");
                         lb.closeConnection();
                         return SUCCESS;
                     }
                     lb.executeUpdate("insert into alumno(id_alumno,nom_alumno,recibido) values("+id_alumno+",'"+nom_alumno+"',0)");
-                    lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno)"
-                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','SS')");
+                    lb.executeUpdate("insert into profesor_tiene_proyecto (id_proyecto,id_usuario,id_alumno,validado_alumno,rol_profesor,tipo_alumno,registrado_alumno)"
+                                + "values ('"+id_proyecto+"',"+id_usuario+","+id_alumno+",0,'"+rol_profesor+"','"+tipo_alumno+"',"+registrado_alumno+")");
                     lb.closeConnection();
                         return SUCCESS;
                 }
