@@ -59,7 +59,7 @@
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
                             + "id_publicacion='"+user+"'");
                             while(rs.next()){
-                                n++;
+                                n = rs.getInt("num_autor");
                             }
                             //boolean aceptado = rs.getBoolean("aceptado_alumno");
                             //String comentario=rs.getString("comentarios");
