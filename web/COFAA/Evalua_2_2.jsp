@@ -151,7 +151,7 @@
                             rs=lb.executeQuery("SELECT * FROM profesor_tiene_pub WHERE "
                             + "id_publicacion='"+user+"'");
                             while(rs.next()){
-                                n++;
+                                n = rs.getInt("num_autor");
                                 tipo_pub = rs.getInt("id_tipo_pub");
                             }
                             lb.closeConnection();
