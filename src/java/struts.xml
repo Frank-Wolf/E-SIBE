@@ -444,6 +444,15 @@
             <result name="success">/SIP/Actividad_exitosa.jsp</result>
             <result name="error">/SIP/publicacion_ar.jsp</result>
         </action>
+        <action name="registra_pub_sin" class="dependencias.Registra_pubBol">
+            <result name="success">/Rep_ua/Actividad_exitosa.jsp</result>
+            <result name="error">/Rep_ua/Sin_arbitraje.jsp</result>
+        </action>
+        
+        <action name="registra_pub_sin2" class="dependencias.Registra_pubBol">
+            <result name="success">/Rep_ua/Actividad_exitosa.jsp</result>
+            <result name="error">/Rep_ua/Publicaciones_Sin_reportados.jsp</result>
+        </action>
         
         <action name="registra_tt_prof" class="dependencias.RegistraTT">
             <result name="success">/Profesor/Reporte_exitoso.jsp</result>

@@ -60,7 +60,7 @@
                             <br/>
                             <s:set name="id_evento" value="%{0}"/>       
                             <s:set name="registrado" value="%{1}"/>
-                            <s:form action="registra_pub_bol" method="post">
+                            <s:form action="registra_pub_sin2" method="post">
                                 <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control"/>
                                 <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control"/>
                                 <s:textfield name="Nom_Public" label="Nombre de la publicacion" cssClass="form-control"/>
