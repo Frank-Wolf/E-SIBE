@@ -83,7 +83,7 @@
                                                 
                        </div>
                         <div class="col-md-6">
-                            <h2 class="titulos" align="center">Proyectos Registrados</h2>
+                            <h2 class="titulos" align="center">Proyectos Reeportados por los Docentes</h2>
                             <br/>
                                
                             <%

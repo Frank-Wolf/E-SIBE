@@ -146,10 +146,10 @@ public class Registra_pubBol extends ActionSupport{
     private static Pattern pswNamePtrn = Pattern.compile("(SIP/DI/POPI-)([0-9]){4}(/)([0-9]){2}");
     private static Pattern ISSNPtrn = Pattern.compile("([0-9]){4}(-)([0-9]){4}");
     
-    public static String validateISSN(String ID_OBRA){//
+    public static String validateISSN(String ID_OBRA1){//
          
-        Matcher mtch = pswNamePtrn.matcher(ID_OBRA);
-        if(mtch.matches()){
+        Matcher mtch1 = ISSNPtrn.matcher(ID_OBRA1);
+        if(mtch1.matches()){
             return SUCCESS;
         }
         else
@@ -177,13 +177,13 @@ public class Registra_pubBol extends ActionSupport{
 
         if(ISSN.equals(""))   
         {
-            addFieldError("ISSN","Este campo es necesario");
+            addFieldError("ISSN","Este campo es necesario, en caso de no tener agregue 0");
             return ERROR;
         }
         
         if(ISBN.equals(""))   
         {
-            addFieldError("ISBN","Este campo es necesario");
+            addFieldError("ISBN","Este campo es necesario, en caso de no tener agregue 0");
             return ERROR;
         }
         
@@ -224,20 +224,28 @@ public class Registra_pubBol extends ActionSupport{
         }
         String cadena="";
         String SSN="";
-        //SSN= validateISSN(ISSN);
+        
         cadena= validatePassword(id_publicacion);
-        
-//        if(SSN.equals("test"))
-//        {
-//            addFieldError("ISSN","El formato del ISSN debe ser [4 dígitos]-[4 dígitos]");
-//            return ERROR;
-//        }
-        
-        if(cadena.equals("test"))
+        SSN= validateISSN(ISSN);
+        if(id_tipo_pub == 2 || id_tipo_pub == 3)
         {
-            addFieldError("id_publicacion","No coincide con la Regla, asegurate de que sea [2 digitos autores: 01, 02,...]-[año 4 dígitos]-[12 dígitos consecutivos]-[2 dígitos]");
-            return ERROR;
+            if(SSN.equals("test"))
+           {
+               addFieldError("ISSN","El formato del ISSN debe ser [4 dígitos]-[4 dígitos]");
+               return ERROR;
+           }
         }
+        
+        if(id_tipo_pub == 4 || id_tipo_pub == 5)
+        {
+            if(cadena.equals("test"))
+            {
+               addFieldError("id_publicacion","No coincide con la Regla, asegurate de que sea [2 digitos autores: 01, 02,...]-[año 4 dígitos]-[12 dígitos consecutivos]-[2 dígitos]");
+                return ERROR;
+            }
+            
+        }   
+        
         
         
         LoginBean lb = new LoginBean();

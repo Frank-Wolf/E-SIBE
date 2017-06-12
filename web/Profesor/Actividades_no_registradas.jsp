@@ -134,7 +134,7 @@
                         <s:set name="id_evento" value="%{0}"/>     
                         <s:set name="registrado" value="%{0}"/>
                             <s:form action="registra_pub_bol_profesor" method="post">
-                                <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control" placeholder="SIP/DI/POPI-####/año (2 dígitos)" maxLength="19"/>
+                                <s:textfield name="id_publicacion" label="Folio de Control" cssClass="form-control" placeholder="Identificador de la constancia de la pub" maxLength="19"/>
                                 <s:textfield name="Nombre_Rev" label="Nombre de la Revista" cssClass="form-control" placeholder="Nombre de La Revista"/>
                                 <s:textfield name="Nom_Public" label="Nombre de la publicacion" cssClass="form-control" placeholder="Nombre de la Publicación"/>
                                 <s:textfield name="id_usuario" label="No. Empleado del Autor" cssClass="form-control" placeholder="No. de Empleado del Autor" maxlength="8" pattern="([0-9]{8})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number"/>
@@ -150,8 +150,8 @@
                                     name="id_tipo_pub" />
                                 <s:textfield name="num_autores" label="Numero de Autores"  placeholder="Numero de Autores" cssClass="form-control" maxlength="1" pattern="([0-9]{1})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number"/>
                                 <s:textfield name="numero" label="Numero de la revista" cssClass="form-control"/>
-                                <s:textfield name="ISSN" label="ISSN" cssClass="form-control" maxlength="8" pattern="([0-9]{8})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" />
-                                <s:textfield name="ISBN" label="ISBN" cssClass="form-control" maxlength="13" pattern="([0-9]{13})" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number"/>
+                                <s:textfield name="ISSN" label="ISSN" cssClass="form-control" maxlength="9" />
+                                <s:textfield name="ISBN" label="ISBN" cssClass="form-control" maxlength="13"/>
                                 <s:textfield name="volumen" label="Volumen" cssClass="form-control" placerholder="Vol. #"/>
                                 <s:textfield name="annio" label="Año" cssClass="form-control" placeholder="VII"/>
                                 <sj:datepicker name="fecha_publicacion" label="Fecha de Publicacion" displayFormat="dd-mm-yy" cssClass="form-control" style="width =80%"/>
