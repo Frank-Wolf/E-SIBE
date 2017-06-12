@@ -50,8 +50,8 @@ public class GenerateReportActivities {
         public String execute() throws Exception 
         {
              //FILE = "C:\\psf\\Home\\Documents\\Reporte_de_actividades_E-SIBE.pdf";/*Test route*/
-             FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
-             //FILE = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path of server
+             //FILE = "C:\\psf\\Home\\Documents\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path where the file will be saved
+             FILE = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\" + getUsername() + "\\Reporte_de_Actividades_E-SIBE_" + getUsername() + ".pdf";//Path of server
              //FILE = ""
              lb.getConnection();
              /*int i = 0;

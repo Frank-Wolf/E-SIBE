@@ -61,11 +61,11 @@ public class Reporte_Final {
             //FILE = ".\\Usuarios\\Reporte_de_resultados_E-SIBE.pdf";
             FILE = ".\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\Reporte_de_resultados_E-SIBE.pdf";
             //.\\bin\\apache-tomcat-8.0.43\\webapps\\Usuarios\\Reporte_de_resultados_E-SIBE.pdf
-            lb.getConnection();
+            //lb.getConnection();
             
-            try 
-                {
-                        Document document = new Document();
+           // try 
+             //   {
+                        /*Document document = new Document();
                         PdfWriter.getInstance(document, new FileOutputStream(FILE));
                         OutputStream fos = new FileOutputStream(new File(FILE));
                         PdfWriter writer = PdfWriter.getInstance(document, fos);
@@ -76,7 +76,7 @@ public class Reporte_Final {
                         
                         int a = 0, r = 0;//a approved and r reject
                         a = getnumberA();
-                        r = getnumberR();
+                        r = getnumberR();*/
                         
                         //document.newPage();
                         /*Add a graphic*/
@@ -155,7 +155,7 @@ public class Reporte_Final {
                         document.newPage();*/
                         
                         
-                        addTablaEvaluadoresProfesor(document);
+                        /*addTablaEvaluadoresProfesor(document);
                         addTablaNumProfesor(document);
                         addTablaEvaluador(document);
                         addTablaProfesores(document);
@@ -169,14 +169,16 @@ public class Reporte_Final {
                         addTablaAcota1(document);
                         //System.out.println("Hola12");
                         lb.closeConnection();
-                        document.close();
-                } 
-            catch (Exception e) 
+                        document.close();*/
+                //} 
+            /*catch (Exception e) 
                 {
                         e.printStackTrace();
                         return "error";
-                }
-                return "success";
+                }*/
+            digital_sign_final t = new digital_sign_final();//here we call the fuction to sign the file
+            String execute = t.digital_sign_final();
+            return "success";
         }
         
         private static void addMetaData(Document document) 

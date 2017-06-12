@@ -31,18 +31,18 @@ import com.itextpdf.text.pdf.security.MakeSignature;
 import com.itextpdf.text.pdf.security.MakeSignature.CryptoStandard;
 import com.itextpdf.text.pdf.security.PrivateKeySignature;
  
-public class digital_sign {
+public class digital_sign_final {
     
-    public String digital_sign(String id_prof) throws GeneralSecurityException, IOException, DocumentException{
-        id_usuario = id_prof;
-        //SRC = "C:\\\\psf\\\\Home\\\\Documents\\\\" + id_usuario + "\\\\Reporte_de_Actividades_E-SIBE_" + id_usuario + ".pdf";
-        //DEST = "C:\\\\psf\\\\Home\\\\Documents\\\\" + id_usuario + "\\\\Reporte_de_Actividades_E-SIBE_" + id_usuario + "_seguro.pdf";
-        SRC = ".\\\\bin\\\\apache-tomcat-8.0.43\\\\webapps\\\\Usuarios\\\\" + id_usuario + "\\\\Reporte_de_Actividades_E-SIBE_" + id_usuario + ".pdf";
-        DEST = ".\\\\bin\\\\apache-tomcat-8.0.43\\\\webapps\\\\Usuarios\\\\" + id_usuario + "\\\\Reporte_de_Actividades_E-SIBE_" + id_usuario + "_seguro.pdf";
+    public String digital_sign_final() throws GeneralSecurityException, IOException, DocumentException{
+        //id_usuario = id_prof;
+        //SRC = "C:\\\\psf\\\\Home\\\\Documents\\\\Reporte_de_resultados_E-SIBE.pdf";
+        //DEST = "C:\\\\psf\\\\Home\\\\Documents\\\\Reporte_de_resultados_E-SIBE_seguro.pdf";
+        SRC = ".\\\\bin\\\\apache-tomcat-8.0.43\\\\webapps\\\\Usuarios\\\\Reporte_de_resultados_E-SIBE.pdf";
+        DEST = ".\\\\bin\\\\apache-tomcat-8.0.43\\\\webapps\\\\Usuarios\\\\Reporte_de_resultados_E-SIBE_seguro.pdf";
         String i = execute();
         return "done";
     }
-        public String id_usuario;
+        //public String id_usuario;
 	//public static final String KEYSTORE = "C:\\\\psf\\\\Home\\\\Documents\\\\E-SIBE2017.pfx";
         public static final String KEYSTORE = ".\\\\bin\\\\apache-tomcat-8.0.43\\\\webapps\\\\Usuarios\\\\E-SIBE2017.pfx";
 	public static final char[] PASSWORD = "iron_maiden".toCharArray();
