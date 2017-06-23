@@ -605,7 +605,7 @@
                             ResultSet obra1=null;
                             
                             obra1=lb.executeQuery("SELECT * "
-                                     + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=1 and registado=1");
+                                     + "FROM profesor_tiene_obra WHERE id_usuario = "+ username +" and validado=1 and registrado=1");
                             
                             out.print("<table  class=' table "
                                      + "table-container table-striped "

@@ -143,10 +143,11 @@ public class GenerateReportActivities {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 4);
             preface.setAlignment(Element.ALIGN_CENTER);
-            preface.add(new Paragraph("E-SIBE", catFont));
+            preface.add(new Paragraph("Instituto Politécnico Nacional", catFont));
             
-            preface.add(new Paragraph("Reporte de actividades del rubro 2 de la"
-                    + " beca SIBE de COFAA",smallBold));
+            preface.add(new Paragraph("Comisión de Operación y Fomento de Actividades"
+                    + " Académicas (COFAA)\n Dirección de Especialización Docente e Investigación Científica y "
+                    + "Tecnológica\nE-SIBE",smallBold));
             addEmptyLine(preface, 2);
             document.add(preface);
         }
